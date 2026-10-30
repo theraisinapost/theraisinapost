@@ -90,4 +90,19 @@ class TestFeed(unittest.TestCase):
    self.assertIn('Rights &amp; attribution',guide)
    self.assertIn('raisinapost.substack.com/about',guide)
 
+ def test_brand_assets_are_deployed(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   for fname in ('brand-masthead.png','brand-elephant.png','favicon.svg'):
+    self.assertTrue((out/fname).exists(),fname)
+   self.assertEqual((out/'brand-masthead.png').read_bytes()[:8],b'\x89PNG\r\n\x1a\n')
+   home=(out/'index.html').read_text(encoding='utf-8')
+   guide=(out/'publication-guide.html').read_text(encoding='utf-8')
+   self.assertIn('src="brand-masthead.png"',home)
+   self.assertIn('src="brand-elephant.png"',home)
+   self.assertIn('src="brand-masthead.png"',guide)
+   self.assertNotIn('The Raisena Post',home)
+
 if __name__=='__main__':unittest.main()
