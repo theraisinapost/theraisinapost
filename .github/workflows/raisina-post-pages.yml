@@ -1,0 +1,56 @@
+name: The Raisina Post | RSS to GitHub Pages
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/raisina-post-pages.yml'
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: raisina-post-pages
+  cancel-in-progress: false
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test RSS parsing and output
+        run: python -m unittest discover -s tests -v
+      - name: Fetch RSS and build static website
+        env:
+          RAISINA_SITE_URL: ${{ vars.RAISINA_SITE_URL }}
+        run: |
+          OWNER="${{ github.repository_owner }}"
+          REPO="${{ github.event.repository.name }}"
+          if [ "${REPO,,}" = "${OWNER,,}.github.io" ]; then
+            DEFAULT_SITE_URL="https://${OWNER}.github.io/"
+          else
+            DEFAULT_SITE_URL="https://${OWNER}.github.io/${REPO}/"
+          fi
+          SITE_URL="${RAISINA_SITE_URL:-$DEFAULT_SITE_URL}"
+          python scripts/build.py --output dist --site-url "$SITE_URL"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: test-and-build
+    steps:
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
