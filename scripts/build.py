@@ -16,7 +16,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, quote
 import xml.etree.ElementTree as ET
 
 BASE = Path(__file__).resolve().parents[1]
@@ -162,7 +162,13 @@ def download_feed():
 
     The proxy only receives a public feed URL. No user cookies or tokens are sent.
     """
-    sources = [FEED_URL, 'https://proxy.cors.dev/' + FEED_URL]
+    sources = [
+        FEED_URL,
+        'https://proxy.cors.dev/' + FEED_URL,
+        'https://corsproxy.io/?url=' + quote(FEED_URL, safe=''),
+        'https://api.allorigins.win/raw?url=' + quote(FEED_URL, safe=''),
+        'https://api.codetabs.com/v1/proxy?quest=' + quote(FEED_URL, safe=''),
+    ]
     errors = []
     for source in sources:
         req = Request(source, headers={
@@ -177,7 +183,12 @@ def download_feed():
             return contents
         except (HTTPError, URLError, ValueError, ET.ParseError, UnicodeDecodeError) as exc:
             errors.append('%s: %s' % (source, exc))
-    raise RuntimeError('RSS download failed from both sources: ' + '; '.join(errors))
+    # Substack may block cloud IPs; preserve an accurate, dated public snapshot.
+    fallback = BASE / 'site' / 'feed-backup.xml'
+    if fallback.exists():
+        print('WARNING: RSS sources inaccessible; using dated fallback archive. ' + '; '.join(errors))
+        return fallback.read_text(encoding='utf-8')
+    raise RuntimeError('RSS download failed: ' + '; '.join(errors))
 
 def main():
     p=argparse.ArgumentParser()
