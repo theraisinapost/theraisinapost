@@ -16,6 +16,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
+from http.client import IncompleteRead
 from urllib.parse import urlsplit, quote
 import xml.etree.ElementTree as ET
 
@@ -181,7 +182,7 @@ def download_feed():
             if ET.fromstring(contents).find('.//channel/item') is None:
                 raise ValueError('Response did not contain RSS items')
             return contents
-        except (HTTPError, URLError, ValueError, ET.ParseError, UnicodeDecodeError) as exc:
+        except (HTTPError, URLError, IncompleteRead, OSError, ValueError, ET.ParseError, UnicodeDecodeError) as exc:
             errors.append('%s: %s' % (source, exc))
     # Substack may block cloud IPs; preserve an accurate, dated public snapshot.
     fallback = BASE / 'site' / 'feed-backup.xml'
