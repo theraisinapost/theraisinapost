@@ -38,6 +38,14 @@ class TestFeed(unittest.TestCase):
    self.assertTrue((out/'styles.css').exists())
    self.assertTrue((out/'sitemap.xml').exists())
    self.assertTrue((out/'posts.json').exists())
+   self.assertIn('THE VIEW FROM RAISINA', html)
+   self.assertIn('class="lead-story"', html)
+   self.assertIn('class="rail-story"', html)
+   self.assertIn('class="article-row"', html)
+   self.assertNotIn('<!--FEATURED-->', html)
+   self.assertNotIn('<!--SIDE_STORIES-->', html)
+   self.assertNotIn('<!--ARTICLES-->', html)
+   self.assertNotIn('<!--YEAR-->', html)
 
  def test_download_feed_falls_back_to_public_rss_proxy_after_403(self):
   from urllib.error import HTTPError
@@ -51,5 +59,35 @@ class TestFeed(unittest.TestCase):
  def test_prevents_invalid_feed_from_wiping_site(self):
   with self.assertRaises(ValueError):
    build.parse_feed('<rss><channel></channel></rss>')
+
+ def test_white_layout_search_clock_weather_and_publication_guide(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out,'https://theraisinapost.github.io/theraisinapost/')
+   page=(out/'index.html').read_text()
+   css=(out/'styles.css').read_text()
+   js=(out/'site.js').read_text()
+   self.assertIn('id="article-search"',page)
+   self.assertEqual(page.count('class="article-row"'),2)
+   self.assertIn('id="analog-clock"',page)
+   self.assertIn('id="new-delhi-weather"',page)
+   self.assertIn('publication-guide.html',page)
+   self.assertTrue((out/'publication-guide.html').exists())
+   self.assertIn('--paper:#ffffff',css)
+   self.assertIn('api.open-meteo.com/v1/forecast',js)
+   self.assertIn('Asia/Kolkata',js)
+   self.assertNotIn('DESIGN PREVIEW',page)
+
+ def test_guide_has_real_sections_and_no_invented_email(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out,'https://theraisinapost.github.io/theraisinapost/')
+   guide=(out/'publication-guide.html').read_text()
+   self.assertIn('Corrections',guide)
+   self.assertIn('Submissions',guide)
+   self.assertIn('Rights &amp; attribution',guide)
+   self.assertIn('raisinapost.substack.com/about',guide)
 
 if __name__=='__main__':unittest.main()

@@ -1,31 +1,70 @@
-# The Raisina Post — independent RSS editorial archive
+# The Raisina Post
 
-Official GitHub repository: **[theraisinapost/theraisinapost](https://github.com/theraisinapost/theraisinapost)**.
+> **Power. Policy. Perspective.** An independent editorial index for [The Raisina Post](https://raisinapost.substack.com/).
 
-This repository contains a zero-cost, static editorial archive built from The Raisina Post's [public Substack RSS](https://raisinapost.substack.com/feed). Substack remains the canonical publisher. The archive shows recent stories and headlines, while readers follow links to the original Substack articles; it does not reproduce paid or complete newsletter content.
+A purpose-built, minimalist GitHub Pages site for **[@theraisinapost](https://github.com/theraisinapost)**. It reads the public Substack RSS feed and publishes a typographic editorial homepage, front-page lead, secondary dispatches, searchable archive, categories and a newsletter call-to-action. The canonical articles and subscriptions remain on Substack.
 
-## Publishing
+**Repository:** `theraisinapost/theraisinapost`  
+**Expected GitHub Pages URL:** `https://theraisinapost.github.io/theraisinapost/`  
+**Feed:** `https://raisinapost.substack.com/feed`  
+**Publishing cadence:** hourly GitHub Actions, subject to scheduler and feed availability.
 
-1. Open [Settings → Pages](https://github.com/theraisinapost/theraisinapost/settings/pages) and choose **GitHub Actions** under **Build and deployment**.
-2. Open [Actions → The Raisina Post | RSS to GitHub Pages](https://github.com/theraisinapost/theraisinapost/actions/workflows/raisina-post-pages.yml) and run the workflow once if it is not already running.
-3. Once GitHub Pages deployment succeeds, visit **https://theraisinapost.github.io/theraisinapost/**. (This is a *project* site, since the repository is named `theraisinapost`.)
+## Deployment
 
-GitHub Actions refreshes the RSS-indexed site hourly (subject to scheduling and feed access). RSS retrieval uses the canonical feed directly, then a public RSS-only proxy as a fallback if Substack rejects a cloud-hosted request. The job runs unit tests, validates the RSS and publishes a static HTML site without requiring Substack login. If the feed is unavailable, deployment stops rather than replacing the site with an empty index.
+1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
+2. In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. The `GITHUB_TOKEN` on its own cannot activate an unconfigured Pages site.
+3. In **Actions**, open **The Raisina Post | RSS to GitHub Pages** and select **Run workflow**, branch `main`.
+4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/theraisinapost/`.
 
-For the short organization-level URL **https://theraisinapost.github.io/** in future, a separate repository named `theraisinapost.github.io` would be needed; the present repository is the one you created, and remains unchanged in name.
+The website automatically updates on pushes to the source files, on manual dispatch, and via a scheduled check at 23 minutes past every hour. GitHub-hosted scheduled workflows can be delayed; feed failures stop a deployment instead of wiping a working site. If direct Substack RSS is blocked from a GitHub runner, the build tries a public RSS proxy. Only a public URL is sent, never credentials.
 
-## Custom domain later
+### Custom domain (later)
 
-Use a subdomain you own, for example `archive.example.com`, and keep Substack on its current domain. At your DNS provider add `CNAME archive → theraisinapost.github.io`, then set the same hostname in this repo's **Settings → Pages → Custom domain**. Set the Actions repository variable `RAISINA_SITE_URL` to `https://archive.example.com/` so the site's canonical URL, sitemap and metadata match. Rerun the workflow and enforce HTTPS after GitHub provisions it. Do not configure a domain that you do not own, or overwrite Substack / email DNS records.
+For a domain such as `archive.example.com`:
 
-## Local verification
+- In DNS, add a **CNAME** record for `archive` pointing to `theraisinapost.github.io`.
+- In repository **Settings → Pages**, enter `archive.example.com` under **Custom domain** and wait for verification and TLS.
+- In **Settings → Secrets and variables → Actions → Variables**, add `RAISINA_SITE_URL` as `https://archive.example.com/`.
+- Rerun the deployment; do not change Substack, email or other unrelated DNS records.
 
-Requires Python 3.10+ (standard library only):
+The site's canonical URL, Open Graph URL, robots.txt and sitemap are generated from this variable. GitHub Pages stores the domain mapping in its settings; a CNAME file alone does not configure it for an Actions deployment.
+
+## Local development
+
+Requires Python 3.10+; runtime is standard library only.
 
 ```bash
 python -m unittest discover -s tests -v
 python scripts/build.py --output dist
-python -m http.server 8000 --directory dist
+python -m http.server 8080 --directory dist
 ```
 
-Use `--feed-file` to build against an offline XML fixture and avoid network calls when testing. The site is mobile responsive, searchable and filterable; only articles present in the current RSS feed appear (this is not guaranteed to be a full historical archive).
+Test without network: `python scripts/build.py --feed-file sample-rss.xml --output dist`.
+
+### Directory structure
+
+```text
+.github/workflows/raisina-post-pages.yml  RSS refresh, tests and GitHub Pages deploy
+scripts/build.py                       Secure RSS parser and HTML renderer
+site/index.html                        Semantic editorial page template
+site/styles.css                        Responsive, bespoke layout
+site/site.js                           Client-side filtering and search
+site/favicon.svg                       R. monogram mark
+tests/test_build.py                    Feed parsing and HTML generation tests
+```
+
+## Editorial policy
+
+The index contains only the headlines, limited summaries, dates and media exposed in the public RSS feed, with prominent links to the originals. It does not republish complete paid articles, bypass newsletter access, or pretend GitHub is the canonical publisher. Articles absent from Substack's current RSS feed will not appear in this *recent-dispatch* archive. Reader subscription and all editorial control stay with Substack.
+
+## White editorial redesign (October 2026)
+
+The public site uses a plain white, accessible editorial system with mobile navigation, a prominent search bar (press `/` to focus, `Escape` to clear), category filters, and a new **Publication guide** page. Search covers the articles currently returned by the public Substack RSS feed, including the latest/featured article; it does **not** search Substack's full historical archive.
+
+The header reserves logo and sub-logo positions. Until approved identity files are supplied, text-based wordmark and strapline stay in place. Replace those text elements in `site/index.html` after receiving the official assets; do not introduce unapproved logos.
+
+The top corner displays a full analog clock plus a digital India Standard Time reading and a live date. The New Delhi weather line uses Open-Meteo's current conditions API with a local fallback of “Weather unavailable.” Check their licensing and usage terms if deploying for commercial or high-volume use. There are no tracking cookies and no weather API keys. The footer credits the weather data source.
+
+`site/publication-guide.html` contains the reader guide. Its practical editorial wording is a public-facing draft, not a legal privacy policy or contractual guarantee. Contact links point to the publication's real Substack contact/about page; no email addresses have been invented.
+
+Inspired by accessible search/command patterns in [shadcn/ui](https://github.com/shadcn-ui/ui), and understated editorial hierarchy. The implementation is original vanilla HTML/CSS/JS and does not vendor framework code.

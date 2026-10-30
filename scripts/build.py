@@ -123,39 +123,53 @@ def escape(value):
 def card(post, idx):
     title, url, excerpt = escape(post['title']), escape(post['url']), escape(post['description'])
     date, category = escape(post['date']), escape(post['category'])
-    image = (f'<img class="card-image" loading="lazy" src="{escape(post["image"])}" alt="" referrerpolicy="no-referrer">' if post['image'] else '<span class="card-placeholder" aria-hidden="true">✳</span>')
-    return f'''<article class="article-card" data-title="{title.lower()}" data-summary="{excerpt.lower()}" data-category="{category}" data-date="{escape(post['date_iso'])}">
-      <a class="card-media" href="{url}" target="_blank" rel="noopener noreferrer" aria-label="Read {title} on Substack">{image}</a>
-      <div class="card-copy"><div class="eyebrow"><span>{category}</span><span>{date}</span></div>
+    if post['image']:
+        artwork = f'<img src="{escape(post["image"])}" loading="lazy" alt="" referrerpolicy="no-referrer">'
+    else:
+        artwork = '<div class="article-art" aria-hidden="true"><span>R</span><i>THE POST</i></div>'
+    return f'''<article class="article-row" data-title="{title.lower()}" data-summary="{excerpt.lower()}" data-category="{category}" data-date="{escape(post['date_iso'])}">
+      <div class="article-main"><div class="article-overline"><span class="article-category">{category}</span><span class="over-dot"></span><time datetime="{escape(post['date_iso'])}">{date}</time></div>
       <h3><a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a></h3>
-      <p>{excerpt}</p><a class="article-link" href="{url}" target="_blank" rel="noopener noreferrer">Read on Substack <span aria-hidden="true">↗</span></a></div>
+      <p>{excerpt}</p><a class="article-arrow" href="{url}" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span></a></div>
+      <a class="article-media" href="{url}" aria-label="Read {title} on Substack" target="_blank" rel="noopener noreferrer">{artwork}</a>
     </article>'''
 
 def featured(post):
-    image = (f'<img src="{escape(post["image"])}" alt="" loading="eager" referrerpolicy="no-referrer">' if post['image'] else '<div class="hero-placeholder" aria-hidden="true"><span>TRP</span></div>')
-    return f'''<div class="feature-copy"><div class="section-label"><span class="pulse"></span> LATEST DISPATCH <span class="label-rule"></span> {escape(post['date'])}</div>
-      <div class="category-tag">{escape(post['category'])}</div>
-      <h1><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h1>
-      <p>{escape(post['description'])}</p>
-      <a class="main-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read the dispatch <span aria-hidden="true">↗</span></a>
-    </div><a class="feature-image" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read latest dispatch">{image}</a>'''
+    artwork = (f'<img src="{escape(post["image"])}" loading="eager" alt="" referrerpolicy="no-referrer">' if post['image'] else '<div class="hero-art" aria-hidden="true"><span>R</span></div>')
+    return f'''<article class="lead-story"><div class="lead-content">
+      <div class="lead-stamp"><i aria-hidden="true"></i> THE LEAD DISPATCH · <time datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
+      <div class="lead-category">{escape(post['category'])}</div>
+      <h2><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h2>
+      <p class="lead-description">{escape(post['description'])}</p>
+      <a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">READ THE DISPATCH <span aria-hidden="true">↗</span></a>
+      </div><a class="lead-visual" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read the lead dispatch">{artwork}<div class="lead-image-footer"><strong>R.</strong>THE RAISINA POST<br>THE INDEPENDENT DESK</div></a>
+    </article>'''
+
+def side_story(post, idx):
+    return f'''<article class="rail-story"><div class="rail-meta"><span>{escape(post['category'])}</span><time class="rail-date" datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
+      <h3><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h3><p>{escape(post['description'])}</p></article>'''
 
 def render_site(posts, destination, site_url=DEFAULT_URL):
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
     source = (BASE/'site'/'index.html').read_text(encoding='utf-8')
     page = source.replace('<!--FEATURED-->', featured(posts[0]))
-    page = page.replace('<!--ARTICLES-->', '\n'.join(card(p, i) for i,p in enumerate(posts[1:],1)))
+    page = page.replace('<!--SIDE_STORIES-->', '\n'.join(side_story(p, i) for i,p in enumerate(posts[1:3],1)))
+    page = page.replace('<!--ARTICLES-->', '\n'.join(card(p, i) for i,p in enumerate(posts,0)))
     page = page.replace('<!--COUNT-->', str(len(posts)))
     page = page.replace('<!--UPDATED-->', escape(datetime.now(timezone.utc).strftime('%d %b %Y, %H:%M UTC')))
+    page = page.replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(page, encoding='utf-8')
     for fname in ('styles.css','site.js','favicon.svg'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
+    guide = (BASE/'site'/'publication-guide.html').read_text(encoding='utf-8')
+    guide = guide.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    (destination/'publication-guide.html').write_text(guide, encoding='utf-8')
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')
-    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url></urlset>',encoding='utf-8')
+    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url></urlset>',encoding='utf-8')
     (destination/'.nojekyll').write_text('',encoding='utf-8')
 
 def download_feed():
@@ -163,13 +177,10 @@ def download_feed():
 
     The proxy only receives a public feed URL. No user cookies or tokens are sent.
     """
-    sources = [
-        FEED_URL,
-        'https://proxy.cors.dev/' + FEED_URL,
-        'https://corsproxy.io/?url=' + quote(FEED_URL, safe=''),
-        'https://api.allorigins.win/raw?url=' + quote(FEED_URL, safe=''),
-        'https://api.codetabs.com/v1/proxy?quest=' + quote(FEED_URL, safe=''),
-    ]
+    sources = [FEED_URL, 'https://proxy.cors.dev/' + FEED_URL,
+               'https://corsproxy.io/?url='+quote(FEED_URL, safe=''),
+               'https://api.allorigins.win/raw?url='+quote(FEED_URL, safe=''),
+               'https://api.codetabs.com/v1/proxy?quest='+quote(FEED_URL, safe='')]
     errors = []
     for source in sources:
         req = Request(source, headers={
@@ -184,10 +195,9 @@ def download_feed():
             return contents
         except (HTTPError, URLError, IncompleteRead, OSError, ValueError, ET.ParseError, UnicodeDecodeError) as exc:
             errors.append('%s: %s' % (source, exc))
-    # Substack may block cloud IPs; preserve an accurate, dated public snapshot.
-    fallback = BASE / 'site' / 'feed-backup.xml'
+    fallback=BASE/'site'/'feed-backup.xml'
     if fallback.exists():
-        print('WARNING: RSS sources inaccessible; using dated fallback archive. ' + '; '.join(errors))
+        print('WARNING: Using dated fallback RSS metadata; live feed temporarily unavailable.')
         return fallback.read_text(encoding='utf-8')
     raise RuntimeError('RSS download failed: ' + '; '.join(errors))
 
