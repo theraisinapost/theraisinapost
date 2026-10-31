@@ -1,12 +1,12 @@
 /* The Raisina Post / editorial refinement, October 2026.
-   A quieter hierarchy: Inter for utility, Newsreader for headlines.
+   Instrument Serif for editorial expression; Geist for modern reading and data.
    One thoughtful rule per composition rather than a border around every box. */
 :root{
   --paper:#fff;
   --ink:#1c1c1b;
   --accent:#a41129;
-  --serif:"Newsreader",Georgia,"Times New Roman",serif;
-  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --radius:8px;
 }
 body{font-size:13px;line-height:1.72;letter-spacing:-.008em}
@@ -170,4 +170,29 @@ h1,h2,h3{font-kerning:normal}
 }
 @media(prefers-reduced-motion:reduce){
  .subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise{transition:none}
+}
+
+/* Instrument Serif headlines, Geist interface and data. No layout or feature changes. */
+html{font-synthesis: none}
+body,button,input,select,textarea{font-family:var(--sans)}
+.intro h1,.lead-story h2,.article-row h3,.obs-story h3,
+.obs-intro h1,.market-intro h1,.guide-main>h1,.about-page h1{
+  font-family:var(--serif);font-weight:400;letter-spacing:-.022em;
+}
+.newsletter h2,.section-bar h2,.guide-articles h2,
+.about-copy h2,.about-closing h2,.about-contact h2,
+.obs-section-title h2,.market-context-grid h3,.market-panel h3{
+  font-family:var(--serif);font-weight:400;letter-spacing:-.016em;
+}
+.obs-metrics strong,.macro-card>strong,
+.clock-details span,#digital-clock{
+  font-family:var(--sans);font-variant-numeric:tabular-nums;
+  font-weight:500;letter-spacing:-.035em;
+}
+.clock-details span,#digital-clock{letter-spacing:0}
+.nav-links,.filters,.footer-links,.obs-chip,.guide-aside,
+.article-overline,.lead-stamp,.obs-story-meta,
+.market-intro-meta,.macro-card>small{font-family:var(--sans)}
+@media(max-width:620px){
+  .intro h1,.obs-intro h1,.market-intro h1{letter-spacing:-.018em}
 }
