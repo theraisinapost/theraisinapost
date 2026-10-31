@@ -1,0 +1,120 @@
+/* The Raisina Post — quiet motion and precision-dial finish.
+   Loaded after minimal.css. No additional fonts, libraries or animation servers. */
+:root{--motion-fluid:cubic-bezier(.22,1,.36,1);--motion-quick:cubic-bezier(.25,.8,.25,1)}
+/* The newsroom watch: exact second/minute/hour rotation with compositor-driven
+   keyframes. JS seeds each hand with a negative time-of-day delay. */
+.mast-grid .analog-clock{
+ width:98px;height:98px;--dial-radius:40px;
+ border:1px solid #dedede;
+ background:radial-gradient(circle at 50% 45%,#fff 0%,#fff 69%,#fcfcfc 100%);
+ box-shadow:inset 0 0 0 1px rgba(255,255,255,.9),0 0 0 4px #fafafa;
+}
+.mast-grid .analog-clock .clock-number{
+ font-family:var(--sans);font-size:10px;font-weight:550;color:#373737;letter-spacing:-.05em;
+}
+.mast-grid .analog-clock .twelve{top:14px}
+.mast-grid .analog-clock .six{bottom:13px}
+.mast-grid .analog-clock .three{right:14px}
+.mast-grid .analog-clock .nine{left:14px}
+.analog-clock .dial-mark{background:#d1d1d1;width:1px;height:3px}
+.analog-clock .dial-mark-major{background:#595959;width:1.4px;height:6px}
+.mast-grid .analog-clock .clock-hand{
+ border-radius:10px;background:#242424;
+ backface-visibility:hidden;will-change:transform;
+}
+.mast-grid .analog-clock .hour-hand{height:24px;width:3.5px}
+.mast-grid .analog-clock .minute-hand{height:33px;width:2.4px;background:#303030}
+.mast-grid .analog-clock .second-hand{height:37px;width:1.4px;background:#ad4037}
+.mast-grid .analog-clock .clock-pin{
+ width:7px;height:7px;background:#282828;border:1.5px solid white;box-shadow:0 0 0 1px #282828;
+}
+.clock-running .hour-hand{animation:clock-sweep 43200s linear infinite}
+.clock-running .minute-hand{animation:clock-sweep 3600s linear infinite}
+.clock-running .second-hand{animation:clock-sweep 60s linear infinite}
+@keyframes clock-sweep{
+ from{transform:translateX(-50%) rotate(0deg)}
+ to{transform:translateX(-50%) rotate(360deg)}
+}
+.clock-wrap .clock-details{gap:2px}
+.clock-wrap #digital-clock{
+ font:550 12px/1.4 var(--sans);letter-spacing:-.018em;
+ color:#373737;font-variant-numeric:tabular-nums;
+}
+/* The page stays predominantly still. Interactions are small, responsive
+   changes of surface and position—not movement for its own sake. */
+.search-shell,.filter,.utility-button,.subscribe-nav,.newsletter>a,
+.guide-subscribe,.mobile-menu-trigger,.mobile-menu-close,
+.intel-home-links a,.research-teaser-grid a,.obs-chip,.stage-filters button{
+ transition:background-color .24s var(--motion-quick),
+            border-color .24s var(--motion-quick),
+            color .24s var(--motion-quick),
+            box-shadow .28s var(--motion-fluid),
+            transform .34s var(--motion-fluid);
+}
+.search-shell:focus-within{
+ box-shadow:0 0 0 3px rgba(23,23,23,.045);
+}
+.nav-links a,.editorial-footer a,.rail-story h3 a,.article-row h3 a,
+.lead-story h2 a,.desk-record-body a,.desk-subnav a{
+ transition:color .22s ease,opacity .22s ease;
+}
+.lead-visual img,.article-media img{
+ transition:transform .75s var(--motion-fluid),filter .65s ease;
+ transform:translateZ(0);
+}
+@media(hover:hover) and (pointer:fine){
+ .research-teaser-grid a:hover,.intel-home-links a:hover{
+  transform:translateY(-2px);
+  background:#f4f4f4;
+  box-shadow:0 10px 23px rgba(20,20,20,.035);
+ }
+ .lead-visual:hover img,.article-media:hover img,
+ .article-row:hover .article-media img{transform:scale(1.025);filter:grayscale(80%)}
+ .utility-button:hover,.filter:hover,.obs-chip:hover{transform:translateY(-1px)}
+ .newsletter>a:hover,.subscribe-nav:hover,.guide-subscribe:hover{transform:translateY(-1px)}
+}
+.filter:active,.utility-button:active,.subscribe-nav:active,
+.mobile-menu-trigger:active{transform:scale(.985)}
+/* Scroll reveals are enhancement-only: content stays visible without JS,
+   IntersectionObserver, or when reduced motion is requested. */
+.motion-pending{
+ opacity:0;transform:translate3d(0,12px,0);
+ transition:opacity .62s var(--motion-fluid),transform .68s var(--motion-fluid);
+ transition-delay:var(--motion-delay,0ms);
+}
+.motion-pending.motion-visible{opacity:1;transform:translate3d(0,0,0)}
+/* Compact watch: numerals remain readable and the dial clears the city line. */
+@media(max-width:780px){
+ .mast-grid .analog-clock{width:74px;height:74px;--dial-radius:30px}
+ .mast-grid .analog-clock .clock-number{font-size:9px}
+ .mast-grid .analog-clock .twelve{top:10px}
+ .mast-grid .analog-clock .six{bottom:9px}
+ .mast-grid .analog-clock .three{right:10px}
+ .mast-grid .analog-clock .nine{left:10px}
+ .mast-grid .analog-clock .hour-hand{height:19px;width:3px}
+ .mast-grid .analog-clock .minute-hand{height:26px;width:2px}
+ .mast-grid .analog-clock .second-hand{height:28px;width:1.4px}
+ .mast-grid #digital-clock{font-size:11px}
+ .mast-grid .clock-wrap{gap:5px}
+}
+@media(max-width:380px){
+ .mast-grid .analog-clock{width:66px;height:66px;--dial-radius:26px}
+ .mast-grid .analog-clock .twelve{top:8px}
+ .mast-grid .analog-clock .six{bottom:7px}
+ .mast-grid .analog-clock .three{right:8px}
+ .mast-grid .analog-clock .nine{left:8px}
+ .mast-grid .analog-clock .hour-hand{height:17px}
+ .mast-grid .analog-clock .minute-hand{height:22px}
+ .mast-grid .analog-clock .second-hand{height:24px}
+}
+/* Respect OS-level preferences across every page, including legacy
+   animations. The JS clock still updates at one-second intervals. */
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto!important}
+ *,*::before,*::after{
+  animation:none!important;transition:none!important;
+  scroll-behavior:auto!important;
+ }
+ .motion-pending{opacity:1!important;transform:none!important}
+ .lead-visual img,.article-media img{transform:none!important}
+}
