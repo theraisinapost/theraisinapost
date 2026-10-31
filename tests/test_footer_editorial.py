@@ -28,6 +28,39 @@ class FooterEditorialTests(unittest.TestCase):
                 self.assertNotIn('<!--YEAR-->',page)
                 self.assertNotIn('<!--EDITORIAL_FOOTER-->',page)
 
+    def test_swiss_footer_typography_and_semantic_disclosures(self):
+        from html.parser import HTMLParser
+
+        class NavigationInspector(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.links = []
+            def handle_starttag(self, tag, attrs):
+                if tag == 'a':
+                    self.links.append(dict(attrs).get('href', ''))
+
+        with TemporaryDirectory() as tmp:
+            out=Path(tmp)
+            build.render_site(build.parse_feed(FEED),out)
+            footer=(out/'index.html').read_text(encoding='utf-8')
+            css=(out/'footer-refresh.css').read_text(encoding='utf-8')
+            for route in ('index.html','about.html','markets.html','data-room.html'):
+                html=(out/route).read_text(encoding='utf-8')
+                self.assertEqual(html.count('id="footer-invitation"'),1)
+                self.assertIn('The evidence behind the decision.', html)
+                self.assertIn('Independent reporting on policy, business and public institutions.',html)
+            self.assertIn('grid-template-columns:repeat(12,minmax(0,1fr))',css)
+            self.assertIn('font-variant-numeric:tabular-nums',css)
+            self.assertIn('@media(max-width:660px)',css)
+            self.assertIn('prefers-reduced-motion',css)
+            self.assertIn('href="https://raisinapost.substack.com/archive"',footer)
+            self.assertIn('href="https://raisinapost.substack.com/p/editorial-policy"',footer)
+            self.assertNotIn('target="_blank" rel="noopener noreferrer">An Indian publication',footer)
+            assert_parser=NavigationInspector()
+            assert_parser.feed(footer)
+            self.assertNotIn('#', assert_parser.links)
+            self.assertNotIn('', assert_parser.links)
+
     def test_homepage_has_refined_copy_and_one_primary_subscribe_pitch(self):
         with TemporaryDirectory() as tmp:
             dest=Path(tmp)
