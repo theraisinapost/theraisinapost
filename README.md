@@ -169,3 +169,13 @@ Run `python -m unittest discover -s tests -v` and `npm run test:e2e` using the e
 - The public PDF calendar is **not automatically scraped**: changes are reviewed against the latest ministry record, then `site/data/release-calendar.json` is updated in a source-linked commit.
 - Economic observations may be missing or revised. World Bank API failures keep values blank and link to the original indicator.
 - This remains a fully static GitHub Pages site. It does not require a server, authentication, persistent reader storage or a new paid data supplier.
+
+
+## Institutional editorial pages (October 2026)
+
+- `about.html` is the publication's institutional overview, with coverage, editorial method, verified publication formats, research destinations and independence disclosures. Its presentation stays in Inter with a white canvas, muted type and 8px surfaces.
+- `editorial-policy.html` is a readable, source-faithful explanation of the published editorial policy, including verification, corrections, reporting versus analysis, AI-generated illustrations, synthetic audio and conflicts. It links directly to the **authoritative** [Substack policy](https://raisinapost.substack.com/p/editorial-policy), last updated 25 October 2026. If that policy changes, editors should update the local explanation; a GitHub Pages copy must not imply it is authoritative over the live Substack version.
+- `corrections.html` gives readers a clear correction checklist and the published editorial address, `raisinapost@substack.com`. This site does not pretend to operate a confidential dropbox or secure intake service. Sensitive records should not be sent through ordinary email.
+- `publication-guide.html` remains the practical archive/format/rights guide, cross-linked to the policy and corrections pages.
+
+All three new or revised pages build through `scripts/build.py`; templates are `site/about.html`, `site/editorial-policy.html` and `site/corrections.html`, with design refinements in `site/about.css` and `site/editorial-pages.css`. The homepage, command palette, mobile navigation and footer link to the new pages. Unit and browser tests check mobile overflow, canonical URLs and essential published disclosures. No fictional newsroom headcount, unverified claims of scale or invented response-time guarantees appear.

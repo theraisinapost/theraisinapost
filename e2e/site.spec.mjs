@@ -78,7 +78,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   await expect(page.getByRole('heading', { level: 1, name: /record matters/i })).toBeVisible();
 });
 
-for (const path of ['/', '/about.html', '/publication-guide.html']) {
+for (const path of ['/', '/about.html', '/publication-guide.html', '/editorial-policy.html', '/corrections.html']) {
   test('WCAG A/AA serious and critical accessibility violations: ' + path, async ({ page }) => {
     await page.goto(path);
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
@@ -335,5 +335,30 @@ test('About page is a navigable editorial profile on desktop and mobile', async 
   await page.setViewportSize({width:390,height:844});
   await expect(page.locator('.about-hero h1')).toBeVisible();
   await expect(page.locator('.about-endnote')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+
+test('editorial policy mirrors published standards with direct source and mobile navigation', async ({page}) => {
+  await page.goto('/editorial-policy.html');
+  await expect(page.getByRole('heading', {level:1})).toContainText('Standards,');
+  await expect(page.locator('.ed-chapter')).toHaveCount(8);
+  await expect(page.locator('.ed-index a')).toHaveCount(8);
+  await expect(page.getByRole('link', {name:'Read the canonical policy'}))
+    .toHaveAttribute('href','https://raisinapost.substack.com/p/editorial-policy');
+  await page.locator('.ed-index a[href="#conflicts"]').click();
+  await expect(page.locator('#conflicts')).toBeVisible();
+  await page.setViewportSize({width:390,height:844});
+  await expect(page.locator('.ed-hero h1')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+test('corrections desk provides real editorial address without fake forms', async ({page}) => {
+  await page.goto('/corrections.html');
+  await expect(page.getByRole('heading', {level:1})).toContainText('Keep the record');
+  await expect(page.getByRole('link',{name:'raisinapost@substack.com'})).toHaveAttribute('href','mailto:raisinapost@substack.com');
+  await expect(page.locator('form')).toHaveCount(0);
+  await expect(page.locator('.ed-contact-list li')).toHaveCount(4);
+  await page.setViewportSize({width:390,height:844});
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });
