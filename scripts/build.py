@@ -184,6 +184,10 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     (destination/'index.html').write_text(page, encoding='utf-8')
     for fname in ('styles.css','site.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
+    # The chart primitive is copied but not loaded by the homepage.
+    chart_dir = BASE/'site'/'components'
+    if chart_dir.is_dir():
+        shutil.copytree(chart_dir, destination/'components', dirs_exist_ok=True)
     guide = (BASE/'site'/'publication-guide.html').read_text(encoding='utf-8')
     guide = guide.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'publication-guide.html').write_text(guide, encoding='utf-8')

@@ -68,3 +68,30 @@ The top corner displays a full analog clock plus a digital India Standard Time r
 `site/publication-guide.html` contains the reader guide. Its practical editorial wording is a public-facing draft, not a legal privacy policy or contractual guarantee. Contact links point to the publication's real Substack contact/about page; no email addresses have been invented.
 
 Inspired by accessible search/command patterns in [shadcn/ui](https://github.com/shadcn-ui/ui), and understated editorial hierarchy. The implementation is original vanilla HTML/CSS/JS and does not vendor framework code.
+
+
+## Website quality and optional data charts
+
+The publication's visible site remains a lightweight Python-built GitHub Pages archive. Separate from hourly RSS publication, `.github/workflows/site-quality.yml` runs a repeatable **offline RSS build**, real Chromium interaction checks with Playwright, WCAG A/AA audits using axe-core, and Lighthouse audits on the front page, About and Publication Guide. The quality workflow runs on code changes (not hourly RSS polls); the publishing workflow remains independent.
+
+### Run the quality tests locally
+
+```bash
+python -m unittest discover -s tests -v
+python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/theraisinapost/
+npm install --no-package-lock
+npx playwright install chromium
+npm run check:js
+npm run test:e2e
+npm run audit:lighthouse
+```
+
+Lighthouse reports are exported as artifacts by GitHub Actions; Lighthouse category thresholds initially warn instead of blocking production. Playwright tests fail on functionality regression or serious/critical accessibility problems.
+
+### Optional Observatory-style charts
+
+`site/components/editorial-chart.mjs` exports `renderEditorialChart({ container, rows, xKey, yKey, title, sourceName, sourceUrl, type, unit, description })`. The module lazy-loads Observable Plot v0.6.17 only on a page where an editor calls it with **verified numeric rows** and an **HTTPS source citation**. No graphs or invented statistics are shown by default. The homepage does not load this chart dependency.
+
+To publish a chart in a story, prepare a verified dataset, retain the original source URL, create a separate editorial HTML page and import the module explicitly. Source labels and figures need human checks before release.
+
+Original open-source projects: [Playwright](https://github.com/microsoft/playwright), [axe-core](https://github.com/dequelabs/axe-core), [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci), [Observable Plot](https://github.com/observablehq/plot). Licence terms and third-party service availability remain applicable.

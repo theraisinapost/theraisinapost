@@ -200,4 +200,18 @@ class TestFeed(unittest.TestCase):
     self.assertNotIn(emoji,home+guide+about)
    self.assertNotIn('<!--SITE_URL-->',about)
 
+ def test_optional_source_backed_charts_are_copied_without_loading_on_homepage(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   module=(out/'components'/'editorial-chart.mjs')
+   self.assertTrue(module.exists())
+   source=module.read_text(encoding='utf-8')
+   self.assertIn('renderEditorialChart',source)
+   self.assertIn('@observablehq/plot@0.6.17',source)
+   self.assertIn('sourceUrl',source)
+   self.assertNotIn('components/editorial-chart.mjs',(out/'index.html').read_text())
+   self.assertNotIn('https://cdn.jsdelivr.net/npm/@observablehq/plot',(out/'index.html').read_text())
+
 if __name__=='__main__':unittest.main()

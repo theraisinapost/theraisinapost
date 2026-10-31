@@ -1,0 +1,16 @@
+{
+  "name": "the-raisina-post-site-quality",
+  "private": true,
+  "type": "module",
+  "description": "Build-only QA for The Raisina Post's static Substack archive",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "check:js": "node --check site/site.js && node --check site/components/editorial-chart.mjs",
+    "audit:lighthouse": "lhci autorun --config=./lighthouserc.cjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "1.64.1"
+  }
+}
