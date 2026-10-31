@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ffffff">
-<meta name="description" content="The Observatory by The Raisina Post: explore the publication's latest public RSS stories, publishing activity and a private reading list.">
+<meta name="description" content="The Observatory by The Raisina Post: explore the publication's latest public RSS stories and publishing activity.">
 <meta property="og:title" content="The Observatory — The Raisina Post">
 <link rel="canonical" href="<!--SITE_URL-->observatory.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -26,14 +26,13 @@
 <main id="main" class="wrap obs-main">
   <div class="obs-intro">
     <div><h1>The Observatory<span class="accent-dot">.</span></h1>
-      <p class="obs-description">An interactive index of our public reporting. Follow the publishing record, find a story, and keep a private reading queue.</p>
+      <p class="obs-description">An interactive index of our public reporting. Follow the publishing record and find a story.</p>
     </div>
     <a class="obs-home-link" href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Full Substack archive</a>
   </div>
   <div class="obs-metrics" aria-label="Current RSS index statistics">
     <div><span class="obs-metric-label">Indexed stories</span><strong id="obs-count">—</strong></div>
     <div><span class="obs-metric-label">Latest edition</span><strong id="obs-latest">—</strong></div>
-    <div><span class="obs-metric-label">Your saved stories</span><strong id="obs-saved-count">0</strong></div>
   </div>
   <section class="obs-signal" aria-labelledby="obs-signal-title">
     <div class="obs-section-title"><div><h2 id="obs-signal-title">The publishing pulse</h2></div></div>
@@ -43,7 +42,7 @@
     </div>
   </section>
   <section class="obs-discover" aria-labelledby="obs-discover-title">
-    <div class="obs-section-title"><div><h2 id="obs-discover-title">Explore the record</h2></div><button type="button" id="obs-random" class="obs-surprise">Surprise me</button></div>
+    <div class="obs-section-title"><div><h2 id="obs-discover-title">Explore the record</h2></div></div>
     <div class="obs-toolbar">
       <label for="obs-search" class="sr-only">Search indexed article titles and descriptions</label>
       <input id="obs-search" type="search" placeholder="Search reporting" autocomplete="off">
@@ -53,15 +52,9 @@
         <button class="obs-chip" type="button" data-obs-filter="Business" aria-pressed="false">Business</button>
         <button class="obs-chip" type="button" data-obs-filter="Governance" aria-pressed="false">Governance</button>
       </div>
-      <button type="button" id="obs-saved-only" class="obs-chip" aria-pressed="false">Saved only</button>
     </div>
     <p class="obs-status" id="obs-status" role="status">Loading the public index…</p>
     <div id="obs-story-list" class="obs-story-list"></div>
-  </section>
-  <section class="obs-queue" aria-labelledby="obs-queue-title">
-    <div class="obs-section-title"><div><h2 id="obs-queue-title">Your reading queue</h2></div></div>
-    <p class="obs-fineprint">Save stories without creating an account. This queue stays on this device; it is not uploaded to The Raisina Post.</p>
-    <div id="obs-queue-list" class="obs-queue-list"></div>
   </section>
 </main>
 <!--EDITORIAL_FOOTER-->

@@ -18,11 +18,11 @@ h1,h2,h3{font-kerning:normal}
 .nav-links{gap:27px}
 .nav-links a{font-weight:500;letter-spacing:-.015em}
 .nav-links a.nav-active{font-weight:650}
-.subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise{
+.subscribe-nav,.newsletter>a,.guide-subscribe{
   border-radius:8px;background:var(--accent);border:1px solid var(--accent);
   color:#fff;box-shadow:none;letter-spacing:-.01em;transition:opacity .18s ease;
 }
-.subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover,.lead-read:hover,.obs-surprise:hover{
+.subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover{
   background:var(--accent);border-color:var(--accent);opacity:.78;color:#fff;
 }
 .intro{padding:76px 0 73px;gap:50px}
@@ -86,7 +86,7 @@ h1,h2,h3{font-kerning:normal}
 .obs-metrics{border:0;gap:35px;margin-top:10px}
 .obs-metrics>div,.obs-metrics>div+div{border:0;padding:0}
 .obs-metrics strong{font-family:var(--serif);font-size:clamp(29px,3.5vw,43px)}
-.obs-signal,.obs-discover,.obs-queue{padding-top:125px}
+.obs-signal,.obs-discover{padding-top:125px}
 .obs-section-title{border:0;padding:0 0 24px}
 .obs-section-title h2{font-size:clamp(29px,3.5vw,41px);line-height:1.12;letter-spacing:-.045em}
 .obs-panels{gap:55px;padding-top:25px}
@@ -95,8 +95,6 @@ h1,h2,h3{font-kerning:normal}
 .obs-story{border-color:#efefef;padding:30px 0}
 .obs-story:last-child{border:0}
 .obs-story h3{font-size:clamp(20px,2.2vw,27px)}
-.obs-queue-list{border-top:0}
-.obs-queue-item{padding:20px 0;border-color:#efefef}
 .obs-fineprint{max-width:690px}
 .market-strip{border-bottom:0;padding-top:10px;padding-bottom:3px}
 .market-strip-bar{min-height:24px}
@@ -141,7 +139,7 @@ h1,h2,h3{font-kerning:normal}
  .newsletter{margin-top:72px;padding:32px 24px}
  .guide-main{padding-top:45px}
  .obs-main{padding-top:47px}
- .obs-signal,.obs-discover,.obs-queue{padding-top:78px}
+ .obs-signal,.obs-discover{padding-top:78px}
  .market-desk{padding-top:54px}
  .market-live,.market-macro,.market-context{padding-top:74px}
  .market-panel-grid{gap:50px}
@@ -159,7 +157,7 @@ h1,h2,h3{font-kerning:normal}
  .obs-intro h1,.market-intro h1{font-size:clamp(41px,10vw,58px)}
  .obs-metrics{gap:13px}
  .obs-metrics strong{font-size:25px}
- .obs-signal,.obs-discover,.obs-queue{padding-top:64px}
+ .obs-signal,.obs-discover{padding-top:64px}
  .market-desk{padding-top:38px}
  .market-live,.market-macro,.market-context{padding-top:65px}
  .macro-cards{gap:10px;margin-top:32px}
@@ -169,7 +167,7 @@ h1,h2,h3{font-kerning:normal}
  .macro-chart-heading{margin-top:47px}
 }
 @media(prefers-reduced-motion:reduce){
- .subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise{transition:none}
+ .subscribe-nav,.newsletter>a,.guide-subscribe{transition:none}
 }
 
 /* Inter defaults, refined by the final minimal.css layer. */

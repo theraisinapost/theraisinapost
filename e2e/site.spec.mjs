@@ -101,23 +101,19 @@ test('command palette searches the real RSS index and supports keyboard invocati
   await expect(page.locator('#story-palette')).not.toBeVisible();
 });
 
-test('the Observatory visualizes real RSS metadata and saves locally without a login', async ({ page }) => {
+test('the Observatory visualizes RSS metadata with clean article links', async ({ page }) => {
   await page.goto('/observatory.html');
   await expect(page.getByRole('heading', { name: 'The Observatory.' })).toBeVisible();
   await expect(page.locator('#obs-pulse rect').first()).toBeVisible();
-  await expect(page.locator('.obs-story').first()).toBeVisible();
+  const first=page.locator('.obs-story').first();
+  await expect(first).toBeVisible();
+  await expect(first.locator('h3 a')).toHaveAttribute('href',/^https:\/\/raisinapost[.]substack[.]com\/p\//);
   await expect(page.locator('#obs-count')).not.toHaveText('—');
-  const first = page.locator('.obs-story').first();
-  await first.locator('[data-save-story]').click();
-  await expect(page.locator('#obs-saved-count')).toHaveText('1');
-  await expect(page.locator('.obs-queue-item')).toHaveCount(1);
-  await page.reload();
-  await expect(page.locator('#obs-saved-count')).toHaveText('1');
-  await page.locator('#obs-saved-only').click();
-  await expect(page.locator('.obs-story')).toHaveCount(1);
-  await page.locator('.obs-queue-item [data-queue-remove]').click();
-  await expect(page.locator('#obs-saved-count')).toHaveText('0');
-  await expect(page.locator('.obs-queue-item')).toHaveCount(0);
+  await expect(page.locator('#obs-saved-count, #obs-saved-only, #obs-queue-list, #obs-random, .story-save')).toHaveCount(0);
+  await page.locator('#obs-search').fill('no-story-should-ever-match-this-query');
+  await expect(page.locator('#obs-status')).toContainText('0 stories');
+  await page.locator('#obs-search').fill('');
+  await expect(page.locator('.obs-story').first()).toBeVisible();
 });
 
 test('the Observatory remains accessible and has no mobile horizontal overflow', async ({ page }) => {
@@ -206,17 +202,13 @@ test('research desk publishes source-backed ownership and DPDP timeline', async 
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });
 
-test('article sharing offers canonical links with no tracking needed', async ({page}) => {
+test('articles open canonical links without redundant read save or share controls', async ({page}) => {
   await page.goto('/');
-  const first=page.locator('.share-trigger').first();
-  await expect(first).toBeVisible();
-  await first.click();
-  const dialog=page.getByRole('dialog',{name:'Share article'});
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole('link',{name:'LinkedIn'})).toHaveAttribute('href',/linkedin[.]com/);
-  await expect(dialog.getByRole('link',{name:'WhatsApp'})).toHaveAttribute('href',/^(https:\/\/(?:wa[.]me|api[.]whatsapp[.]com)\/)/);
-  await dialog.getByRole('button',{name:'Close'}).click();
-  await expect(dialog).toBeHidden();
+  await expect(page.locator('.lead-story h2 a')).toHaveAttribute('href',/^https:\/\/raisinapost[.]substack[.]com\/p\//);
+  await expect(page.locator('.lead-story .lead-visual')).toHaveAttribute('href',/^https:\/\/raisinapost[.]substack[.]com\/p\//);
+  await expect(page.locator('.article-row').first().locator('h3 a')).toHaveAttribute('href',/^https:\/\/raisinapost[.]substack[.]com\/p\//);
+  await expect(page.locator('.article-row').first().locator('.article-media')).toHaveAttribute('href',/^https:\/\/raisinapost[.]substack[.]com\/p\//);
+  await expect(page.locator('.share-trigger, .story-save, .article-arrow, .lead-read')).toHaveCount(0);
 });
 
 test('commodities price cards show provider figures, dates and sourced units',async({page})=>{

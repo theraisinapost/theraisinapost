@@ -98,7 +98,7 @@ Original open-source projects: [Playwright](https://github.com/microsoft/playwri
 
 ## The Observatory
 
-`site/observatory.html` is a private-by-default exploration desk on top of the **same public Substack RSS index** as the homepage. It shows a rolling two-week publication-activity chart, an actual category breakdown, search and filters, and an optional reading queue stored only in the browser's localStorage. It is not full-text search, a newsroom analytics platform, or a claim about how much news happened on a given day.
+`site/observatory.html` is a private-by-default exploration desk on top of the **same public Substack RSS index** as the homepage. It shows a rolling two-week publication-activity chart, an actual category breakdown, search and filters, and direct links to the original articles without extra reading, saving or sharing controls. It is not full-text search, a newsroom analytics platform, or a claim about how much news happened on a given day.
 
 The small homepage action and keyboard shortcut **⌘K / Ctrl+K** open a native dialog that searches indexed article titles and relevant pages. Bookmarks are intentionally not sent to a server or synchronized across browsers. No new frontend framework, tracking SDK, or production database is used.
 
@@ -122,7 +122,7 @@ Two editorial research pages are published with the same logo, mobile menu and f
 - `ownership-atlas.html` shows **selected named shareholders of TCS**, as at 31 March 2026, using data in `site/data/ownership-tcs.json`. Each row and graph connection is based on the [TCS FY2026 annual report](https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf), Corporate Governance Report p.125. This is **not** who owns Tata Sons or the Tata Group, not a complete ownership register, and not live data. [Cytoscape.js](https://github.com/cytoscape/cytoscape.js) v3.33.1 (MIT) enhances the graph when available; the dated text records remain available without it.
 - `policy-timeline.html` presents **DPDP Act/Rules statutory milestones**, including future commencement dates scheduled in the [13 November 2025 Gazette notification](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf). All events are backed by MeitY original documents in `site/data/dpdp-timeline.json`. Future dates are labelled **scheduled**, not enacted; later law changes require editorial review. [vis-timeline](https://github.com/visjs/vis-timeline) v8.5.6 (MIT/Apache-2.0) loads on this page only; the accessible chronology works without it.
 
-Each share control for a Substack story opens a small dialog with LinkedIn, WhatsApp, email and Copy Link. [Shareon](https://github.com/kytta/shareon) v2 (MIT) loads only when the dialog is opened. Links work without Shareon; no analytics is attached to sharing.
+Article headlines and images link directly to their original Substack editions. No extra per-article action buttons or third-party share dialog are loaded.
 
 ### Opt-in GoatCounter
 
