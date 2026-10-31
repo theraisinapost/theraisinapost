@@ -1,5 +1,38 @@
 {
-  "checked_at": null,
-  "sources": [],
-  "notice": "The monitored-source register is not yet live. Detected page changes require editorial verification."
+  "checked_at": "2026-10-31T14:25:50+00:00",
+  "sources": [
+    {
+      "id": "sebi",
+      "name": "SEBI regulatory circulars",
+      "category": "Securities regulation",
+      "url": "https://www.sebi.gov.in/legal/circulars.html",
+      "status": "unavailable",
+      "last_checked_at": "2026-10-31T14:25:50+00:00",
+      "hash": "",
+      "change_unreviewed": false,
+      "change_detected_at": ""
+    },
+    {
+      "id": "mospi",
+      "name": "MoSPI release calendar",
+      "category": "Official statistics",
+      "url": "https://www.mospi.gov.in/release-calendar",
+      "status": "unavailable",
+      "last_checked_at": "2026-10-31T14:25:50+00:00",
+      "hash": "",
+      "change_unreviewed": false,
+      "change_detected_at": ""
+    },
+    {
+      "id": "pib",
+      "name": "Press Information Bureau",
+      "category": "Government announcements",
+      "url": "https://www.pib.gov.in/",
+      "hash": "dc01a07ee83e98e08f0ecedced9755e5bfb177253dfed629f0b8f80dbc33b546",
+      "last_checked_at": "2026-10-31T14:25:50+00:00",
+      "status": "available",
+      "change_unreviewed": false
+    }
+  ],
+  "notice": "Page-level changes, if detected, are UNREVIEWED. An HTML change does not establish a policy or legal change."
 }
