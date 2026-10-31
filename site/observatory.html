@@ -8,8 +8,8 @@
 <link rel="canonical" href="<!--SITE_URL-->observatory.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="editorial.css">
 <script defer src="reader.js"></script>
 <title>The Observatory — The Raisina Post</title>
 </head>
@@ -24,7 +24,7 @@
 </header>
 <main id="main" class="wrap obs-main">
   <div class="obs-intro">
-    <div><p class="obs-eyebrow">THE RAISINA POST / READING DESK</p><h1>The Observatory<span class="accent-dot">.</span></h1>
+    <div><h1>The Observatory<span class="accent-dot">.</span></h1>
       <p class="obs-description">An interactive index of our public reporting. Follow the publishing record, find a story, and keep a private reading queue.</p>
     </div>
     <a class="obs-home-link" href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Full Substack archive</a>
@@ -35,14 +35,14 @@
     <div><span class="obs-metric-label">Your saved stories</span><strong id="obs-saved-count">0</strong></div>
   </div>
   <section class="obs-signal" aria-labelledby="obs-signal-title">
-    <div class="obs-section-title"><div><p class="obs-eyebrow">01 / PUBLISHING ACTIVITY</p><h2 id="obs-signal-title">The publishing pulse</h2></div><span>Based on the current RSS index</span></div>
+    <div class="obs-section-title"><div><h2 id="obs-signal-title">The publishing pulse</h2></div></div>
     <div class="obs-panels">
       <div class="obs-chart-wrap"><svg id="obs-pulse" viewBox="0 0 760 190" role="img" aria-label="Article counts by publication date" preserveAspectRatio="xMidYMid meet"></svg><p class="obs-fineprint">Each bar represents the number of indexed articles published on that date. This is publication activity, not a measure of news importance.</p></div>
       <div class="obs-breakdown"><h3>Sections</h3><div id="obs-distribution" aria-label="Articles by editorial category"></div></div>
     </div>
   </section>
   <section class="obs-discover" aria-labelledby="obs-discover-title">
-    <div class="obs-section-title"><div><p class="obs-eyebrow">02 / DISCOVER</p><h2 id="obs-discover-title">Explore the record</h2></div><button type="button" id="obs-random" class="obs-surprise">Surprise me</button></div>
+    <div class="obs-section-title"><div><h2 id="obs-discover-title">Explore the record</h2></div><button type="button" id="obs-random" class="obs-surprise">Surprise me</button></div>
     <div class="obs-toolbar">
       <label for="obs-search" class="sr-only">Search indexed article titles and descriptions</label>
       <input id="obs-search" type="search" placeholder="Search reporting" autocomplete="off">
@@ -58,7 +58,7 @@
     <div id="obs-story-list" class="obs-story-list"></div>
   </section>
   <section class="obs-queue" aria-labelledby="obs-queue-title">
-    <div class="obs-section-title"><div><p class="obs-eyebrow">03 / PERSONAL READING LIST</p><h2 id="obs-queue-title">Your reading queue</h2></div><span>Stored only in this browser</span></div>
+    <div class="obs-section-title"><div><h2 id="obs-queue-title">Your reading queue</h2></div></div>
     <p class="obs-fineprint">Save stories without creating an account. This queue stays on this device; it is not uploaded to The Raisina Post.</p>
     <div id="obs-queue-list" class="obs-queue-list"></div>
   </section>
