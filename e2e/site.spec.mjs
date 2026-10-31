@@ -418,3 +418,37 @@ test('Evidence Desk labels unreviewed page-level changes and source failures', a
   await page.setViewportSize({width:390,height:844});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });
+
+
+test('newsroom clock sweeps continuously in India time without losing its 60 markers', async ({page}) => {
+  await page.goto('/');
+  const clock=page.locator('#analog-clock');
+  await expect(clock).toHaveClass(/clock-running/);
+  await expect(clock.locator('.dial-mark')).toHaveCount(60);
+  const second=page.locator('#clock-second');
+  await expect(second).toHaveCSS('animation-name','clock-sweep');
+  await expect(second).toHaveCSS('animation-duration','60s');
+  const first=await second.evaluate(el=>getComputedStyle(el).transform);
+  await page.waitForTimeout(250);
+  const next=await second.evaluate(el=>getComputedStyle(el).transform);
+  expect(first).not.toBe(next);
+  await expect(page.locator('#digital-clock')).toContainText(/\\d{2}:\\d{2} IST/);
+});
+
+test('newsroom clock respects reduced motion and still shows the correct time', async ({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/');
+  await expect(page.locator('#analog-clock')).toBeVisible();
+  await expect(page.locator('#clock-second')).toHaveCSS('animation-name','none');
+  await expect(page.locator('#digital-clock')).toContainText(/\\d{2}:\\d{2} IST/);
+});
+
+test('subtle page reveals become visible on scroll without mobile overflow', async ({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('/');
+  const card=page.locator('.research-teaser-grid a').first();
+  await card.scrollIntoViewIfNeeded();
+  await expect(card).toHaveClass(/motion-visible/);
+  await expect(card).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
