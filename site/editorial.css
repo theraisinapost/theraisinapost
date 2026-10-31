@@ -1,0 +1,173 @@
+/* The Raisina Post / editorial refinement, October 2026.
+   A quieter hierarchy: Inter for utility, Newsreader for headlines.
+   One thoughtful rule per composition rather than a border around every box. */
+:root{
+  --paper:#fff;
+  --ink:#1c1c1b;
+  --accent:#a41129;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --radius:8px;
+}
+body{font-size:13px;line-height:1.72;letter-spacing:-.008em}
+h1,h2,h3{font-kerning:normal}
+.wrap{width:min(calc(100% - 96px),1160px)}
+.site-header{padding-top:28px}
+.mast-grid{padding-bottom:27px}
+.site-nav{border-top:1px solid #ececec;border-bottom:0;min-height:61px}
+.nav-links{gap:27px}
+.nav-links a{font-weight:500;letter-spacing:-.015em}
+.nav-links a.nav-active{font-weight:650}
+.subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise{
+  border-radius:8px;background:var(--accent);border:1px solid var(--accent);
+  color:#fff;box-shadow:none;letter-spacing:-.01em;transition:opacity .18s ease;
+}
+.subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover,.lead-read:hover,.obs-surprise:hover{
+  background:var(--accent);border-color:var(--accent);opacity:.78;color:#fff;
+}
+.intro{padding:76px 0 73px;gap:50px}
+.intro h1{font-size:clamp(37px,4.7vw,61px);line-height:1.07;letter-spacing:-.05em;font-weight:400;max-width:750px}
+.intro>p{font-size:13px;line-height:1.85;color:#595959;max-width:315px}
+.frontpage-grid{gap:55px;margin-top:14px}
+.lead-story{gap:35px;min-height:360px}
+.lead-story h2{font-family:var(--serif);font-size:clamp(28px,3.15vw,43px);line-height:1.14;letter-spacing:-.043em}
+.lead-description{font-size:13px;line-height:1.8}
+.section-bar{border:0;padding:0 0 24px;gap:25px}
+.section-bar h2{font-size:15px;font-weight:600;letter-spacing:-.018em}
+.latest-rail{border-left:0;padding-left:0}
+.rail-story{border-color:#efefef;padding:16px 0 21px}
+.archive{padding-top:117px}
+.archive-controls{border:0;padding:7px 0 29px;gap:19px}
+.search-shell{border:1px solid #e4e4e4;border-radius:8px}
+.search-shell:focus-within{border-color:#a41129}
+.filter{border-radius:8px}
+.article-list{gap:20px}
+.article-row{padding:32px 0 36px;border-bottom:1px solid #efefef;min-height:0}
+.article-row:last-child{border-bottom:0}
+.article-row h3{font-family:var(--serif);line-height:1.24;letter-spacing:-.035em}
+.article-overline,.lead-stamp{letter-spacing:0;text-transform:none}
+.desk-section{padding-top:118px}
+.desk-links{gap:38px;border:0}
+.desk-links>a,.desk-links>a+a{border:0;padding:20px 0;min-height:0}
+.desk-links strong{font-size:16px;font-weight:550;letter-spacing:-.02em}
+.newsletter{margin-top:112px;border-top:0;border-bottom:0;background:#fafafa;border-radius:8px;padding:42px 45px}
+.newsletter h2{font-size:clamp(31px,3.5vw,46px);line-height:1.12}
+.site-footer{padding-top:77px}
+.footer-top{padding-bottom:38px}
+.footer-bottom{border-top:1px solid #efefef;padding-top:21px}
+.footer-links{gap:14px 21px}
+.footer-links a{font-size:11px;font-weight:500}
+.guide-header{border-bottom:0;padding:23px 0}
+.guide-main{padding-top:76px;padding-bottom:105px}
+.guide-main>h1{font-size:clamp(46px,6vw,80px);line-height:1.04;letter-spacing:-.055em}
+.guide-deck{font-size:16px;line-height:1.82;max-width:770px}
+.guide-content{gap:75px;margin-top:72px}
+.guide-aside{border:0}
+.guide-articles section{border-top:0;padding:0 0 70px;scroll-margin-top:35px}
+.guide-articles section+section{padding-top:10px}
+.guide-articles h2{font-size:clamp(28px,3.4vw,39px);letter-spacing:-.04em;margin-bottom:17px}
+.guide-articles p{font-size:14px;line-height:1.96}
+.guide-format-list{border-top:0}
+.guide-format-list>div{border-bottom:1px solid #f1f1f1;padding:22px 0}
+.about-grid{gap:90px;margin-top:85px}
+.about-copy section{border:0;padding-bottom:25px;margin-bottom:40px}
+.about-copy h2,.about-closing h2,.about-contact h2{font-size:clamp(28px,3.3vw,39px)}
+.about-copy p,.about-closing p,.about-contact p{line-height:1.93}
+.about-aside{border:0;background:#fafafa;padding:30px;border-radius:8px}
+.format-section{margin-top:86px}
+.format-grid{column-gap:56px}
+.format-item{padding:30px 0 34px}
+.format-item h3{font-size:19px}
+.about-closing,.about-contact{border-top:0;padding-top:25px;margin-top:64px}
+.obs-main{padding-top:88px;padding-bottom:115px}
+.obs-intro{padding-bottom:60px}
+.obs-intro h1{font-size:clamp(50px,6.3vw,88px);letter-spacing:-.05em;line-height:1.02}
+.obs-description{font-size:14px;line-height:1.85}
+.obs-metrics{border:0;gap:35px;margin-top:10px}
+.obs-metrics>div,.obs-metrics>div+div{border:0;padding:0}
+.obs-metrics strong{font-family:var(--serif);font-size:clamp(29px,3.5vw,43px)}
+.obs-signal,.obs-discover,.obs-queue{padding-top:125px}
+.obs-section-title{border:0;padding:0 0 24px}
+.obs-section-title h2{font-size:clamp(29px,3.5vw,41px);line-height:1.12;letter-spacing:-.045em}
+.obs-panels{gap:55px;padding-top:25px}
+.obs-breakdown{border-left:0;padding-left:0}
+.obs-toolbar{padding:25px 0 21px}
+.obs-story{border-color:#efefef;padding:30px 0}
+.obs-story:last-child{border:0}
+.obs-story h3{font-size:clamp(20px,2.2vw,27px)}
+.obs-queue-list{border-top:0}
+.obs-queue-item{padding:20px 0;border-color:#efefef}
+.obs-fineprint{max-width:690px}
+.market-strip{border-bottom:0;padding-top:10px;padding-bottom:3px}
+.market-strip-bar{min-height:24px}
+.market-strip-title{font-size:11px;font-weight:650}
+.market-ticker{min-height:45px}
+.market-desk{padding-top:94px;padding-bottom:110px}
+.market-intro h1{font-size:clamp(48px,6.6vw,90px);letter-spacing:-.055em;line-height:1.01;margin-bottom:25px}
+.market-intro>p:not(.obs-eyebrow){font-size:15px;line-height:1.8;max-width:650px}
+.market-intro-meta{border:0;padding:4px 0 0;margin-top:24px;letter-spacing:0;font-size:11px;font-weight:500}
+.market-intro-meta a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.market-tape-section{padding-top:34px;padding-bottom:20px}
+.market-live,.market-macro,.market-context{padding-top:119px}
+.market-panel-grid{gap:65px;padding-top:28px}
+.market-panel{border:0;padding:0;border-radius:0;overflow:visible}
+.market-panel h3{font-size:25px;margin-bottom:22px}
+.market-panel tv-market-data{border:0}
+.market-disclaimer{font-size:11px;line-height:1.8;max-width:770px}
+.macro-cards{border:0;gap:35px;margin:49px 0 0}
+.macro-card,.macro-card+.macro-card{border:0;padding:0}
+.macro-card>span{font-size:12px;font-weight:550}
+.macro-card>strong{font-size:clamp(33px,3.7vw,52px);letter-spacing:-.055em}
+.macro-card>small{font-size:11px}
+.macro-chart-heading{margin-top:75px;margin-bottom:24px}
+.macro-chart-heading h3{font-size:26px}
+#macro-chart{border:0;padding:15px 0;background:#fff;border-radius:0}
+.market-context-grid{gap:58px;margin-top:39px}
+.market-context-grid article{border:0;padding-top:0}
+.market-context-grid h3{font-size:24px}
+.market-context-grid p{font-size:13px;line-height:1.85}
+.market-source{margin-top:18px}
+@media(max-width:950px){
+ .frontpage-grid{gap:32px}
+ .market-panel-grid{gap:37px}
+ .market-context-grid{gap:28px}
+ .wrap{width:min(calc(100% - 48px),1160px)}
+}
+@media(max-width:780px){
+ .site-header{padding-top:17px}
+ .intro{padding:45px 0 54px}
+ .intro h1{font-size:clamp(36px,7vw,50px)}
+ .archive,.desk-section{padding-top:75px}
+ .newsletter{margin-top:72px;padding:32px 24px}
+ .guide-main{padding-top:45px}
+ .obs-main{padding-top:47px}
+ .obs-signal,.obs-discover,.obs-queue{padding-top:78px}
+ .market-desk{padding-top:54px}
+ .market-live,.market-macro,.market-context{padding-top:74px}
+ .market-panel-grid{gap:50px}
+}
+@media(max-width:620px){
+ .wrap{width:min(calc(100% - 34px),1160px)}
+ .intro{padding:33px 0 43px}
+ .intro h1{font-size:37px}
+ .frontpage-grid{gap:28px}
+ .archive,.desk-section{padding-top:68px}
+ .newsletter{margin-top:62px;padding:29px 21px}
+ .footer-top{padding-bottom:26px}
+ .guide-content{margin-top:45px}
+ .obs-intro{padding-bottom:35px}
+ .obs-intro h1,.market-intro h1{font-size:clamp(41px,10vw,58px)}
+ .obs-metrics{gap:13px}
+ .obs-metrics strong{font-size:25px}
+ .obs-signal,.obs-discover,.obs-queue{padding-top:64px}
+ .market-desk{padding-top:38px}
+ .market-live,.market-macro,.market-context{padding-top:65px}
+ .macro-cards{gap:10px;margin-top:32px}
+ .macro-card>strong{font-size:clamp(21px,5.4vw,32px)}
+ .market-context-grid{gap:35px}
+ .market-panel-grid{gap:35px}
+ .macro-chart-heading{margin-top:47px}
+}
+@media(prefers-reduced-motion:reduce){
+ .subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise{transition:none}
+}
