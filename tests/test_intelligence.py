@@ -74,13 +74,23 @@ class IntelligencePages(unittest.TestCase):
                     "https://localhost/", "file:///etc/passwd", "https://user:pass@www.sebi.gov.in/"):
             self.assertFalse(source_watch.safe_target(bad))
 
-    def test_offline_seed_is_explicitly_not_live_or_verified(self):
+    def test_source_snapshots_are_safe_before_and_after_daily_refresh(self):
+        import parliament
+        import source_watch
         src=json.loads((ROOT/'site/data/parliament.json').read_text())
-        self.assertEqual(src["items"],[])
-        self.assertEqual(src["status"],"not_checked")
+        self.assertIn(src["status"],("not_checked","available","partial","stale","unavailable"))
         self.assertIn("editorial",src["notice"].lower())
+        if src["status"]=="not_checked":
+            self.assertEqual(src["items"],[])
+        for report in src.get("items",[]):
+            self.assertTrue(parliament.official_link(report.get("url")))
+            self.assertTrue(report.get("title"))
+            self.assertRegex(report.get("date",""),r"^$|^\\d{4}-\\d{2}-\\d{2}$")
         watch=json.loads((ROOT/'site/data/source-watch.json').read_text())
-        self.assertEqual(watch["sources"],[])
+        self.assertIsInstance(watch["sources"],list)
+        for entry in watch["sources"]:
+            self.assertTrue(source_watch.safe_target(entry["url"]))
+            self.assertIn(entry["status"],("available","unavailable"))
 
 if __name__=="__main__":
     unittest.main()
