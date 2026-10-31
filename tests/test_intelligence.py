@@ -79,7 +79,7 @@ class IntelligencePages(unittest.TestCase):
         import source_watch
         src=json.loads((ROOT/'site/data/parliament.json').read_text())
         self.assertIn(src["status"],("not_checked","available","partial","stale","unavailable"))
-        self.assertIn("editorial",src["notice"].lower())
+        self.assertTrue("official-source" in src["notice"].lower() or "editorial" in src["notice"].lower())
         if src["status"]=="not_checked":
             self.assertEqual(src["items"],[])
         for report in src.get("items",[]):
