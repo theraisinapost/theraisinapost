@@ -146,7 +146,7 @@ def card(post, idx):
     if post['image']:
         artwork = f'<img src="{escape(post["image"])}" loading="lazy" alt="" referrerpolicy="no-referrer">'
     else:
-        artwork = '<div class="article-art" aria-hidden="true"><span>R</span><i>THE POST</i></div>'
+        artwork = '<div class="article-art" aria-hidden="true"></div>'
     return f'''<article class="article-row" data-title="{title.lower()}" data-summary="{excerpt.lower()}" data-category="{category}" data-date="{escape(post['date_iso'])}">
       <div class="article-main"><div class="article-overline"><span class="article-category">{category}</span><span class="over-dot"></span><time datetime="{escape(post['date_iso'])}">{date}</time></div>
       <h3><a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a></h3>
@@ -155,7 +155,7 @@ def card(post, idx):
     </article>'''
 
 def featured(post):
-    artwork = (f'<img src="{escape(post["image"])}" loading="eager" alt="" referrerpolicy="no-referrer">' if post['image'] else '<div class="hero-art" aria-hidden="true"><span>R</span></div>')
+    artwork = (f'<img src="{escape(post["image"])}" loading="eager" alt="" referrerpolicy="no-referrer">' if post['image'] else '<div class="hero-art" aria-hidden="true"></div>')
     return f'''<article class="lead-story"><div class="lead-content">
       <div class="lead-stamp"><time datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
       <div class="lead-category">{escape(post['category'])}</div>
