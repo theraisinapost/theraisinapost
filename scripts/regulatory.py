@@ -36,8 +36,8 @@ def canonical_link(raw, hostname):
     try:
         url = urlsplit((raw or "").strip())
         base = hostname.removeprefix("www.")
-        allowed = {base, "www." + base}
-        if (url.scheme not in ("http", "https") or url.hostname not in allowed
+        allowed = url.hostname == base or bool(url.hostname and url.hostname.endswith("." + base))
+        if (url.scheme not in ("http", "https") or not allowed
                 or url.username or url.password or url.port not in (None, 80, 443)):
             return ""
         return urlunsplit(("https", url.hostname, url.path or "/", url.query, ""))
@@ -71,13 +71,29 @@ def item_link(entry):
 def parse_date(value):
     if not value:
         return ""
+    cleaned = value.strip()
+    if cleaned.upper().endswith(" IST"):
+        cleaned = cleaned[:-4] + " +0530"
+    dt = None
     try:
-        dt = parsedate_to_datetime(value)
+        dt = parsedate_to_datetime(cleaned)
     except (TypeError, ValueError, IndexError):
+        pass
+    if dt is None:
         try:
-            dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+            dt = datetime.fromisoformat(cleaned.replace("Z", "+00:00"))
         except ValueError:
-            return ""
+            pass
+    if dt is None:
+        for pattern in ("%d-%b-%Y %H:%M:%S %z", "%d %b %Y %H:%M:%S %z",
+                        "%d-%b-%Y %H:%M:%S", "%d %b %Y", "%d-%m-%Y", "%d/%m/%Y"):
+            try:
+                dt = datetime.strptime(cleaned, pattern)
+                break
+            except ValueError:
+                continue
+    if dt is None:
+        return ""
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
     return dt.astimezone(timezone.utc).date().isoformat()
@@ -91,7 +107,7 @@ def parse_source(xml, name, hostname):
         title = re.sub(r"\s+", " ", field(item, ("title",)))[:260]
         link = canonical_link(item_link(item), hostname)
         date = parse_date(field(item, ("pubdate", "published", "updated", "date", "issued")))
-        if not title or not link or not date or link in seen:
+        if not title or not link or (not date and name != "PIB") or link in seen:
             continue
         seen.add(link)
         results.append({
@@ -112,6 +128,8 @@ def describe_unmatched_source(xml):
             " entries=" + str(len(entries)) +
             " fields=" + ",".join(local(child.tag) for child in list(first)[:10]) +
             " first_link_scheme=" + (urlsplit(item_link(first)).scheme or "none") +
+            " first_link_host=" + (urlsplit(item_link(first)).hostname or "none") +
+            " first_date_sample=" + repr(field(first, ("pubdate", "published", "updated", "date", "issued"))[:55]) +
             " first_date_present=" + str(bool(field(first, ("pubdate", "published", "updated", "date", "issued")))))
 
 def run(output):
@@ -137,7 +155,7 @@ def run(output):
         except (OSError, ValueError, ET.ParseError, UnicodeError) as error:
             print(f"Regulatory feed {name} unavailable: {type(error).__name__}")
             source_status[name] = "unavailable"
-    items.sort(key=lambda item: (item["date"], item["title"]), reverse=True)
+    items.sort(key=lambda item: item["date"], reverse=True)
     payload = {
         "checked_at": datetime.now(timezone.utc).isoformat(),
         "sources": source_status,

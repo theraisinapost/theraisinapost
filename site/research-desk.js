@@ -45,7 +45,7 @@
       filtered.forEach(item => {
         const record = node('article', undefined, 'desk-record');
         const meta = node('div', undefined, 'desk-record-meta');
-        meta.append(node('strong', item.institution), node('time', dateLabel(item.date)));
+        meta.append(node('strong', item.institution), node('time', item.date ? dateLabel(item.date) : 'Date not supplied'));
         const body = node('div', undefined, 'desk-record-body');
         body.append(sourceLink(item.url, item.title));
         if (item.summary) body.append(node('p', item.summary));
@@ -64,7 +64,7 @@
         items = Array.isArray(data.items) ? data.items.filter(x =>
           x && ['SEBI','PIB'].includes(x.institution) &&
           typeof x.title === 'string' && x.title.length <= 260 &&
-          /^\d{4}-\d{2}-\d{2}$/.test(x.date) && safeOfficial(x.url))
+          (/^\d{4}-\d{2}-\d{2}$/.test(x.date) || (x.institution === 'PIB' && x.date === '')) && safeOfficial(x.url))
           .slice(0,100) : [];
         const sources = data.sources || {};
         const unavailable = ['SEBI','PIB'].filter(x => sources[x] !== 'available');
