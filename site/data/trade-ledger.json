@@ -1,6 +1,6 @@
 {
   "status": "partial",
-  "checked_at": "2026-10-31T18:26:34Z",
+  "checked_at": "2026-10-31T21:35:37Z",
   "source": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
   "notice": "Validated India reporter, annual TOTAL merchandise preview data for 2024–2025, selected partners and imports/exports only. No inference from missing values. Partial snapshots may retain older observed records.",
   "items": [
@@ -30,6 +30,15 @@
       "commodity": "TOTAL",
       "commodity_label": "All merchandise",
       "value_usd": 1733517713.389
+    },
+    {
+      "year": 2025,
+      "partner": "784",
+      "partner_label": "United Arab Emirates",
+      "flow": "M",
+      "commodity": "TOTAL",
+      "commodity_label": "All merchandise",
+      "value_usd": 55792813865.652
     },
     {
       "year": 2025,

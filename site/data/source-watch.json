@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-31T18:26:29+00:00",
+  "checked_at": "2026-10-31T21:35:33+00:00",
   "sources": [
     {
       "id": "sebi",
@@ -7,7 +7,7 @@
       "category": "Securities regulation",
       "url": "https://www.sebi.gov.in/legal/circulars.html",
       "status": "unavailable",
-      "last_checked_at": "2026-10-31T18:26:29+00:00",
+      "last_checked_at": "2026-10-31T21:35:33+00:00",
       "hash": "",
       "change_unreviewed": false,
       "change_detected_at": ""
@@ -18,7 +18,7 @@
       "category": "Official statistics",
       "url": "https://www.mospi.gov.in/release-calendar",
       "status": "unavailable",
-      "last_checked_at": "2026-10-31T18:26:29+00:00",
+      "last_checked_at": "2026-10-31T21:35:33+00:00",
       "hash": "",
       "change_unreviewed": false,
       "change_detected_at": ""
@@ -29,7 +29,7 @@
       "category": "Government announcements",
       "url": "https://www.pib.gov.in/",
       "hash": "9fb516be92988969b5780ddc275a04cf9f1d03835a928dcdd97c07a258912354",
-      "last_checked_at": "2026-10-31T18:26:29+00:00",
+      "last_checked_at": "2026-10-31T21:35:33+00:00",
       "status": "available",
       "change_unreviewed": true,
       "change_detected_at": "2026-10-31T18:20:12+00:00"
