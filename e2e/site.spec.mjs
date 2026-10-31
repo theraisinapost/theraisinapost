@@ -275,7 +275,7 @@ test('policy monitor displays validated official entries and filters locally',as
       checked_at:'2026-10-31T09:30:00Z',sources:{SEBI:'available',PIB:'available'},
       items:[
         {institution:'SEBI',title:'Official market circular',date:'2026-10-30',url:'https://www.sebi.gov.in/legal/circulars/test.html',summary:'Regulatory source'},
-        {institution:'PIB',title:'Official release',date:'2026-10-29',url:'https://pib.gov.in/PressReleasePage.aspx?PRID=1',summary:'Press release'},
+        {institution:'PIB',title:'Official release',date:'',url:'https://pib.gov.in/PressReleasePage.aspx?PRID=1',summary:'Press release'},
         {institution:'PIB',title:'Invalid',date:'2026-10-29',url:'javascript:alert(1)',summary:'Rejected'}
       ]
     })
