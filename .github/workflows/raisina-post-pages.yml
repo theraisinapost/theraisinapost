@@ -10,6 +10,9 @@ on:
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Official intelligence source refresh']
+    types: [completed]
 permissions:
   contents: read
   pages: write
@@ -19,6 +22,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   test-and-build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
