@@ -271,4 +271,35 @@ class TestFeed(unittest.TestCase):
    self.assertNotIn('<!--SITE_URL-->',market)
    self.assertNotIn('const fake',js)
 
+ def test_editorial_refinement_uses_one_spacious_typography_system(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   style=(out/'editorial.css').read_text(encoding='utf-8')
+   for name in ('index.html','markets.html','observatory.html','about.html','publication-guide.html'):
+    document=(out/name).read_text(encoding='utf-8')
+    self.assertIn('href="editorial.css"',document,name)
+    self.assertIn('family=Newsreader',document,name)
+    self.assertIn('family=Inter',document,name)
+    self.assertNotIn('family=DM+Sans',document,name)
+   self.assertIn('--serif:"Newsreader"',style)
+   self.assertIn('--sans:"Inter"',style)
+   self.assertIn('.section-bar{border:0',style)
+   self.assertIn('.market-panel{border:0',style)
+   self.assertIn('.obs-section-title{border:0',style)
+   self.assertIn('.macro-cards{border:0',style)
+   self.assertIn('padding-top:119px',style)
+   market=(out/'markets.html').read_text(encoding='utf-8')
+   observatory=(out/'observatory.html').read_text(encoding='utf-8')
+   self.assertNotIn('01 / PRICE MONITOR',market)
+   self.assertNotIn('02 / INDIA DATA',market)
+   self.assertNotIn('03 / CONTEXT',market)
+   self.assertNotIn('01 / PUBLISHING ACTIVITY',observatory)
+   self.assertNotIn('02 / DISCOVER',observatory)
+   self.assertNotIn('03 / PERSONAL READING LIST',observatory)
+   self.assertIn('EXCHANGE QUOTES MAY BE DELAYED',market)
+   self.assertIn('id="macro-gdp-value"',market)
+   self.assertIn('data-macro="inflation"',market)
+
 if __name__=='__main__':unittest.main()
