@@ -349,21 +349,21 @@ class TestFeed(unittest.TestCase):
    for name in ('index.html','about.html','markets.html','observatory.html','publication-guide.html'):
     html=(out/name).read_text(encoding='utf-8')
     self.assertIn('id="mobile-menu-open"',html,name)
-    self.assertIn('id="mobile-menu"',html,name)
+    self.assertIn('id="mobile-menu-panel"',html,name)
     self.assertIn('aria-expanded="false"',html,name)
-    self.assertIn('aria-hidden="true" inert',html,name)
+    self.assertIn('aria-hidden="true" inert hidden',html,name)
     self.assertIn('aria-label="Close navigation"',html,name)
     self.assertIn('href="mobile-shell.css"',html,name)
-    self.assertIn('src="mobile-shell.js"',html,name)
+    self.assertIn('src="mobile-nav.js"',html,name)
     self.assertIn('class="publication-footer"',html,name)
-    self.assertIn('class="publication-footer-watermark"',html,name)
+    self.assertIn('class="editorial-footer-watermark"',html,name)
     self.assertIn('Weather by Open-Meteo',html,name)
     self.assertIn('The Power Brief',html,name)
     self.assertIn('The Observatory',html,name)
     self.assertNotIn('<!--SITE_URL-->',html,name)
     self.assertNotIn('<!--YEAR-->',html,name)
     self.assertNotIn('↗',html,name)
-   for path in ('mobile-shell.css','mobile-shell.js'):
+   for path in ('mobile-shell.css','mobile-nav.js'):
     self.assertTrue((out/path).exists())
 
  def test_mobile_menu_accessibility_and_section_navigation(self):
@@ -372,7 +372,7 @@ class TestFeed(unittest.TestCase):
    out=Path(d)/'dist'
    build.render_site(posts,out)
    html=(out/'index.html').read_text(encoding='utf-8')
-   js=(out/'mobile-shell.js').read_text(encoding='utf-8')
+   js=(out/'mobile-nav.js').read_text(encoding='utf-8')
    site_js=(out/'site.js').read_text(encoding='utf-8')
    css=(out/'mobile-shell.css').read_text(encoding='utf-8')
    self.assertIn('?section=Governance#archive',html)

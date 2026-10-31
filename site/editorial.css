@@ -275,3 +275,10 @@ body,button,input,select,textarea{font-family:var(--sans)}
 }
 @media(max-width:360px){.mobile-panel-navigation>a{font-size:31px}.mobile-panel-subnav{gap:13px 10px}.mobile-nav-brand img{max-width:155px}}
 @media(prefers-reduced-motion:reduce){.mobile-menu-panel,.mobile-nav-bar,.mobile-panel-subscribe{animation:none!important;transition:none!important}}
+
+/* Shared shell compatibility with the responsive newsroom header. */
+@media(max-width:780px){
+  .mobile-menu-panel[hidden]{display:none!important}
+  .mobile-nav-bar.is-concealed{transform:translateY(calc(-100% - 26px))}
+}
+@media(prefers-reduced-motion:reduce){.mobile-nav-bar.is-concealed{transition:none}}

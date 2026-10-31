@@ -182,7 +182,7 @@ def attach_publication_shell(html, site_url):
     html, count = re.subn(r'<footer\b[^>]*>[\s\S]*?</footer>', lambda _: footer, html, count=1)
     if count != 1:
         raise ValueError('Shared editorial footer needs one document footer')
-    html = html.replace('</head>', '<link rel="stylesheet" href="mobile-shell.css">\n<script defer src="mobile-shell.js"></script>\n</head>', 1)
+    html = html.replace('</head>', '<link rel="stylesheet" href="mobile-shell.css">\n<script defer src="mobile-nav.js"></script>\n</head>', 1)
     return html
 
 def render_site(posts, destination, site_url=DEFAULT_URL):
@@ -203,7 +203,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     page = attach_publication_shell(page, site_url)
     (destination/'index.html').write_text(page, encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','mobile-shell.css','mobile-shell.js','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
+    for fname in ('styles.css','market.css','editorial.css','mobile-shell.css','mobile-nav.js','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
