@@ -46,6 +46,8 @@
     });
   }
   if (clear && search) clear.addEventListener('click', () => { category = 'All'; search.value = ''; applyFilters(); search.focus(); });
+  const requestedSection = new URLSearchParams(window.location.search).get('section');
+  if (['The Power Brief', 'Business', 'Governance'].includes(requestedSection)) category = requestedSection;
   applyFilters();
 
   // This is always an IST desk clock, regardless of the reader's device timezone.

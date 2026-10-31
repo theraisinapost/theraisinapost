@@ -172,7 +172,11 @@ def side_story(post, idx):
 def render_site(posts, destination, site_url=DEFAULT_URL):
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
-    source = (BASE/'site'/'index.html').read_text(encoding='utf-8')
+    mobile_nav=(BASE/'site'/'mobile-nav.html').read_text(encoding='utf-8')
+    editorial_footer=(BASE/'site'/'editorial-footer.html').read_text(encoding='utf-8')
+    def chrome(html):
+        return html.replace('<!--MOBILE_NAV-->',mobile_nav).replace('<!--EDITORIAL_FOOTER-->',editorial_footer)
+    source = chrome((BASE/'site'/'index.html').read_text(encoding='utf-8'))
     page = source.replace('<!--FEATURED-->', featured(posts[0]))
     page = page.replace('<!--SIDE_STORIES-->', '\n'.join(side_story(p, i) for i,p in enumerate(posts[1:3],1)))
     page = page.replace('<!--ARTICLES-->', '\n'.join(card(p, i) for i,p in enumerate(posts,0)))
@@ -182,22 +186,22 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(page, encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
     if chart_dir.is_dir():
         shutil.copytree(chart_dir, destination/'components', dirs_exist_ok=True)
-    guide = (BASE/'site'/'publication-guide.html').read_text(encoding='utf-8')
+    guide = chrome((BASE/'site'/'publication-guide.html').read_text(encoding='utf-8'))
     guide = guide.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'publication-guide.html').write_text(guide, encoding='utf-8')
-    about = (BASE/'site'/'about.html').read_text(encoding='utf-8')
+    about = chrome((BASE/'site'/'about.html').read_text(encoding='utf-8'))
     about = about.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'about.html').write_text(about, encoding='utf-8')
-    observatory = (BASE/'site'/'observatory.html').read_text(encoding='utf-8')
+    observatory = chrome((BASE/'site'/'observatory.html').read_text(encoding='utf-8'))
     observatory = observatory.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'observatory.html').write_text(observatory, encoding='utf-8')
-    market = (BASE/'site'/'markets.html').read_text(encoding='utf-8')
+    market = chrome((BASE/'site'/'markets.html').read_text(encoding='utf-8'))
     market = market.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'markets.html').write_text(market, encoding='utf-8')
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')

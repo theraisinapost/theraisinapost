@@ -305,4 +305,40 @@ class TestFeed(unittest.TestCase):
    self.assertIn('id="macro-gdp-value"',market)
    self.assertIn('data-macro="inflation"',market)
 
+
+ def test_shared_mobile_menu_and_footer_on_all_pages(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   for name in ('index.html','publication-guide.html','about.html','markets.html','observatory.html'):
+    page=(out/name).read_text(encoding='utf-8')
+    self.assertEqual(page.count('id="mobile-menu-panel"'),1,name)
+    self.assertIn('id="mobile-nav-bar"',page,name)
+    self.assertIn('aria-expanded="false"',page,name)
+    self.assertIn('aria-modal="true"',page,name)
+    self.assertIn('data-mobile-menu-close',page,name)
+    self.assertIn('editorial-footer-watermark',page,name)
+    self.assertIn('src="mobile-nav.js"',page,name)
+    self.assertNotIn('<!--MOBILE_NAV-->',page,name)
+    self.assertNotIn('<!--EDITORIAL_FOOTER-->',page,name)
+
+ def test_mobile_section_links_keyboard_safety_and_responsive_css(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   shell=(out/'mobile-nav.js').read_text(encoding='utf-8')
+   site=(out/'site.js').read_text(encoding='utf-8')
+   css=(out/'editorial.css').read_text(encoding='utf-8')
+   for section in ('The+Power+Brief','Business','Governance'):
+    self.assertIn('?section='+section+'#archive',home)
+   self.assertIn("new URLSearchParams(window.location.search).get('section')",site)
+   for check in ('Escape','aria-expanded','focus','inert','scrollY','requestAnimationFrame'):
+    self.assertIn(check,shell)
+   for check in ('@media(max-width:780px)','.mobile-menu-panel[hidden]','.mobile-nav-bar.is-concealed','prefers-reduced-motion:reduce'):
+    self.assertIn(check,css)
+   self.assertTrue((out/'mobile-nav.js').exists())
+
 if __name__=='__main__':unittest.main()
