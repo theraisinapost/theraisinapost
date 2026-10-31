@@ -471,3 +471,24 @@ test('footer is grouped, readable and usable on desktop and mobile',async({page}
   await footer.getByRole('link',{name:'Back to top'}).click();
   await expect(page).toHaveURL(/#main$/);
 });
+
+test('Swiss publication footer is coherent, functional, and fits 320px screens', async ({page})=>{
+  await page.goto('/');
+  const footer=page.locator('footer.editorial-footer');
+  await expect(footer.getByRole('heading',{name:'The evidence behind the decision.'})).toBeVisible();
+  const groups=footer.locator('.editorial-footer-nav nav');
+  await expect(groups).toHaveCount(3);
+  for(const group of ['Read','Research','Publication']){
+    await expect(footer.getByRole('navigation',{name:group,exact:true})).toBeVisible();
+  }
+  const sub=footer.getByRole('link',{name:'Subscribe to the Post'});
+  await expect(sub).toHaveAttribute('href','https://raisinapost.substack.com/subscribe');
+  await page.setViewportSize({width:320,height:740});
+  await expect(footer).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+  await footer.getByRole('link',{name:'Back to top'}).click();
+  await expect(page).toHaveURL(/#main$/);
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
