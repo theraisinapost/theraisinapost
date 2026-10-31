@@ -129,3 +129,16 @@ Each share control for a Substack story opens a small dialog with LinkedIn, What
 The published site does **not** load any GoatCounter tracker by default, because no account is connected. To enable it, register a real account at [GoatCounter](https://www.goatcounter.com/help/start) and set the GitHub Actions repository variable `GOATCOUNTER_CODE` to **only the assigned subdomain name** (without `.goatcounter.com`). The publishing workflow passes this code to `scripts/build.py` and includes `https://gc.zgo.at/count.js` only when it validates as a nonempty, safe account code. Rerun the Pages workflow after setting the variable. Do not set a made-up code. Review the publication privacy policy before activation.
 
 The homepage itself does **not** load Cytoscape or vis-timeline; it only links to the separate research pages. The graphics require third-party CDNs and have readable fallback content when unavailable.
+
+## Commodity & macro monitor (October 2026)
+
+The existing `markets.html` page includes an automated precious-metals desk, an attributed crude-and-yields watchlist, daily FX reference rates and a reader-triggered economic calendar.
+
+- **Gold**: [XAUS](https://github.com/misix-git/xaus-api) `/api/v1/spot?currency=INR&unit=gram&compact=1` returns indicative INR per gram; the site multiplies by **10** to display the spot equivalent of 10g. It is not Indian retail/jeweller/MCX pricing and does not include local duties, premiums, making charges or GST. The interface reads `data_state` and `as_of`/`updated_at` to label stale observations rather than implying a live quote.
+- **Silver**: same XAUS response, converting `silver_usd_oz * fx_rate * (1000 / 31.1034768)` into indicative INR/kg. This calculation is *only* displayed if both silver and FX are numeric and positive. The FX rate in that calculation comes from XAUS, not from the separate Frankfurter reference feed.
+- **Gold/silver ratio**: displays only the source's numeric `gold_silver_ratio`, without an invented value.
+- **Crude & yields**: [TradingView Market Data](https://www.tradingview.com/widget-docs/widgets/watchlists/market-data/) uses verified symbols `TVC:UKOIL`, `TVC:USOIL`, `TVC:IN10Y` and `TVC:US10Y`. These are indicative CFDs and benchmark yields; exchange availability, licensing and quote delays are TradingView's responsibility.
+- **Daily FX**: [Frankfurter](https://frankfurter.dev/) v2 returns reference rates for USD, EUR and GBP relative to INR. The response's published date is displayed; it is **not** a live exchange-rate feed.
+- **Economic calendar**: [TradingView's calendar widget](https://www.tradingview.com/widget-docs/widgets/calendars/economic-calendar/) is injected only when a reader presses **Show economic events**. It covers India, the US, euro area, China and the UK; times, significance and schedule may be revised.
+
+This is frontend-only and runs on GitHub Pages with no new hosting, secrets, credentials or cron tasks. The source response is refreshed periodically while the Market Desk is in the foreground. Network failure keeps values at **—** rather than substituting invented prices. External embed scripts may be blocked by a visitor's browser or the vendor, and clear source links remain available.

@@ -6,17 +6,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="market.css"><link rel="stylesheet" href="editorial.css">
 <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-market-data.js"></script>
-<script defer src="market-desk.js"></script><title>Markets & economy — The Raisina Post</title><script defer src="mobile-nav.js"></script></head>
+<script defer src="market-desk.js"></script><script defer src="commodities.js"></script><title>Markets & economy — The Raisina Post</title><script defer src="mobile-nav.js"></script></head>
 <body><a class="skip-link" href="#main">Skip to content</a>
 <!--MOBILE_NAV-->
 <header class="guide-header wrap"><a class="guide-home" href="<!--SITE_URL-->">Front page</a><a class="guide-wordmark guide-brand-lockup" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-masthead.png" alt="The Raisina Post" width="1250" height="234"></a><a class="guide-subscribe" href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a></header>
 <main id="main" class="wrap market-desk">
 <header class="market-intro"><h1>Markets &amp; economy<span class="accent-dot">.</span></h1>
-<p>Market movements and their context. Quotes by TradingView; economic history from the World Bank.</p>
+<p>Market movements and their context. Metals, energy, bonds, FX and historical economic data—with sources attached.</p>
 <div class="market-intro-meta"><span>EXCHANGE QUOTES MAY BE DELAYED</span><a href="https://www.tradingview.com/widget-docs/faq/data/" target="_blank" rel="noopener noreferrer">Data availability</a></div></header>
 <section class="market-tape-section" aria-label="India and world market quotes">
 <tv-ticker-tape symbols="NSE:NIFTY,BSE:SENSEX,FX_IDC:USDINR,TVC:GOLD,TVC:USOIL,SP:SPX" color-theme="light" transparent-background="true"></tv-ticker-tape>
 <p class="market-disclaimer">Prices and percentage changes are provided by TradingView, not calculated by this site. Availability and delay depend on the exchange. <a href="https://www.tradingview.com/symbols/NSE-NIFTY/" target="_blank" rel="noopener noreferrer">Nifty 50 on TradingView</a></p></section>
+
+<section class="commodities-section" id="commodities" aria-labelledby="commodities-title">
+  <div class="obs-section-title"><div><h2 id="commodities-title">Commodities &amp; macro</h2></div></div>
+  <p class="market-disclaimer">Indicative metal spot equivalents, not Indian retail bullion prices or exchange-traded contracts. Data refreshes automatically when this page is open; delayed or stale readings are labelled.</p>
+  <div class="commodity-grid" aria-label="Indicative precious metals monitor">
+    <article class="commodity-stat"><div class="commodity-stat-top"><span>Gold</span><small>Au · Indicative spot</small></div><strong id="spot-gold-value" aria-live="polite">—</strong><p>INR per 10 grams · 24K spot equivalent</p></article>
+    <article class="commodity-stat"><div class="commodity-stat-top"><span>Silver</span><small>Ag · Indicative spot</small></div><strong id="spot-silver-value" aria-live="polite">—</strong><p>INR per kilogram · converted USD spot</p></article>
+    <article class="commodity-stat"><div class="commodity-stat-top"><span>Gold / silver</span><small>Ratio</small></div><strong id="spot-ratio-value" aria-live="polite">—</strong><p>Gold ounces per one silver ounce, price ratio</p></article>
+  </div>
+  <div class="commodity-source-row"><p id="spot-status" role="status">Loading precious-metals source…</p><a href="https://xaus.com/" target="_blank" rel="noopener noreferrer">Metals: XAUS</a></div>
+</section>
+
+<section class="commodity-benchmarks" id="commodity-benchmarks" aria-labelledby="benchmarks-title">
+  <div class="obs-section-title"><div><h2 id="benchmarks-title">Crude oil &amp; sovereign yields</h2></div></div>
+  <div class="commodity-market-panel">
+    <tv-market-data symbol-sectors='[{"sectionName":"Brent & WTI crude","symbols":["TVC:UKOIL","TVC:USOIL"]},{"sectionName":"Government bond yields","symbols":["TVC:IN10Y","TVC:US10Y"]}]'></tv-market-data>
+    <p class="market-disclaimer">TradingView indicative symbols: Brent/WTI are CFD-based references rather than oil futures settlement prices. Bond figures are 10-year yields, not bond prices. Quotes may be delayed or unavailable.</p>
+    <div class="commodity-source-links"><a href="https://www.tradingview.com/symbols/UKOIL/?exchange=TVC" target="_blank" rel="noopener noreferrer">Brent</a><a href="https://www.tradingview.com/symbols/USOIL/?exchange=TVC" target="_blank" rel="noopener noreferrer">WTI</a><a href="https://www.tradingview.com/symbols/TVC-IN10Y/" target="_blank" rel="noopener noreferrer">India 10Y</a><a href="https://www.tradingview.com/symbols/TVC-US10Y/" target="_blank" rel="noopener noreferrer">US 10Y</a><a href="https://www.tradingview.com/widget-docs/faq/data/" target="_blank" rel="noopener noreferrer">Provider delays</a></div>
+  </div>
+</section>
+
+<section class="reference-fx" aria-labelledby="reference-fx-title">
+  <div class="obs-section-title"><div><h2 id="reference-fx-title">Currency reference rates</h2></div></div>
+  <p class="market-disclaimer">Latest available daily rates from Frankfurter's official-source collection. These are reference rates—not intraday executable FX quotes.</p>
+  <div class="fx-reference-grid" aria-label="Indicative daily INR exchange-rate references">
+    <div class="fx-reference-card"><span>USD / INR</span><strong id="fx-usd-value">—</strong><small>INR per US dollar</small></div>
+    <div class="fx-reference-card"><span>EUR / INR</span><strong id="fx-eur-value">—</strong><small>INR per euro</small></div>
+    <div class="fx-reference-card"><span>GBP / INR</span><strong id="fx-gbp-value">—</strong><small>INR per pound</small></div>
+  </div>
+  <div class="commodity-source-row"><p id="fx-status" role="status">Loading daily FX reference rates…</p><a href="https://frankfurter.dev/" target="_blank" rel="noopener noreferrer">FX: Frankfurter</a></div>
+</section>
+
+<section class="economic-events" aria-labelledby="economic-events-title">
+  <div class="obs-section-title"><div><h2 id="economic-events-title">Economic calendar</h2></div></div>
+  <p class="market-disclaimer">Major scheduled releases and policy announcements for India, the US, Europe, China and the UK. The calendar is loaded only when requested.</p>
+  <div class="calendar-actions"><button type="button" id="calendar-load">Show economic events</button><a href="https://www.tradingview.com/economic-calendar/" target="_blank" rel="noopener noreferrer">Open source calendar</a></div>
+  <div id="calendar-widget" class="calendar-widget" aria-live="polite"><p>Calendar not loaded. Select “Show economic events” to view the automated feed.</p></div>
+  <p class="market-disclaimer">Dates, times and forecasts come from TradingView and may change. Always verify a release at the issuing institution.</p>
+</section>
 <section class="market-live" aria-labelledby="market-live-title"><div class="obs-section-title"><div><h2 id="market-live-title">Market monitor</h2></div></div>
 <div class="market-panel-grid"><div class="market-panel"><h3>Nifty 50</h3>
 <div class="tradingview-widget-container" style="height:350px;width:100%">

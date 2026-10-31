@@ -57,3 +57,52 @@
 .market-context-grid{grid-template-columns:1fr}
 .market-live,.market-macro,.market-context{padding-top:41px}
 }
+
+/* Source-backed, three-column metals and macro desks. */
+.commodities-section,.commodity-benchmarks,.reference-fx,.economic-events{padding-top:69px}
+.commodities-section .obs-section-title,.commodity-benchmarks .obs-section-title,.reference-fx .obs-section-title,.economic-events .obs-section-title{margin-bottom:12px}
+.commodity-grid{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.commodity-stat{min-width:0;padding:26px 25px 22px;background:#fafafa;border-radius:8px;display:flex;flex-direction:column;gap:11px}
+.commodity-stat-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:7px}
+.commodity-stat-top span{font:600 12px var(--sans);color:#2a2a2a}
+.commodity-stat-top small{font:500 10px var(--sans);color:#606060}
+.commodity-stat>strong{font:400 clamp(29px,3.4vw,45px)/1.18 var(--serif);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.commodity-stat p{font:450 11px/1.65 var(--sans);color:#565656;margin:auto 0 0}
+.commodity-source-row{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px 22px;margin:18px 0 0}
+.commodity-source-row p{font:450 11px/1.75 var(--sans);color:#555;margin:0}
+.commodity-source-row a,.commodity-source-links a,.calendar-actions a{font-size:11px;font-weight:650;color:var(--accent);text-decoration:none}
+.commodity-source-row a:hover,.commodity-source-links a:hover,.calendar-actions a:hover{text-decoration:underline}
+.commodity-market-panel{background:#fafafa;border-radius:8px;padding:23px;margin-top:24px}
+.commodity-market-panel tv-market-data{display:block;width:100%;min-height:330px;overflow:hidden}
+.commodity-market-panel .market-disclaimer{margin-top:18px}
+.commodity-source-links{display:flex;gap:13px 22px;flex-wrap:wrap;padding-top:10px}
+.fx-reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:23px;border-top:1px solid #eaeaea;border-bottom:1px solid #eaeaea}
+.fx-reference-card{min-width:0;display:flex;flex-direction:column;gap:8px;padding:22px 18px 22px 0}
+.fx-reference-card+.fx-reference-card{padding-left:23px;border-left:1px solid #eaeaea}
+.fx-reference-card span{font:600 11px var(--sans);color:#313131}
+.fx-reference-card strong{font:400 clamp(27px,3.2vw,40px) var(--serif);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.fx-reference-card small{font:450 11px/1.55 var(--sans);color:#565656}
+.calendar-actions{display:flex;align-items:center;gap:23px;flex-wrap:wrap;margin:23px 0 15px}
+.calendar-actions button{border:1px solid var(--accent);background:var(--accent);border-radius:8px;padding:10px 19px;color:#fff;font:600 12px var(--sans);min-height:43px}
+.calendar-actions button:hover{opacity:.82}
+.calendar-actions button:disabled{opacity:.6;cursor:default}
+.calendar-widget{min-height:70px;background:#fafafa;border-radius:8px;overflow:hidden;padding:15px}
+.calendar-widget>p{margin:12px 0;color:#555;font-size:12px}
+.calendar-widget .tradingview-widget-container{min-height:480px;width:100%}
+.calendar-widget .tradingview-widget-container__widget{min-height:450px}
+.calendar-widget .tradingview-widget-copyright a{color:#555;font-size:10px}
+@media(max-width:840px){.commodity-grid{gap:10px}.commodity-stat{padding:22px 18px}.commodity-stat>strong{font-size:31px}}
+@media(max-width:620px){
+.commodities-section,.commodity-benchmarks,.reference-fx,.economic-events{padding-top:47px}
+.commodity-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.commodity-stat{padding:21px 14px 18px}
+.commodity-stat>strong{font-size:clamp(25px,6.8vw,35px)}
+.commodity-stat:last-child{grid-column:1/-1}
+.commodity-stat:last-child>strong{font-size:32px}
+.commodity-market-panel{padding:14px 10px}
+.fx-reference-card{padding:17px 6px 18px 0}
+.fx-reference-card+.fx-reference-card{padding-left:11px}
+.fx-reference-card strong{font-size:clamp(20px,5.3vw,29px)}
+.fx-reference-card small{font-size:10px}
+.calendar-widget{padding:8px}
+}
