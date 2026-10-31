@@ -197,9 +197,9 @@
       const height = day.count ? Math.max(11, day.count / max * 125) : 0;
       if (height) svg.appendChild(elem('rect',{x,y:160-height,width:23,height,rx:3,fill:'#a41129'}));
       if (index % 2 === 0 || index === 13) {
-        svg.appendChild(elem('text',{x:x+12,y:181,'text-anchor':'middle','font-size':'10',fill:'#555555','font-family':'DM Sans, sans-serif'},day.date.toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'})));
+        svg.appendChild(elem('text',{x:x+12,y:181,'text-anchor':'middle','font-size':'10',fill:'#555555','font-family':'Inter, sans-serif'},day.date.toLocaleDateString('en-GB',{day:'numeric',month:'short',timeZone:'UTC'})));
       }
-      if (day.count) svg.appendChild(elem('text',{x:x+12,y:Math.max(14,152-height),'text-anchor':'middle','font-size':'11',fill:'#444444','font-family':'DM Sans, sans-serif'},day.count));
+      if (day.count) svg.appendChild(elem('text',{x:x+12,y:Math.max(14,152-height),'text-anchor':'middle','font-size':'11',fill:'#444444','font-family':'Inter, sans-serif'},day.count));
     });
     const total = document.getElementById('obs-count');
     if (total) total.textContent = String(obsPosts.length);

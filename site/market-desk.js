@@ -79,7 +79,7 @@
       const plot = Plot.plot({
         width: Math.min(900, Math.max(320, chart.clientWidth || 680)),
         height: 290, marginLeft: 58, marginBottom: 44,
-        style: {background:'transparent', fontFamily:'DM Sans, sans-serif', color:'#333'},
+        style: {background:'transparent', fontFamily:'Inter, sans-serif', color:'#333'},
         x: {label:'Year', ticks:6, tickFormat: x => String(x)},
         y: {label:'Percent', grid:true},
         marks: [
