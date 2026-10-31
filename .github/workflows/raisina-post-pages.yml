@@ -30,6 +30,7 @@ jobs:
       - name: Fetch RSS and build static website
         env:
           RAISINA_SITE_URL: ${{ vars.RAISINA_SITE_URL }}
+          GOATCOUNTER_CODE: ${{ vars.GOATCOUNTER_CODE }}
         run: |
           OWNER="${{ github.repository_owner }}"
           REPO="${{ github.event.repository.name }}"

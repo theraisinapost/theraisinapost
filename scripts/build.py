@@ -150,7 +150,7 @@ def card(post, idx):
     return f'''<article class="article-row" data-title="{title.lower()}" data-summary="{excerpt.lower()}" data-category="{category}" data-date="{escape(post['date_iso'])}">
       <div class="article-main"><div class="article-overline"><span class="article-category">{category}</span><span class="over-dot"></span><time datetime="{escape(post['date_iso'])}">{date}</time></div>
       <h3><a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a></h3>
-      <p>{excerpt}</p><div class="story-actions"><a class="article-arrow" href="{url}" target="_blank" rel="noopener noreferrer">Read dispatch</a><button class="story-save" type="button" data-save-story="{url}" hidden>Save</button></div></div>
+      <p>{excerpt}</p><div class="story-actions"><a class="article-arrow" href="{url}" target="_blank" rel="noopener noreferrer">Read dispatch</a><button class="story-save" type="button" data-save-story="{url}" hidden>Save</button><button type="button" class="share-trigger" data-share-url="{url}" data-share-title="{title}" aria-label="Share {title}">Share</button></div></div>
       <a class="article-media" href="{url}" aria-label="Read {title} on Substack" target="_blank" rel="noopener noreferrer">{artwork}</a>
     </article>'''
 
@@ -161,13 +161,23 @@ def featured(post):
       <div class="lead-category">{escape(post['category'])}</div>
       <h2><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h2>
       <p class="lead-description">{escape(post['description'])}</p>
-      <div class="lead-actions"><a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read article</a><button class="story-save" type="button" data-save-story="{escape(post['url'])}" hidden>Save</button></div>
+      <div class="lead-actions"><a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read article</a><button class="story-save" type="button" data-save-story="{escape(post['url'])}" hidden>Save</button><button type="button" class="share-trigger" data-share-url="{escape(post['url'])}" data-share-title="{escape(post['title'])}" aria-label="Share {escape(post['title'])}">Share</button></div>
       </div><a class="lead-visual" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read the lead dispatch">{artwork}</a>
     </article>'''
 
 def side_story(post, idx):
     return f'''<article class="rail-story"><div class="rail-meta"><span>{escape(post['category'])}</span><time class="rail-date" datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
       <h3><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h3><p>{escape(post['description'])}</p></article>'''
+
+def goatcounter_tag():
+    """Keep analytics off until a real site code is configured."""
+    code=(os.getenv('GOATCOUNTER_CODE') or '').strip().lower()
+    if not re.fullmatch(r'[a-z0-9][a-z0-9-]{1,38}[a-z0-9]',code):
+        return ''
+    return '<script async data-goatcounter="https://'+code+'.goatcounter.com/count" src="https://gc.zgo.at/count.js"></script>'
+
+def finalize_page(page):
+    return page.replace('</head>',goatcounter_tag()+'</head>',1)
 
 def render_site(posts, destination, site_url=DEFAULT_URL):
     destination = Path(destination)
@@ -185,8 +195,8 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     page = page.replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
-    (destination/'index.html').write_text(page, encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg'):
+    (destination/'index.html').write_text(finalize_page(page), encoding='utf-8')
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','share-ui.js'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -194,19 +204,26 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
         shutil.copytree(chart_dir, destination/'components', dirs_exist_ok=True)
     guide = chrome((BASE/'site'/'publication-guide.html').read_text(encoding='utf-8'))
     guide = guide.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
-    (destination/'publication-guide.html').write_text(guide, encoding='utf-8')
+    (destination/'publication-guide.html').write_text(finalize_page(guide), encoding='utf-8')
     about = chrome((BASE/'site'/'about.html').read_text(encoding='utf-8'))
     about = about.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
-    (destination/'about.html').write_text(about, encoding='utf-8')
+    (destination/'about.html').write_text(finalize_page(about), encoding='utf-8')
     observatory = chrome((BASE/'site'/'observatory.html').read_text(encoding='utf-8'))
     observatory = observatory.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
-    (destination/'observatory.html').write_text(observatory, encoding='utf-8')
+    (destination/'observatory.html').write_text(finalize_page(observatory), encoding='utf-8')
     market = chrome((BASE/'site'/'markets.html').read_text(encoding='utf-8'))
     market = market.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
-    (destination/'markets.html').write_text(market, encoding='utf-8')
+    (destination/'markets.html').write_text(finalize_page(market), encoding='utf-8')
+    for name in ('ownership-atlas','policy-timeline'):
+        researched=chrome((BASE/'site'/(name+'.html')).read_text(encoding='utf-8'))
+        researched=researched.replace('<!--SITE_URL-->',escape(site_url)).replace('<!--YEAR-->',str(datetime.now(timezone.utc).year))
+        (destination/(name+'.html')).write_text(finalize_page(researched), encoding='utf-8')
+    (destination/'data').mkdir(exist_ok=True)
+    for name in ('ownership-tcs.json','dpdp-timeline.json'):
+        shutil.copy2(BASE/'site'/'data'/name,destination/'data'/name)
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')
-    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url><url><loc>'+escape(site_url)+'about.html</loc></url><url><loc>'+escape(site_url)+'observatory.html</loc></url><url><loc>'+escape(site_url)+'markets.html</loc></url></urlset>',encoding='utf-8')
+    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url><url><loc>'+escape(site_url)+'about.html</loc></url><url><loc>'+escape(site_url)+'observatory.html</loc></url><url><loc>'+escape(site_url)+'markets.html</loc></url><url><loc>'+escape(site_url)+'ownership-atlas.html</loc></url><url><loc>'+escape(site_url)+'policy-timeline.html</loc></url></urlset>',encoding='utf-8')
     (destination/'.nojekyll').write_text('',encoding='utf-8')
 
 def download_feed():

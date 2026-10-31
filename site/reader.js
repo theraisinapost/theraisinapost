@@ -84,6 +84,8 @@
   const paletteResults = dialog.querySelector('#palette-results');
   const destinations = [
     {title: 'Observatory', caption: 'Explore publishing activity and your saved stories', url:'observatory.html'},
+    {title: 'Ownership atlas', caption: 'Verified corporate holdings', url:'ownership-atlas.html'},
+    {title: 'Policy timeline', caption: 'DPDP Act chronology', url:'policy-timeline.html'},
     {title: 'Full archive', caption:'Browse the original Substack archive', url:'https://raisinapost.substack.com/archive'},
     {title: 'About The Raisina Post', caption: 'The publication and its coverage', url:'about.html'},
     {title: 'Publication guide', caption:'Editorial standards and corrections', url:'publication-guide.html'}
