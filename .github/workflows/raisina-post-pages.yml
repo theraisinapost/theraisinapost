@@ -41,6 +41,7 @@ jobs:
           fi
           SITE_URL="${RAISINA_SITE_URL:-$DEFAULT_SITE_URL}"
           python scripts/build.py --output dist --site-url "$SITE_URL"
+          python scripts/regulatory.py --output dist/data/regulatory.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

@@ -1,0 +1,69 @@
+/* Research desk: restrained, source-first tools with no decorative dashboards. */
+.desk-main{padding-top:24px;padding-bottom:92px}
+.desk-subnav{display:flex;gap:23px;flex-wrap:wrap;align-items:center;padding:8px 0 20px;border-bottom:1px solid #eeeeee}
+.desk-subnav a{font-size:11px;font-weight:550;color:#595959;text-decoration:none}
+.desk-subnav a:hover,.desk-subnav a[aria-current="page"]{color:#171717}
+.desk-intro{padding:77px 0 40px;max-width:790px}
+.desk-kicker{color:#777;font-size:10px;font-weight:600;letter-spacing:.07em;margin:0 0 20px}
+.desk-intro h1{font:550 clamp(35px,5.2vw,65px)/1.14 "Inter",Arial,sans-serif;letter-spacing:-.055em;margin:0 0 17px}
+.desk-deck{font-size:14px;line-height:1.8;color:#5b5b5b;max-width:620px;margin:0}
+.desk-note{background:#f9f9f9;border-radius:8px;padding:22px 25px;margin-bottom:37px}
+.desk-note strong{font-size:12px;font-weight:600}.desk-note p{font-size:12px;line-height:1.77;color:#595959;margin:7px 0 0}
+.desk-panel{padding:8px 0 29px}.desk-panel-heading{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+.desk-panel h2,.desk-source-note h2{font:600 17px/1.4 "Inter",Arial,sans-serif;letter-spacing:-.02em;margin:0}
+.desk-controls{display:flex;flex-wrap:wrap;gap:18px;align-items:end;margin:26px 0 18px}
+.desk-controls label{display:flex;flex-direction:column;gap:7px;font-size:11px;color:#595959;font-weight:550;flex:0 1 310px}
+.desk-controls label.desk-search-label{flex:1 1 300px}
+.desk-controls select,.desk-controls input,.desk-diff-grid textarea{width:100%;font-size:12px;color:#171717;border:1px solid #e5e5e5;background:#f9f9f9;border-radius:8px;padding:11px 13px;min-height:42px;outline-offset:2px}
+.desk-status,.desk-muted{font-size:11px;color:#6c6c6c;line-height:1.7}
+.desk-record-list{border-top:1px solid #efefef;margin-top:14px}
+.desk-record{padding:21px 0;border-bottom:1px solid #efefef;display:grid;grid-template-columns:145px minmax(0,1fr);gap:25px}
+.desk-record-meta{font-size:11px;color:#757575;display:flex;flex-direction:column;gap:5px}
+.desk-record-meta strong{font-weight:550;color:#555}
+.desk-record-body a{display:inline-block;text-decoration:none;font-size:14px;font-weight:550;line-height:1.54;letter-spacing:-.02em;color:#171717}
+.desk-record-body a:hover{text-decoration:underline;text-underline-offset:3px}
+.desk-record-body p{font-size:11px;color:#6c6c6c;line-height:1.65;margin:5px 0 0}
+.desk-source-note{padding-top:30px;border-top:1px solid #ededed;margin-top:39px;max-width:790px}
+.desk-source-note p{font-size:12px;line-height:1.8;color:#5f5f5f;margin:12px 0}
+.desk-source-note a,.desk-history-header a{color:#171717;text-decoration:underline;text-decoration-color:#aaa;text-underline-offset:3px}
+.desk-summary{display:flex;gap:14px;flex-direction:column;margin:23px 0 12px;background:#f9f9f9;padding:25px;border-radius:8px}
+.desk-summary span{font-size:12px;color:#5c5c5c}
+.desk-summary strong{font:550 38px/1.2 "Inter",Arial,sans-serif;letter-spacing:-.05em}
+.desk-chart-frame{border:1px solid #eee;border-radius:8px;overflow:hidden;padding:12px;background:#fff;margin:20px 0}
+#india-history-chart{display:block;width:100%;height:auto;min-height:200px}
+.desk-history-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.desk-history-header a{font-size:11px}
+.desk-table-shell{max-height:320px;overflow:auto;margin-top:13px;border:1px solid #eee;border-radius:8px}
+.desk-data-table{border-collapse:collapse;width:100%;text-align:left;font-size:12px}
+.desk-data-table th,.desk-data-table td{padding:10px 16px;border-bottom:1px solid #eee}
+.desk-data-table th{position:sticky;top:0;background:#f9f9f9;font-weight:600}
+.desk-data-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.desk-diff-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.desk-diff-grid label{display:flex;flex-direction:column;gap:9px;font-size:12px;font-weight:550}
+.desk-diff-grid textarea{resize:vertical;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;min-height:240px}
+.desk-diff-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
+.desk-diff-actions button{border-radius:8px;padding:10px 16px;font:550 12px "Inter",Arial,sans-serif;background:#171717;color:#fff;border:1px solid #171717}
+.desk-diff-actions button+button{background:white;color:#444;border-color:#ddd}
+.desk-diff-actions span{font-size:11px;color:#757575}
+.desk-diff-legend{display:flex;gap:21px;font-size:11px;color:#5f5f5f;margin:18px 0 9px}
+.desk-diff-legend span{display:flex;align-items:center;gap:8px}
+.desk-diff-legend i{width:12px;height:12px;border-radius:3px}
+.desk-removed{background:#f4e8e8}.desk-added{background:#e8f1e9}
+.desk-diff-output{background:#f9f9f9;border-radius:8px;min-height:100px;padding:18px;max-height:560px;overflow:auto}
+.desk-diff-line{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;padding:3px 8px;border-radius:3px}
+.desk-diff-line.added{background:#e8f1e9}.desk-diff-line.removed{background:#f4e8e8}.desk-diff-line.unchanged{color:#5d5d5d}
+.desk-diff-line .prefix{display:inline-block;width:21px;color:#666;user-select:none}
+@media(max-width:680px){
+ .desk-main{padding-top:12px;padding-bottom:64px}
+ .desk-subnav{gap:9px 16px}
+ .desk-intro{padding:50px 0 27px}
+ .desk-intro h1{font-size:37px}
+ .desk-note{padding:17px}
+ .desk-record{grid-template-columns:1fr;gap:8px;padding:17px 0}
+ .desk-record-meta{flex-direction:row;gap:10px}
+ .desk-diff-grid{grid-template-columns:1fr}
+ .desk-diff-grid textarea{min-height:155px}
+ .desk-controls label,.desk-controls label.desk-search-label{flex:1 1 100%}
+ .desk-summary strong{font-size:29px}
+}
+@media(prefers-reduced-motion:reduce){.desk-subnav a{transition:none}}

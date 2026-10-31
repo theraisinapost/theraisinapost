@@ -267,3 +267,58 @@ test('economic calendar loads only when a reader requests events',async({page})=
   await expect(page.locator('#calendar-widget script')).toHaveCount(1);
   await expect(page.locator('#calendar-load')).toHaveAttribute('disabled','');
 });
+
+
+test('policy monitor displays validated official entries and filters locally',async({page})=>{
+  await page.route('**/data/regulatory.json', route=>route.fulfill({
+    status:200,contentType:'application/json',body:JSON.stringify({
+      checked_at:'2026-10-31T09:30:00Z',sources:{SEBI:'available',PIB:'available'},
+      items:[
+        {institution:'SEBI',title:'Official market circular',date:'2026-10-30',url:'https://www.sebi.gov.in/legal/circulars/test.html',summary:'Regulatory source'},
+        {institution:'PIB',title:'Official release',date:'2026-10-29',url:'https://pib.gov.in/PressReleasePage.aspx?PRID=1',summary:'Press release'},
+        {institution:'PIB',title:'Invalid',date:'2026-10-29',url:'javascript:alert(1)',summary:'Rejected'}
+      ]
+    })
+  }));
+  await page.goto('/policy-monitor.html');
+  await expect(page.locator('.desk-record')).toHaveCount(2);
+  await page.locator('#regulatory-source').selectOption('SEBI');
+  await expect(page.locator('.desk-record')).toHaveCount(1);
+  await expect(page.locator('.desk-record a')).toHaveAttribute('href',/sebi[.]gov[.]in/);
+  await page.locator('#regulatory-search').fill('not-existing');
+  await expect(page.locator('.desk-record')).toHaveCount(0);
+});
+
+test('India data shows sourced annual values and a labelled chart',async({page})=>{
+  await page.route('https://api.worldbank.org/v2/country/ind/indicator/**', route=>route.fulfill({
+    status:200,contentType:'application/json',body:JSON.stringify([{page:1},[
+      {date:'2025',value:6.75},{date:'2024',value:6.1},{date:'2023',value:null}
+    ]])
+  }));
+  await page.goto('/india-data.html');
+  await expect(page.locator('#india-latest-value')).toHaveText('6.75%');
+  await expect(page.locator('#india-latest-year')).toContainText('2025');
+  await expect(page.locator('#india-history-chart polyline')).toHaveCount(1);
+  await expect(page.locator('#india-data-rows tr')).toHaveCount(2);
+});
+
+test('release calendar clearly labels scheduled dates rather than confirmed releases',async({page})=>{
+  await page.goto('/release-calendar.html');
+  await page.locator('#release-range').selectOption('all');
+  await expect(page.locator('.desk-record')).not.toHaveCount(0);
+  await expect(page.locator('.desk-record').first()).toContainText(/Scheduled date|Planned date passed/);
+  await expect(page.locator('.desk-record').first().locator('a')).toHaveAttribute('href',/mospi[.]gov[.]in/);
+});
+
+test('document comparison stays local and escapes pasted HTML',async({page})=>{
+  await page.goto('/document-diff.html');
+  await page.locator('#diff-before').fill('Common line\\nOld requirement');
+  await page.locator('#diff-after').fill('Common line\\n<img src=x onerror=alert(1)>');
+  await page.locator('#diff-run').click();
+  await expect(page.locator('.desk-diff-line.added')).toHaveCount(1);
+  await expect(page.locator('.desk-diff-line.removed')).toHaveCount(1);
+  await expect(page.locator('#diff-output img')).toHaveCount(0);
+  await expect(page.locator('#diff-status')).toContainText('added lines');
+  await page.locator('#diff-clear').click();
+  await expect(page.locator('#diff-before')).toHaveValue('');
+});
