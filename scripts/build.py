@@ -182,7 +182,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(page, encoding='utf-8')
-    for fname in ('styles.css','site.js','reader.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
+    for fname in ('styles.css','market.css','site.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -197,9 +197,12 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     observatory = (BASE/'site'/'observatory.html').read_text(encoding='utf-8')
     observatory = observatory.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'observatory.html').write_text(observatory, encoding='utf-8')
+    market = (BASE/'site'/'markets.html').read_text(encoding='utf-8')
+    market = market.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    (destination/'markets.html').write_text(market, encoding='utf-8')
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')
-    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url><url><loc>'+escape(site_url)+'about.html</loc></url><url><loc>'+escape(site_url)+'observatory.html</loc></url></urlset>',encoding='utf-8')
+    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url><url><loc>'+escape(site_url)+'about.html</loc></url><url><loc>'+escape(site_url)+'observatory.html</loc></url><url><loc>'+escape(site_url)+'markets.html</loc></url></urlset>',encoding='utf-8')
     (destination/'.nojekyll').write_text('',encoding='utf-8')
 
 def download_feed():
