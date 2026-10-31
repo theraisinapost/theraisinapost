@@ -552,3 +552,30 @@ for (const route of ['/question-hour.html','/trade-ledger.html','/public-money.h
     expect(result.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>v.id)).toEqual([]);
   });
 }
+
+test('Trade ledger uses matching saved official data when the public preview cannot be reached',async({page})=>{
+  await page.route('https://comtradeapi.un.org/**',r=>r.abort());
+  await page.route('**/data/trade-ledger.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+    status:'partial',checked_at:'2026-10-31T17:00:00Z',items:[{year:2024,partner:'156',
+    partner_label:'China',flow:'X',commodity:'TOTAL',commodity_label:'All merchandise',value_usd:85000000}]
+  })}));
+  await page.goto('/trade-ledger.html');
+  await expect(page.locator('#trade-value')).toContainText('85,000,000.00');
+  await expect(page.locator('#trade-status')).toContainText('saved official-source snapshot');
+});
+
+test('Question Hour cached fallback filters the saved index by entered topic',async({page})=>{
+  await page.route('https://datasets-server.huggingface.co/**',r=>r.abort());
+  await page.route('**/data/question-hour.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+    checked_at:'2026-10-31T17:00:00Z',status:'partial',items:[
+      {subject:'Hospital grants',ministry:'HEALTH',date:'2026-03-15',lok_no:18,type:'UNSTARRED',url:'https://sansad.in/getFile/one.pdf'},
+      {subject:'Railway infrastructure',ministry:'RAILWAYS',date:'2026-03-14',lok_no:18,type:'UNSTARRED',url:'https://sansad.in/getFile/two.pdf'}
+    ]
+  })}));
+  await page.goto('/question-hour.html');
+  await expect(page.locator('#qh-results .desk-record')).toHaveCount(2);
+  await page.locator('#qh-search').fill('railway');
+  await page.locator('#qh-form button[type="submit"]').click();
+  await expect(page.locator('#qh-results .desk-record')).toHaveCount(1);
+  await expect(page.locator('#qh-results .desk-record')).toContainText('Railway infrastructure');
+});
