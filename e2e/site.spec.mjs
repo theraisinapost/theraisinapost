@@ -492,3 +492,90 @@ test('Swiss publication footer is coherent, functional, and fits 320px screens',
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });
 
+
+test('Question Hour performs source-linked parliamentary search with explicit scope',async({page})=>{
+  await page.route('https://datasets-server.huggingface.co/**',route=>{
+    const url=new URL(route.request().url());
+    expect(url.searchParams.get('dataset')).toBe('opensansad/lok-sabha-qa');
+    const body={num_rows_total:1,rows:[{row:{
+      id:'LS18-S7-UNSTARRED-300',subject:'Hospital funding and health policy',ministry:'HEALTH AND FAMILY WELFARE',
+      date:'2026-03-12',lok_no:18,type:'UNSTARRED',members:['An MP'],
+      pdf_url:'https://sansad.in/getFile/loksabhaquestions/annex/187/AU300.pdf'
+    }}]};
+    route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
+  });
+  await page.goto('/question-hour.html');
+  await expect(page.locator('#qh-results .desk-record')).toHaveCount(1);
+  await expect(page.locator('#qh-results a').first()).toHaveAttribute('href',/^https:\/\/sansad[.]in\//);
+  await page.locator('#qh-search').fill('hospital');
+  await page.locator('#qh-form button[type="submit"]').click();
+  await expect(page.locator('#qh-results .desk-record')).toHaveCount(1);
+  await expect(page.locator('#qh-status')).toContainText('1 linked records');
+});
+
+test('Trade ledger validates returned India totals and reports unavailable API honestly',async({page})=>{
+  await page.route('https://comtradeapi.un.org/**',route=>{
+    const u=new URL(route.request().url());
+    expect(u.searchParams.get('reportercode')).toBe('699');
+    route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({data:[{
+      refYear:2024,reporterCode:699,partnerCode:156,cmdCode:'TOTAL',flowCode:'X',
+      primaryValue:2250000000,partnerDesc:'China',cmdDesc:'TOTAL'
+    }]})});
+  });
+  await page.goto('/trade-ledger.html');
+  await expect(page.locator('#trade-value')).toContainText('2,250,000,000.00');
+  await expect(page.locator('#trade-rows tr')).toHaveCount(1);
+  await page.locator('#trade-flow').selectOption('M');
+  await page.locator('#trade-form button[type="submit"]').click();
+  await expect(page.locator('#trade-status')).toContainText('No validated observation');
+  await expect(page.locator('#trade-feature')).toBeHidden();
+});
+
+test('Public Money shows accurate official budget comparisons and exports displayed values',async({page})=>{
+  await page.goto('/public-money.html');
+  await expect(page.locator('#money-rows tr')).toHaveCount(9);
+  await expect(page.locator('#money-to')).toHaveText('53,47,314.81');
+  await expect(page.locator('#money-from')).toHaveText('49,64,841.74');
+  await page.locator('#money-search').fill('Centrally sponsored');
+  await expect(page.locator('#money-rows tr')).toHaveCount(1);
+  await expect(page.locator('#money-csv')).toBeEnabled();
+  await page.setViewportSize({width:320,height:720});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+});
+
+for (const route of ['/question-hour.html','/trade-ledger.html','/public-money.html']){
+  test('public record tool accessible at '+route,async({page})=>{
+    await page.route('https://datasets-server.huggingface.co/**',r=>r.abort());
+    await page.route('https://comtradeapi.un.org/**',r=>r.abort());
+    await page.goto(route);
+    const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
+    expect(result.violations.filter(v=>['serious','critical'].includes(v.impact)).map(v=>v.id)).toEqual([]);
+  });
+}
+
+test('Trade ledger uses matching saved official data when the public preview cannot be reached',async({page})=>{
+  await page.route('https://comtradeapi.un.org/**',r=>r.abort());
+  await page.route('**/data/trade-ledger.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+    status:'partial',checked_at:'2026-10-31T17:00:00Z',items:[{year:2024,partner:'156',
+    partner_label:'China',flow:'X',commodity:'TOTAL',commodity_label:'All merchandise',value_usd:85000000}]
+  })}));
+  await page.goto('/trade-ledger.html');
+  await expect(page.locator('#trade-value')).toContainText('85,000,000.00');
+  await expect(page.locator('#trade-status')).toContainText('saved official-source snapshot');
+});
+
+test('Question Hour cached fallback filters the saved index by entered topic',async({page})=>{
+  await page.route('https://datasets-server.huggingface.co/**',r=>r.abort());
+  await page.route('**/data/question-hour.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+    checked_at:'2026-10-31T17:00:00Z',status:'partial',items:[
+      {subject:'Hospital grants',ministry:'HEALTH',date:'2026-03-15',lok_no:18,type:'UNSTARRED',url:'https://sansad.in/getFile/one.pdf'},
+      {subject:'Railway infrastructure',ministry:'RAILWAYS',date:'2026-03-14',lok_no:18,type:'UNSTARRED',url:'https://sansad.in/getFile/two.pdf'}
+    ]
+  })}));
+  await page.goto('/question-hour.html');
+  await expect(page.locator('#qh-results .desk-record')).toHaveCount(2);
+  await page.locator('#qh-search').fill('railway');
+  await page.locator('#qh-form button[type="submit"]').click();
+  await expect(page.locator('#qh-results .desk-record')).toHaveCount(1);
+  await expect(page.locator('#qh-results .desk-record')).toContainText('Railway infrastructure');
+});

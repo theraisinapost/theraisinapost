@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffffff">
+<meta name="description" content="Explore India's reported merchandise trade by partner, product chapter and year."><link rel="canonical" href="<!--SITE_URL-->trade-ledger.html"><link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="editorial.css"><link rel="stylesheet" href="research-desk.css"><link rel="stylesheet" href="intelligence.css"><link rel="stylesheet" href="public-records.css">
+<script defer src="mobile-nav.js"></script><script defer src="public-records.js"></script><title>Trade Ledger — The Raisina Post</title></head>
+<body data-records="trade-ledger"><a class="skip-link" href="#main">Skip to content</a><!--MOBILE_NAV-->
+<header class="guide-header wrap"><a class="guide-home" href="<!--SITE_URL-->">Front page</a><a class="guide-wordmark guide-brand-lockup" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-masthead.png" alt="The Raisina Post" width="1250" height="234"></a><a class="guide-subscribe" href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a></header>
+<main id="main" class="wrap desk-main intelligence-main records-main">
+<nav class="desk-subnav" aria-label="Public records tools"><a href="question-hour.html">Question Hour</a><a href="trade-ledger.html" aria-current="page">Trade ledger</a><a href="public-money.html">Public money</a><a href="parliament-file.html">Parliament file</a><a href="data-room.html">Data room</a></nav>
+<section class="desk-intro"><p class="desk-kicker">THE RAISINA POST / PUBLIC RECORDS</p><h1>Trade Ledger<span class="accent-dot">.</span></h1><p class="desk-deck">Explore India's reported merchandise trade by partner, product chapter and year.</p></section>
+<section class="desk-note"><strong>Read the primary source</strong><p>Figures are annual reported trade values in US dollars, not live transactions. A zero is not substituted for missing data.</p></section>
+<section class="desk-panel" aria-labelledby="trade-heading"><div class="desk-panel-heading"><div><h2 id="trade-heading">India's merchandise trade</h2><p id="trade-updated" class="desk-muted">UN Comtrade · annual merchandise records</p></div></div>
+<form id="trade-form" class="desk-controls records-controls">
+<label for="trade-partner">Trading partner<select id="trade-partner"><option value="0">World</option><option value="156" selected>China</option><option value="842">United States</option><option value="784">United Arab Emirates</option><option value="50">Bangladesh</option></select></label>
+<label for="trade-flow">Trade flow<select id="trade-flow"><option value="M">Imports into India</option><option value="X" selected>Exports from India</option></select></label>
+<label for="trade-product">Product (HS)<select id="trade-product"><option value="TOTAL">All merchandise</option><option value="27">Mineral fuels (HS 27)</option><option value="84">Machinery (HS 84)</option><option value="85">Electrical equipment (HS 85)</option><option value="87">Vehicles (HS 87)</option><option value="30">Pharmaceuticals (HS 30)</option></select></label>
+<label for="trade-year">Reference year<select id="trade-year"><option value="2025">2025</option><option value="2024" selected>2024</option><option value="2023">2023</option><option value="2022">2022</option></select></label>
+<button class="records-button" type="submit">Load trade data</button></form>
+<p id="trade-status" class="desk-status" role="status">Requesting reported trade data…</p>
+<div class="records-feature" id="trade-feature" hidden><span>Reported trade value</span><strong id="trade-value">—</strong><p id="trade-context"></p></div>
+<div class="desk-table-shell records-table-shell"><table class="desk-data-table"><caption class="sr-only">Matching Indian merchandise trade observations</caption><thead><tr><th scope="col">Period</th><th scope="col">Partner</th><th scope="col">Flow</th><th scope="col">Commodity</th><th scope="col">Value, USD</th></tr></thead><tbody id="trade-rows"></tbody></table></div>
+<p class="records-source-link" id="trade-link"></p></section>
+<section class="desk-source-note"><h2>Source and limitations</h2><p>Data comes from <a href="https://comtradeapi.un.org/public/v1/preview/C/A/HS" target="_blank" rel="noopener noreferrer">UN Comtrade public preview API</a> under its free access and record limits. Reporter is India (code 699). The HS chapter or total aggregate and partner are preserved exactly as reported in each response.</p><p>Trade is expressed in nominal US dollars and may be revised. Mirror trade statistics from partners need not match India's own reported data. This is a lookup, not a complete downloadable historical trade database; when the external API fails, only independently retrieved matching cached observations may be displayed.</p></section>
+</main><!--EDITORIAL_FOOTER--></body></html>

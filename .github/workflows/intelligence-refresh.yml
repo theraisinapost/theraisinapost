@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/parliament.py'
       - 'scripts/source_watch.py'
+      - 'scripts/public_records_refresh.py'
       - '.github/workflows/intelligence-refresh.yml'
   schedule:
     - cron: '17 3 * * *'
@@ -31,6 +32,8 @@ jobs:
         run: python scripts/parliament.py --output site/data/parliament.json
       - name: Compare monitored official source pages
         run: python scripts/source_watch.py --registry site/data/monitor-sources.json --output site/data/source-watch.json
+      - name: Refresh parliamentary questions and UN Comtrade snapshot
+        run: python scripts/public_records_refresh.py --questions site/data/question-hour.json --trade site/data/trade-ledger.json
       - name: Publish summary in workflow log
         run: |
           python - <<'PY'
@@ -38,11 +41,15 @@ jobs:
           from pathlib import Path
           parliament=json.loads(Path('site/data/parliament.json').read_text())
           watch=json.loads(Path('site/data/source-watch.json').read_text())
+          questions=json.loads(Path('site/data/question-hour.json').read_text())
+          trade=json.loads(Path('site/data/trade-ledger.json').read_text())
           lines=[
             '## Source refresh (not editorial verification)',
             f"Parliament: {len(parliament.get('items',[]))} official report links; status {parliament.get('status','unknown')}",
             f"Available committees: {parliament.get('committees_available',0)} / {parliament.get('committees_checked',0)}",
             f"Page-change review cues: {sum(bool(x.get('change_unreviewed')) for x in watch.get('sources',[]))}",
+            f"Question index: {len(questions.get('items',[]))} validated metadata records; status {questions.get('status','unknown')}",
+            f"Trade: {len(trade.get('items',[]))} annual partner observations; status {trade.get('status','unknown')}",
             'Observed website changes require human editorial verification.'
           ]
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as file:
@@ -52,7 +59,7 @@ jobs:
         run: |
           git config user.name 'Raisina source bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data/parliament.json site/data/source-watch.json
+          git add site/data/parliament.json site/data/source-watch.json site/data/question-hour.json site/data/trade-ledger.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh parliamentary reports and official page checks'
             git push origin HEAD:main

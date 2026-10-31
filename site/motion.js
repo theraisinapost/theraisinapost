@@ -6,7 +6,7 @@
       window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const targets=[...document.querySelectorAll(
     '.research-teaser-grid a, .intel-home-links a, .commodity-grid > *, '+
-    '.macro-cards > *, .obs-metrics > div, .article-row'
+    '.macro-cards > *, .obs-metrics > div, .article-row, .intel-home-links a'
   )].slice(0,75);
   if (!targets.length) return;
   let observer;
