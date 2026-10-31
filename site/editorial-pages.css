@@ -2,7 +2,7 @@
 .about-formats{padding:100px 0 98px;border-bottom:1px solid #ebebeb}
 .about-formats-list{margin-top:42px;border-top:1px solid #ededed}
 .about-format{display:grid;grid-template-columns:45px minmax(0,1fr) 150px;gap:24px;align-items:start;padding:25px 0 28px;border-bottom:1px solid #ededed}
-.about-format-index,.about-format-type{font:500 11px/1.65 "Inter",sans-serif;color:#777}
+.about-format-index,.about-format-type{font:500 11px/1.65 "Inter",sans-serif;color:#595959}
 .about-format-type{text-align:right}
 .about-format h3{font:550 17px/1.45 "Inter",sans-serif;letter-spacing:-.024em;margin:0 0 7px}
 .about-format p{font:400 12px/1.78 "Inter",sans-serif;color:#606060;margin:0;max-width:620px}
