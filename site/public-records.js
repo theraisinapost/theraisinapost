@@ -67,7 +67,7 @@ if(kind==='question-hour'){
    all=q.filter(x=>x&&typeof x.subject==='string'&&safePdf(x.url)&&[16,17,18].includes(Number(x.lok_no))&&
       /^\d{4}-\d{2}-\d{2}$/.test(x.date||''));
    sourceKind='saved';count=all.length;offset=0;
-   el('qh-updated').textContent='Upstream temporarily unavailable · saved records checked '+dateStamp(data.checked_at);
+   el('qh-updated').textContent='Upstream temporarily unavailable · saved records checked '+dateStamp(data.checked_at)+' · '+String(data.notice||'Bounded snapshot only').slice(0,220);
    if(all.length) render();else status('qh-status','The upstream search is unavailable and no verified snapshot has been collected. Open Digital Sansad from the source links below.');
   } catch(_) {status('qh-status','The parliamentary search could not be reached. No results are being invented.');}
  };

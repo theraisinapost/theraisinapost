@@ -14,6 +14,7 @@ from urllib.request import Request, urlopen
 
 HF_SOURCE = 'https://huggingface.co/datasets/opensansad/lok-sabha-qa'
 HF_API = 'https://datasets-server.huggingface.co/filter'
+SANSAD_API = 'https://sansad.in/api_ls/question/qetFilteredQuestionsAns'
 TRADE_API = 'https://comtradeapi.un.org/public/v1/preview/C/A/HS'
 PARTNERS = {'0':'World','156':'China','842':'United States','784':'United Arab Emirates','50':'Bangladesh'}
 
@@ -57,6 +58,67 @@ def question_row(row):
             'url':url,'id':str(row.get('id') or '')[:90]}
 
 
+def sansad_list(payload):
+    """Exact Digital Sansad API response: [{listOfQuestions:[...]}]."""
+    if isinstance(payload,dict):
+        rows=payload.get('listOfQuestions')
+    elif isinstance(payload,list) and payload and isinstance(payload[0],dict):
+        rows=payload[0].get('listOfQuestions')
+    else:
+        return []
+    return [r for r in rows if isinstance(r,dict)] if isinstance(rows,list) else []
+
+
+def sansad_question_row(row,lok,session):
+    if not isinstance(row,dict):
+        return None
+    try:
+        if row.get('lokNo') is not None and int(row['lokNo'])!=lok:
+            return None
+        if row.get('sessionNo') is not None and int(row['sessionNo'])!=session:
+            return None
+    except (ValueError,TypeError):
+        return None
+    raw=str(row.get('questionsFilePath') or '').strip()
+    # Sansad publishes either a complete URL or a /getFile/... path.
+    if raw.startswith('/getFile/'):
+        url='https://sansad.in'+raw
+    elif raw.startswith('getFile/'):
+        url='https://sansad.in/'+raw
+    elif raw.startswith('/loksabhaquestions/'):
+        url='https://sansad.in/getFile'+raw
+    else:
+        url=raw
+    if not valid_sansad(url) or not urlsplit(url).path.lower().endswith(('.pdf','.docx','.doc')):
+        return None
+    subject=row.get('subjects')
+    ministry=row.get('ministry')
+    if not isinstance(subject,str) or not subject.strip() or not isinstance(ministry,str):
+        return None
+    date=str(row.get('date') or '').strip()
+    try:
+        if len(date)==10 and date[4]=='-' and date[7]=='-':
+            date=datetime.strptime(date,'%Y-%m-%d').date().isoformat()
+        else:
+            date=datetime.strptime(date,'%d-%m-%Y').date().isoformat()
+    except ValueError:
+        return None
+    members=row.get('member')
+    if not isinstance(members,list):
+        members=[]
+    qtype=str(row.get('type') or '').strip()
+    if qtype not in ('STARRED','UNSTARRED'):
+        return None
+    try:
+        qno=int(row.get('quesNo'))
+    except (TypeError,ValueError):
+        return None
+    return {'subject':subject.strip()[:320],'ministry':ministry.strip()[:160],
+            'member':', '.join(str(x) for x in members[:8])[:240],
+            'date':date,'lok_no':lok,'type':qtype,
+            'url':url,'id':f'LS{lok}-S{session}-{qtype}-{qno}'}
+
+
 def trade_row(row,partner,flow,year):
     if not isinstance(row,dict): return None
     try:
@@ -73,25 +135,48 @@ def trade_row(row,partner,flow,year):
 
 
 def refresh_questions(previous, now):
+    """Try the dataset service then the original parliamentary API."""
     p={'dataset':'opensansad/lok-sabha-qa','config':'default','split':'train',
        'where':'"lok_no" = 18','orderby':'"date" DESC','offset':'0','length':'100'}
-    url=HF_API+'?'+urlencode(p)
     try:
-        payload=fetch_json(url)
-        if not isinstance(payload.get('rows'),list): raise ValueError('Missing rows')
+        payload=fetch_json(HF_API+'?'+urlencode(p),timeout=9)
+        if not isinstance(payload.get('rows'),list):
+            raise ValueError('Missing dataset rows')
         fresh=[question_row(x.get('row')) for x in payload['rows'] if isinstance(x,dict)]
         fresh=[x for x in fresh if x]
-        if not fresh: raise ValueError('No validated parliamentary rows')
+        if not fresh:
+            raise ValueError('No validated dataset rows')
         unique={x['id'] or x['url']:x for x in fresh}
         return {'status':'available','checked_at':now,'dataset':HF_SOURCE,
-                'notice':'Bounded, 18th Lok Sabha snapshot: at most 100 most recent source records, not an exhaustive index. Original Sansad documents take precedence.',
+                'notice':'At most 100 recent 18th Lok Sabha questions indexed from OpenSansad, not an exhaustive parliamentary index.',
                 'items':list(unique.values())[:100]}
     except Exception as exc:
-        old=previous.get('items',[])
-        print('Question-hour upstream unavailable:',type(exc).__name__)
-        return {'status':'stale' if old else 'unavailable','checked_at':now,'dataset':HF_SOURCE,
-                'notice':'Last collection failed; retained older verified metadata if any. No missing records invented.',
-                'items':old if isinstance(old,list) else []}
+        print('Question dataset API unavailable:',type(exc).__name__)
+
+    # Same primary source used by the OpenSansad curation pipeline.
+    for session in (8,7):
+        params={'loksabhaNo':18,'sessionNumber':session,'pageNo':1,
+                'pageSize':100,'locale':'en'}
+        try:
+            response=fetch_json(SANSAD_API+'?'+urlencode(params),timeout=13)
+            rows=sansad_list(response)
+            selected=[sansad_question_row(row,18,session) for row in rows]
+            selected=[x for x in selected if x]
+            if not selected:
+                raise ValueError('No validated questions or document URLs')
+            unique={row['id']:row for row in selected}
+            return {'status':'available','checked_at':now,'dataset':SANSAD_API,
+                    'notice':f'Official Digital Sansad metadata: up to 100 records from session {session} of the 18th Lok Sabha. Not a complete corpus or an independent analysis.',
+                    'items':list(unique.values())[:100]}
+        except Exception as exc:
+            print('Digital Sansad questions unavailable:',session,type(exc).__name__)
+
+    old=previous.get('items',[])
+    old=old if isinstance(old,list) else []
+    return {'status':'stale' if old else 'unavailable','checked_at':now,
+            'dataset':previous.get('dataset') or HF_SOURCE,
+            'notice':'Both the public dataset service and Digital Sansad API were unavailable. Retained older source-verified metadata if present. No missing questions invented.',
+            'items':old}
 
 
 def refresh_trade(previous, now, delay=0.15):

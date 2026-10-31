@@ -1,7 +1,18 @@
 {
-  "status": "unavailable",
+  "status": "partial",
   "checked_at": "2026-10-31T18:20:16Z",
   "dataset": "https://huggingface.co/datasets/opensansad/lok-sabha-qa",
-  "notice": "Last collection failed; retained older verified metadata if any. No missing records invented.",
-  "items": []
+  "notice": "One real, explicitly attributed example from the published OpenSansad dataset card. This is NOT a recent or comprehensive parliamentary questions index; upstream refresh is unavailable until confirmed.",
+  "items": [
+    {
+      "subject": "Role of NGOs in Welfare of Women and Children",
+      "ministry": "WOMEN AND CHILD DEVELOPMENT",
+      "member": "Shri Manish Jaiswal",
+      "date": "2024-08-09",
+      "lok_no": 18,
+      "type": "STARRED",
+      "url": "https://sansad.in/getFile/loksabhaquestions/annex/182/AS280_6OmUWJ.pdf?source=pqals",
+      "id": "LS18-S2-STARRED-280"
+    }
+  ]
 }
