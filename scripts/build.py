@@ -182,7 +182,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(page, encoding='utf-8')
-    for fname in ('styles.css','market.css','site.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
