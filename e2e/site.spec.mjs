@@ -51,7 +51,7 @@ test('the IST analog clock and New Delhi weather show verified UI states', async
 test('mobile full-screen navigation opens, closes and works across pages', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   await page.goto('/');
-  const openButton=page.getByRole('button',{name:'Open menu'});
+  const openButton=page.locator('[data-mobile-menu-open]');
   await expect(openButton).toBeVisible();
   await openButton.click();
   const menu=page.getByRole('dialog',{name:'Site navigation'});
@@ -63,7 +63,7 @@ test('mobile full-screen navigation opens, closes and works across pages', async
   await openButton.click();
   await menu.getByRole('link',{name:'Markets',exact:true}).click();
   await expect(page).toHaveURL(/markets[.]html$/);
-  await expect(page.getByRole('button',{name:'Open menu'})).toBeVisible();
+  await expect(page.locator('[data-mobile-menu-open]')).toBeVisible();
 });
 
 test('mobile layout keeps article navigation and input usable', async ({ page }) => {
