@@ -22,7 +22,7 @@ h1,h2,h3{font-kerning:normal}
   border-radius:8px;background:var(--accent);border:1px solid var(--accent);
   color:#fff;box-shadow:none;letter-spacing:-.01em;transition:opacity .18s ease;
 }
-.subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover,.lead-read:hover,.obs-surprise:hover{
+.subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover{
   background:var(--accent);border-color:var(--accent);opacity:.78;color:#fff;
 }
 .intro{padding:76px 0 73px;gap:50px}
