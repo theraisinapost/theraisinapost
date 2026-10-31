@@ -1,0 +1,23 @@
+{
+  "sources": [
+    {
+      "id": "sebi",
+      "name": "SEBI regulatory circulars",
+      "url": "https://www.sebi.gov.in/legal/circulars.html",
+      "category": "Securities regulation"
+    },
+    {
+      "id": "mospi",
+      "name": "MoSPI release calendar",
+      "url": "https://www.mospi.gov.in/release-calendar",
+      "category": "Official statistics"
+    },
+    {
+      "id": "pib",
+      "name": "Press Information Bureau",
+      "url": "https://www.pib.gov.in/",
+      "category": "Government announcements"
+    }
+  ],
+  "notice": "Official web pages are checked for page-level changes. This process does not verify legal effect."
+}
