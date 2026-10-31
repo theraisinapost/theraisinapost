@@ -319,6 +319,7 @@ class TestFeed(unittest.TestCase):
     self.assertIn('aria-modal="true"',page,name)
     self.assertIn('data-mobile-menu-close',page,name)
     self.assertIn('editorial-footer-watermark',page,name)
+    self.assertIn('src="footer-watermark.svg"',page,name)
     self.assertIn('src="mobile-nav.js"',page,name)
     self.assertNotIn('<!--MOBILE_NAV-->',page,name)
     self.assertNotIn('<!--EDITORIAL_FOOTER-->',page,name)
@@ -340,5 +341,7 @@ class TestFeed(unittest.TestCase):
    for check in ('@media(max-width:780px)','.mobile-menu-panel[hidden]','.mobile-nav-bar.is-concealed','prefers-reduced-motion:reduce'):
     self.assertIn(check,css)
    self.assertTrue((out/'mobile-nav.js').exists())
+   self.assertTrue((out/'footer-watermark.svg').exists())
+   self.assertIn('.mast-grid .analog-clock{display:block;width:64px;height:64px',css)
 
 if __name__=='__main__':unittest.main()

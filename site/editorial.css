@@ -250,8 +250,8 @@ body,button,input,select,textarea{font-family:var(--sans)}
   .mast-grid{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;min-height:0;padding:0 0 15px}
   .mast-grid .brand-block{display:none}
   .mast-grid .desk-meta{gap:2px}
-  .mast-grid .clock-wrap{gap:0}
-  .mast-grid .analog-clock{display:none}
+  .mast-grid .clock-wrap{flex-direction:column;align-items:center;justify-content:center;gap:3px}
+  .mast-grid .analog-clock{display:block;width:64px;height:64px;--dial-radius:25px}
   .mast-grid .clock-details{min-width:0}
   .mast-grid .today-date{font-size:10px}
   .mast-grid .weather-line{font-size:11px;line-height:1.55}
@@ -275,3 +275,21 @@ body,button,input,select,textarea{font-family:var(--sans)}
 }
 @media(max-width:360px){.mobile-panel-navigation>a{font-size:31px}.mobile-panel-subnav{gap:13px 10px}.mobile-nav-brand img{max-width:155px}}
 @media(prefers-reduced-motion:reduce){.mobile-menu-panel,.mobile-nav-bar,.mobile-panel-subscribe{animation:none!important;transition:none!important}}
+
+/* A real, readable dial remains present in the compact mobile newsroom line. */
+@media(max-width:780px){
+  .mast-grid .analog-clock .clock-number{font-size:8px}
+  .mast-grid .analog-clock .twelve{top:8px}
+  .mast-grid .analog-clock .six{bottom:8px}
+  .mast-grid .analog-clock .three{right:8px}
+  .mast-grid .analog-clock .nine{left:8px}
+  .mast-grid .analog-clock .hour-hand{height:18px;width:3px}
+  .mast-grid .analog-clock .minute-hand{height:23px}
+  .mast-grid .analog-clock .second-hand{height:25px}
+  .mast-grid #digital-clock{font-size:10px}
+}
+@media(max-width:380px){.mast-grid .analog-clock{width:59px;height:59px;--dial-radius:23px}}
+/* Watermark is decorative artwork, not low-contrast editorial body text. */
+.editorial-footer-watermark{font-size:0;line-height:0;padding-bottom:22px}
+.editorial-footer-watermark img{display:block;width:130%;max-width:none;height:auto;margin-inline:auto;pointer-events:none}
+@media(max-width:620px){.editorial-footer-watermark{padding-bottom:16px}}

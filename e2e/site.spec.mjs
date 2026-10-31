@@ -48,6 +48,24 @@ test('the IST analog clock and New Delhi weather show verified UI states', async
   await expect(page.locator('#new-delhi-weather')).toContainText('27°C');
 });
 
+test('mobile full-screen navigation opens, closes and works across pages', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('/');
+  const openButton=page.getByRole('button',{name:'Open menu'});
+  await expect(openButton).toBeVisible();
+  await openButton.click();
+  const menu=page.getByRole('dialog',{name:'Site navigation'});
+  await expect(menu).toBeVisible();
+  await expect(openButton).toHaveAttribute('aria-expanded','true');
+  await page.keyboard.press('Escape');
+  await expect(menu).toBeHidden();
+  await expect(openButton).toHaveAttribute('aria-expanded','false');
+  await openButton.click();
+  await menu.getByRole('link',{name:'Markets',exact:true}).click();
+  await expect(page).toHaveURL(/markets\\.html$/);
+  await expect(page.getByRole('button',{name:'Open menu'})).toBeVisible();
+});
+
 test('mobile layout keeps article navigation and input usable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
