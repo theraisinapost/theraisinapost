@@ -72,3 +72,42 @@ for (const path of ['/', '/about.html', '/publication-guide.html']) {
     expect(blocking).toEqual([]);
   });
 }
+
+test('command palette searches the real RSS index and supports keyboard invocation', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Control+k');
+  await expect(page.locator('#story-palette')).toBeVisible();
+  await page.locator('#palette-query').fill('India');
+  await expect(page.locator('#palette-results a').first()).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#story-palette')).not.toBeVisible();
+});
+
+test('the Observatory visualizes real RSS metadata and saves locally without a login', async ({ page }) => {
+  await page.goto('/observatory.html');
+  await expect(page.getByRole('heading', { name: 'The Observatory.' })).toBeVisible();
+  await expect(page.locator('#obs-pulse rect').first()).toBeVisible();
+  await expect(page.locator('.obs-story').first()).toBeVisible();
+  await expect(page.locator('#obs-count')).not.toHaveText('—');
+  const first = page.locator('.obs-story').first();
+  await first.locator('[data-save-story]').click();
+  await expect(page.locator('#obs-saved-count')).toHaveText('1');
+  await expect(page.locator('.obs-queue-item')).toHaveCount(1);
+  await page.reload();
+  await expect(page.locator('#obs-saved-count')).toHaveText('1');
+  await page.locator('#obs-saved-only').click();
+  await expect(page.locator('.obs-story')).toHaveCount(1);
+  await page.locator('.obs-queue-item [data-queue-remove]').click();
+  await expect(page.locator('#obs-saved-count')).toHaveText('0');
+  await expect(page.locator('.obs-queue-item')).toHaveCount(0);
+});
+
+test('the Observatory remains accessible and has no mobile horizontal overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/observatory.html');
+  await expect(page.locator('#obs-story-list .obs-story').first()).toBeVisible();
+  const width = await page.evaluate(() => document.documentElement.scrollWidth);
+  expect(width).toBeLessThanOrEqual(392);
+  const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
+  expect(result.violations.filter(v => ['serious','critical'].includes(v.impact)).map(v=>v.id)).toEqual([]);
+});

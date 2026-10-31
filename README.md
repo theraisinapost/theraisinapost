@@ -95,3 +95,9 @@ Lighthouse reports are exported as artifacts by GitHub Actions; Lighthouse categ
 To publish a chart in a story, prepare a verified dataset, retain the original source URL, create a separate editorial HTML page and import the module explicitly. Source labels and figures need human checks before release.
 
 Original open-source projects: [Playwright](https://github.com/microsoft/playwright), [axe-core](https://github.com/dequelabs/axe-core), [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci), [Observable Plot](https://github.com/observablehq/plot). Licence terms and third-party service availability remain applicable.
+
+## The Observatory
+
+`site/observatory.html` is a private-by-default exploration desk on top of the **same public Substack RSS index** as the homepage. It shows a rolling two-week publication-activity chart, an actual category breakdown, search and filters, and an optional reading queue stored only in the browser's localStorage. It is not full-text search, a newsroom analytics platform, or a claim about how much news happened on a given day.
+
+The small homepage action and keyboard shortcut **⌘K / Ctrl+K** open a native dialog that searches indexed article titles and relevant pages. Bookmarks are intentionally not sent to a server or synchronized across browsers. No new frontend framework, tracking SDK, or production database is used.

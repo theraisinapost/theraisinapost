@@ -214,4 +214,30 @@ class TestFeed(unittest.TestCase):
    self.assertNotIn('components/editorial-chart.mjs',(out/'index.html').read_text())
    self.assertNotIn('https://cdn.jsdelivr.net/npm/@observablehq/plot',(out/'index.html').read_text())
 
+ def test_observatory_builds_from_real_metadata_without_sample_figures(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   room=(out/'observatory.html').read_text(encoding='utf-8')
+   reader=(out/'reader.js').read_text(encoding='utf-8')
+   sitemap=(out/'sitemap.xml').read_text(encoding='utf-8')
+   self.assertIn('href="observatory.html"',home)
+   self.assertIn('data-open-palette',home)
+   self.assertIn('data-save-story=',home)
+   self.assertIn('id="obs-pulse"',room)
+   self.assertIn('id="obs-story-list"',room)
+   self.assertIn('id="obs-queue-list"',room)
+   self.assertIn('id="obs-search"',room)
+   self.assertIn('id="obs-random"',room)
+   self.assertIn('observatory.html',sitemap)
+   self.assertIn('posts.json',reader)
+   self.assertIn('localStorage',reader)
+   self.assertIn('getPosts()',reader)
+   self.assertIn('Math.random()',reader)
+   self.assertIn('Array.isArray(data.articles)',reader)
+   self.assertIn('raisinapost\\.substack\\.com',reader)
+   self.assertNotIn('<!--SITE_URL-->',room)
+
 if __name__=='__main__':unittest.main()
