@@ -52,6 +52,26 @@ class ResearchDeskTests(unittest.TestCase):
         self.assertEqual(events[0]['title'], 'Circular one')
         self.assertEqual(events[0]['date'], '2026-10-30')
 
+    def test_namespaced_atom_and_iso_dates_use_https_official_links(self):
+        import regulatory
+        atom = """<feed xmlns="http://www.w3.org/2005/Atom"><entry>
+          <title>SEBI updates</title><link href="http://www.sebi.gov.in/legal/circulars/update.html"/>
+          <updated>2026-10-31T12:00:00+05:30</updated><summary>Public notice</summary>
+        </entry></feed>"""
+        records = regulatory.parse_source(atom, 'SEBI', 'www.sebi.gov.in')
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0]['date'], '2026-10-31')
+        self.assertEqual(records[0]['url'], 'https://www.sebi.gov.in/legal/circulars/update.html')
+
+    def test_namespaced_rss_dates_are_read_from_dc_date(self):
+        import regulatory
+        rss = """<rss xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><item>
+        <title>Public statement</title><link>http://pib.gov.in/PressReleasePage.aspx?PRID=123</link>
+        <dc:date>2026-10-30T08:30:00Z</dc:date></item></channel></rss>"""
+        events = regulatory.parse_source(rss, 'PIB', 'pib.gov.in')
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]['url'], 'https://pib.gov.in/PressReleasePage.aspx?PRID=123')
+
     def test_diff_input_is_bounded_without_unsafe_html_interpolation(self):
         page = (ROOT / 'site/document-diff.html').read_text(encoding='utf-8')
         script = (ROOT / 'site/research-desk.js').read_text(encoding='utf-8')
