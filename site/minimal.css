@@ -48,8 +48,8 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 .mast-grid{padding-bottom:22px}
 .site-nav{border-top:1px solid #eeeeee;border-bottom:0;min-height:54px}
 /* Home — editorial first, cards only for deliberately grouped tools. */
-.intro{padding:66px 0 64px;gap:43px}
-.intro h1{font:550 clamp(36px,4.2vw,55px)/1.17 var(--sans);letter-spacing:-.055em;max-width:735px}
+.intro{padding:40px 0 44px;gap:32px;grid-template-columns:1.4fr 1fr;align-items:center}
+.intro h1{font:500 clamp(28px,3.1vw,40px)/1.22 var(--sans);letter-spacing:-.055em;max-width:735px}
 .intro>p{font-size:13px;line-height:1.83;color:#505050;max-width:330px}
 .frontpage-grid{gap:43px;margin-top:8px}
 .lead-story{gap:27px}
@@ -63,10 +63,10 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 .section-bar h2{font:600 15px/1.5 var(--sans);letter-spacing:-.02em}
 .rail-story{border-color:#f0f0f0}
 .rail-story h3{font:550 clamp(16px,1.55vw,20px)/1.45 var(--sans);letter-spacing:-.025em}
-.archive{padding-top:104px}
+.archive{padding-top:64px}
 .archive-controls{padding-bottom:25px}
 .article-list{gap:16px 34px}
-.article-row{border-bottom:1px solid #eeeeee;padding:27px 0 29px}
+.article-row{border-bottom:1px solid #eeeeee;padding:24px 0;min-height:0}
 .article-row:last-child{border-bottom:0}
 .article-row h3{font:550 clamp(17px,1.9vw,23px)/1.43 var(--sans);letter-spacing:-.027em}
 .article-main>p{font-size:12px;line-height:1.83}
@@ -162,11 +162,11 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 .ownership-graph,.policy-visual{background:#fff;border-radius:8px}
 .research-records{margin-top:65px}
 .research-records h2{font:550 25px var(--sans)}
-.research-teaser{padding-top:94px}
-.research-teaser-grid{gap:13px}
-.research-teaser-grid a{padding:32px;gap:10px}
-.research-teaser-grid a:hover{background:var(--surface-hover)}
-.research-teaser-grid strong{font:550 clamp(22px,2.5vw,29px)/1.3 var(--sans);letter-spacing:-.035em}
+.research-teaser{padding-top:64px}
+.research-teaser-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.research-teaser-grid a{padding:20px 0;gap:8px;background:transparent;border-radius:0;border-top:1px solid var(--border)}
+.research-teaser-grid a:hover{background:transparent;box-shadow:none;transform:none}
+.research-teaser-grid strong{font:500 17px/1.4 var(--sans);letter-spacing:-.025em}
 .research-teaser-grid p{font-size:12px;color:#565656}
 .policy-milestones li{border-color:#eeeeee}
 .timeline-panel .vis-item{background:#eeeeee!important;color:#171717!important;border-color:#d5d5d5!important}
@@ -184,14 +184,41 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 .mobile-panel-navigation>a{font:550 clamp(26px,5vw,36px)/1.35 var(--sans);letter-spacing:-.04em;color:#171717}
 .mobile-panel-subnav a{font-size:12px;color:#505050}
 .mobile-panel-subscribe{font-weight:550}
+/* Quiet disclosure: the reporting stays in view; secondary tools open on demand. */
+.market-strip{border:0;padding-top:0;padding-bottom:0}
+.market-strip-bar{position:relative;align-items:flex-start;min-height:40px}
+.market-strip-bar>a{position:absolute;right:0;top:11px;font-weight:500}
+.market-preview{width:100%;font-size:11px;color:var(--text-muted)}
+.market-preview summary{width:fit-content;min-height:40px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.market-preview-body{padding:8px 0 16px}
+.market-preview-body p{margin:0 0 10px}
+.market-preview summary::marker,.research-directory summary::marker{content:""}
+.market-preview summary::-webkit-details-marker,.research-directory summary::-webkit-details-marker{display:none}
+.market-preview summary::after,.research-directory summary::after{content:"+";font-size:16px;font-weight:400;color:var(--text-muted)}
+.market-preview[open] summary::after,.research-directory[open] summary::after{content:"−"}
+.research-directory{margin-top:8px;border-top:1px solid var(--border)}
+.research-directory>summary{min-height:48px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:500;font-size:12px;color:var(--text-secondary)}
+.research-directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:16px 0 24px}
+.research-directory-grid>div{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+.research-directory-grid h3{font:600 12px/1.5 var(--sans);margin:0 0 8px}
+.research-directory-grid a{display:flex;align-items:center;min-height:40px;font-size:12px;color:var(--text-secondary)}
+.research-directory-grid a:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:620px){.research-directory-grid{grid-template-columns:1fr;gap:24px}}
+@media(max-width:780px){
+ .mobile-panel-navigation{padding-top:24px}
+ .mobile-panel-navigation>a{min-height:44px;font-size:26px;padding:4px 0}
+ .mobile-panel-subnav{margin-top:24px;gap:0 20px}
+ .mobile-panel-subnav a{display:flex;align-items:center;min-height:44px}
+ .mobile-panel-bottom{padding-top:24px}
+}
 @media(max-width:950px){
  .wrap{width:min(calc(100% - 48px),1140px)}
  .frontpage-grid{gap:28px}
  .market-panel-grid{gap:14px}
 }
 @media(max-width:780px){
- .intro{padding:40px 0 51px}
- .intro h1{font-size:clamp(33px,5.8vw,44px)}
+ .intro{padding:32px 0 36px}
+ .intro h1{font-size:clamp(28px,5.2vw,36px)}
  .archive,.desk-section{padding-top:73px}
  .newsletter{margin-top:66px;padding:28px}
  .obs-main{padding-top:47px}
@@ -206,8 +233,8 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 }
 @media(max-width:620px){
  .wrap{width:min(calc(100% - 34px),1140px)}
- .intro{padding:31px 0 43px}
- .intro h1{font-size:clamp(30px,8vw,38px)}
+ .intro{padding:28px 0 32px}
+ .intro h1{font-size:clamp(26px,7vw,32px)}
  .lead-story h2{font-size:clamp(23px,6vw,29px)}
  .article-row h3{font-size:18px}
  .newsletter h2{font-size:24px}
@@ -231,7 +258,7 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
  .market-context-grid article{padding:22px}
  .research-stat-row>div{padding:16px 19px}
  .research-panel,.research-detail{padding:19px}
- .research-teaser-grid a{padding:24px}
+ .research-teaser-grid{grid-template-columns:1fr;gap:0}.research-teaser-grid a{padding:18px 0}
  .mobile-panel-navigation>a{font-size:clamp(26px,7vw,32px)}
  .editorial-footer-top{gap:31px}
 }

@@ -579,3 +579,43 @@ test('Question Hour cached fallback filters the saved index by entered topic',as
   await expect(page.locator('#qh-results .desk-record')).toHaveCount(1);
   await expect(page.locator('#qh-results .desk-record')).toContainText('Railway infrastructure');
 });
+
+
+test('homepage quotes load only after a reader opens the market snapshot', async ({page}) => {
+  let requests = 0;
+  await page.route('https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js', route => {
+    requests += 1;
+    return route.fulfill({contentType:'text/javascript',body:''});
+  });
+  await page.goto('/');
+  const preview = page.locator('[data-market-preview]');
+  const script = page.locator('script[src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"]');
+  await expect(preview).not.toHaveAttribute('open', '');
+  await expect(script).toHaveCount(0);
+  expect(requests).toBe(0);
+  await preview.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(preview).toHaveAttribute('open', '');
+  await expect.poll(() => requests).toBe(1);
+  await preview.locator('summary').click();
+  await preview.locator('summary').click();
+  await expect(script).toHaveCount(1);
+  expect(requests).toBe(1);
+});
+
+test('compact research directory keeps every destination reachable on narrow screens', async ({page}) => {
+  await page.goto('/');
+  const directory = page.locator('.research-directory');
+  const link = directory.getByRole('link',{name:'Question Hour',exact:true});
+  await expect(link).toBeHidden();
+  await directory.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(link).toBeVisible();
+  await expect(directory.getByRole('link')).toHaveCount(11);
+  for (const width of [320,768,1024,1440]) {
+    await page.setViewportSize({width,height:900});
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+  }
+  await link.click();
+  await expect(page).toHaveURL(/question-hour[.]html$/);
+});

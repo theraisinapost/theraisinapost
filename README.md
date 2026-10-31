@@ -225,3 +225,10 @@ Three source-oriented research products extend the existing GitHub Pages publica
 Tests: `python -m unittest discover -s tests -v`, `npm run check:js`, `npm run test:e2e`. All tables are keyboard-scrollable and respect reduced motion.
 
 **Parliamentary resilience:** The source refresh first attempts the published OpenSansad dataset-service index, then the underlying Digital Sansad question API (18th Lok Sabha session 8, falling back to session 7), checking official document URLs and limiting each snapshot to at most 100 records. When neither responds, the public snapshot retains previously verified metadata; a one-record historical example from the OpenSansad dataset card is labelled as illustrative rather than current. HTTP failures are not interpreted as no parliamentary activity.
+
+
+## Minimal editorial cleanup (November 2026)
+
+The front page uses a smaller introduction and three concise research entries, with the full directory under the native **All research tools** disclosure. The mobile menu links to that directory rather than repeating every tool. Publication links live in the shared footer, whose copy, headings and watermark are more restrained.
+
+The homepage **Market snapshot** is collapsed initially. Its attributed TradingView widget loads only after the reader opens it; the dedicated Market desk retains its existing data and source disclosures. Research disclosures work without JavaScript. Existing search, keyboard shortcuts, clock and source-linked tools remain available. Browser checks cover keyboard expansion, deferred widget loading, directory destinations and overflow from 320px to 1440px.
