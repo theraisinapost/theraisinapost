@@ -72,6 +72,24 @@ class ResearchDeskTests(unittest.TestCase):
         self.assertEqual(len(events), 1)
         self.assertEqual(events[0]['url'], 'https://pib.gov.in/PressReleasePage.aspx?PRID=123')
 
+    def test_undated_pib_notice_retains_no_fabricated_publication_date(self):
+        import regulatory
+        rss = """<rss><channel><item><title>Government notice</title>
+          <link>https://pib.gov.in/PressReleasePage.aspx?PRID=987</link>
+        </item></channel></rss>"""
+        events = regulatory.parse_source(rss, 'PIB', 'pib.gov.in')
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]['date'], '')
+        self.assertEqual(events[0]['title'], 'Government notice')
+
+    def test_sebi_informal_publication_date(self):
+        import regulatory
+        rss = """<rss><channel><item><title>Official circular</title>
+        <link>https://www.sebi.gov.in/legal/circulars/circular.html</link>
+        <pubDate>31-Oct-2026 09:00:00 IST</pubDate></item></channel></rss>"""
+        events=regulatory.parse_source(rss,'SEBI','www.sebi.gov.in')
+        self.assertEqual(events[0]['date'],'2026-10-31')
+
     def test_diff_input_is_bounded_without_unsafe_html_interpolation(self):
         page = (ROOT / 'site/document-diff.html').read_text(encoding='utf-8')
         script = (ROOT / 'site/research-desk.js').read_text(encoding='utf-8')
