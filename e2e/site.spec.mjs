@@ -212,3 +212,60 @@ test('article sharing offers canonical links with no tracking needed', async ({p
   await dialog.getByRole('button',{name:'Close'}).click();
   await expect(dialog).toBeHidden();
 });
+
+test('commodities price cards show provider figures, dates and sourced units',async({page})=>{
+  await page.route('https://xaus.com/api/v1/spot**',route=>route.fulfill({
+    status:200,contentType:'application/json',
+    body:JSON.stringify({xau:{price:8500,currency:'INR',unit:'gram'},silver_usd_oz:30,spot_usd_oz:3000,gold_silver_ratio:100,fx_rate:85,
+      updated_at:'2026-10-31T06:00:00Z',data_state:{status:'fresh',as_of:'2026-10-31T06:00:00Z',age_seconds:0}})
+  }));
+  await page.route('https://api.frankfurter.dev/v2/rates**',route=>route.fulfill({
+    status:200,contentType:'application/json',
+    body:JSON.stringify([{date:'2026-10-30',base:'INR',quote:'USD',rate:1/85},{date:'2026-10-30',base:'INR',quote:'EUR',rate:1/98},{date:'2026-10-30',base:'INR',quote:'GBP',rate:1/110}])
+  }));
+  await page.route('https://api.worldbank.org/**',r=>r.abort());
+  await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
+  await page.route('https://s3.tradingview.com/**',r=>r.abort());
+  await page.goto('/markets.html');
+  await expect(page.locator('#spot-gold-value')).toHaveText('₹85,000');
+  await expect(page.locator('#spot-silver-value')).toHaveText('₹81,985');
+  await expect(page.locator('#spot-ratio-value')).toHaveText('100.00');
+  await expect(page.locator('#spot-status')).toContainText('31 Oct 2026');
+  await expect(page.locator('#fx-usd-value')).toHaveText('₹85.00');
+  await expect(page.locator('#fx-eur-value')).toHaveText('₹98.00');
+  await expect(page.locator('#fx-gbp-value')).toHaveText('₹110.00');
+  await expect(page.locator('#fx-status')).toContainText('30 Oct 2026');
+  await expect(page.locator('#commodity-benchmarks')).toBeVisible();
+});
+
+test('commodities never fabricate prices if sources fail or metal data is stale',async({page})=>{
+  await page.route('https://xaus.com/api/v1/spot**',route=>route.fulfill({
+    status:200,contentType:'application/json',
+    body:JSON.stringify({xau:{price:8500,currency:'INR',unit:'gram'},silver_usd_oz:null,gold_silver_ratio:null,fx_rate:null,
+      updated_at:'2026-10-01T06:00:00Z',data_state:{status:'stale',as_of:'2026-10-01T06:00:00Z',age_seconds:999999}})
+  }));
+  await page.route('https://api.frankfurter.dev/**',r=>r.abort());
+  await page.route('https://api.worldbank.org/**',r=>r.abort());
+  await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
+  await page.route('https://s3.tradingview.com/**',r=>r.abort());
+  await page.goto('/markets.html');
+  await expect(page.locator('#spot-status')).toContainText('Stale');
+  await expect(page.locator('#spot-silver-value')).toHaveText('—');
+  await expect(page.locator('#fx-usd-value')).toHaveText('—');
+  await expect(page.locator('#fx-status')).toContainText('unavailable');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+test('economic calendar loads only when a reader requests events',async({page})=>{
+  await page.route('https://api.worldbank.org/**',r=>r.abort());
+  await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
+  await page.route('https://s3.tradingview.com/**',r=>r.abort());
+  await page.route('https://xaus.com/**',r=>r.abort());
+  await page.route('https://api.frankfurter.dev/**',r=>r.abort());
+  await page.goto('/markets.html');
+  await expect(page.locator('#calendar-widget script')).toHaveCount(0);
+  await page.locator('#calendar-load').click();
+  await expect(page.locator('#calendar-widget script')).toHaveCount(1);
+  await expect(page.locator('#calendar-load')).toHaveAttribute('disabled','');
+});

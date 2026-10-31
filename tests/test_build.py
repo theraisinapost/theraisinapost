@@ -396,4 +396,32 @@ class TestFeed(unittest.TestCase):
     build.render_site(posts,out)
    self.assertNotIn('data-goatcounter',(out/'index.html').read_text(encoding='utf-8'))
 
+ def test_commodities_and_macro_desk_remains_source_backed(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   market=(out/'markets.html').read_text(encoding='utf-8')
+   home=(out/'index.html').read_text(encoding='utf-8')
+   for field in ('spot-gold-value','spot-silver-value','spot-ratio-value','spot-status','fx-usd-value','fx-eur-value','fx-gbp-value','calendar-load','calendar-widget','commodity-benchmarks'):
+    self.assertIn('id="'+field+'"',market,field)
+   self.assertIn('TVC:UKOIL',market)
+   self.assertIn('TVC:USOIL',market)
+   self.assertIn('TVC:IN10Y',market)
+   self.assertIn('TVC:US10Y',market)
+   self.assertIn('https://xaus.com/',market)
+   self.assertIn('https://frankfurter.dev/',market)
+   self.assertIn('https://www.tradingview.com/economic-calendar/',market)
+   self.assertIn('src="commodities.js"',market)
+   self.assertIn('href="market.css"',market)
+   self.assertNotIn('commodities.js',home)
+   self.assertTrue((out/'commodities.js').exists())
+   source=(out/'commodities.js').read_text(encoding='utf-8')
+   self.assertIn("data_state",source)
+   self.assertIn("updated_at",source)
+   self.assertIn("silver_usd_oz",source)
+   self.assertIn("31.1034768",source)
+   self.assertIn("https://api.frankfurter.dev/v2/rates",source)
+   self.assertNotIn('₹85,000',market)
+
 if __name__=='__main__':unittest.main()
