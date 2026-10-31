@@ -452,3 +452,22 @@ test('subtle page reveals become visible on scroll without mobile overflow', asy
   await expect(card).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });
+
+
+test('footer is grouped, readable and usable on desktop and mobile',async({page})=>{
+  await page.goto('/');
+  const footer=page.locator('.editorial-footer');
+  await expect(footer.locator('.editorial-footer-pitch')).toBeVisible();
+  await expect(footer.getByRole('navigation',{name:'Read'})).toBeVisible();
+  await expect(footer.getByRole('navigation',{name:'Research'})).toBeVisible();
+  await expect(footer.getByRole('navigation',{name:'Publication'})).toBeVisible();
+  await expect(footer.getByRole('link',{name:'About the publication'})).toHaveAttribute('href','about.html');
+  await expect(footer.getByRole('link',{name:'All research tools'})).toHaveAttribute('href',/index|theraisinapost.github.io|#research-desk/);
+  await expect(footer.getByRole('link',{name:'Subscribe to the Post'})).toHaveAttribute('href','https://raisinapost.substack.com/subscribe');
+  await page.setViewportSize({width:390,height:844});
+  await footer.scrollIntoViewIfNeeded();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+  await expect(footer.locator('.editorial-footer-group-label')).toHaveCount(3);
+  await footer.getByRole('link',{name:'Back to top'}).click();
+  await expect(page).toHaveURL(/#main$/);
+});
