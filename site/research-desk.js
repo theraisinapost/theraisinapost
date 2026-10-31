@@ -148,7 +148,7 @@
       } catch (_) {
         if (requestId !== requestNumber) return;
         status.textContent = 'World Bank data is unavailable. Try another indicator or open the original source.';
-        rows.append(node('tr','No published observations could be retrieved.'));
+        const row=node('tr');\n        const cell=node('td','No published observations could be retrieved.');\n        cell.colSpan=2;row.append(cell);rows.append(row);
       }
     };
     indicator.addEventListener('change',load);
