@@ -69,22 +69,90 @@
     }
     clock.prepend(dial);
   }
-  function tick() {
-    const now = new Date();
-    const p = Object.fromEntries(timeParts.formatToParts(now).filter(x => x.type !== 'literal').map(x => [x.type, Number(x.value)]));
-    const h = p.hour || 0, m = p.minute || 0, s = p.second || 0;
-    const hour = document.getElementById('clock-hour'), minute = document.getElementById('clock-minute'), second = document.getElementById('clock-second');
-    if (hour) hour.style.transform = `translateX(-50%) rotate(${(h % 12 + m / 60 + s / 3600) * 30}deg)`;
-    if (minute) minute.style.transform = `translateX(-50%) rotate(${(m + s / 60) * 6}deg)`;
-    if (second) second.style.transform = `translateX(-50%) rotate(${s * 6}deg)`;
-    const digital = document.getElementById('digital-clock');
-    if (digital) digital.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} IST`;
-    const dateNode = document.getElementById('desk-date');
-    if (dateNode) { dateNode.textContent = dateFormat.format(now); dateNode.dateTime = now.toISOString(); }
-    if (clock) clock.setAttribute('aria-label', `Analog clock, ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} India Standard Time`);
+  const hourHand = document.getElementById('clock-hour');
+  const minuteHand = document.getElementById('clock-minute');
+  const secondHand = document.getElementById('clock-second');
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const hands = [
+    {element:hourHand, duration:43200},
+    {element:minuteHand, duration:3600},
+    {element:secondHand, duration:60}
+  ];
+
+  function timeInIndia(now) {
+    const parts = Object.fromEntries(timeParts.formatToParts(now)
+      .filter(part => part.type !== 'literal')
+      .map(part => [part.type, Number(part.value)]));
+    return {hour:parts.hour || 0, minute:parts.minute || 0,
+      second:parts.second || 0, fraction:now.getMilliseconds()/1000};
   }
+
+  // All three hands sweep on the compositor, synchronized to India Standard
+  // Time, instead of stepping once per second or running a 60fps JS timer.
+  // Negative animation delays position the hands at their real-world phase.
+  function synchronizeHands(now = new Date()) {
+    if (!clock) return;
+    const p=timeInIndia(now);
+    const elapsed=p.second+p.fraction;
+    const phases=[
+      (p.hour % 12)*3600+p.minute*60+elapsed,
+      p.minute*60+elapsed,
+      elapsed
+    ];
+    clock.classList.remove('clock-running');
+    hands.forEach(({element,duration},index)=>{
+      if (!element) return;
+      element.style.animationDelay=`-${phases[index]}s`;
+      // Motion-disabled readers still see an accurate clock on the next tick.
+      element.style.transform=motionPreference.matches
+        ? `translateX(-50%) rotate(${(phases[index]/duration)*360}deg)`
+        : '';
+    });
+    if (!motionPreference.matches) {
+      // Restart after tab suspension to correct for browser throttling.
+      void clock.offsetWidth;
+      clock.classList.add('clock-running');
+    }
+  }
+
+  function tick() {
+    const now=new Date();
+    const p=timeInIndia(now);
+    const h=p.hour, m=p.minute;
+    if (motionPreference.matches) {
+      const elapsed=p.second+p.fraction;
+      const phases=[(h%12)*3600+m*60+elapsed, m*60+elapsed, elapsed];
+      hands.forEach(({element,duration},index)=>{
+        if (element) element.style.transform=`translateX(-50%) rotate(${phases[index]/duration*360}deg)`;
+      });
+    }
+    const digital=document.getElementById('digital-clock');
+    if (digital) digital.textContent=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')} IST`;
+    const dateNode=document.getElementById('desk-date');
+    if (dateNode) {
+      dateNode.textContent=dateFormat.format(now);
+      // A datetime reflects the newsroom's local calendar day, not UTC.
+      const dateParts=new Intl.DateTimeFormat('en-CA',{
+        timeZone:tz, year:'numeric',month:'2-digit',day:'2-digit'
+      }).formatToParts(now);
+      const dateMap=Object.fromEntries(dateParts.filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+      dateNode.dateTime=`${dateMap.year}-${dateMap.month}-${dateMap.day}`;
+    }
+    if (clock) clock.setAttribute('aria-label',
+      `Analog clock, ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')} India Standard Time`);
+  }
+
+  synchronizeHands();
   tick();
-  if (clock) setInterval(tick, 1000);
+  if (clock) {
+    setInterval(tick, 1000);
+    document.addEventListener('visibilitychange',()=>{
+      if (document.visibilityState==='visible') { synchronizeHands();tick(); }
+    });
+    const onMotionChange=()=>{synchronizeHands();tick();};
+    if (motionPreference.addEventListener) motionPreference.addEventListener('change',onMotionChange);
+    else motionPreference.addListener(onMotionChange);
+  }
 
   // Weather is always explicitly for New Delhi, not inferred from the visitor's location.
   const weatherNode = document.getElementById('new-delhi-weather');

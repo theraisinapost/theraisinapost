@@ -194,3 +194,12 @@ The new pages are linked from the homepage's restrained intelligence strip, mobi
 **Automated refresh:** `.github/workflows/intelligence-refresh.yml` is scheduled daily at 03:17 UTC and supports manual dispatch. It runs offline unit tests, collects official parliamentary metadata and checks the page allowlist, then commits only the two updated JSON results. The existing hourly Pages workflow can publish the latest committed snapshot on its next scheduled run; bot-authored pushes do not automatically trigger a new Pages build. The refresh requires normal repository Actions write permission and an available upstream endpoint. If blocked, the public UI shows an unavailable/partial/stale state rather than fabricated data.
 
 No machine-generated report summaries are published. No visitor tracking or paid API service was introduced by these pages. Review any content-change signal and the original primary document before reporting substantive conclusions. Test with `python -m unittest discover -s tests -v`, `npm run check:js` and `npm run test:e2e`.
+
+
+## Motion and precision clock refinement (October 2026)
+
+`site/motion.css` is a lightweight, shared design layer loaded **after** `minimal.css` across all built pages; `site/motion.js` progressively reveals selected research and archive items when they enter the viewport. It never hides content when IntersectionObserver is missing or the reader has enabled reduced motion. Hover treatments use tiny translations, subdued surface changes and slow image easing; there are no heavy motion libraries or new visual controls.
+
+The homepage's India Standard Time analog clock uses three independent, continuous CSS sweeps (12-hour, 60-minute, 60-second). `site/site.js` calculates the accurate hand phase from `Intl.DateTimeFormat`, including milliseconds, and sets negative animation delays. This avoids continuous JavaScript paint loops. The clock resynchronizes when the tab becomes visible; the 24-hour digital clock and date retain their existing format. For `prefers-reduced-motion: reduce`, all sweeps and reveals are disabled and the hands update with discrete, accurate one-second steps. The dial retains all 60 minute indices and fits mobile widths.
+
+Check with Python build unit tests, Playwright clock/interaction/viewport tests, and axe accessibility audits. CSS remains monochrome except for a restrained oxblood second hand; Inter, `#f9f9f9` surfaces, 8px corners and editorial hierarchy are unchanged.

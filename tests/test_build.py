@@ -445,4 +445,24 @@ class TestFeed(unittest.TestCase):
    self.assertIn("https://api.frankfurter.dev/v2/rates",source)
    self.assertNotIn('₹85,000',market)
 
+ def test_smooth_clock_and_motion_enhancements_have_safe_static_fallback(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   for name in ('index.html','markets.html','about.html','parliament-file.html'):
+    page=(out/name).read_text(encoding='utf-8')
+    self.assertIn('href="minimal.css"',page)
+    self.assertIn('href="motion.css"',page)
+    self.assertIn('defer src="motion.js"',page)
+    self.assertLess(page.index('href="minimal.css"'),page.index('href="motion.css"'))
+   style=(out/'motion.css').read_text(encoding='utf-8')
+   clock=(out/'site.js').read_text(encoding='utf-8')
+   reveal=(out/'motion.js').read_text(encoding='utf-8')
+   self.assertIn('clock-sweep 60s linear infinite',style)
+   self.assertIn('prefers-reduced-motion:reduce',style)
+   self.assertIn('synchronizeHands',clock)
+   self.assertIn('visibilitychange',clock)
+   self.assertIn('IntersectionObserver',reveal)
+
 if __name__=='__main__':unittest.main()

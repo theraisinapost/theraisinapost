@@ -5,7 +5,7 @@
   "description": "Build-only QA for The Raisina Post's static Substack archive",
   "scripts": {
     "test:e2e": "playwright test",
-    "check:js": "node --check site/site.js && node --check site/reader.js && node --check site/market-desk.js && node --check site/components/editorial-chart.mjs && node --check site/research.js && node --check site/commodities.js && node --check site/intelligence.js",
+    "check:js": "node --check site/site.js && node --check site/reader.js && node --check site/market-desk.js && node --check site/components/editorial-chart.mjs && node --check site/research.js && node --check site/commodities.js && node --check site/intelligence.js && node --check site/motion.js",
     "audit:lighthouse": "lhci autorun --config=./lighthouserc.cjs"
   },
   "devDependencies": {
