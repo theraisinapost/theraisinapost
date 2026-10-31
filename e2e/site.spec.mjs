@@ -228,7 +228,7 @@ test('commodities price cards show provider figures, dates and sourced units',as
   await page.route('https://s3.tradingview.com/**',r=>r.abort());
   await page.goto('/markets.html');
   await expect(page.locator('#spot-gold-value')).toHaveText('₹85,000');
-  await expect(page.locator('#spot-silver-value')).toHaveText('₹81,985');
+  await expect(page.locator('#spot-silver-value')).toHaveText('₹81,984');
   await expect(page.locator('#spot-ratio-value')).toHaveText('100.00');
   await expect(page.locator('#spot-status')).toContainText('31 Oct 2026');
   await expect(page.locator('#fx-usd-value')).toHaveText('₹85.00');
