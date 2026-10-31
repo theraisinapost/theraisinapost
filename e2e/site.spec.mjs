@@ -62,7 +62,7 @@ test('mobile full-screen navigation opens, closes and works across pages', async
   await expect(openButton).toHaveAttribute('aria-expanded','false');
   await openButton.click();
   await menu.getByRole('link',{name:'Markets',exact:true}).click();
-  await expect(page).toHaveURL(/markets\\.html$/);
+  await expect(page).toHaveURL(/markets[.]html$/);
   await expect(page.getByRole('button',{name:'Open menu'})).toBeVisible();
 });
 
