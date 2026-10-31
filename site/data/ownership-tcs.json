@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "asOf": "2026-03-31",
+  "title": "TCS shareholder snapshot",
+  "scope": "Selected named shareholders in Tata Consultancy Services Ltd, not ownership of Tata Sons or the Tata Group.",
+  "source": {
+    "label": "TCS Annual Report 2025–26, Corporate Governance Report, p.125",
+    "url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+  },
+  "owners": [
+    {
+      "id": "tata",
+      "label": "Tata Sons Private Limited",
+      "percent": 71.74,
+      "target": "tcs",
+      "asOf": "2026-03-31",
+      "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+    },
+    {
+      "id": "lic",
+      "label": "Life Insurance Corporation of India",
+      "percent": 5.52,
+      "target": "tcs",
+      "asOf": "2026-03-31",
+      "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+    },
+    {
+      "id": "sbi",
+      "label": "SBI Mutual Fund",
+      "percent": 1.25,
+      "target": "tcs",
+      "asOf": "2026-03-31",
+      "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+    },
+    {
+      "id": "icici",
+      "label": "ICICI Prudential Mutual Fund",
+      "percent": 1.06,
+      "target": "tcs",
+      "asOf": "2026-03-31",
+      "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+    },
+    {
+      "id": "nps",
+      "label": "NPS Trust Account",
+      "percent": 0.79,
+      "target": "tcs",
+      "asOf": "2026-03-31",
+      "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+    }
+  ]
+}
