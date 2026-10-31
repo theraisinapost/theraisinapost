@@ -56,12 +56,16 @@
   const dateFormat = new Intl.DateTimeFormat('en-IN', { timeZone:tz, weekday:'long', day:'numeric', month:'long', year:'numeric' });
   const clock = document.getElementById('analog-clock');
   if (clock) {
-    for (let n = 0; n < 12; n++) {
-      const tick = document.createElement('span');
-      tick.className = 'clock-tick';
-      tick.style.transform = `translate(-50%, -50%) rotate(${n * 30}deg) translateY(-37px)`;
-      clock.appendChild(tick);
+    const dial = document.createElement('div');
+    dial.className = 'clock-indices';
+    dial.setAttribute('aria-hidden', 'true');
+    for (let mark = 0; mark < 60; mark++) {
+      const index = document.createElement('span');
+      index.className = mark % 5 === 0 ? 'dial-mark dial-mark-major' : 'dial-mark';
+      index.style.setProperty('--angle', `${mark * 6}deg`);
+      dial.appendChild(index);
     }
+    clock.prepend(dial);
   }
   function tick() {
     const now = new Date();
@@ -82,17 +86,19 @@
 
   // Weather is always explicitly for New Delhi, not inferred from the visitor's location.
   const weatherNode = document.getElementById('new-delhi-weather');
+  const emojiNode = document.getElementById('weather-emoji');
   if (weatherNode) {
-    const weatherEndpoint = 'https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current=temperature_2m,weather_code&timezone=Asia%2FKolkata';
-    const weatherCodes = code => {
-      if (code === 0) return 'Clear';
-      if ([1,2,3].includes(code)) return 'Clouds';
-      if ([45,48].includes(code)) return 'Haze';
-      if ([51,53,55,56,57].includes(code)) return 'Drizzle';
-      if ([61,63,65,66,67,80,81,82].includes(code)) return 'Rain';
-      if ([71,73,75,77,85,86].includes(code)) return 'Snow';
-      if ([95,96,99].includes(code)) return 'Storm';
-      return 'Conditions';
+    const weatherEndpoint = 'https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current=temperature_2m,weather_code,is_day&timezone=Asia%2FKolkata';
+    const weatherCodes = (code, isDay) => {
+      if (code === 0) return [isDay ? '☀️' : '🌙', 'Clear'];
+      if ([1, 2].includes(code)) return [isDay ? '🌤️' : '☁️', 'Partly cloudy'];
+      if (code === 3) return ['☁️', 'Cloudy'];
+      if ([45, 48].includes(code)) return ['🌫️', 'Fog'];
+      if ([51, 53, 55, 56, 57].includes(code)) return ['🌦️', 'Drizzle'];
+      if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return ['🌧️', 'Rain'];
+      if ([71, 73, 75, 77, 85, 86].includes(code)) return ['❄️', 'Snow'];
+      if ([95, 96, 99].includes(code)) return ['⛈️', 'Storm'];
+      return ['🌡️', 'Conditions'];
     };
     async function refreshWeather() {
       try {
@@ -106,9 +112,11 @@
         const temperature = data?.current?.temperature_2m;
         const code = data?.current?.weather_code;
         if (!Number.isFinite(temperature) || !Number.isFinite(code)) throw Error('Invalid weather payload');
-        weatherNode.textContent = `${Math.round(temperature)}°C · ${weatherCodes(code)}`;
+        const [emoji, label] = weatherCodes(code, data?.current?.is_day !== 0);
+        if (emojiNode) emojiNode.textContent = emoji;
+        weatherNode.textContent = `${Math.round(temperature)}°C · ${label}`;
         weatherNode.title = 'Current modeled conditions in New Delhi; source: Open-Meteo';
-      } catch (_) { weatherNode.textContent = 'Weather unavailable'; }
+      } catch (_) { if (emojiNode) emojiNode.textContent = '🌡️'; weatherNode.textContent = 'Weather unavailable'; }
     }
     refreshWeather();
     setInterval(refreshWeather, 15 * 60 * 1000);

@@ -154,3 +154,29 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:poi
 @media(prefers-reduced-motion:reduce){
   .lead-read,.subscribe-nav,.newsletter>a,.guide-subscribe,.empty-state button{transition:none}
 }
+
+/* Minimal Swiss-style dial: subtle 60-mark ring, responsive minute indices. */
+.analog-clock{width:110px;height:110px;--dial-radius:45px;background:#fff;border:1px solid #d9d9d9;box-shadow:0 0 0 4px #fafafa;isolation:isolate}
+.clock-indices{position:absolute;inset:0;pointer-events:none;z-index:0}
+.dial-mark{position:absolute;left:50%;top:50%;width:1px;height:3px;background:#c9c9c9;transform:translate(-50%,-50%) rotate(var(--angle)) translateY(calc(-1 * var(--dial-radius)))}
+.dial-mark-major{width:2px;height:7px;background:#666}
+.analog-clock .clock-number{z-index:1;font-size:10px;font-weight:600;color:#333}
+.analog-clock .twelve{top:17px}.analog-clock .six{bottom:15px}
+.analog-clock .three{right:16px}.analog-clock .nine{left:16px}
+.analog-clock .clock-hand{z-index:2;background:#252525;border-radius:5px}
+.analog-clock .hour-hand{height:28px;width:4px}
+.analog-clock .minute-hand{height:37px;width:2px}
+.analog-clock .second-hand{height:41px;width:1px;background:var(--accent);z-index:3}
+.analog-clock .clock-pin{width:7px;height:7px;z-index:4;background:var(--accent);border:1px solid #fff}
+.weather-emoji{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-size:17px;line-height:1;display:inline-block}
+.weather-city{white-space:nowrap}
+@media(max-width:780px){
+  .analog-clock{width:80px;height:80px;--dial-radius:32px;box-shadow:0 0 0 3px #fafafa}
+  .analog-clock .clock-number{font-size:9px}
+  .analog-clock .twelve{top:10px}.analog-clock .six{bottom:9px}
+  .analog-clock .three{right:9px}.analog-clock .nine{left:9px}
+  .analog-clock .hour-hand{height:21px;width:3px}
+  .analog-clock .minute-hand{height:28px}
+  .analog-clock .second-hand{height:30px}
+}
+@media(max-width:520px){.analog-clock{width:76px;height:76px;--dial-radius:30px}}

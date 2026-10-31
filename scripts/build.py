@@ -130,7 +130,7 @@ def card(post, idx):
     return f'''<article class="article-row" data-title="{title.lower()}" data-summary="{excerpt.lower()}" data-category="{category}" data-date="{escape(post['date_iso'])}">
       <div class="article-main"><div class="article-overline"><span class="article-category">{category}</span><span class="over-dot"></span><time datetime="{escape(post['date_iso'])}">{date}</time></div>
       <h3><a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a></h3>
-      <p>{excerpt}</p><a class="article-arrow" href="{url}" target="_blank" rel="noopener noreferrer">Read dispatch <span aria-hidden="true">↗</span></a></div>
+      <p>{excerpt}</p><a class="article-arrow" href="{url}" target="_blank" rel="noopener noreferrer">Read dispatch </a></div>
       <a class="article-media" href="{url}" aria-label="Read {title} on Substack" target="_blank" rel="noopener noreferrer">{artwork}</a>
     </article>'''
 
@@ -141,7 +141,7 @@ def featured(post):
       <div class="lead-category">{escape(post['category'])}</div>
       <h2><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h2>
       <p class="lead-description">{escape(post['description'])}</p>
-      <a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read article <span aria-hidden="true">↗</span></a>
+      <a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read article </a>
       </div><a class="lead-visual" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read the lead dispatch">{artwork}</a>
     </article>'''
 

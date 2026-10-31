@@ -127,4 +127,34 @@ class TestFeed(unittest.TestCase):
    self.assertIn('opacity:.8',styles)
    self.assertIn('border-radius:var(--radius)',styles)
 
+ def test_link_labels_are_clean_without_arrows(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   for f in ('index.html','publication-guide.html'):
+    content=(out/f).read_text(encoding='utf-8')
+    for arrow in ('↗','↖','↘','↙','←','→'):
+     self.assertNotIn(arrow,content)
+    self.assertIn('href=',content)
+
+ def test_new_delhi_weather_emoji_and_refined_ist_dial(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   js=(out/'site.js').read_text(encoding='utf-8')
+   css=(out/'styles.css').read_text(encoding='utf-8')
+   self.assertIn('id="weather-emoji"',home)
+   self.assertIn('id="analog-clock"',home)
+   self.assertIn('mark < 60',js)
+   self.assertIn('mark % 5 === 0',js)
+   self.assertIn('is_day',js)
+   for emoji in ('🌙','🌤️','☁️','🌫️','🌦️','🌧️','❄️','⛈️'):
+    self.assertIn(emoji,js)
+   self.assertIn('--dial-radius:45px',css)
+   self.assertIn('.dial-mark-major',css)
+   self.assertIn('Asia/Kolkata',js)
+
 if __name__=='__main__':unittest.main()
