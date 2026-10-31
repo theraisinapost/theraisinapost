@@ -344,4 +344,56 @@ class TestFeed(unittest.TestCase):
    self.assertTrue((out/'footer-watermark.svg').exists())
    self.assertIn('.mast-grid .analog-clock{display:block;width:64px;height:64px',css)
 
+ def test_research_desk_builds_with_sources_and_graceful_fallback(self):
+  import json
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   atlas=(out/'ownership-atlas.html').read_text(encoding='utf-8')
+   timeline=(out/'policy-timeline.html').read_text(encoding='utf-8')
+   sitemap=(out/'sitemap.xml').read_text(encoding='utf-8')
+   own=json.loads((out/'data'/'ownership-tcs.json').read_text(encoding='utf-8'))
+   policy=json.loads((out/'data'/'dpdp-timeline.json').read_text(encoding='utf-8'))
+   self.assertIn('href="ownership-atlas.html"',home)
+   self.assertIn('href="policy-timeline.html"',home)
+   self.assertIn('src="share-ui.js"',home)
+   self.assertIn('data-share-url=',home)
+   self.assertIn('Ownership atlas',atlas)
+   self.assertIn('cytoscape.min.js',atlas)
+   self.assertIn('id="owner-list"',atlas)
+   self.assertIn('vis-timeline-graph2d.min.js',timeline)
+   self.assertIn('id="policy-milestones"',timeline)
+   self.assertIn('2027-05-13',timeline)
+   self.assertIn('Scheduled',timeline)
+   self.assertEqual(own['asOf'],'2026-03-31')
+   self.assertEqual(own['owners'][0]['percent'],71.74)
+   self.assertTrue(all(x['source'].startswith('https://www.tcs.com/') for x in own['owners']))
+   self.assertTrue(all(x['url'].startswith('https://www.meity.gov.in/') for x in policy['events']))
+   self.assertTrue(all(x['status']=='scheduled' for x in policy['events'] if x['date']>'2026-10-31'))
+   self.assertIn('ownership-atlas.html',sitemap)
+   self.assertIn('policy-timeline.html',sitemap)
+   for page in (atlas,timeline):
+    self.assertEqual(page.count('id="mobile-menu-panel"'),1)
+    self.assertIn('editorial-footer-watermark',page)
+    self.assertNotIn('<!--SITE_URL-->',page)
+    self.assertNotIn('<!--EDITORIAL_FOOTER-->',page)
+
+ def test_goatcounter_disabled_without_config_and_validated_when_set(self):
+  from unittest.mock import patch
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   with patch.dict('os.environ',{'GOATCOUNTER_CODE':''}):
+    build.render_site(posts,out)
+   for page in ('index.html','about.html','ownership-atlas.html','policy-timeline.html'):
+    self.assertNotIn('data-goatcounter',(out/page).read_text(encoding='utf-8'))
+   with patch.dict('os.environ',{'GOATCOUNTER_CODE':'valid-site'}):
+    build.render_site(posts,out)
+   self.assertIn('https://valid-site.goatcounter.com/count',(out/'index.html').read_text(encoding='utf-8'))
+   with patch.dict('os.environ',{'GOATCOUNTER_CODE':'evil.com/track?'}):
+    build.render_site(posts,out)
+   self.assertNotIn('data-goatcounter',(out/'index.html').read_text(encoding='utf-8'))
+
 if __name__=='__main__':unittest.main()

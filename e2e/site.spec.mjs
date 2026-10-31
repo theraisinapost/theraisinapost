@@ -183,3 +183,32 @@ test('minimal editorial typography and fewer rules are applied on all five pages
   await page.reload({waitUntil:'domcontentloaded'});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });
+
+test('research desk publishes source-backed ownership and DPDP timeline', async ({page}) => {
+  await page.goto('/ownership-atlas.html');
+  await expect(page.getByRole('heading',{name:'Who owns TCS?'})).toBeVisible();
+  await expect(page.locator('#owner-list .owner-row')).toHaveCount(5);
+  await page.locator('[data-owner="lic"]').click();
+  await expect(page.locator('#owner-value')).toHaveText('5.52%');
+  await expect(page.locator('#owner-source')).toHaveAttribute('href',/tcs[.]com/);
+  await page.goto('/policy-timeline.html');
+  await expect(page.getByRole('heading',{name:/DPDP timeline/})).toBeVisible();
+  await expect(page.locator('#policy-milestones li')).toHaveCount(6);
+  await page.getByRole('button',{name:'Scheduled',exact:true}).click();
+  await expect(page.locator('#policy-milestones li:visible')).toHaveCount(2);
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+test('article sharing offers canonical links with no tracking needed', async ({page}) => {
+  await page.goto('/');
+  const first=page.locator('.share-trigger').first();
+  await expect(first).toBeVisible();
+  await first.click();
+  const dialog=page.getByRole('dialog',{name:'Share article'});
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('link',{name:'LinkedIn'})).toHaveAttribute('href',/linkedin[.]com/);
+  await expect(dialog.getByRole('link',{name:'WhatsApp'})).toHaveAttribute('href',/whatsapp[.]com/);
+  await dialog.getByRole('button',{name:'Close'}).click();
+  await expect(dialog).toBeHidden();
+});

@@ -114,3 +114,18 @@ The India economic panel retrieves **annual World Bank observations** directly f
 Every visible number displays the **reference year**. Selecting an indicator opens its source-linked historical chart, built with the existing [Observable Plot](https://github.com/observablehq/plot) open-source library. Fetch/chart failures show explicit unavailable states; no demonstration values are published. Tests use synthetic data only inside mocks, never in the deployed pages.
 
 **Source terms:** [TradingView market widgets](https://www.tradingview.com/widget-docs/faq/data/) may be delayed and must retain attribution; [World Bank Indicators API](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392) exposes published annual observations, which can be revised. This desk is for editorial context, not execution-grade quotes or investment advice.
+
+## Source-backed research desk
+
+Two editorial research pages are published with the same logo, mobile menu and footer as the rest of the website:
+
+- `ownership-atlas.html` shows **selected named shareholders of TCS**, as at 31 March 2026, using data in `site/data/ownership-tcs.json`. Each row and graph connection is based on the [TCS FY2026 annual report](https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf), Corporate Governance Report p.125. This is **not** who owns Tata Sons or the Tata Group, not a complete ownership register, and not live data. [Cytoscape.js](https://github.com/cytoscape/cytoscape.js) v3.33.1 (MIT) enhances the graph when available; the dated text records remain available without it.
+- `policy-timeline.html` presents **DPDP Act/Rules statutory milestones**, including future commencement dates scheduled in the [13 November 2025 Gazette notification](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf). All events are backed by MeitY original documents in `site/data/dpdp-timeline.json`. Future dates are labelled **scheduled**, not enacted; later law changes require editorial review. [vis-timeline](https://github.com/visjs/vis-timeline) v8.5.6 (MIT/Apache-2.0) loads on this page only; the accessible chronology works without it.
+
+Each share control for a Substack story opens a small dialog with LinkedIn, WhatsApp, email and Copy Link. [Shareon](https://github.com/kytta/shareon) v2 (MIT) loads only when the dialog is opened. Links work without Shareon; no analytics is attached to sharing.
+
+### Opt-in GoatCounter
+
+The published site does **not** load any GoatCounter tracker by default, because no account is connected. To enable it, register a real account at [GoatCounter](https://www.goatcounter.com/help/start) and set the GitHub Actions repository variable `GOATCOUNTER_CODE` to **only the assigned subdomain name** (without `.goatcounter.com`). The publishing workflow passes this code to `scripts/build.py` and includes `https://gc.zgo.at/count.js` only when it validates as a nonempty, safe account code. Rerun the Pages workflow after setting the variable. Do not set a made-up code. Review the publication privacy policy before activation.
+
+The homepage itself does **not** load Cytoscape or vis-timeline; it only links to the separate research pages. The graphics require third-party CDNs and have readable fallback content when unavailable.
