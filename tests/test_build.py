@@ -38,7 +38,7 @@ class TestFeed(unittest.TestCase):
    self.assertTrue((out/'styles.css').exists())
    self.assertTrue((out/'sitemap.xml').exists())
    self.assertTrue((out/'posts.json').exists())
-   self.assertIn('Clarity beyond the headlines.', html)
+   self.assertIn('The decisions shaping India.', html)
    self.assertIn('class="lead-story"', html)
    self.assertIn('class="rail-story"', html)
    self.assertIn('class="article-row"', html)
