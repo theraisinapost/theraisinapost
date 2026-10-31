@@ -85,7 +85,8 @@ def parse_date(value):
         except ValueError:
             pass
     if dt is None:
-        for pattern in ("%d-%b-%Y %H:%M:%S %z", "%d %b %Y %H:%M:%S %z",
+        for pattern in ("%d %b, %Y %z", "%d %B, %Y %z", "%d %b, %Y",
+                        "%d-%b-%Y %H:%M:%S %z", "%d %b %Y %H:%M:%S %z",
                         "%d-%b-%Y %H:%M:%S", "%d %b %Y", "%d-%m-%Y", "%d/%m/%Y"):
             try:
                 dt = datetime.strptime(cleaned, pattern)
@@ -96,7 +97,8 @@ def parse_date(value):
         return ""
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc).date().isoformat()
+    # Official notices are dated in the publisher's local calendar, not UTC.
+    return dt.date().isoformat()
 
 def parse_source(xml, name, hostname):
     root = ET.fromstring(xml)
