@@ -73,7 +73,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   await expect(page.locator('#analog-clock')).toBeVisible();
   const width = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(392);
-  await page.getByRole('link', { name: 'About', exact: true }).first().click();
+  await page.locator('.editorial-footer').getByRole('link', { name: 'About the publication', exact: true }).click();
   await expect(page).toHaveURL(/about\.html$/);
   await expect(page.getByRole('heading', { level: 1, name: /record matters/i })).toBeVisible();
 });
