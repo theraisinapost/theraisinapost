@@ -42,7 +42,7 @@ if(kind==='question-hour'){
   url:r.pdf_url,id:String(r.id||'')});
  const render=()=>{
   output.replaceChildren();
-  const selected=all.filter(r=>r.lok_no===Number(house.value) && (type.value==='All'||r.type===type.value));
+  const selected=all.filter(r=>r.lok_no===Number(house.value) && (type.value==='All'||r.type===type.value) && (sourceKind!=='saved'||!search.value.trim()||lower(r.subject+' '+r.ministry+' '+r.member).includes(lower(search.value.trim()))));
   selected.forEach(r=>{
    const article=node('article',undefined,'desk-record');
    const meta=node('div',undefined,'desk-record-meta');
@@ -57,7 +57,7 @@ if(kind==='question-hour'){
   el('qh-next').disabled=sourceKind!=='live'||offset+50>=count;
   status('qh-status',selected.length+' linked records shown from '+all.length+' upstream results'+
    (count>all.length?' · upstream matches '+count+'; filters apply to this page only':'')+
-   (sourceKind==='saved'?' · saved snapshot':'')+
+   (sourceKind==='saved'?' · saved snapshot (search matches displayed metadata only)':'')+
    (!selected.length?' · try another query or question type':''));
  };
  const useSnapshot=async(error)=>{
@@ -132,6 +132,7 @@ if(kind==='trade-ledger'){
    el('trade-updated').textContent='UN Comtrade · '+year.value+' annual report';
   }catch(_){
    if(serial!==request)return;
+   await snapshotPromise;
    const matches=snapshot.filter(validate);
    if(matches.length){
     show(matches,'saved official-source snapshot');
@@ -139,7 +140,7 @@ if(kind==='trade-ledger'){
    }else status('trade-status','The public trade API is unavailable or rate-limited for this selection. No trade value is inferred; use the official query link.');
   }
  };
- fetchJson('data/trade-ledger.json',5000).then(d=>{
+ const snapshotPromise=fetchJson('data/trade-ledger.json',5000).then(d=>{
    if(Array.isArray(d.items))snapshot=d.items.filter(x=>x&&Number.isFinite(x.value_usd)).map(x=>({
     ...x,primaryValue:x.value_usd,refYear:x.year,flowCode:x.flow,cmdCode:x.commodity,partnerCode:x.partner,
     reporterCode:699,partnerDesc:x.partner_label,cmdDesc:x.commodity_label
