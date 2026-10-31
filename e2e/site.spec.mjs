@@ -75,7 +75,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   expect(width).toBeLessThanOrEqual(392);
   await page.getByRole('link', { name: 'About', exact: true }).first().click();
   await expect(page).toHaveURL(/about\.html$/);
-  await expect(page.getByRole('heading', { name: /India.s decisions/i })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: /record matters/i })).toBeVisible();
 });
 
 for (const path of ['/', '/about.html', '/publication-guide.html']) {
