@@ -169,6 +169,22 @@ def side_story(post, idx):
     return f'''<article class="rail-story"><div class="rail-meta"><span>{escape(post['category'])}</span><time class="rail-date" datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
       <h3><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h3><p>{escape(post['description'])}</p></article>'''
 
+def attach_publication_shell(html, site_url):
+    """Build one shared responsive menu and editorial footer on every route."""
+    url = site_url.rstrip('/') + '/'
+    menu = (BASE/'site'/'_mobile-nav.html').read_text(encoding='utf-8').replace('<!--SITE_URL-->', escape(url))
+    footer = (BASE/'site'/'_publication-footer.html').read_text(encoding='utf-8').replace('<!--SITE_URL-->', escape(url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    html, count = re.subn(r'(<header\b[^>]*>)', lambda match: match.group(1)+'\n'+menu.split('<!-- After the header, the fullscreen menu becomes its own focusable landmark. -->')[0], html, count=1)
+    if count != 1:
+        raise ValueError('Shared mobile header needs one document header')
+    overlay = menu.split('<!-- After the header, the fullscreen menu becomes its own focusable landmark. -->',1)[1]
+    html = html.replace('</header>', '</header>\n'+overlay, 1)
+    html, count = re.subn(r'<footer\b[^>]*>[\s\S]*?</footer>', lambda _: footer, html, count=1)
+    if count != 1:
+        raise ValueError('Shared editorial footer needs one document footer')
+    html = html.replace('</head>', '<link rel="stylesheet" href="mobile-shell.css">\n<script defer src="mobile-shell.js"></script>\n</head>', 1)
+    return html
+
 def render_site(posts, destination, site_url=DEFAULT_URL):
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
@@ -185,8 +201,9 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     page = page.replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
+    page = attach_publication_shell(page, site_url)
     (destination/'index.html').write_text(page, encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
+    for fname in ('styles.css','market.css','editorial.css','mobile-shell.css','mobile-shell.js','site.js','mobile-nav.js','reader.js','market-desk.js','favicon.svg','brand-masthead.png','brand-elephant.png'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -194,15 +211,19 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
         shutil.copytree(chart_dir, destination/'components', dirs_exist_ok=True)
     guide = chrome((BASE/'site'/'publication-guide.html').read_text(encoding='utf-8'))
     guide = guide.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    guide = attach_publication_shell(guide, site_url)
     (destination/'publication-guide.html').write_text(guide, encoding='utf-8')
     about = chrome((BASE/'site'/'about.html').read_text(encoding='utf-8'))
     about = about.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    about = attach_publication_shell(about, site_url)
     (destination/'about.html').write_text(about, encoding='utf-8')
     observatory = chrome((BASE/'site'/'observatory.html').read_text(encoding='utf-8'))
     observatory = observatory.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    observatory = attach_publication_shell(observatory, site_url)
     (destination/'observatory.html').write_text(observatory, encoding='utf-8')
     market = chrome((BASE/'site'/'markets.html').read_text(encoding='utf-8'))
     market = market.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    market = attach_publication_shell(market, site_url)
     (destination/'markets.html').write_text(market, encoding='utf-8')
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')

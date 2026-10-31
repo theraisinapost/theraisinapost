@@ -1,0 +1,40 @@
+<!-- Shared mobile navigation; enabled only when its accessible controller is running. -->
+<div class="mobile-headerbar" aria-label="Mobile header">
+  <button id="mobile-menu-open" class="mobile-menu-button" type="button" aria-label="Open navigation" aria-controls="mobile-menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+  </button>
+  <a class="mobile-headerbrand" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-masthead.png" alt="The Raisina Post" width="1250" height="234"></a>
+  <a class="mobile-header-subscribe" href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a>
+</div>
+<!-- After the header, the fullscreen menu becomes its own focusable landmark. -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true" inert>
+  <div class="mobile-menu-inner">
+    <div class="mobile-menu-top">
+      <a class="mobile-menu-brand" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-masthead.png" alt="The Raisina Post" width="1250" height="234"></a>
+      <button class="mobile-menu-close" type="button" aria-label="Close navigation" data-menu-close>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-content">
+      <nav class="mobile-menu-primary" aria-label="Read">
+        <p class="mobile-menu-label">Read</p>
+        <a href="<!--SITE_URL-->">Front page</a>
+        <a href="<!--SITE_URL-->?section=The+Power+Brief#archive">The Power Brief</a>
+        <a href="<!--SITE_URL-->?section=Business#archive">Business</a>
+        <a href="<!--SITE_URL-->?section=Governance#archive">Governance</a>
+      </nav>
+      <nav class="mobile-menu-secondary" aria-label="Explore the publication">
+        <p class="mobile-menu-label">Explore</p>
+        <a href="markets.html">Market desk</a>
+        <a href="observatory.html">The Observatory</a>
+        <a href="about.html">About us</a>
+        <a href="publication-guide.html">Editorial guide</a>
+      </nav>
+    </div>
+    <div class="mobile-menu-bottom">
+      <p>Independent reporting on the decisions shaping India and the world.</p>
+      <a href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer" class="mobile-menu-subscribe">Subscribe to The Raisina Post</a>
+      <span>New Delhi · India</span>
+    </div>
+  </div>
+</div>

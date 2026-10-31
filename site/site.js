@@ -6,7 +6,8 @@
   const label = document.getElementById('result-label');
   const empty = document.getElementById('empty-state');
   const clear = document.getElementById('clear-filters');
-  let category = 'All';
+  const requestedCategory = new URLSearchParams(window.location.search).get('section');
+  let category = buttons.some(button => button.dataset.filter === requestedCategory) ? requestedCategory : 'All';
   const normalize = value => (value || '').toLocaleLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
   function applyFilters() {
     if (!search) return;
