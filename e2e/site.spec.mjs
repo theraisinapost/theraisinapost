@@ -141,3 +141,23 @@ test('markets page reports unavailable annual data without imaginary numbers',as
   await expect(page.locator('#macro-gdp-value')).toHaveText('—');
   await expect(page.locator('#macro-status')).toContainText('unavailable');
 });
+
+test('minimal editorial typography and fewer rules are applied on all five pages',async ({page})=>{
+  for(const path of ['/','/markets.html','/observatory.html','/about.html','/publication-guide.html']){
+    await page.goto(path,{waitUntil:'domcontentloaded'});
+    await expect(page.locator('link[href="editorial.css"]')).toHaveCount(1);
+    const fonts=await page.evaluate(()=>getComputedStyle(document.body).fontFamily);
+    expect(fonts).toContain('Inter');
+    const line=page.locator('.section-bar, .obs-section-title').first();
+    if(await line.count()){
+      const border=await line.evaluate(el=>getComputedStyle(el).borderTopStyle);
+      expect(border).toBe('none');
+    }
+  }
+  await page.goto('/markets.html',{waitUntil:'domcontentloaded'});
+  const panelBorder=await page.locator('.market-panel').first().evaluate(el=>getComputedStyle(el).borderTopStyle);
+  expect(panelBorder).toBe('none');
+  await page.setViewportSize({width:390,height:844});
+  await page.reload({waitUntil:'domcontentloaded'});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
