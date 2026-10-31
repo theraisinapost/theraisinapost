@@ -142,6 +142,11 @@
     }
   });
   document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && dialog.open) {
+      event.preventDefault();
+      dialog.close();
+      return;
+    }
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
       if (dialog.open) dialog.close(); else openPalette();
