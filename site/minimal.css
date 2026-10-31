@@ -101,12 +101,11 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
  background:var(--surface);border:0;border-radius:8px;padding:22px 20px;min-width:0;
 }
 .obs-metrics strong{font:550 clamp(23px,3vw,35px)/1.2 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
-.obs-signal,.obs-discover,.obs-queue{padding-top:94px}
+.obs-signal,.obs-discover{padding-top:94px}
 .obs-panels{gap:34px}
 .obs-story{border-color:#f0f0f0;padding:24px 0}
 .obs-story h3{font:550 clamp(18px,2vw,23px)/1.42 var(--sans);letter-spacing:-.025em}
 .obs-story-meta span{color:#545454}
-.obs-queue-item{border-color:#f0f0f0}
 /* Markets — true bento groups with airy space instead of grid lines. */
 .market-desk{padding-top:71px}
 .market-intro h1{font:550 clamp(39px,5vw,61px)/1.15 var(--sans);letter-spacing:-.05em;margin-bottom:16px}
@@ -196,7 +195,7 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
  .archive,.desk-section{padding-top:73px}
  .newsletter{margin-top:66px;padding:28px}
  .obs-main{padding-top:47px}
- .obs-signal,.obs-discover,.obs-queue{padding-top:66px}
+ .obs-signal,.obs-discover{padding-top:66px}
  .market-desk{padding-top:43px}
  .market-live,.market-macro,.market-context,.commodities-section,
  .commodity-benchmarks,.reference-fx,.economic-events{padding-top:54px}
