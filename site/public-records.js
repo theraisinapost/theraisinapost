@@ -160,7 +160,7 @@ if(kind==='public-money'){
   view.forEach(r=>rows.push([r.label,r.values[a].toFixed(2),r.values[b].toFixed(2),
    r.values[a]===0?'':((r.values[b]-r.values[a])/r.values[a]*100).toFixed(2),dataset.source].map(quote).join(',')));
   const href=URL.createObjectURL(new Blob([rows.join('\r\n')+'\r\n'],{type:'text/csv;charset=utf-8'}));
-  const a=node('a');a.href=href;a.download='raisina-public-money-budget-2026-27.csv';document.body.append(a);a.click();a.remove();
+  const anchor=node('a');anchor.href=href;anchor.download='raisina-public-money-budget-2026-27.csv';document.body.append(anchor);anchor.click();anchor.remove();
   setTimeout(()=>URL.revokeObjectURL(href),1000);
  };
  const render=()=>{
