@@ -78,11 +78,11 @@
 /* Scroll reveals are enhancement-only: content stays visible without JS,
    IntersectionObserver, or when reduced motion is requested. */
 .motion-pending{
- opacity:0;transform:translate3d(0,12px,0);
- transition:opacity .62s var(--motion-fluid),transform .68s var(--motion-fluid);
+ transform:translate3d(0,10px,0);
+ transition:transform .6s var(--motion-fluid);
  transition-delay:var(--motion-delay,0ms);
 }
-.motion-pending.motion-visible{opacity:1;transform:translate3d(0,0,0)}
+.motion-pending.motion-visible{transform:translate3d(0,0,0)}
 /* Compact watch: numerals remain readable and the dial clears the city line. */
 @media(max-width:780px){
  .mast-grid .analog-clock{width:74px;height:74px;--dial-radius:30px}
