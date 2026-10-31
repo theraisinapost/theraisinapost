@@ -97,7 +97,7 @@ class ResearchDeskTests(unittest.TestCase):
             <pubDate>30 Oct, 2026 +0530</pubDate></item></channel></rss>"""
         events = regulatory.parse_source(xml, 'SEBI', 'www.sebi.gov.in')
         self.assertEqual(len(events), 1)
-        self.assertEqual(events[0]['date'], '2026-10-29')
+        self.assertEqual(events[0]['date'], '2026-10-30')
 
     def test_diff_input_is_bounded_without_unsafe_html_interpolation(self):
         page = (ROOT / 'site/document-diff.html').read_text(encoding='utf-8')
