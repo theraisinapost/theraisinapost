@@ -1,0 +1,90 @@
+/* The Raisina Post | Institutional About page. Calm, type-led, mobile-first. */
+.about-page{padding-top:0;padding-bottom:90px;color:#171717}
+.about-page a{color:inherit;text-decoration:none}
+.about-page a:focus-visible{outline:2px solid #171717;outline-offset:4px}
+.about-hero{padding:73px 0 92px;border-bottom:1px solid #eaeaea}
+.about-overline{display:flex;flex-wrap:wrap;gap:15px;justify-content:space-between;color:#737373;font:550 10px/1.5 "Inter",Arial,sans-serif;letter-spacing:.07em;text-transform:uppercase}
+.about-hero h1{max-width:1000px;font:550 clamp(48px,6.55vw,93px)/1.095 "Inter",Arial,sans-serif;letter-spacing:-.065em;color:#171717;margin:51px 0 45px}
+.about-hero h1 em{font-style:normal;color:#858585}
+.about-hero-bottom{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,.78fr);gap:72px;align-items:start}
+.about-hero .about-lead{font:450 clamp(17px,1.9vw,23px)/1.62 "Inter",Arial,sans-serif;color:#242424;letter-spacing:-.026em;margin:0;max-width:760px}
+.about-hero-note{font:400 12px/1.85 "Inter",Arial,sans-serif;color:#666;margin:5px 0 0;max-width:260px}
+.about-statement,.about-principles,.about-research,.about-independence{display:grid;grid-template-columns:230px minmax(0,1fr);gap:68px;align-items:start;padding:100px 0 95px;border-bottom:1px solid #ebebeb}
+.about-section-label{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.about-section-index{font:500 11px/1.5 "Inter",Arial,sans-serif;letter-spacing:.035em;color:#919191}
+.about-section-label h2{font:550 13px/1.6 "Inter",Arial,sans-serif;letter-spacing:-.015em;margin:0;color:#2a2a2a}
+.about-statement-body,.about-principles-content,.about-independence-body{max-width:735px}
+.about-statement-body p,.about-independence-body p{font:400 14px/1.9 "Inter",Arial,sans-serif;color:#595959;margin:0 0 21px}
+.about-statement-body p.about-large,.about-independence-body p.about-large{font:500 clamp(25px,2.75vw,37px)/1.4 "Inter",Arial,sans-serif;letter-spacing:-.046em;color:#252525;margin:0 0 34px;max-width:650px}
+.about-coverage{padding:100px 0 106px;border-bottom:1px solid #ebebeb}
+.about-coverage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:43px}
+.about-beat{background:#f9f9f9;border-radius:8px;padding:27px 24px 27px;min-height:312px;display:flex;flex-direction:column;align-items:start}
+.about-beat-top{display:flex;justify-content:space-between;width:100%;gap:10px;color:#898989;font:500 10px/1.5 "Inter",Arial,sans-serif}
+.about-beat h3{font:550 21px/1.35 "Inter",Arial,sans-serif;letter-spacing:-.045em;margin:52px 0 15px}
+.about-beat p{font:400 12px/1.75 "Inter",Arial,sans-serif;color:#646464;margin:0 0 25px}
+.about-beat a{margin-top:auto;font:550 11px/1.7 "Inter",Arial,sans-serif;border-bottom:1px solid #777;padding-bottom:2px}
+.about-beat a:hover{color:#888;border-color:#aaa}
+.about-principles-intro{font:500 clamp(23px,2.55vw,33px)/1.47 "Inter",Arial,sans-serif;letter-spacing:-.039em;color:#222;max-width:590px;margin:0 0 52px}
+.about-principle{display:grid;grid-template-columns:42px minmax(0,1fr);gap:22px;padding:28px 0;border-top:1px solid #ededed}
+.about-principle-number{color:#999;font:500 11px/1.6 "Inter",Arial,sans-serif}
+.about-principle h3{font:550 16px/1.5 "Inter",Arial,sans-serif;letter-spacing:-.025em;margin:0 0 7px}
+.about-principle p{font:400 12px/1.85 "Inter",Arial,sans-serif;color:#626262;margin:0;max-width:600px}
+.about-text-link{display:inline-block;font:550 12px/1.8 "Inter",Arial,sans-serif;border-bottom:1px solid #9a9a9a;padding-bottom:2px;margin-top:22px}
+.about-text-link:hover{border-color:#171717}
+.about-research-intro h3{font:500 clamp(25px,2.7vw,37px)/1.35 "Inter",Arial,sans-serif;letter-spacing:-.045em;margin:0 0 19px}
+.about-research-intro p{font:400 13px/1.85 "Inter",Arial,sans-serif;color:#646464;max-width:610px;margin:0 0 33px}
+.about-research-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.about-research-links a{border-radius:8px;background:#f9f9f9;padding:24px;display:flex;flex-direction:column;gap:8px;min-height:112px}
+.about-research-links a:hover{background:#f3f3f3}
+.about-research-links span{font:550 14px/1.5 "Inter",Arial,sans-serif;letter-spacing:-.018em}
+.about-research-links small{font:400 11px/1.5 "Inter",Arial,sans-serif;color:#777}
+.about-independence-body a{text-decoration:underline;text-decoration-color:#bbb;text-underline-offset:3px}
+.about-independence-body a:hover{text-decoration-color:#171717}
+.about-endnote{background:#f9f9f9;border-radius:8px;padding:48px 52px;margin-top:92px;display:flex;justify-content:space-between;gap:35px;min-height:326px;overflow:hidden}
+.about-endnote-copy{max-width:680px;align-self:center}
+.about-endnote h2{font:550 clamp(29px,3.2vw,46px)/1.24 "Inter",Arial,sans-serif;letter-spacing:-.048em;color:#222;margin:16px 0}
+.about-endnote p:not(.about-section-index){font:400 13px/1.8 "Inter",Arial,sans-serif;color:#626262;margin:0 0 25px}
+.about-endnote-links{display:flex;gap:25px;flex-wrap:wrap}
+.about-endnote-links a{font:550 12px/1.8 "Inter",Arial,sans-serif;border-bottom:1px solid #777;padding-bottom:3px}
+.about-endnote-links a:hover{color:#777}
+.about-endnote-mark{flex:0 0 160px;align-self:center;display:grid;place-items:center;opacity:.28}
+.about-endnote-mark img{width:100%;max-height:160px;object-fit:contain;filter:grayscale(100%)}
+.about-contact-note{font:400 11px/1.7 "Inter",Arial,sans-serif;color:#888;margin:25px 0 0}
+.about-contact-note a{text-decoration:underline;text-decoration-color:#bbb;text-underline-offset:2px}
+@media(max-width:950px){
+ .about-statement,.about-principles,.about-research,.about-independence{grid-template-columns:180px minmax(0,1fr);gap:36px}
+ .about-hero-bottom{gap:35px}
+ .about-beat{min-height:350px}
+}
+@media(max-width:780px){
+ .about-hero{padding:55px 0 70px}
+ .about-hero h1{font-size:clamp(45px,8vw,66px);margin:40px 0 30px}
+ .about-hero-bottom{grid-template-columns:1fr;gap:20px}
+ .about-hero-note{max-width:520px}
+ .about-statement,.about-principles,.about-research,.about-independence{grid-template-columns:1fr;gap:35px;padding:70px 0}
+ .about-coverage{padding:70px 0}
+ .about-coverage-grid{gap:10px}
+ .about-beat{padding:23px 17px;min-height:335px}
+ .about-beat h3{font-size:19px}
+}
+@media(max-width:620px){
+ .about-hero{padding:45px 0 54px}
+ .about-overline{gap:6px;flex-direction:column;font-size:9px}
+ .about-hero h1{font-size:clamp(40px,10.1vw,55px);letter-spacing:-.06em;margin:35px 0 25px}
+ .about-hero .about-lead{font-size:17px}
+ .about-statement,.about-principles,.about-research,.about-independence,.about-coverage{padding:56px 0 60px}
+ .about-section-label h2{font-size:12px}
+ .about-statement-body p.about-large,.about-independence-body p.about-large{font-size:27px;margin-bottom:24px}
+ .about-coverage-grid{grid-template-columns:1fr;gap:9px;margin-top:26px}
+ .about-beat{min-height:0;padding:22px 22px 25px}
+ .about-beat h3{margin:25px 0 12px;font-size:20px}
+ .about-principles-intro{font-size:25px;margin-bottom:29px}
+ .about-principle{grid-template-columns:24px 1fr;gap:17px;padding:23px 0}
+ .about-research-links{grid-template-columns:1fr;gap:8px}
+ .about-research-links a{min-height:90px;padding:18px}
+ .about-endnote{padding:29px 23px;margin-top:54px;min-height:0}
+ .about-endnote h2{font-size:31px}
+ .about-endnote-mark{display:none}
+ .about-contact-note{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){.about-beat a,.about-research-links a{transition:none}}
