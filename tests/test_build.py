@@ -225,20 +225,39 @@ class TestFeed(unittest.TestCase):
    sitemap=(out/'sitemap.xml').read_text(encoding='utf-8')
    self.assertIn('href="observatory.html"',home)
    self.assertIn('data-open-palette',home)
-   self.assertIn('data-save-story=',home)
+   self.assertNotIn('data-save-story=',home)
    self.assertIn('id="obs-pulse"',room)
    self.assertIn('id="obs-story-list"',room)
-   self.assertIn('id="obs-queue-list"',room)
+   self.assertNotIn('id="obs-queue-list"',room)
    self.assertIn('id="obs-search"',room)
-   self.assertIn('id="obs-random"',room)
+   self.assertNotIn('id="obs-random"',room)
    self.assertIn('observatory.html',sitemap)
    self.assertIn('posts.json',reader)
-   self.assertIn('localStorage',reader)
+   self.assertNotIn('localStorage',reader)
    self.assertIn('getPosts()',reader)
-   self.assertIn('Math.random()',reader)
+   self.assertNotIn('Math.random()',reader)
    self.assertIn('Array.isArray(data.articles)',reader)
    self.assertIn('raisinapost\\.substack\\.com',reader)
    self.assertNotIn('<!--SITE_URL-->',room)
+
+
+ def test_articles_link_directly_without_redundant_action_buttons(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   room=(out/'observatory.html').read_text(encoding='utf-8')
+   js=(out/'reader.js').read_text(encoding='utf-8')
+   self.assertIn('<h2><a href="https://raisinapost.substack.com/p/',home)
+   self.assertIn('<h3><a href="https://raisinapost.substack.com/p/',home)
+   self.assertIn('class="article-media"',home)
+   for marker in ('story-actions','lead-actions','story-save','share-trigger','data-share-url=','data-save-story=','Read dispatch','Read article'):
+    self.assertNotIn(marker,home,marker)
+   for marker in ('obs-saved-count','obs-saved-only','obs-queue-list','obs-random'):
+    self.assertNotIn(marker,room,marker)
+   for marker in ('STORAGE_KEY','toggleSaved','refreshSavedButtons','renderQueue','savedOnly','Math.random()'):
+    self.assertNotIn(marker,js,marker)
 
  def test_market_desk_has_real_sources_and_no_fabricated_market_prices(self):
   posts=build.parse_feed(FEED)
@@ -300,7 +319,7 @@ class TestFeed(unittest.TestCase):
    self.assertIn('font-variant-numeric:tabular-nums',minimal)
    home=(out/'index.html').read_text(encoding='utf-8')
    market=(out/'markets.html').read_text(encoding='utf-8')
-   self.assertIn('data-share-url=',home)
+   self.assertNotIn('data-share-url=',home)
    self.assertIn('TVC:USOIL',market)
    self.assertIn('id="spot-gold-value"',market)
    self.assertIn('id="macro-gdp-value"',market)
@@ -358,8 +377,8 @@ class TestFeed(unittest.TestCase):
    policy=json.loads((out/'data'/'dpdp-timeline.json').read_text(encoding='utf-8'))
    self.assertIn('href="ownership-atlas.html"',home)
    self.assertIn('href="policy-timeline.html"',home)
-   self.assertIn('src="share-ui.js"',home)
-   self.assertIn('data-share-url=',home)
+   self.assertNotIn('src="share-ui.js"',home)
+   self.assertNotIn('data-share-url=',home)
    self.assertIn('Ownership atlas',atlas)
    self.assertIn('cytoscape.min.js',atlas)
    self.assertIn('id="owner-list"',atlas)
