@@ -1,8 +1,8 @@
 {
-  "status": "partial",
-  "checked_at": "2026-10-31T18:20:16Z",
+  "status": "stale",
+  "checked_at": "2026-10-31T18:26:34Z",
   "dataset": "https://huggingface.co/datasets/opensansad/lok-sabha-qa",
-  "notice": "One real, explicitly attributed example from the published OpenSansad dataset card. This is NOT a recent or comprehensive parliamentary questions index; upstream refresh is unavailable until confirmed.",
+  "notice": "Both the public dataset service and Digital Sansad API were unavailable. Retained older source-verified metadata if present. No missing questions invented.",
   "items": [
     {
       "subject": "Role of NGOs in Welfare of Women and Children",

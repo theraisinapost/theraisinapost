@@ -1,6 +1,6 @@
 {
   "status": "partial",
-  "checked_at": "2026-10-31T18:20:16Z",
+  "checked_at": "2026-10-31T18:26:34Z",
   "source": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
   "notice": "Validated India reporter, annual TOTAL merchandise preview data for 2024–2025, selected partners and imports/exports only. No inference from missing values. Partial snapshots may retain older observed records.",
   "items": [
@@ -12,6 +12,24 @@
       "commodity": "TOTAL",
       "commodity_label": "All merchandise",
       "value_usd": 752731081941.054
+    },
+    {
+      "year": 2025,
+      "partner": "156",
+      "partner_label": "China",
+      "flow": "X",
+      "commodity": "TOTAL",
+      "commodity_label": "All merchandise",
+      "value_usd": 18085971449.002
+    },
+    {
+      "year": 2025,
+      "partner": "50",
+      "partner_label": "Bangladesh",
+      "flow": "M",
+      "commodity": "TOTAL",
+      "commodity_label": "All merchandise",
+      "value_usd": 1733517713.389
     },
     {
       "year": 2025,
@@ -30,6 +48,24 @@
       "commodity": "TOTAL",
       "commodity_label": "All merchandise",
       "value_usd": 697745120144.984
+    },
+    {
+      "year": 2024,
+      "partner": "156",
+      "partner_label": "China",
+      "flow": "X",
+      "commodity": "TOTAL",
+      "commodity_label": "All merchandise",
+      "value_usd": 14899427449.817
+    },
+    {
+      "year": 2024,
+      "partner": "50",
+      "partner_label": "Bangladesh",
+      "flow": "M",
+      "commodity": "TOTAL",
+      "commodity_label": "All merchandise",
+      "value_usd": 1861918144.156
     },
     {
       "year": 2024,
