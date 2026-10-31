@@ -148,3 +148,24 @@ This is frontend-only and runs on GitHub Pages with no new hosting, secrets, cre
 All seven pages share a single **Inter** font via Google Fonts with a system fallback. The builder appends `site/minimal.css` after the legacy styles so its design tokens consistently win: white canvas, `#171717` primary ink, `#434343` secondary ink, `#595959` muted text, **`#f9f9f9` surfaces and 8px card corners**. Headings use a calmer size/weight hierarchy, buttons are black, visual separators are minimal and the mobile navigation is more compact. Bento treatment is reserved for data summaries, contextual links, newsletter and research tools. News story lists remain editorial and unboxed. The original RSS, analytics opt-in, charts, commodities, navigation and source citations are unchanged.
 
 Modify the final design layer `site/minimal.css` rather than introducing one-off styles across templates. Existing source file names and HTML anchors remain stable.
+
+
+## Research desk expansion (October 2026)
+
+Four separate research tools are built as static pages and linked from the homepage, footer and command palette. They use the existing Inter, white, #f9f9f9 and 8px component system.
+
+- **Policy monitor** (`policy-monitor.html`): the deployment workflow calls `scripts/regulatory.py` after the site build to fetch official [SEBI RSS](https://www.sebi.gov.in/rss.html) and [PIB English RSS](https://www.pib.gov.in/ViewRss.aspx?lang=1&reg=3). Only dated entries linked to the two official domains are retained. Titles and excerpts are official metadata, not independent fact-checking or summaries of legal effect. Each source is explicitly marked unavailable if it cannot be fetched; no synthetic alerts are inserted. Offline builds include an empty, labelled placeholder.
+- **India in data** (`india-data.html`): six annual World Bank India time series are fetched through its public Indicators API. Selectors cover GDP growth, annual CPI inflation, manufacturing share of GDP, exports share of GDP, net FDI inflows as a GDP share and modelled ILO unemployment. Numbers are displayed with reference years, historical plots and links to the source indicator. These are **annual WDI observations**, not the official monthly national CPI or high-frequency economic releases.
+- **Release calendar** (`release-calendar.html`): a manually checked subset of 25 dates in the [official MoSPI 2026–27 advance release calendar, updated 25 May 2026](https://www.mospi.gov.in/uploads/documents/releaseCalender/1779709510470-ADVANCE%20RELEASE%20CALENDAR%202026-27%20Updated%2025.05.2026.pdf). All entries remain labelled **scheduled**, even after the planned date passes. This dataset requires manual revision whenever MoSPI publishes a revised calendar; it is not an unverified date prediction.
+- **Document comparison** (`document-diff.html`): line-based comparison entirely in the visitor's browser. Text stays local and is inserted with DOM text nodes rather than HTML. Limit: 350 lines and 120,000 characters per version. It is not a PDF OCR service, proof of authenticity, or a legal reading of the edits.
+
+### Offline verification
+
+Run `python -m unittest discover -s tests -v` and `npm run test:e2e` using the existing documented build process. The separate `tests/test_research_desk.py` checks publishability, source labels and feed URL validation. Browser tests exercise search/filtering, chart rendering, release-label semantics and escaping of pasted content. No live external financial values are hard-coded in tests or production.
+
+### Source and failure policy
+
+- A source refresh records its check time; failed providers are labelled unavailable rather than silently replaced with fabricated data.
+- The public PDF calendar is **not automatically scraped**: changes are reviewed against the latest ministry record, then `site/data/release-calendar.json` is updated in a source-linked commit.
+- Economic observations may be missing or revised. World Bank API failures keep values blank and link to the original indicator.
+- This remains a fully static GitHub Pages site. It does not require a server, authentication, persistent reader storage or a new paid data supplier.
