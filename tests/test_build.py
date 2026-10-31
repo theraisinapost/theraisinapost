@@ -445,8 +445,6 @@ class TestFeed(unittest.TestCase):
    self.assertIn("https://api.frankfurter.dev/v2/rates",source)
    self.assertNotIn('₹85,000',market)
 
-if __name__=='__main__':unittest.main()
-
  def test_smooth_clock_and_motion_enhancements_have_safe_static_fallback(self):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
@@ -466,3 +464,5 @@ if __name__=='__main__':unittest.main()
    self.assertIn('synchronizeHands',clock)
    self.assertIn('visibilitychange',clock)
    self.assertIn('IntersectionObserver',reveal)
+
+if __name__=='__main__':unittest.main()
