@@ -38,7 +38,7 @@ export async function renderEditorialChart({
   const chart = Plot.plot({
     width: Math.max(320, Math.min(840, container.clientWidth || 700)),
     height: 290, marginLeft: 54, marginBottom: 50,
-    style: { background: 'transparent', fontFamily: 'Inter, system-ui, sans-serif', color: '#222' },
+    style: { background: 'transparent', fontFamily: 'Geist, system-ui, sans-serif', color: '#222' },
     x: { label: null },
     y: { grid: true, label: unit || null },
     marks: [Plot.ruleY([0], { stroke: '#e5e5e5' }), mark]

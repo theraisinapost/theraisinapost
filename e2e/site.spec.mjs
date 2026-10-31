@@ -147,7 +147,9 @@ test('minimal editorial typography and fewer rules are applied on all five pages
     await page.goto(path,{waitUntil:'domcontentloaded'});
     await expect(page.locator('link[href="editorial.css"]')).toHaveCount(1);
     const fonts=await page.evaluate(()=>getComputedStyle(document.body).fontFamily);
-    expect(fonts).toContain('Inter');
+    expect(fonts).toContain('Geist');
+    const headline=await page.locator('h1').first().evaluate(el=>getComputedStyle(el).fontFamily);
+    expect(headline).toContain('Instrument Serif');
     const line=page.locator('.section-bar, .obs-section-title').first();
     if(await line.count()){
       const border=await line.evaluate(el=>getComputedStyle(el).borderTopStyle);
@@ -157,6 +159,8 @@ test('minimal editorial typography and fewer rules are applied on all five pages
   await page.goto('/markets.html',{waitUntil:'domcontentloaded'});
   const panelBorder=await page.locator('.market-panel').first().evaluate(el=>getComputedStyle(el).borderTopStyle);
   expect(panelBorder).toBe('none');
+  const metricsFont=await page.locator('#macro-gdp-value').evaluate(el=>getComputedStyle(el).fontFamily);
+  expect(metricsFont).toContain('Geist');
   await page.setViewportSize({width:390,height:844});
   await page.reload({waitUntil:'domcontentloaded'});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
