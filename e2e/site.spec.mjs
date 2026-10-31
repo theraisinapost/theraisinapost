@@ -160,28 +160,34 @@ test('markets page reports unavailable annual data without imaginary numbers',as
   await expect(page.locator('#macro-status')).toContainText('unavailable');
 });
 
-test('minimal editorial typography and fewer rules are applied on all five pages',async ({page})=>{
-  for(const path of ['/','/markets.html','/observatory.html','/about.html','/publication-guide.html']){
-    await page.goto(path,{waitUntil:'domcontentloaded'});
-    await expect(page.locator('link[href="editorial.css"]')).toHaveCount(1);
-    const fonts=await page.evaluate(()=>getComputedStyle(document.body).fontFamily);
-    expect(fonts).toContain('Geist');
-    const headline=await page.locator('h1').first().evaluate(el=>getComputedStyle(el).fontFamily);
-    expect(headline).toContain('Instrument Serif');
-    const line=page.locator('.section-bar, .obs-section-title').first();
-    if(await line.count()){
-      const border=await line.evaluate(el=>getComputedStyle(el).borderTopStyle);
-      expect(border).toBe('none');
-    }
+test('all seven pages have accessible Inter typography and a quiet grayscale design',async({page})=>{
+  for(const route of ['/','/markets.html','/observatory.html','/about.html','/publication-guide.html','/ownership-atlas.html','/policy-timeline.html']){
+    await page.goto(route,{waitUntil:'domcontentloaded'});
+    await expect(page.locator('link[href="minimal.css"]')).toHaveCount(1);
+    const style=await page.evaluate(()=>{
+      const body=getComputedStyle(document.body);
+      const heading=getComputedStyle(document.querySelector('h1'));
+      return {bodyFont:body.fontFamily,headingFont:heading.fontFamily,ink:body.color,background:body.backgroundColor};
+    });
+    expect(style.bodyFont).toContain('Inter');
+    expect(style.headingFont).toContain('Inter');
+    expect(style.ink).toBe('rgb(23, 23, 23)');
+    expect(style.background).toBe('rgb(255, 255, 255)');
   }
-  await page.goto('/markets.html',{waitUntil:'domcontentloaded'});
-  const panelBorder=await page.locator('.market-panel').first().evaluate(el=>getComputedStyle(el).borderTopStyle);
-  expect(panelBorder).toBe('none');
-  const metricsFont=await page.locator('#macro-gdp-value').evaluate(el=>getComputedStyle(el).fontFamily);
-  expect(metricsFont).toContain('Geist');
+  await page.goto('/markets.html');
+  const stats=await page.locator('.commodity-stat').first().evaluate(el=>({
+    background:getComputedStyle(el).backgroundColor,
+    radius:getComputedStyle(el).borderRadius
+  }));
+  expect(stats).toEqual({background:'rgb(249, 249, 249)',radius:'8px'});
+  const fxBg=await page.locator('.fx-reference-card').first().evaluate(el=>getComputedStyle(el).backgroundColor);
+  expect(fxBg).toBe('rgb(249, 249, 249)');
+  const macroFont=await page.locator('#macro-gdp-value').evaluate(el=>getComputedStyle(el).fontFamily);
+  expect(macroFont).toContain('Inter');
   await page.setViewportSize({width:390,height:844});
   await page.reload({waitUntil:'domcontentloaded'});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+  await expect(page.locator('[data-mobile-menu-open]')).toBeVisible();
 });
 
 test('research desk publishes source-backed ownership and DPDP timeline', async ({page}) => {

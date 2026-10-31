@@ -105,7 +105,7 @@ class TestFeed(unittest.TestCase):
    self.assertIn('src="brand-masthead.png"',guide)
    self.assertNotIn('The Raisena Post',home)
 
- def test_minimal_design_has_no_redundant_labels_and_uses_red_actions(self):
+ def test_minimal_design_has_no_redundant_labels_and_uses_monochrome_actions(self):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
    out=Path(d)/'dist'
@@ -123,7 +123,7 @@ class TestFeed(unittest.TestCase):
    self.assertIn('publication-guide.html#corrections',home)
    self.assertNotIn('01 / HOW WE WORK',guide)
    self.assertIn('--radius:8px',styles)
-   self.assertIn('--accent:#a41129',styles)
+   self.assertIn('--accent:#171717',styles)
    self.assertIn('opacity:.8',styles)
    self.assertIn('border-radius:var(--radius)',styles)
 
@@ -271,40 +271,40 @@ class TestFeed(unittest.TestCase):
    self.assertNotIn('<!--SITE_URL-->',market)
    self.assertNotIn('const fake',js)
 
- def test_editorial_refinement_uses_one_spacious_typography_system(self):
+ def test_sitewide_inter_and_grayscale_bento_design(self):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
    out=Path(d)/'dist'
    build.render_site(posts,out)
-   style=(out/'editorial.css').read_text(encoding='utf-8')
-   for name in ('index.html','markets.html','observatory.html','about.html','publication-guide.html'):
+   minimal=(out/'minimal.css').read_text(encoding='utf-8')
+   editorial=(out/'editorial.css').read_text(encoding='utf-8')
+   for name in ('index.html','markets.html','observatory.html','about.html','publication-guide.html','ownership-atlas.html','policy-timeline.html'):
     document=(out/name).read_text(encoding='utf-8')
     self.assertIn('href="editorial.css"',document,name)
-    self.assertIn('family=Instrument+Serif',document,name)
-    self.assertIn('family=Geist',document,name)
+    self.assertEqual(document.count('href="minimal.css"'),1,name)
+    self.assertIn('family=Inter',document,name)
+    self.assertNotIn('family=Geist',document,name)
+    self.assertNotIn('family=Instrument+Serif',document,name)
     self.assertNotIn('family=DM+Sans',document,name)
-    self.assertNotIn('family=Newsreader',document,name)
-    self.assertNotIn('family=Inter',document,name)
-   self.assertIn('--serif:"Instrument Serif"',style)
-   self.assertIn('--sans:"Geist"',style)
-   self.assertIn('.section-bar{border:0',style)
-   self.assertIn('.market-panel{border:0',style)
-   self.assertIn('.obs-section-title{border:0',style)
-   self.assertIn('.macro-cards{border:0',style)
-   self.assertIn('font-variant-numeric:tabular-nums',style)
-   self.assertIn('padding-top:119px',style)
+   self.assertIn('--serif:"Inter"',editorial)
+   self.assertIn('--sans:"Inter"',editorial)
+   self.assertIn('--accent:#171717',editorial)
+   self.assertIn('--surface:#f9f9f9',minimal)
+   self.assertIn('--radius:8px',minimal)
+   self.assertIn('.commodity-stat',minimal)
+   self.assertIn('.macro-card',minimal)
+   self.assertIn('.fx-reference-card',minimal)
+   self.assertIn('.research-teaser-grid a',minimal)
+   self.assertIn('.obs-metrics>div',minimal)
+   self.assertIn('.mobile-panel-navigation>a',minimal)
+   self.assertIn('font-variant-numeric:tabular-nums',minimal)
+   home=(out/'index.html').read_text(encoding='utf-8')
    market=(out/'markets.html').read_text(encoding='utf-8')
-   observatory=(out/'observatory.html').read_text(encoding='utf-8')
-   self.assertNotIn('01 / PRICE MONITOR',market)
-   self.assertNotIn('02 / INDIA DATA',market)
-   self.assertNotIn('03 / CONTEXT',market)
-   self.assertNotIn('01 / PUBLISHING ACTIVITY',observatory)
-   self.assertNotIn('02 / DISCOVER',observatory)
-   self.assertNotIn('03 / PERSONAL READING LIST',observatory)
-   self.assertIn('EXCHANGE QUOTES MAY BE DELAYED',market)
+   self.assertIn('data-share-url=',home)
+   self.assertIn('TVC:USOIL',market)
+   self.assertIn('id="spot-gold-value"',market)
    self.assertIn('id="macro-gdp-value"',market)
-   self.assertIn('data-macro="inflation"',market)
-
+   self.assertNotIn('01 / PRICE MONITOR',market)
 
  def test_shared_mobile_menu_and_footer_on_all_pages(self):
   posts=build.parse_feed(FEED)
