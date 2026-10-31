@@ -58,17 +58,34 @@ def is_valid_image(raw):
         return False
 
 def classify(title, description, categories):
-    # Prefer the editorial series labels used on the canonical Substack pages.
-    labels = (title + ' ' + description[:300] + ' ' + ' '.join(categories)).casefold()
-    if any(x in labels for x in ('sunday insights', 'sunday insight')):
-        return 'Sunday Insights'
-    if any(x in labels for x in ('records review', 'records-review', 'document review')):
-        return 'Records Review'
-    if any(x in labels for x in ('the power brief', 'daily power brief', 'power brief')):
+    """Classify into the three visible publication sections when evidence is clear."""
+    tags = ' '.join(categories).casefold()
+    lead = description[:240].casefold()
+    headline = title.casefold()
+    if 'the power brief' in tags or 'the power brief' in lead or 'the power brief' in headline:
         return 'The Power Brief'
-    if any(x in labels for x in ('podcast', 'the week in perspective')):
-        return 'Podcast'
-    return 'Analysis & Reports'
+    if 'governance' in tags:
+        return 'Governance'
+    if 'business' in tags:
+        return 'Business'
+    if lead.startswith(('governance |', 'governance:')):
+        return 'Governance'
+    if lead.startswith(('business |', 'business:')):
+        return 'Business'
+    # Conservative topic backfill for RSS items without section tags.
+    if any(term in headline for term in (
+        'supreme court', 'corporate courts', 'tribunal', 'nclt', 'cabinet',
+        'parliament', 'ministry', 'rail-project', 'public disclosure',
+        'electoral', 'governance'
+    )):
+        return 'Governance'
+    if any(term in headline for term in (
+        'tata', 'boardroom', 'rupee', 'shares', 'market', 'rbi',
+        'company', 'corporate ownership', 'financial', 'industry', 'economy'
+    )):
+        return 'Business'
+    return 'Reporting'
+
 
 def parse_feed(source):
     # XML itself is parsed without resolving remote entities.

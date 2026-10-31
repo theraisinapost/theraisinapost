@@ -21,7 +21,7 @@ class TestFeed(unittest.TestCase):
   self.assertEqual(len(posts),2)
   self.assertEqual(posts[0]['title'],'India & policy <strong>')
   self.assertEqual(posts[0]['category'],'The Power Brief')
-  self.assertEqual(posts[1]['category'],'Sunday Insights')
+  self.assertEqual(posts[1]['category'],'Reporting')
   self.assertEqual(posts[0]['date'],'30 October 2026')
 
  def test_build_escapes_rss_content_and_links(self):
@@ -158,13 +158,15 @@ class TestFeed(unittest.TestCase):
    self.assertIn('Asia/Kolkata',js)
 
 
- def test_records_review_is_recognised_as_a_real_substack_series(self):
-  self.assertEqual(build.classify('Who owns Tata?', 'Records review | 30 October 2026 | Board vote', []),'Records Review')
-  self.assertEqual(build.classify('Railways', 'Public project figures', ['Records Review']),'Records Review')
-  self.assertEqual(build.classify('The Power Brief', 'Morning report', []),'The Power Brief')
-  self.assertEqual(build.classify('Unemployment', 'Sunday Insights | Labour statistics', []),'Sunday Insights')
+ def test_current_substack_sections_are_available(self):
+  self.assertEqual(build.classify('Daily news', 'The Power Brief | Today', []),'The Power Brief')
+  self.assertEqual(build.classify('Who Owns Tata?', 'Records review', []),'Business')
+  self.assertEqual(build.classify("Who Controls India's Corporate Courts?", 'Document analysis', []),'Governance')
+  self.assertEqual(build.classify('Industry report', 'Latest news', ['Business']),'Business')
+  self.assertEqual(build.classify('Policy review', 'Latest news', ['Governance']),'Governance')
+  self.assertEqual(build.classify('Historic essay', 'Sunday Insights | Earlier series', []),'Reporting')
 
- def test_deep_policy_pages_about_and_navigation(self):
+ def test_menu_matches_substack_and_pages_have_only_weather_emoji(self):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
    out=Path(d)/'dist'
@@ -172,29 +174,30 @@ class TestFeed(unittest.TestCase):
    home=(out/'index.html').read_text(encoding='utf-8')
    guide=(out/'publication-guide.html').read_text(encoding='utf-8')
    about=(out/'about.html').read_text(encoding='utf-8')
-   sitemap=(out/'sitemap.xml').read_text(encoding='utf-8')
-   self.assertIn('data-nav-filter="Records Review"',home)
-   self.assertIn('data-filter="Records Review"',home)
-   self.assertIn('raisinapost.substack.com/newsletters',home)
-   self.assertIn('href="about.html"',home)
-   self.assertIn('raisinapost.substack.com/p/editorial-policy',guide)
+   css=(out/'styles.css').read_text(encoding='utf-8')
+   nav=home.split('<div class="nav-links">')[1].split('</div>')[0]
+   for label in ('Home','The Power Brief','Business','Governance','Editorial policy','About'):
+    self.assertIn(label,nav)
+   for label in ('Sunday Insights','Records Review','Visual Explainers','Podcast','Audio'):
+    self.assertNotIn(label,nav)
+    self.assertNotIn(label,guide)
+    self.assertNotIn(label,about)
+   for category in ('The Power Brief','Business','Governance'):
+    self.assertIn('data-filter="'+category+'"',home)
+    self.assertIn('<h3>'+category+'</h3>',about)
+    self.assertIn('<h3>'+category+'</h3>',guide)
+   self.assertIn('https://raisinapost.substack.com/p/editorial-policy',nav)
    self.assertIn('raisinapost@substack.com',guide)
+   self.assertIn('Corrections',guide)
    self.assertIn('Submissions',guide)
    self.assertIn('Rights &amp; attribution',guide)
-   self.assertIn('Alle\'s ClinX',guide)
-   self.assertIn('Records Review',guide)
-   self.assertIn('Visual Explainers',guide)
-   self.assertIn('Podcast',guide)
-   self.assertIn('Records Review',about)
-   self.assertIn('The Power Brief',about)
-   self.assertIn('Sunday Insights',about)
-   self.assertIn('Visual Explainers',about)
-   self.assertIn('© THE RAISINA POST',about)
-   self.assertIn('about.html',sitemap)
-   self.assertGreater(len(guide),12000)
-   self.assertGreater(len(about),6000)
-   for emoji in ('📰','📖','🔎','🗂️','🎙️'):
-    self.assertIn(emoji,guide)
+   self.assertIn('about.html',(out/'sitemap.xml').read_text())
+   self.assertGreater(len(guide),9500)
+   self.assertGreater(len(about),5500)
+   self.assertIn('id="weather-emoji"',home)
+   self.assertIn('"Apple Color Emoji"',css)
+   for emoji in ('📰','📖','🔎','🗂️','🎙️','📝'):
+    self.assertNotIn(emoji,home+guide+about)
    self.assertNotIn('<!--SITE_URL-->',about)
 
 if __name__=='__main__':unittest.main()
