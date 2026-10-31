@@ -101,3 +101,16 @@ Original open-source projects: [Playwright](https://github.com/microsoft/playwri
 `site/observatory.html` is a private-by-default exploration desk on top of the **same public Substack RSS index** as the homepage. It shows a rolling two-week publication-activity chart, an actual category breakdown, search and filters, and an optional reading queue stored only in the browser's localStorage. It is not full-text search, a newsroom analytics platform, or a claim about how much news happened on a given day.
 
 The small homepage action and keyboard shortcut **⌘K / Ctrl+K** open a native dialog that searches indexed article titles and relevant pages. Bookmarks are intentionally not sent to a server or synchronized across browsers. No new frontend framework, tracking SDK, or production database is used.
+
+## Market desk
+
+The site has a compact homepage market strip and a standalone `markets.html` page. Market quotes are embedded from **TradingView's official, attributed widgets** (Nifty 50, Sensex, USD/INR, gold, WTI and S&P 500). TradingView is a quote provider, **not an open-source price API**. Quotes may be delayed or unavailable; their exchange status must not be inferred from the browser's clock.
+
+The India economic panel retrieves **annual World Bank observations** directly from the public Indicators API, requiring no API key:
+- `NY.GDP.MKTP.KD.ZG` — real GDP growth, annual percent.
+- `FP.CPI.TOTL.ZG` — consumer price inflation, annual percent.
+- `NE.EXP.GNFS.ZS` — exports of goods and services, percent of GDP.
+
+Every visible number displays the **reference year**. Selecting an indicator opens its source-linked historical chart, built with the existing [Observable Plot](https://github.com/observablehq/plot) open-source library. Fetch/chart failures show explicit unavailable states; no demonstration values are published. Tests use synthetic data only inside mocks, never in the deployed pages.
+
+**Source terms:** [TradingView market widgets](https://www.tradingview.com/widget-docs/faq/data/) may be delayed and must retain attribution; [World Bank Indicators API](https://datahelpdesk.worldbank.org/knowledgebase/articles/889392) exposes published annual observations, which can be revised. This desk is for editorial context, not execution-grade quotes or investment advice.
