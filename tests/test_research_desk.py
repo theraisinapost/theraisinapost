@@ -90,6 +90,15 @@ class ResearchDeskTests(unittest.TestCase):
         events=regulatory.parse_source(rss,'SEBI','www.sebi.gov.in')
         self.assertEqual(events[0]['date'],'2026-10-31')
 
+    def test_sebi_feed_human_readable_rss_date(self):
+        import regulatory
+        xml = """<rss><channel><item><title>Official SEBI update</title>
+            <link>https://www.sebi.gov.in/legal/circulars/report.html</link>
+            <pubDate>30 Oct, 2026 +0530</pubDate></item></channel></rss>"""
+        events = regulatory.parse_source(xml, 'SEBI', 'www.sebi.gov.in')
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]['date'], '2026-10-29')
+
     def test_diff_input_is_bounded_without_unsafe_html_interpolation(self):
         page = (ROOT / 'site/document-diff.html').read_text(encoding='utf-8')
         script = (ROOT / 'site/research-desk.js').read_text(encoding='utf-8')
