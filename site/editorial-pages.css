@@ -20,13 +20,13 @@
 .editorial-document .ed-context a,.editorial-document .ed-chapter a,.editorial-document .ed-contact-primary a:not(.ed-email){text-decoration:underline;text-decoration-color:#b6b6b6;text-underline-offset:3px}
 .editorial-document .ed-layout{display:grid;grid-template-columns:235px minmax(0,1fr);gap:80px;padding:78px 0 10px}
 .editorial-document .ed-index{display:flex;flex-direction:column;align-items:flex-start;gap:15px;position:sticky;top:30px;align-self:start}
-.editorial-document .ed-index span{font:600 10px/1.5 "Inter",sans-serif;color:#999;letter-spacing:.08em;margin-bottom:13px}
+.editorial-document .ed-index span{font:600 10px/1.5 "Inter",sans-serif;color:#666;letter-spacing:.08em;margin-bottom:13px}
 .editorial-document .ed-index a{text-decoration:none;font:500 12px/1.6 "Inter",sans-serif;color:#5f5f5f}
 .editorial-document .ed-index a:hover{color:#171717}
 .editorial-document .ed-chapters{min-width:0}
 .editorial-document .ed-chapter{scroll-margin-top:45px;padding:0 0 53px;margin:0 0 55px;border-bottom:1px solid #eee;max-width:795px}
 .editorial-document .ed-chapter:last-child{border:0}
-.editorial-document .ed-chapter-index{font:550 10px/1.55 "Inter",sans-serif;color:#7a7a7a;letter-spacing:.085em;margin-bottom:18px}
+.editorial-document .ed-chapter-index{font:550 10px/1.55 "Inter",sans-serif;color:#626262;letter-spacing:.085em;margin-bottom:18px}
 .editorial-document .ed-chapter h2{font:550 clamp(24px,3vw,37px)/1.25 "Inter",sans-serif;letter-spacing:-.048em;color:#242424;margin:0 0 25px}
 .editorial-document .ed-chapter p,.editorial-document .ed-contact-primary p,.editorial-document .ed-contact-aside p{font:400 14px/1.93 "Inter",sans-serif;color:#575757;margin:0 0 18px}
 .editorial-document .ed-chapter strong{color:#252525;font-weight:600}
@@ -35,7 +35,7 @@
 .editorial-document .ed-example p{margin:8px 0 0;font-size:13px;color:#333}
 .editorial-document .ed-inline-link{display:inline-block;margin-top:8px;font:550 12px "Inter",sans-serif}
 .editorial-document .ed-closing{background:#f9f9f9;border-radius:8px;padding:53px 58px;margin-top:76px}
-.editorial-document .ed-closing>span,.editorial-document .ed-contacts-bottom article>span{font:550 10px/1.5 "Inter",sans-serif;letter-spacing:.075em;color:#737373}
+.editorial-document .ed-closing>span,.editorial-document .ed-contacts-bottom article>span{font:550 10px/1.5 "Inter",sans-serif;letter-spacing:.075em;color:#626262}
 .editorial-document .ed-closing h2{font:550 clamp(27px,4vw,46px)/1.23 "Inter",sans-serif;letter-spacing:-.05em;margin:21px 0 29px}
 .editorial-document .ed-closing>div{display:flex;flex-wrap:wrap;gap:13px 26px}
 .editorial-document .ed-closing a{font:550 12px/1.65 "Inter",sans-serif;text-decoration:none;border-bottom:1px solid #888;padding-bottom:3px}
@@ -52,7 +52,7 @@
 .editorial-document .ed-contact-aside{align-self:start;background:#f9f9f9;padding:27px 29px;border-radius:8px}
 .editorial-document .ed-contact-aside h2{font:550 16px "Inter",sans-serif;margin:0 0 22px}
 .editorial-document .ed-contact-aside>div{border-top:1px solid #e7e7e7;padding:16px 0;display:grid;grid-template-columns:27px 1fr;gap:15px}
-.editorial-document .ed-contact-aside>div span{font:500 11px "Inter",sans-serif;color:#888}
+.editorial-document .ed-contact-aside>div span{font:500 11px "Inter",sans-serif;color:#626262}
 .editorial-document .ed-contact-aside>div p{font-size:12px;line-height:1.76;margin:0}
 .editorial-document .ed-contact-aside>.ed-contact-small{margin-top:19px}
 .editorial-document .ed-contacts-bottom{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;padding:75px 0 20px}
