@@ -63,7 +63,7 @@
  transform:translateZ(0);
 }
 @media(hover:hover) and (pointer:fine){
- .research-teaser-grid a:hover,.intel-home-links a:hover{
+ .intel-home-links a:hover{
   transform:translateY(-2px);
   background:#f4f4f4;
   box-shadow:0 10px 23px rgba(20,20,20,.035);

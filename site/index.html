@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="editorial.css"><link rel="stylesheet" href="research.css">
   <script defer src="site.js"></script>
   <script defer src="reader.js"></script>
-  <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
   <title>The Raisina Post — Independent intelligence</title>
 <script defer src="mobile-nav.js"></script></head>
 <body>
@@ -65,16 +64,22 @@
   </header>
 
   <section class="market-strip wrap" aria-label="Financial market quotes">
-    <div class="market-strip-bar"><span class="market-strip-title">Markets</span><span class="market-strip-help">Exchange data may be delayed</span><a href="markets.html">Market desk</a></div>
-    <div class="market-ticker">
-      <tv-ticker-tape symbols="NSE:NIFTY,BSE:SENSEX,FX_IDC:USDINR,TVC:GOLD,TVC:USOIL,SP:SPX" color-theme="light" transparent-background="true"></tv-ticker-tape>
+    <div class="market-strip-bar">
+      <details class="market-preview" data-market-preview>
+        <summary>Market snapshot</summary>
+        <div class="market-preview-body">
+          <p class="market-disclaimer">Exchange data may be delayed. Quotes by TradingView.</p>
+          <div class="market-ticker"><tv-ticker-tape symbols="NSE:NIFTY,BSE:SENSEX,FX_IDC:USDINR,TVC:GOLD,TVC:USOIL,SP:SPX" color-theme="light" transparent-background="true"></tv-ticker-tape></div>
+          <noscript><p>Open the Market desk for source links.</p></noscript>
+        </div>
+      </details>
+      <a href="markets.html">Market desk</a>
     </div>
-    <noscript><p class="market-disclaimer">Market quotes require JavaScript. <a href="https://www.tradingview.com/symbols/NSE-NIFTY/">Nifty 50 at source</a></p></noscript>
   </section>
   <main id="main">
     <section class="intro wrap">
       <h1>The decisions shaping India.</h1>
-      <p>Independent reporting on public decisions, business and the wider world. Grounded in original sources, with attention to what is promised and what is delivered.</p>
+      <p>Independent reporting on policy and business, grounded in original sources.</p>
     </section>
 
     <section class="frontpage wrap" id="latest" aria-labelledby="latest-title">
@@ -86,7 +91,7 @@
     </section>
 
     <section class="archive wrap" id="archive" aria-labelledby="archive-title">
-      <div class="section-bar"><h2 id="archive-title">Recent editions</h2><div class="archive-extra"><button class="utility-button" type="button" data-open-palette>Search stories <kbd>⌘ K</kbd></button><a class="obs-mini-link" href="observatory.html">The Observatory</a></div></div>
+      <div class="section-bar"><h2 id="archive-title">Recent editions</h2><button class="utility-button" type="button" data-open-palette title="Search stories and pages">Search <kbd>⌘ K</kbd></button></div>
       <div class="archive-controls">
         <div class="search-shell" role="search"><svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg><label for="article-search" class="sr-only">Search articles in recent public editions</label><input id="article-search" type="search" placeholder="Search articles" autocomplete="off"></div>
         <div class="filters" role="group" aria-label="Filter by publication section"><button class="filter active" type="button" data-filter="All" aria-pressed="true">All</button><button class="filter" type="button" data-filter="The Power Brief" aria-pressed="false">The Power Brief</button><button class="filter" type="button" data-filter="Business" aria-pressed="false">Business</button><button class="filter" type="button" data-filter="Governance" aria-pressed="false">Governance</button></div>
@@ -97,14 +102,35 @@
       <a class="all-issues" href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Browse every edition on Substack </a>
     </section>
 
-    <section class="research-teaser wrap" id="research-desk" aria-label="Research desk"><div class="section-bar"><h2>Research desk</h2></div><div class="research-teaser-grid"><a href="ownership-atlas.html"><span>Corporate records</span><strong>Ownership atlas</strong><p>Disclosed shareholdings, with links to original filings.</p></a><a href="policy-timeline.html"><span>Public institutions</span><strong>Policy timeline</strong><p>Trace the passage from legislation to implementation.</p></a><a href="policy-monitor.html"><span>Institutional record</span><strong>Policy monitor</strong><p>SEBI and PIB releases, linked to the official record.</p></a><a href="india-data.html"><span>Economic research</span><strong>India in data</strong><p>Annual indicators, labelled with their reference years.</p></a><a href="release-calendar.html"><span>Publication schedule</span><strong>Release calendar</strong><p>Scheduled official statistical releases; dates may change.</p></a><a href="document-diff.html"><span>Research utility</span><strong>Document comparison</strong><p>Inspect the differences between two documents locally.</p></a></div><div class="intel-home-links" aria-label="Additional intelligence tools"><a href="parliament-file.html"><strong>Parliament file</strong><span>Search the parliamentary record</span></a><a href="data-room.html"><strong>Data room</strong><span>Compare and export economic series</span></a><a href="evidence-desk.html"><strong>Evidence desk</strong><span>Unreviewed changes to official pages</span></a><a href="question-hour.html"><strong>Question Hour</strong><span>Search parliamentary questions</span></a><a href="trade-ledger.html"><strong>Trade ledger</strong><span>Explore reported merchandise trade</span></a><a href="public-money.html"><strong>Public money</strong><span>Compare Union budget estimates</span></a></div></section>
-    <section class="desk-section wrap" aria-labelledby="desk-title">
-      <div class="section-bar"><h2 id="desk-title">The publication</h2></div>
-      <div class="desk-links">
-        <a href="editorial-policy.html"><strong>Editorial standards</strong></a>
-        <a href="about.html"><strong>About the publication</strong></a>
-        <a href="corrections.html"><strong>Corrections &amp; contact</strong></a>
+    <section class="research-teaser wrap" id="research-desk" aria-labelledby="research-title">
+      <div class="section-bar"><h2 id="research-title">Research desk</h2></div>
+      <div class="research-teaser-grid">
+        <a href="ownership-atlas.html"><strong>Ownership atlas</strong><p>Disclosed shareholdings and original filings.</p></a>
+        <a href="policy-monitor.html"><strong>Policy monitor</strong><p>Official SEBI and PIB releases.</p></a>
+        <a href="india-data.html"><strong>India in data</strong><p>Annual economic indicators, with reference years.</p></a>
       </div>
+      <details class="research-directory">
+        <summary>All research tools</summary>
+        <div class="research-directory-grid">
+          <div><h3>Public records</h3>
+            <a href="parliament-file.html">Parliament file</a>
+            <a href="question-hour.html">Question Hour</a>
+            <a href="policy-timeline.html">Policy timeline</a>
+            <a href="evidence-desk.html">Evidence desk</a>
+          </div>
+          <div><h3>Economy</h3>
+            <a href="markets.html">Markets</a>
+            <a href="data-room.html">Data room</a>
+            <a href="trade-ledger.html">Trade ledger</a>
+            <a href="public-money.html">Public money</a>
+          </div>
+          <div><h3>Reference</h3>
+            <a href="release-calendar.html">Release calendar</a>
+            <a href="document-diff.html">Document comparison</a>
+            <a href="observatory.html">The Observatory</a>
+          </div>
+        </div>
+      </details>
     </section>
 
   </main>
