@@ -7,7 +7,7 @@
  * Observable Plot: ISC license, pinned to v0.6.17 via jsDelivr.
  */
 const PLOT_URL = 'https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.17/+esm';
-const COLOR = '#a41129';
+const COLOR = '#171717';
 
 export async function renderEditorialChart({
   container, rows, xKey, yKey, title, sourceName, sourceUrl,
@@ -38,7 +38,7 @@ export async function renderEditorialChart({
   const chart = Plot.plot({
     width: Math.max(320, Math.min(840, container.clientWidth || 700)),
     height: 290, marginLeft: 54, marginBottom: 50,
-    style: { background: 'transparent', fontFamily: 'Geist, system-ui, sans-serif', color: '#222' },
+    style: { background: 'transparent', fontFamily: 'Inter, system-ui, sans-serif', color: '#222' },
     x: { label: null },
     y: { grid: true, label: unit || null },
     marks: [Plot.ruleY([0], { stroke: '#e5e5e5' }), mark]

@@ -25,10 +25,10 @@
         container:graph,elements,
         layout:{name:'concentric',concentric:n=>n.id()==='tcs'?2:1,levelWidth:()=>1,minNodeSpacing:30,spacingFactor:1.28},
         style:[
-          {selector:'node',style:{'label':'data(label)','background-color':'#fff','border-width':1,'border-color':'#bbb','color':'#222','font-family':'Geist, sans-serif','font-size':10,'text-wrap':'wrap','text-max-width':88,'width':103,'height':60,'shape':'round-rectangle','text-valign':'center','text-halign':'center'}},
-          {selector:'.focus',style:{'background-color':'#a41129','border-color':'#a41129','color':'white','font-weight':700,'font-size':16,'height':74,'width':100}},
+          {selector:'node',style:{'label':'data(label)','background-color':'#fff','border-width':1,'border-color':'#bbb','color':'#222','font-family':'Inter, sans-serif','font-size':10,'text-wrap':'wrap','text-max-width':88,'width':103,'height':60,'shape':'round-rectangle','text-valign':'center','text-halign':'center'}},
+          {selector:'.focus',style:{'background-color':'#171717','border-color':'#171717','color':'white','font-weight':700,'font-size':16,'height':74,'width':100}},
           {selector:'edge',style:{'width':1.3,'line-color':'#bbb','target-arrow-shape':'triangle','target-arrow-color':'#bbb','curve-style':'bezier','label':'data(label)','color':'#555','font-size':10,'text-background-color':'white','text-background-opacity':1,'text-background-padding':3}},
-          {selector:'node:selected',style:{'border-width':3,'border-color':'#a41129'}}
+          {selector:'node:selected',style:{'border-width':3,'border-color':'#171717'}}
         ],minZoom:.5,maxZoom:1.4
       });
       cy.on('tap','node',e=>select(owners.find(o=>o.id===e.target.id())));

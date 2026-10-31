@@ -142,3 +142,9 @@ The existing `markets.html` page includes an automated precious-metals desk, an 
 - **Economic calendar**: [TradingView's calendar widget](https://www.tradingview.com/widget-docs/widgets/calendars/economic-calendar/) is injected only when a reader presses **Show economic events**. It covers India, the US, euro area, China and the UK; times, significance and schedule may be revised.
 
 This is frontend-only and runs on GitHub Pages with no new hosting, secrets, credentials or cron tasks. The source response is refreshed periodically while the Market Desk is in the foreground. Network failure keeps values at **—** rather than substituting invented prices. External embed scripts may be blocked by a visitor's browser or the vendor, and clear source links remain available.
+
+## Quiet monochrome redesign (October 2026)
+
+All seven pages share a single **Inter** font via Google Fonts with a system fallback. The builder appends `site/minimal.css` after the legacy styles so its design tokens consistently win: white canvas, `#171717` primary ink, `#434343` secondary ink, `#595959` muted text, **`#f9f9f9` surfaces and 8px card corners**. Headings use a calmer size/weight hierarchy, buttons are black, visual separators are minimal and the mobile navigation is more compact. Bento treatment is reserved for data summaries, contextual links, newsletter and research tools. News story lists remain editorial and unboxed. The original RSS, analytics opt-in, charts, commodities, navigation and source citations are unchanged.
+
+Modify the final design layer `site/minimal.css` rather than introducing one-off styles across templates. Existing source file names and HTML anchors remain stable.

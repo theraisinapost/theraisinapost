@@ -1,4 +1,4 @@
-/* Market desk extension. White editorial design, 8px controls, crimson actions. */
+/* Market desk extension. White editorial design, one Inter family and monochrome 8px controls. */
 .market-strip{padding-top:10px;padding-bottom:9px;border-bottom:1px solid #e8e8e8}
 .market-strip-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;min-height:29px}
 .market-strip-title{font-size:11px;font-weight:700;color:#222}

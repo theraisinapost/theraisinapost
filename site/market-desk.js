@@ -79,13 +79,13 @@
       const plot = Plot.plot({
         width: Math.min(900, Math.max(320, chart.clientWidth || 680)),
         height: 290, marginLeft: 58, marginBottom: 44,
-        style: {background:'transparent', fontFamily:'Geist, sans-serif', color:'#333'},
+        style: {background:'transparent', fontFamily:'Inter, sans-serif', color:'#333'},
         x: {label:'Year', ticks:6, tickFormat: x => String(x)},
         y: {label:'Percent', grid:true},
         marks: [
           Plot.ruleY([0],{stroke:'#ddd'}),
-          Plot.lineY(points,{x:'year', y:'value', stroke:'#a41129', strokeWidth:2.3, tip:true}),
-          Plot.dot(points,{x:'year', y:'value', fill:'#a41129', r:3.2, tip:true})
+          Plot.lineY(points,{x:'year', y:'value', stroke:'#171717', strokeWidth:2.3, tip:true}),
+          Plot.dot(points,{x:'year', y:'value', fill:'#171717', r:3.2, tip:true})
         ]
       });
       if (key === selected) chart.replaceChildren(plot);
