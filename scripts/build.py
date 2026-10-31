@@ -195,7 +195,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(finalize_page(page), encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','minimal.css'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','minimal.css'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -206,7 +206,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     (destination/'publication-guide.html').write_text(finalize_page(guide), encoding='utf-8')
     about = chrome((BASE/'site'/'about.html').read_text(encoding='utf-8'))
     about = about.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
-    (destination/'about.html').write_text(finalize_page(about), encoding='utf-8')
+    (destination/'about.html').write_text(finalize_page(about).replace('</head>', '<link rel="stylesheet" href="about.css"></head>', 1), encoding='utf-8')
     observatory = chrome((BASE/'site'/'observatory.html').read_text(encoding='utf-8'))
     observatory = observatory.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'observatory.html').write_text(finalize_page(observatory), encoding='utf-8')
