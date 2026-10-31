@@ -225,3 +225,40 @@ a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:poi
 .weather-emoji{font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;font-weight:400;font-size:18px;line-height:1.2}
 @media(max-width:1050px){.nav-links{gap:15px}.nav-links a{font-size:11.5px}}
 @media(max-width:780px){.nav-links{gap:16px;flex-wrap:nowrap}.site-nav{overflow-x:auto;scrollbar-width:thin}}
+
+/* WCAG AA: retain subdued editorial hierarchy without low-contrast grey text. */
+#digital-clock,
+.lead-stamp,
+.rail-date,
+.rail-story p,
+.article-overline,
+.article-main > p,
+.article-art i,
+.footer-bottom,
+.footer-bottom a,
+.guide-bottom,
+.guide-bottom a,
+.page-kicker,
+.about-aside p strong,
+.guide-articles section > span,
+.guide-aside strong,
+.guide-aside a,
+.archive-context,
+.rail-heading,
+.footer-links a,
+.search-shell input::placeholder,
+.result-label,
+.section-bar > span,
+.weather-line,
+.micro-label,
+.today-date,
+.lead-description,
+.footer-top > div:first-child p,
+.footer-columns a,
+.article-row .article-main > p,
+.article-art i {
+  color: #595959;
+}
+.article-art i{color:#555}
+.about-aside p strong{color:#555}
+.article-art span{color:#5e5e5e}
