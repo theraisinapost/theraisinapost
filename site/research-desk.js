@@ -45,7 +45,7 @@
       filtered.forEach(item => {
         const record = node('article', undefined, 'desk-record');
         const meta = node('div', undefined, 'desk-record-meta');
-        meta.append(node('strong', item.institution), node('time', dateLabel(item.date)));
+        meta.append(node('strong', item.institution), node('time', item.date ? dateLabel(item.date) : 'Date not supplied'));
         const body = node('div', undefined, 'desk-record-body');
         body.append(sourceLink(item.url, item.title));
         if (item.summary) body.append(node('p', item.summary));
