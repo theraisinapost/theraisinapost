@@ -150,7 +150,7 @@ def card(post, idx):
     return f'''<article class="article-row" data-title="{title.lower()}" data-summary="{excerpt.lower()}" data-category="{category}" data-date="{escape(post['date_iso'])}">
       <div class="article-main"><div class="article-overline"><span class="article-category">{category}</span><span class="over-dot"></span><time datetime="{escape(post['date_iso'])}">{date}</time></div>
       <h3><a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a></h3>
-      <p>{excerpt}</p><div class="story-actions"><a class="article-arrow" href="{url}" target="_blank" rel="noopener noreferrer">Read dispatch</a><button class="story-save" type="button" data-save-story="{url}" hidden>Save</button><button type="button" class="share-trigger" data-share-url="{url}" data-share-title="{title}" aria-label="Share {title}">Share</button></div></div>
+      <p>{excerpt}</p></div>
       <a class="article-media" href="{url}" aria-label="Read {title} on Substack" target="_blank" rel="noopener noreferrer">{artwork}</a>
     </article>'''
 
@@ -161,7 +161,6 @@ def featured(post):
       <div class="lead-category">{escape(post['category'])}</div>
       <h2><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h2>
       <p class="lead-description">{escape(post['description'])}</p>
-      <div class="lead-actions"><a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read article</a><button class="story-save" type="button" data-save-story="{escape(post['url'])}" hidden>Save</button><button type="button" class="share-trigger" data-share-url="{escape(post['url'])}" data-share-title="{escape(post['title'])}" aria-label="Share {escape(post['title'])}">Share</button></div>
       </div><a class="lead-visual" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read the lead dispatch">{artwork}</a>
     </article>'''
 
@@ -196,7 +195,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(finalize_page(page), encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','share-ui.js','minimal.css'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','minimal.css'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
