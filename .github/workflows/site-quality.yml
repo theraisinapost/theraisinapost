@@ -38,7 +38,9 @@ jobs:
       - name: Install pinned QA tools
         run: npm install --no-audit --no-fund --no-package-lock
       - name: Check JavaScript syntax
-        run: npm run check:js
+        run: |
+          npm run check:js
+          npm run test:finance
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Browser tests and axe-core WCAG audits

@@ -232,3 +232,15 @@ Tests: `python -m unittest discover -s tests -v`, `npm run check:js`, `npm run t
 The front page uses a smaller introduction and three concise research entries, with the full directory under the native **All research tools** disclosure. The mobile menu links to that directory rather than repeating every tool. Publication links live in the shared footer, whose copy, headings and watermark are more restrained.
 
 The homepage **Market snapshot** is collapsed initially. Its attributed TradingView widget loads only after the reader opens it; the dedicated Market desk retains its existing data and source disclosures. Research disclosures work without JavaScript. Existing search, keyboard shortcuts, clock and source-linked tools remain available. Browser checks cover keyboard expansion, deferred widget loading, directory destinations and overflow from 320px to 1440px.
+
+## Economy pulse, purchasing power and oil history (November 2026)
+
+`india-data.html` now groups four **annual World Bank WDI observations** (real GDP growth, CPI inflation, manufacturing/GDP and total reserves including gold) and a rupee purchasing-power calculator alongside the existing annual-series explorer. Each card shows its observation year and source retrieval date; the page does not describe these as current monthly Indian releases. The RBIH DBIE prototype was evaluated but is not used as a production data source.
+
+The calculator uses positive published `FP.CPI.TOTL` annual CPI index values (2010 = 100, underlying source IMF IFS, CC BY 4.0). Equivalent amount = amount × end index / start index. It supports deflation and same-year comparisons, rejects missing years or reversed periods, and does not interpolate, forecast or model an individual household basket.
+
+`markets.html#oil-history` adds daily Brent and WTI spot history from US EIA via the open [datasets/oil-prices](https://github.com/datasets/oil-prices) pipeline (PDDL). Charts retain negative observations and show dated source retrievals. One-, five- and ten-year windows end at the last published observation; the selected records can be exported as CSV. EIA spot series are distinct from the existing TradingView indicative CFDs.
+
+`scripts/finance_refresh.py` validates provider schemas, exact India/indicator identity, numeric observations, dates and duplicates before writing `site/data/finance.json`. The existing daily intelligence-refresh workflow runs it and commits the dated snapshot; the subsequent Pages workflow publishes it. Failed refreshes retain only revalidated prior observations, with their original retrieval date and explicit retained status. No keys, paid API or extra server is required. The new browser module and styles load only on the two relevant pages.
+
+Verification: `python -m unittest discover -s tests -v`, `npm run test:finance`, `npm run check:js`, and the existing browser/accessibility workflow. Financial fixtures are synthetic only in tests. Production snapshots contain retrieved observations, never test values.
