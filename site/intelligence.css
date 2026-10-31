@@ -18,7 +18,7 @@
 .intel-table-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin:28px 0 12px}
 .intel-table-heading h2{font:600 17px/1.4 "Inter",Arial,sans-serif;letter-spacing:-.02em;margin:0}
 .intel-table-heading p{font:400 11px/1.7 "Inter",Arial,sans-serif;color:#595959;margin:4px 0 0}
-#data-csv{background:#171717;color:#fff;border:1px solid #171717;border-radius:8px;padding:11px 17px;font:550 12px "Inter",Arial,sans-serif}
+#data-csv{background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:8px;padding:11px 17px;font:550 12px "Inter",Arial,sans-serif}
 #data-csv:disabled{background:#f9f9f9;color:#666;border-color:#e6e6e6;cursor:not-allowed}
 .intel-table-shell{max-height:520px}
 .intel-table-shell .desk-data-table td:last-child{text-align:right}
@@ -44,3 +44,5 @@
 .intel-home-links strong{font:550 13px/1.5 "Inter",Arial,sans-serif}
 .intel-home-links span{font:400 11px/1.6 "Inter",Arial,sans-serif;color:#555}
 @media(max-width:700px){.intel-home-links{grid-template-columns:1fr;gap:7px}.intel-home-links a{padding:17px 19px}}
+
+#data-csv:not(:disabled):hover{background:var(--accent-hover);border-color:var(--accent-hover)}

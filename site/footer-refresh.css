@@ -57,8 +57,8 @@
  align-items:center;
  justify-content:center;
  white-space:nowrap;
- background:#171717;
- border:1px solid #171717;
+ background:var(--accent);
+ border:1px solid var(--accent);
  border-radius:8px;
  padding:11px 17px;
  font:550 12px/1.45 var(--sans);
@@ -68,8 +68,8 @@
             transform .26s var(--footer-ease);
 }
 .editorial-footer-subscribe:hover{
- background:#353535;
- border-color:#353535;
+ background:var(--accent-hover);
+ border-color:var(--accent-hover);
  color:#fff;
 }
 .editorial-footer-cta>span{
@@ -219,7 +219,7 @@
  color:#171717;
 }
 .editorial-footer a:focus-visible{
- outline:2px solid #171717;
+ outline:2px solid var(--accent);
  outline-offset:4px;
  border-radius:2px;
 }
