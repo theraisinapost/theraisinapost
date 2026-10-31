@@ -64,3 +64,6 @@
 .share-modal-close{border:0;background:transparent;padding:16px 0 0;color:#555;font:550 12px var(--sans)}
 @media(max-width:780px){.research-page{padding-top:35px;padding-bottom:72px}.research-grid{grid-template-columns:1fr}.ownership-graph{height:320px}.research-records{margin-top:57px}.research-teaser{padding-top:70px}}
 @media(max-width:520px){.research-intro h1{font-size:46px}.research-stat-row{gap:23px}.research-stat-row strong{font-size:26px}.research-panel{padding:16px}.policy-visual{height:190px}.policy-milestones li{grid-template-columns:1fr auto;gap:8px}.policy-milestones time{grid-column:1}.policy-milestones li>div{grid-column:1/-1;grid-row:2}.event-status{grid-column:2;grid-row:1}.research-teaser-grid{grid-template-columns:1fr;gap:12px}.research-teaser-grid a{padding:25px}}
+
+/* Honour the native hidden state even on CSS-grid timeline rows. */
+.policy-milestones li[hidden]{display:none!important}

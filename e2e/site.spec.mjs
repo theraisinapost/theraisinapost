@@ -208,7 +208,7 @@ test('article sharing offers canonical links with no tracking needed', async ({p
   const dialog=page.getByRole('dialog',{name:'Share article'});
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('link',{name:'LinkedIn'})).toHaveAttribute('href',/linkedin[.]com/);
-  await expect(dialog.getByRole('link',{name:'WhatsApp'})).toHaveAttribute('href',/whatsapp[.]com/);
+  await expect(dialog.getByRole('link',{name:'WhatsApp'})).toHaveAttribute('href',/^(https:\/\/(?:wa[.]me|api[.]whatsapp[.]com)\/)/);
   await dialog.getByRole('button',{name:'Close'}).click();
   await expect(dialog).toBeHidden();
 });
