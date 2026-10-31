@@ -1,5 +1,11 @@
 name: Official intelligence source refresh
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/parliament.py'
+      - 'scripts/source_watch.py'
+      - '.github/workflows/intelligence-refresh.yml'
   schedule:
     - cron: '17 3 * * *'
   workflow_dispatch:
