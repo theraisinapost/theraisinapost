@@ -85,7 +85,7 @@ class IntelligencePages(unittest.TestCase):
         for report in src.get("items",[]):
             self.assertTrue(parliament.official_link(report.get("url")))
             self.assertTrue(report.get("title"))
-            self.assertRegex(report.get("date",""),r"^$|^\\d{4}-\\d{2}-\\d{2}$")
+            self.assertRegex(report.get("date",""),r"^$|^\d{4}-\d{2}-\d{2}$")
         watch=json.loads((ROOT/'site/data/source-watch.json').read_text())
         self.assertIsInstance(watch["sources"],list)
         for entry in watch["sources"]:
