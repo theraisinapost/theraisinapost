@@ -40,7 +40,9 @@
     {title: 'Document comparison', caption: 'Compare policy text locally', url:'document-diff.html'},
     {title: 'Full archive', caption:'Browse the original Substack archive', url:'https://raisinapost.substack.com/archive'},
     {title: 'About The Raisina Post', caption: 'The publication and its coverage', url:'about.html'},
-    {title: 'Publication guide', caption:'Editorial standards and corrections', url:'publication-guide.html'}
+    {title: 'Publication guide', caption:'Formats, rights and the GitHub archive', url:'publication-guide.html'},
+    {title: 'Editorial policy', caption:'Sources, AI, conflicts and corrections', url:'editorial-policy.html'},
+    {title: 'Corrections & contact', caption:'Send evidence or request corrections', url:'corrections.html'}
   ];
   let paletteItems = [];
   function appendPaletteItem(item) {
