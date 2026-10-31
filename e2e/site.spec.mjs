@@ -432,7 +432,7 @@ test('newsroom clock sweeps continuously in India time without losing its 60 mar
   await page.waitForTimeout(250);
   const next=await second.evaluate(el=>getComputedStyle(el).transform);
   expect(first).not.toBe(next);
-  await expect(page.locator('#digital-clock')).toContainText(/\\d{2}:\\d{2} IST/);
+  await expect(page.locator('#digital-clock')).toContainText(/\d{2}:\d{2} IST/);
 });
 
 test('newsroom clock respects reduced motion and still shows the correct time', async ({page})=>{
@@ -440,7 +440,7 @@ test('newsroom clock respects reduced motion and still shows the correct time', 
   await page.goto('/');
   await expect(page.locator('#analog-clock')).toBeVisible();
   await expect(page.locator('#clock-second')).toHaveCSS('animation-name','none');
-  await expect(page.locator('#digital-clock')).toContainText(/\\d{2}:\\d{2} IST/);
+  await expect(page.locator('#digital-clock')).toContainText(/\d{2}:\d{2} IST/);
 });
 
 test('subtle page reveals become visible on scroll without mobile overflow', async ({page})=>{
