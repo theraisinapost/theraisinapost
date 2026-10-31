@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-10-31T14:25:50+00:00",
-  "last_successful_at": "2026-10-31T14:25:50+00:00",
+  "checked_at": "2026-10-31T18:20:12+00:00",
+  "last_successful_at": "2026-10-31T18:20:12+00:00",
   "status": "available",
   "committees_checked": 19,
   "committees_available": 19,
@@ -4957,5 +4957,5 @@
       "document_kind": "Committee report"
     }
   ],
-  "notice": "Official-source metadata only. A report is not law or verified implementation. Dates may be unavailable. Records of failed committees may be from a previous snapshot."
+  "notice": "Official-source metadata only; not editorial verification. A report is not law or verified implementation. Dates may be unavailable. Records of failed committees may be from a previous snapshot."
 }

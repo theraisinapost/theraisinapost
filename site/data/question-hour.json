@@ -1,7 +1,7 @@
 {
-  "status": "not_checked",
-  "checked_at": null,
+  "status": "unavailable",
+  "checked_at": "2026-10-31T18:20:16Z",
   "dataset": "https://huggingface.co/datasets/opensansad/lok-sabha-qa",
-  "notice": "Awaiting first validated snapshot. Search the upstream index with Question Hour; original records remain at Digital Sansad.",
+  "notice": "Last collection failed; retained older verified metadata if any. No missing records invented.",
   "items": []
 }
