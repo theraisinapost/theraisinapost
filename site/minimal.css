@@ -1,0 +1,248 @@
+/* The Raisina Post | Quiet design system
+   Single Inter family, neutral hierarchy, white space and 8px #f9f9f9 bento. */
+:root{
+  --paper:#fff;--surface:#f9f9f9;--surface-hover:#f3f3f3;
+  --ink:#171717;--accent:#171717;--text-secondary:#434343;--text-muted:#595959;
+  --border:#eeeeee;--radius:8px;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --serif:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+html{font-synthesis:none}
+body{background:#fff;color:#171717;font:400 13px/1.76 var(--sans);letter-spacing:-.01em}
+button,input,textarea,select,h1,h2,h3,h4,p,small,time{font-family:var(--sans)}
+h1,h2,h3,h4,strong{color:#171717}
+h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
+::selection{background:#e9e9e9;color:#171717}
+:focus-visible{outline:2px solid #171717;outline-offset:3px}
+.wrap{width:min(calc(100% - 88px),1140px)}
+/* Neutral calls to action and softly framed input controls. */
+.subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise,
+.mobile-panel-subscribe,.calendar-actions button{
+ background:#171717;border:1px solid #171717;color:#fff;border-radius:8px;box-shadow:none;
+ font:550 12px var(--sans);
+}
+.subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover,.lead-read:hover,
+.obs-surprise:hover,.mobile-panel-subscribe:hover,.calendar-actions button:hover{
+ background:#343434;border-color:#343434;color:#fff;opacity:1;
+}
+.filter,.obs-chip,.stage-filters button,.utility-button,.story-save,.share-trigger{
+ border:1px solid #e8e8e8;border-radius:8px;background:#fff;color:#434343;
+ font-size:12px;font-weight:500;box-shadow:none;
+}
+.filter:hover,.obs-chip:hover,.stage-filters button:hover,.utility-button:hover,
+.story-save:hover,.share-trigger:hover{
+ background:var(--surface);border-color:#d6d6d6;color:#171717;
+}
+.filter.active,.obs-chip.is-active,.stage-filters button.active{
+ background:#171717;border-color:#171717;color:white;border-radius:8px;
+}
+.story-save.is-saved{color:#171717;border-color:#d8d8d8;background:#f2f2f2}
+.search-shell{border-radius:8px;border:1px solid #e9e9e9;background:var(--surface)}
+.search-shell input{background:transparent}
+.search-shell:focus-within{border-color:#656565;background:#fff}
+.market-disclaimer,.market-source,.research-muted,.obs-fineprint,.lead-description,
+.article-main>p,.rail-story p,.obs-description,.guide-deck,
+.about-copy p,.about-closing p,.about-contact p{color:#595959}
+.nav-links a{font-size:12px;font-weight:500;color:#464646}
+.nav-links a.nav-active,.nav-links a:hover{font-weight:600;color:#171717}
+.site-header{padding-top:23px}
+.mast-grid{padding-bottom:22px}
+.site-nav{border-top:1px solid #eeeeee;border-bottom:0;min-height:54px}
+/* Home — editorial first, cards only for deliberately grouped tools. */
+.intro{padding:66px 0 64px;gap:43px}
+.intro h1{font:550 clamp(36px,4.2vw,55px)/1.17 var(--sans);letter-spacing:-.055em;max-width:735px}
+.intro>p{font-size:13px;line-height:1.83;color:#505050;max-width:330px}
+.frontpage-grid{gap:43px;margin-top:8px}
+.lead-story{gap:27px}
+.lead-story h2{font:550 clamp(24px,2.75vw,36px)/1.33 var(--sans);letter-spacing:-.04em}
+.lead-category,.lead-stamp,.article-category,.article-overline,.rail-meta,.rail-date{
+ color:#5b5b5b;text-transform:none;letter-spacing:0;
+}
+.lead-visual,.lead-visual img,.article-media,.article-media img{border-radius:8px;overflow:hidden}
+.lead-visual{background:var(--surface)}
+.section-bar,.obs-section-title{border:0;padding-bottom:20px}
+.section-bar h2{font:600 15px/1.5 var(--sans);letter-spacing:-.02em}
+.rail-story{border-color:#f0f0f0}
+.rail-story h3{font:550 clamp(16px,1.55vw,20px)/1.45 var(--sans);letter-spacing:-.025em}
+.archive{padding-top:104px}
+.archive-controls{padding-bottom:25px}
+.article-list{gap:16px 34px}
+.article-row{border-bottom:1px solid #eeeeee;padding:27px 0 29px}
+.article-row:last-child{border-bottom:0}
+.article-row h3{font:550 clamp(17px,1.9vw,23px)/1.43 var(--sans);letter-spacing:-.027em}
+.article-main>p{font-size:12px;line-height:1.83}
+.desk-section{padding-top:103px}
+.desk-links{gap:27px}
+.desk-links strong{font:550 14px var(--sans)}
+.newsletter{background:var(--surface);border:0;border-radius:8px;margin-top:98px;padding:39px 42px}
+.newsletter h2{font:550 clamp(25px,3vw,36px)/1.26 var(--sans);letter-spacing:-.04em}
+/* Profile and guide — clear, smaller, consistent heading scale. */
+.guide-main{padding-top:70px}
+.guide-main>h1,.about-page>h1,.research-intro h1{
+ font:550 clamp(36px,5vw,57px)/1.16 var(--sans);letter-spacing:-.047em;
+}
+.guide-articles h2,.about-copy h2,.about-closing h2,.about-contact h2{
+ font:550 clamp(22px,2.6vw,30px)/1.32 var(--sans);letter-spacing:-.033em;
+}
+.guide-deck{font-size:14px;line-height:1.84}
+.guide-articles section{padding-bottom:54px}
+.guide-articles p{line-height:1.87;color:#464646}
+.about-grid{margin-top:62px;gap:64px}
+.about-aside{background:var(--surface);border:0;border-radius:8px;box-shadow:none;padding:27px}
+.format-grid{gap:0 32px}
+.format-item{border-color:#f0f0f0}
+.format-item h3{font:600 15px/1.5 var(--sans)}
+/* Observatory — bento figures, unboxed reportage. */
+.obs-main{padding-top:73px}
+.obs-intro{padding-bottom:47px}
+.obs-intro h1{font:550 clamp(39px,5vw,60px)/1.15 var(--sans);letter-spacing:-.05em}
+.obs-section-title h2{font:550 clamp(23px,2.65vw,30px)/1.3 var(--sans);letter-spacing:-.035em}
+.obs-metrics{gap:12px;border:0}
+.obs-metrics>div,.obs-metrics>div+div{
+ background:var(--surface);border:0;border-radius:8px;padding:22px 20px;min-width:0;
+}
+.obs-metrics strong{font:550 clamp(23px,3vw,35px)/1.2 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.obs-signal,.obs-discover,.obs-queue{padding-top:94px}
+.obs-panels{gap:34px}
+.obs-story{border-color:#f0f0f0;padding:24px 0}
+.obs-story h3{font:550 clamp(18px,2vw,23px)/1.42 var(--sans);letter-spacing:-.025em}
+.obs-story-meta span{color:#545454}
+.obs-queue-item{border-color:#f0f0f0}
+/* Markets — true bento groups with airy space instead of grid lines. */
+.market-desk{padding-top:71px}
+.market-intro h1{font:550 clamp(39px,5vw,61px)/1.15 var(--sans);letter-spacing:-.05em;margin-bottom:16px}
+.market-intro>p:not(.obs-eyebrow){font-size:14px;max-width:690px;line-height:1.84;color:#505050}
+.market-intro-meta{border:0;padding-top:8px;color:#595959;font-size:11px}
+.market-tape-section{padding-top:19px;padding-bottom:13px}
+.market-live,.market-macro,.market-context,.commodities-section,
+.commodity-benchmarks,.reference-fx,.economic-events{padding-top:80px}
+.commodity-grid{gap:12px;margin-top:25px}
+.commodity-stat,.fx-reference-card,.macro-card,.market-panel,.commodity-market-panel,
+.market-context-grid article,.research-teaser-grid a,.research-detail,.research-panel{
+ background:var(--surface);border:0;border-radius:8px;box-shadow:none;
+}
+.commodity-stat{padding:24px 22px;gap:11px}
+.commodity-stat-top span,.fx-reference-card span,.macro-card>span{font-size:12px;font-weight:550;color:#383838}
+.commodity-stat-top small,.commodity-stat p,.fx-reference-card small,.macro-card>small{
+ font-size:11px;color:#595959;line-height:1.65;
+}
+.commodity-stat>strong{font:550 clamp(27px,3vw,38px)/1.25 var(--sans);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.commodity-market-panel{padding:23px;margin-top:23px}
+.commodity-market-panel tv-market-data{min-height:330px}
+.fx-reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;margin-top:24px}
+.fx-reference-card,.fx-reference-card+.fx-reference-card{border:0;border-radius:8px;padding:23px 20px;min-width:0}
+.fx-reference-card strong{font:550 clamp(25px,2.8vw,35px)/1.3 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.market-panel-grid{gap:15px;padding-top:22px}
+.market-panel{padding:23px;overflow:hidden}
+.market-panel h3{font:550 17px/1.4 var(--sans);letter-spacing:-.025em;margin-bottom:17px}
+.macro-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;margin:29px 0 0}
+.macro-card,.macro-card+.macro-card{border:0;padding:23px 20px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.macro-card>strong{font:550 clamp(25px,2.9vw,38px)/1.3 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.macro-chart-heading{margin-top:48px}
+.macro-chart-heading h3{font:550 17px var(--sans)}
+#macro-chart{background:var(--surface);border:0;border-radius:8px;padding:20px 15px;min-height:300px}
+.market-context-grid{gap:13px;margin-top:25px}
+.market-context-grid article{padding:25px 22px}
+.market-context-grid h3{font:550 16px var(--sans);margin:0 0 12px}
+.market-context-grid p{font-size:12px;line-height:1.8}
+.calendar-widget{background:var(--surface);border-radius:8px}
+.calendar-actions button{min-height:42px;padding:9px 17px}
+.commodity-source-row a,.commodity-source-links a,.calendar-actions a,
+.market-context-grid a,.market-intro-meta a,.market-strip-bar a,
+.market-source a,.market-disclaimer a{color:#343434}
+/* Investigations and their original source documents. */
+.research-page{padding-top:68px}
+.research-intro{margin-bottom:45px}
+.research-stat-row{gap:12px;margin-top:30px}
+.research-stat-row>div{background:var(--surface);padding:22px 27px;border-radius:8px}
+.research-stat-row strong{font:550 26px var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.research-grid{gap:13px}
+.research-panel,.research-detail{padding:24px}
+.research-panel-head h2{font:600 14px var(--sans)}
+.research-detail h2{font:550 21px/1.4 var(--sans)}
+.research-detail>strong{font:550 35px var(--sans);font-variant-numeric:tabular-nums}
+.ownership-graph,.policy-visual{background:#fff;border-radius:8px}
+.research-records{margin-top:65px}
+.research-records h2{font:550 25px var(--sans)}
+.research-teaser{padding-top:94px}
+.research-teaser-grid{gap:13px}
+.research-teaser-grid a{padding:32px;gap:10px}
+.research-teaser-grid a:hover{background:var(--surface-hover)}
+.research-teaser-grid strong{font:550 clamp(22px,2.5vw,29px)/1.3 var(--sans);letter-spacing:-.035em}
+.research-teaser-grid p{font-size:12px;color:#565656}
+.policy-milestones li{border-color:#eeeeee}
+.timeline-panel .vis-item{background:#eeeeee!important;color:#171717!important;border-color:#d5d5d5!important}
+.timeline-panel .vis-item.vis-selected{background:#171717!important;color:#fff!important;border-color:#171717!important}
+.event-status.scheduled{color:#535353}
+.share-modal,.story-palette{border:1px solid #eaeaea;border-radius:8px;box-shadow:0 18px 50px rgba(0,0,0,.09)}
+.share-modal h2{font:550 23px/1.35 var(--sans)}
+/* Mobile: subtle floating header and a compact, calm navigation. */
+.editorial-footer{padding-top:87px}
+.editorial-footer-top{padding-bottom:45px}
+.editorial-footer-identity p{font:450 14px/1.65 var(--sans);color:#4d4d4d}
+.editorial-footer-nav a{font-size:12px;color:#404040;font-weight:500}
+.editorial-footer-bottom{border-color:#f0f0f0}
+.mobile-nav-bar{border-radius:8px;border-color:#ebebeb;box-shadow:none}
+.mobile-menu-trigger,.mobile-menu-close{background:var(--surface);border-color:#eaeaea;border-radius:8px}
+.mobile-panel-navigation>a{font:550 clamp(26px,5vw,36px)/1.35 var(--sans);letter-spacing:-.04em;color:#171717}
+.mobile-panel-subnav a{font-size:12px;color:#505050}
+.mobile-panel-subscribe{font-weight:550}
+@media(max-width:950px){
+ .wrap{width:min(calc(100% - 48px),1140px)}
+ .frontpage-grid{gap:28px}
+ .market-panel-grid{gap:14px}
+}
+@media(max-width:780px){
+ .intro{padding:40px 0 51px}
+ .intro h1{font-size:clamp(33px,5.8vw,44px)}
+ .archive,.desk-section{padding-top:73px}
+ .newsletter{margin-top:66px;padding:28px}
+ .obs-main{padding-top:47px}
+ .obs-signal,.obs-discover,.obs-queue{padding-top:66px}
+ .market-desk{padding-top:43px}
+ .market-live,.market-macro,.market-context,.commodities-section,
+ .commodity-benchmarks,.reference-fx,.economic-events{padding-top:54px}
+ .research-page{padding-top:38px}
+ .mobile-panel-navigation>a{font-size:clamp(27px,6vw,34px)}
+ .editorial-footer{padding-top:65px}
+ .market-panel{padding:19px}
+}
+@media(max-width:620px){
+ .wrap{width:min(calc(100% - 34px),1140px)}
+ .intro{padding:31px 0 43px}
+ .intro h1{font-size:clamp(30px,8vw,38px)}
+ .lead-story h2{font-size:clamp(23px,6vw,29px)}
+ .article-row h3{font-size:18px}
+ .newsletter h2{font-size:24px}
+ .guide-main>h1,.about-page>h1,.research-intro h1{font-size:36px}
+ .obs-intro h1,.market-intro h1{font-size:38px}
+ .obs-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .obs-metrics>div,.obs-metrics>div+div{padding:18px 14px}
+ .obs-metrics>div:last-child{grid-column:1/-1}
+ .commodity-grid{gap:9px}
+ .commodity-stat{padding:20px 15px}
+ .commodity-stat>strong{font-size:clamp(25px,7vw,30px)}
+ .commodity-stat:last-child>strong{font-size:28px}
+ .fx-reference-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .fx-reference-card,.fx-reference-card+.fx-reference-card{padding:19px 16px;border:0}
+ .fx-reference-card:last-child{grid-column:1/-1}
+ .fx-reference-card strong{font-size:27px}
+ .macro-cards{gap:9px;margin-top:22px}
+ .macro-card,.macro-card+.macro-card{padding:17px 11px}
+ .macro-card>strong{font-size:clamp(20px,5.1vw,25px);overflow-wrap:anywhere}
+ .market-context-grid{gap:9px}
+ .market-context-grid article{padding:22px}
+ .research-stat-row>div{padding:16px 19px}
+ .research-panel,.research-detail{padding:19px}
+ .research-teaser-grid a{padding:24px}
+ .mobile-panel-navigation>a{font-size:clamp(26px,7vw,32px)}
+ .editorial-footer-top{gap:31px}
+}
+@media(max-width:380px){
+ .fx-reference-card strong{font-size:24px}
+ .macro-card>strong{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){
+ .research-teaser-grid a,.mobile-nav-bar,.subscribe-nav{transition:none}
+}
