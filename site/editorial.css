@@ -1,12 +1,12 @@
 /* The Raisina Post / editorial refinement, October 2026.
-   Instrument Serif for editorial expression; Geist for modern reading and data.
+   Inter for editorial text, market figures and controls.
    One thoughtful rule per composition rather than a border around every box. */
 :root{
   --paper:#fff;
-  --ink:#1c1c1b;
-  --accent:#a41129;
-  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --sans:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --ink:#171717;
+  --accent:#171717;
+  --serif:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   --radius:8px;
 }
 body{font-size:13px;line-height:1.72;letter-spacing:-.008em}
@@ -39,7 +39,7 @@ h1,h2,h3{font-kerning:normal}
 .archive{padding-top:117px}
 .archive-controls{border:0;padding:7px 0 29px;gap:19px}
 .search-shell{border:1px solid #e4e4e4;border-radius:8px}
-.search-shell:focus-within{border-color:#a41129}
+.search-shell:focus-within{border-color:#6b6b6b}
 .filter{border-radius:8px}
 .article-list{gap:20px}
 .article-row{padding:32px 0 36px;border-bottom:1px solid #efefef;min-height:0}
@@ -172,7 +172,7 @@ h1,h2,h3{font-kerning:normal}
  .subscribe-nav,.newsletter>a,.guide-subscribe,.lead-read,.obs-surprise{transition:none}
 }
 
-/* Instrument Serif headlines, Geist interface and data. No layout or feature changes. */
+/* Inter defaults, refined by the final minimal.css layer. */
 html{font-synthesis: none}
 body,button,input,select,textarea{font-family:var(--sans)}
 .intro h1,.lead-story h2,.article-row h3,.obs-story h3,
