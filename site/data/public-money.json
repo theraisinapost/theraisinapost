@@ -1,0 +1,115 @@
+{
+  "title": "Summary of expenditure",
+  "source": "https://www.indiabudget.gov.in/doc/eb/vol1.pdf",
+  "source_label": "Ministry of Finance, Expenditure Profile 2026–27, Statement 1, printed page 1",
+  "document_date": "2026-02",
+  "unit": "INR crore",
+  "year_labels": [
+    "2024-25 Actual",
+    "2025-26 BE",
+    "2025-26 RE",
+    "2026-27 BE"
+  ],
+  "notice": "Published budget summary. BE = Budget Estimates; RE = Revised Estimates. Actuals 2024–25 are full-year; BE/RE are plans or revisions, not realised expenditure. Hierarchical parent and child rows must not be added together.",
+  "items": [
+    {
+      "id": "total",
+      "label": "Total expenditure through Budget",
+      "values": [
+        4652867.4,
+        5065345.04,
+        4964841.74,
+        5347314.81
+      ],
+      "level": 0
+    },
+    {
+      "id": "central",
+      "label": "Central expenditure",
+      "values": [
+        3744781.19,
+        4016002.53,
+        4119301.32,
+        4357429.32
+      ],
+      "level": 0
+    },
+    {
+      "id": "establishment",
+      "label": "Establishment",
+      "values": [
+        829423.41,
+        868096,
+        782701.04,
+        824114.24
+      ],
+      "level": 1
+    },
+    {
+      "id": "central_sector",
+      "label": "Central sector schemes",
+      "values": [
+        1494391.73,
+        1621898.9,
+        1637155.53,
+        1771928.28
+      ],
+      "level": 1
+    },
+    {
+      "id": "other_central",
+      "label": "Other central expenditure",
+      "values": [
+        1420966.05,
+        1526007.63,
+        1699444.75,
+        1761386.8
+      ],
+      "level": 1
+    },
+    {
+      "id": "transfers",
+      "label": "Transfers",
+      "values": [
+        908086.21,
+        1049342.51,
+        845540.42,
+        989885.49
+      ],
+      "level": 0
+    },
+    {
+      "id": "centrally_sponsored",
+      "label": "Centrally sponsored schemes",
+      "values": [
+        402367.62,
+        541850.21,
+        420077.7,
+        548797.73
+      ],
+      "level": 1
+    },
+    {
+      "id": "finance_commission",
+      "label": "Finance Commission transfers",
+      "values": [
+        120858.16,
+        132767,
+        152953,
+        129396.6
+      ],
+      "level": 1
+    },
+    {
+      "id": "other_transfers",
+      "label": "Other transfers",
+      "values": [
+        384860.43,
+        374725.3,
+        272509.72,
+        311691.16
+      ],
+      "level": 1
+    }
+  ]
+}
