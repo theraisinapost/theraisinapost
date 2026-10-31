@@ -56,5 +56,24 @@ class PublicRecordsTests(unittest.TestCase):
         for item in questions['items']:
             self.assertTrue(item['url'].startswith('https://sansad.in/'))
 
+    def test_official_question_metadata_uses_exact_sansad_document_links(self):
+        import public_records_refresh as source
+        raw={'subjects':'Hospital grants','member':['Member One'],'ministry':'HEALTH AND FAMILY WELFARE',
+             'questionsFilePath':'https://sansad.in/getFile/loksabhaquestions/annex/188/AU300.pdf?source=pqals',
+             'date':'2026-08-12','type':'UNSTARRED','lokNo':18,'sessionNo':8,'quesNo':300}
+        record=source.sansad_question_row(raw,18,8)
+        self.assertEqual(record['subject'],'Hospital grants')
+        self.assertEqual(record['lok_no'],18)
+        self.assertIn('getFile/',record['url'])
+        self.assertTrue(source.valid_sansad(record['url']))
+        raw['questionsFilePath']='https://sansad.in.attacker.example/not-official.pdf'
+        self.assertIsNone(source.sansad_question_row(raw,18,8))
+
+    def test_official_question_source_payload_requires_list_of_questions(self):
+        import public_records_refresh as source
+        self.assertEqual(source.sansad_list({'listOfQuestions':[{'subjects':'Topic'}]}),[{'subjects':'Topic'}])
+        self.assertEqual(source.sansad_list([{'listOfQuestions':[{'subjects':'Topic'}]}]),[{'subjects':'Topic'}])
+        self.assertEqual(source.sansad_list({'listOfQuestions':'not a list'}),[])
+
 if __name__=='__main__':
     unittest.main()
