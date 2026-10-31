@@ -171,7 +171,7 @@ def run(output):
         "status":status,"committees_checked":len(COMMITTEES),
         "committees_available":success,"failed_committees":sorted(failed),
         "items":items,
-        "notice":"Official-source metadata only. A report is not law or verified implementation. Dates may be unavailable. Records of failed committees may be from a previous snapshot."
+        "notice":"Official-source metadata only; not editorial verification. A report is not law or verified implementation. Dates may be unavailable. Records of failed committees may be from a previous snapshot."
     }
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
