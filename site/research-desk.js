@@ -64,7 +64,7 @@
         items = Array.isArray(data.items) ? data.items.filter(x =>
           x && ['SEBI','PIB'].includes(x.institution) &&
           typeof x.title === 'string' && x.title.length <= 260 &&
-          /^\d{4}-\d{2}-\d{2}$/.test(x.date) && safeOfficial(x.url))
+          (/^\d{4}-\d{2}-\d{2}$/.test(x.date) || (x.institution === 'PIB' && x.date === '')) && safeOfficial(x.url))
           .slice(0,100) : [];
         const sources = data.sources || {};
         const unavailable = ['SEBI','PIB'].filter(x => sources[x] !== 'available');
