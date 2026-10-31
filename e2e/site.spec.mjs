@@ -78,7 +78,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   await expect(page.getByRole('heading', { level: 1, name: /record matters/i })).toBeVisible();
 });
 
-for (const path of ['/', '/about.html', '/publication-guide.html', '/editorial-policy.html', '/corrections.html']) {
+for (const path of ['/', '/about.html', '/publication-guide.html', '/editorial-policy.html', '/corrections.html', '/parliament-file.html', '/data-room.html', '/evidence-desk.html']) {
   test('WCAG A/AA serious and critical accessibility violations: ' + path, async ({ page }) => {
     await page.goto(path);
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
@@ -361,4 +361,60 @@ test('corrections desk provides real editorial address without fake forms', asyn
   await expect(page.locator('.ed-contact-list li')).toHaveCount(4);
   await page.setViewportSize({width:390,height:844});
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+
+test('Parliament File filters official records without HTML injection or invented dates', async ({page}) => {
+  await page.route('**/data/parliament.json', r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+    checked_at:'2026-10-31T10:00:00Z',status:'partial',committees_available:2,items:[
+      {committee:'finance',committee_name:'Finance',report_number:'17',title:'Financial oversight',date:'2026-10-29',url:'https://sansad.in/getFile/report.pdf'},
+      {committee:'defence',committee_name:'Defence',report_number:'12',title:'<img src=x onerror=alert(1)>',date:'',url:'https://sansad.in/getFile/defence.pdf'},
+      {committee:'finance',committee_name:'Finance',report_number:'18',title:'Untrusted',date:'',url:'https://fake-sansad.in/fraud.pdf'}
+    ]
+  })}));
+  await page.goto('/parliament-file.html');
+  await expect(page.locator('.desk-record')).toHaveCount(2);
+  await expect(page.locator('.desk-record img')).toHaveCount(0);
+  await expect(page.locator('.desk-record').nth(1)).toContainText('Date not supplied');
+  await page.locator('#parliament-search').fill('oversight');
+  await expect(page.locator('.desk-record')).toHaveCount(1);
+  await expect(page.locator('.desk-record a').first()).toHaveAttribute('href',/^https:\/\/sansad[.]in\//);
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+test('Data Room compares published annual data and exports the displayed CSV', async ({page}) => {
+  await page.route('https://api.worldbank.org/v2/country/**',route=>{
+    const code=route.request().url().includes('/IND/') ? 'IND':'CHN';
+    const values=code==='IND'?[{date:'2025',value:6.5},{date:'2024',value:6.1}]:
+      [{date:'2025',value:4.2},{date:'2024',value:null}];
+    return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{page:1},values])});
+  });
+  await page.goto('/data-room.html');
+  await expect(page.locator('#data-rows tr')).toHaveCount(3);
+  await expect(page.locator('#data-chart polyline')).toHaveCount(2);
+  await expect(page.locator('#data-csv')).toBeEnabled();
+  const downloadPromise=page.waitForEvent('download');
+  await page.locator('#data-csv').click();
+  const download=await downloadPromise;
+  expect(download.suggestedFilename()).toContain('raisina-economic-');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
+
+test('Evidence Desk labels unreviewed page-level changes and source failures', async ({page})=>{
+  await page.route('**/data/source-watch.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({
+    checked_at:'2026-10-31T12:00:00Z',
+    sources:[
+      {name:'SEBI circulars',category:'Regulation',url:'https://www.sebi.gov.in/legal/circulars.html',status:'available',change_unreviewed:true,change_detected_at:'2026-10-31T12:00:00Z'},
+      {name:'Other source',category:'Statistics',url:'https://www.mospi.gov.in/release-calendar',status:'unavailable',change_unreviewed:false}
+    ]
+  })}));
+  await page.goto('/evidence-desk.html');
+  await expect(page.locator('.desk-record')).toHaveCount(2);
+  await expect(page.locator('#watch-status')).toContainText('1 require editorial review');
+  await expect(page.locator('.desk-record').first()).toContainText('NOT reviewed');
+  await expect(page.locator('.desk-record').last()).toContainText('Source unavailable');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
 });

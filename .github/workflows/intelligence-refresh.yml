@@ -1,0 +1,61 @@
+name: Official intelligence source refresh
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/parliament.py'
+      - 'scripts/source_watch.py'
+      - '.github/workflows/intelligence-refresh.yml'
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: raisina-intelligence-refresh
+  cancel-in-progress: false
+jobs:
+  refresh-metadata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run offline source validation tests
+        run: python -m unittest discover -s tests -p 'test_intelligence.py' -v
+      - name: Check parliamentary committee metadata at sansad.in
+        run: python scripts/parliament.py --output site/data/parliament.json
+      - name: Compare monitored official source pages
+        run: python scripts/source_watch.py --registry site/data/monitor-sources.json --output site/data/source-watch.json
+      - name: Publish summary in workflow log
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          parliament=json.loads(Path('site/data/parliament.json').read_text())
+          watch=json.loads(Path('site/data/source-watch.json').read_text())
+          lines=[
+            '## Source refresh (not editorial verification)',
+            f"Parliament: {len(parliament.get('items',[]))} official report links; status {parliament.get('status','unknown')}",
+            f"Available committees: {parliament.get('committees_available',0)} / {parliament.get('committees_checked',0)}",
+            f"Page-change review cues: {sum(bool(x.get('change_unreviewed')) for x in watch.get('sources',[]))}",
+            'Observed website changes require human editorial verification.'
+          ]
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as file:
+            file.write('\n\n'.join(lines)+'\n')
+          PY
+      - name: Commit source metadata only when changed
+        run: |
+          git config user.name 'Raisina source bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add site/data/parliament.json site/data/source-watch.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh parliamentary reports and official page checks'
+            git push origin HEAD:main
+          else
+            echo 'No changes'
+          fi
