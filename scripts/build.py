@@ -58,12 +58,15 @@ def is_valid_image(raw):
         return False
 
 def classify(title, description, categories):
-    first = (title + ' ' + description[:100] + ' ' + ' '.join(categories)).lower()
-    if any(x in first for x in ('the power brief', 'daily power brief', 'power brief')):
-        return 'The Power Brief'
-    if any(x in first for x in ('sunday insights', 'sunday insight')):
+    # Prefer the editorial series labels used on the canonical Substack pages.
+    labels = (title + ' ' + description[:300] + ' ' + ' '.join(categories)).casefold()
+    if any(x in labels for x in ('sunday insights', 'sunday insight')):
         return 'Sunday Insights'
-    if any(x in first for x in ('podcast', 'the week in perspective')):
+    if any(x in labels for x in ('records review', 'records-review', 'document review')):
+        return 'Records Review'
+    if any(x in labels for x in ('the power brief', 'daily power brief', 'power brief')):
+        return 'The Power Brief'
+    if any(x in labels for x in ('podcast', 'the week in perspective')):
         return 'Podcast'
     return 'Analysis & Reports'
 
@@ -167,9 +170,12 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     guide = (BASE/'site'/'publication-guide.html').read_text(encoding='utf-8')
     guide = guide.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'publication-guide.html').write_text(guide, encoding='utf-8')
+    about = (BASE/'site'/'about.html').read_text(encoding='utf-8')
+    about = about.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
+    (destination/'about.html').write_text(about, encoding='utf-8')
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')
-    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url></urlset>',encoding='utf-8')
+    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url><url><loc>'+escape(site_url)+'about.html</loc></url></urlset>',encoding='utf-8')
     (destination/'.nojekyll').write_text('',encoding='utf-8')
 
 def download_feed():

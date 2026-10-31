@@ -157,4 +157,44 @@ class TestFeed(unittest.TestCase):
    self.assertIn('.dial-mark-major',css)
    self.assertIn('Asia/Kolkata',js)
 
+
+ def test_records_review_is_recognised_as_a_real_substack_series(self):
+  self.assertEqual(build.classify('Who owns Tata?', 'Records review | 30 October 2026 | Board vote', []),'Records Review')
+  self.assertEqual(build.classify('Railways', 'Public project figures', ['Records Review']),'Records Review')
+  self.assertEqual(build.classify('The Power Brief', 'Morning report', []),'The Power Brief')
+  self.assertEqual(build.classify('Unemployment', 'Sunday Insights | Labour statistics', []),'Sunday Insights')
+
+ def test_deep_policy_pages_about_and_navigation(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   guide=(out/'publication-guide.html').read_text(encoding='utf-8')
+   about=(out/'about.html').read_text(encoding='utf-8')
+   sitemap=(out/'sitemap.xml').read_text(encoding='utf-8')
+   self.assertIn('data-nav-filter="Records Review"',home)
+   self.assertIn('data-filter="Records Review"',home)
+   self.assertIn('raisinapost.substack.com/newsletters',home)
+   self.assertIn('href="about.html"',home)
+   self.assertIn('raisinapost.substack.com/p/editorial-policy',guide)
+   self.assertIn('raisinapost@substack.com',guide)
+   self.assertIn('Submissions',guide)
+   self.assertIn('Rights &amp; attribution',guide)
+   self.assertIn('Alle\'s ClinX',guide)
+   self.assertIn('Records Review',guide)
+   self.assertIn('Visual Explainers',guide)
+   self.assertIn('Podcast',guide)
+   self.assertIn('Records Review',about)
+   self.assertIn('The Power Brief',about)
+   self.assertIn('Sunday Insights',about)
+   self.assertIn('Visual Explainers',about)
+   self.assertIn('© THE RAISINA POST',about)
+   self.assertIn('about.html',sitemap)
+   self.assertGreater(len(guide),12000)
+   self.assertGreater(len(about),6000)
+   for emoji in ('📰','📖','🔎','🗂️','🎙️'):
+    self.assertIn(emoji,guide)
+   self.assertNotIn('<!--SITE_URL-->',about)
+
 if __name__=='__main__':unittest.main()
