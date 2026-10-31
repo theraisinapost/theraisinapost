@@ -111,3 +111,33 @@ test('the Observatory remains accessible and has no mobile horizontal overflow',
   const result = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
   expect(result.violations.filter(v => ['serious','critical'].includes(v.impact)).map(v=>v.id)).toEqual([]);
 });
+
+
+test('markets page has attributed quotes and correctly-year-labelled World Bank data',async ({page})=>{
+  await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
+  await page.route('https://s3.tradingview.com/**',r=>r.abort());
+  await page.route('https://api.worldbank.org/**',r=>{
+    const u=r.request().url();
+    let value= u.includes('NY.GDP.MKTP.KD.ZG')?6.5:u.includes('FP.CPI.TOTL.ZG')?4.2:20.4;
+    const data=[{date:'2024',value,countryiso3code:'IND'},{date:'2023',value:value+1,countryiso3code:'IND'}];
+    r.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{},data])});
+  });
+  await page.goto('/markets.html');
+  await expect(page.getByRole('heading',{name:/Markets & economy/})).toBeVisible();
+  await expect(page.locator('#macro-gdp-value')).toContainText('6.50%');
+  await expect(page.locator('#macro-inflation-value')).toContainText('4.20%');
+  await expect(page.locator('#macro-gdp-date')).toContainText('Reference year 2024');
+  await page.locator('[data-macro="inflation"]').click();
+  await expect(page.locator('#macro-source')).toHaveAttribute('href',/FP.CPI.TOTL.ZG/);
+  await expect(page.locator('[data-macro="inflation"]')).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('.market-intro-meta')).toContainText('QUOTES MAY BE DELAYED');
+});
+test('markets page reports unavailable annual data without imaginary numbers',async ({page})=>{
+  await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
+  await page.route('https://s3.tradingview.com/**',r=>r.abort());
+  await page.route('https://api.worldbank.org/**',r=>r.abort());
+  await page.goto('/markets.html');
+  await expect(page.locator('#macro-gdp-date')).toHaveText('Data unavailable');
+  await expect(page.locator('#macro-gdp-value')).toHaveText('—');
+  await expect(page.locator('#macro-status')).toContainText('unavailable');
+});
