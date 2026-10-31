@@ -32,7 +32,7 @@ if(kind==='question-hour'){
   const p=new URLSearchParams({dataset,config:'default',split:'train',offset:String(offset),length:'50'});
   const query=search.value.trim();
   if(query){mode='search';p.set('query',query);p.delete('offset');p.set('offset',String(offset));return base+'search?'+p;}
-  mode='latest';p.set('where','lok_no = '+house.value);p.set('orderby','date DESC');return base+'filter?'+p;
+  mode='latest';p.set('where','"lok_no" = '+house.value);p.set('orderby','"date" DESC');return base+'filter?'+p;
  };
  const good=r=>r&&typeof r.subject==='string'&&typeof r.ministry==='string'&&
   [16,17,18].includes(Number(r.lok_no))&&/^\d{4}-\d{2}-\d{2}$/.test(r.date||'')&&safePdf(r.pdf_url);
@@ -97,7 +97,7 @@ if(kind==='trade-ledger'){
  const output=el('trade-rows'),feature=el('trade-feature');
  let request=0,snapshot=[];
  const origin='https://comtradeapi.un.org/public/v1/preview/C/A/HS';
- const params=()=>new URLSearchParams({period:year.value,reporterCode:'699',partnerCode:partner.value,
+ const params=()=>new URLSearchParams({period:year.value,reportercode:'699',partnerCode:partner.value,
   cmdCode:product.value,flowCode:flow.value,maxRecords:'500'});
  const validate=x=>x&&Number(x.reporterCode)===699&&String(x.partnerCode)===partner.value&&
   String(x.cmdCode).toUpperCase()===product.value&&String(x.flowCode).toUpperCase()===flow.value&&
