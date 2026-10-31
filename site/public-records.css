@@ -11,8 +11,8 @@
  cursor:pointer;white-space:nowrap;
  transition:background-color .18s ease,border-color .18s ease,color .18s ease;
 }
-.records-button{background:#171717;color:#fff;border:1px solid #171717}
-.records-button:hover{background:#353535}
+.records-button{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.records-button:not(:disabled):hover{background:var(--accent-hover);border-color:var(--accent-hover)}
 .records-secondary{background:#fff;color:#171717;border:1px solid #dedede}
 .records-secondary:hover:not(:disabled){background:#f9f9f9;border-color:#aaa}
 .records-secondary:disabled{color:#8a8a8a;background:#f9f9f9;cursor:not-allowed}

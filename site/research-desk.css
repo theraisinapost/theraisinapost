@@ -42,7 +42,7 @@
 .desk-diff-grid label{display:flex;flex-direction:column;gap:9px;font-size:12px;font-weight:550}
 .desk-diff-grid textarea{resize:vertical;line-height:1.55;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;min-height:240px}
 .desk-diff-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0}
-.desk-diff-actions button{border-radius:8px;padding:10px 16px;font:550 12px "Inter",Arial,sans-serif;background:#171717;color:#fff;border:1px solid #171717}
+.desk-diff-actions button{border-radius:8px;padding:10px 16px;font:550 12px "Inter",Arial,sans-serif;background:var(--accent);color:#fff;border:1px solid var(--accent)}
 .desk-diff-actions button+button{background:white;color:#444;border-color:#ddd}
 .desk-diff-actions span{font-size:11px;color:#757575}
 .desk-diff-legend{display:flex;gap:21px;font-size:11px;color:#5f5f5f;margin:18px 0 9px}
@@ -67,3 +67,5 @@
  .desk-summary strong{font-size:29px}
 }
 @media(prefers-reduced-motion:reduce){.desk-subnav a{transition:none}}
+
+.desk-diff-actions button:first-child:hover{background:var(--accent-hover);border-color:var(--accent-hover)}

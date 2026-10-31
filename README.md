@@ -244,3 +244,8 @@ The calculator uses positive published `FP.CPI.TOTL` annual CPI index values (20
 `scripts/finance_refresh.py` validates provider schemas, exact India/indicator identity, numeric observations, dates and duplicates before writing `site/data/finance.json`. The existing daily intelligence-refresh workflow runs it and commits the dated snapshot; the subsequent Pages workflow publishes it. Failed refreshes retain only revalidated prior observations, with their original retrieval date and explicit retained status. No keys, paid API or extra server is required. The new browser module and styles load only on the two relevant pages.
 
 Verification: `python -m unittest discover -s tests -v`, `npm run test:finance`, `npm run check:js`, and the existing browser/accessibility workflow. Financial fixtures are synthetic only in tests. Production snapshots contain retrieved observations, never test values.
+
+
+## Red action accents (November 2026)
+
+The shared accent is `#b42332`, with `#8f1c28` for a dimmer hover state. Subscribe buttons, selected filters, primary research actions and downloads use these tokens. Reading text, data figures, charts and pale surfaces retain their neutral hierarchy. Disabled actions remain muted.
