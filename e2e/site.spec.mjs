@@ -78,7 +78,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   await expect(page.getByRole('heading', { level: 1, name: /record matters/i })).toBeVisible();
 });
 
-for (const path of ['/', '/about.html', '/publication-guide.html']) {
+for (const path of ['/', '/about.html', '/publication-guide.html', '/editorial-policy.html', '/corrections.html']) {
   test('WCAG A/AA serious and critical accessibility violations: ' + path, async ({ page }) => {
     await page.goto(path);
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
