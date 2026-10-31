@@ -37,3 +37,10 @@
  .intelligence-main .desk-record{grid-template-columns:1fr;gap:9px}
  .intelligence-main .desk-record-meta{display:flex;flex-direction:row;flex-wrap:wrap;gap:8px}
 }
+
+.intel-home-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:15px}
+.intel-home-links a{display:flex;flex-direction:column;gap:5px;border-radius:8px;padding:20px 23px;background:#f9f9f9;text-decoration:none;color:#171717}
+.intel-home-links a:hover{background:#f1f1f1}
+.intel-home-links strong{font:550 13px/1.5 "Inter",Arial,sans-serif}
+.intel-home-links span{font:400 11px/1.6 "Inter",Arial,sans-serif;color:#555}
+@media(max-width:700px){.intel-home-links{grid-template-columns:1fr;gap:7px}.intel-home-links a{padding:17px 19px}}
