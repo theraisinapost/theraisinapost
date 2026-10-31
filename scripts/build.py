@@ -137,12 +137,12 @@ def card(post, idx):
 def featured(post):
     artwork = (f'<img src="{escape(post["image"])}" loading="eager" alt="" referrerpolicy="no-referrer">' if post['image'] else '<div class="hero-art" aria-hidden="true"><span>R</span></div>')
     return f'''<article class="lead-story"><div class="lead-content">
-      <div class="lead-stamp"><i aria-hidden="true"></i> THE LEAD DISPATCH · <time datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
+      <div class="lead-stamp"><time datetime="{escape(post['date_iso'])}">{escape(post['date'])}</time></div>
       <div class="lead-category">{escape(post['category'])}</div>
       <h2><a href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">{escape(post['title'])}</a></h2>
       <p class="lead-description">{escape(post['description'])}</p>
-      <a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">READ THE DISPATCH <span aria-hidden="true">↗</span></a>
-      </div><a class="lead-visual" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read the lead dispatch">{artwork}<div class="lead-image-footer"><strong>R.</strong>THE RAISINA POST<br>THE INDEPENDENT DESK</div></a>
+      <a class="lead-read" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer">Read article <span aria-hidden="true">↗</span></a>
+      </div><a class="lead-visual" href="{escape(post['url'])}" target="_blank" rel="noopener noreferrer" aria-label="Read the lead dispatch">{artwork}</a>
     </article>'''
 
 def side_story(post, idx):

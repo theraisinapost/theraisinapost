@@ -24,12 +24,10 @@
   <header class="site-header wrap">
     <div class="mast-grid">
       <div class="desk-meta">
-        <span class="micro-label">INDEPENDENT JOURNALISM</span>
         <time id="desk-date" class="today-date">New Delhi · India</time>
         <div class="weather-line" aria-label="New Delhi weather">
-          <span class="weather-icon" aria-hidden="true">◌</span>
+          <span class="weather-city">New Delhi</span>
           <span id="new-delhi-weather">Weather unavailable</span>
-          <span class="weather-city">NEW DELHI</span>
         </div>
       </div>
       <div class="brand-block">
@@ -45,7 +43,7 @@
           <span class="clock-hand second-hand" id="clock-second"></span>
           <span class="clock-pin"></span>
         </div>
-        <div class="clock-details"><span id="digital-clock">--:-- IST</span><span>INDIA STANDARD TIME</span></div>
+        <div class="clock-details"><span id="digital-clock">--:-- IST</span></div>
       </div>
     </div>
     <nav class="site-nav" aria-label="Primary navigation">
@@ -63,46 +61,48 @@
 
   <main id="main">
     <section class="intro wrap">
-      <div><p class="section-kicker">THE VIEW FROM RAISINA <span class="kicker-rule"></span> ISSUE BY ISSUE</p><h1>Clarity, beyond the headlines.</h1></div>
-      <p>Reporting and analysis on the institutions, decisions and people shaping India and its place in the world.</p>
+      <h1>Clarity beyond the headlines.</h1>
+      <p>Independent reporting on the decisions shaping India and the world.</p>
     </section>
 
     <section class="frontpage wrap" id="latest" aria-labelledby="latest-title">
-      <div class="section-bar"><h2 id="latest-title">The front page</h2><span>THE LATEST DISPATCHES</span></div>
+      <div class="section-bar"><h2 id="latest-title">Latest stories</h2></div>
       <div class="frontpage-grid">
         <div class="frontpage-main"><!--FEATURED--></div>
-        <div class="latest-rail"><p class="rail-heading">ALSO FROM THE DESK</p><!--SIDE_STORIES--><a class="rail-footer" href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Complete archive <span aria-hidden="true">↗</span></a></div>
+        <div class="latest-rail"><p class="rail-heading">More stories</p><!--SIDE_STORIES--><a class="rail-footer" href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Complete archive <span aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
     <section class="archive wrap" id="archive" aria-labelledby="archive-title">
-      <div class="section-bar"><h2 id="archive-title">The archive</h2><span><!--COUNT--> ARTICLES FROM THE PUBLIC FEED</span></div>
-      <p class="archive-context">A searchable index of recent public editions. Full stories remain on Substack.</p>
+      <div class="section-bar"><h2 id="archive-title">Archive</h2></div>
       <div class="archive-controls">
-        <div class="search-shell" role="search"><svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg><label for="article-search" class="sr-only">Search articles in recent public editions</label><input id="article-search" type="search" placeholder="Search titles, topics and analysis..." autocomplete="off"><kbd class="search-shortcut" aria-hidden="true">/</kbd></div>
+        <div class="search-shell" role="search"><svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 5 5"/></svg><label for="article-search" class="sr-only">Search articles in recent public editions</label><input id="article-search" type="search" placeholder="Search articles" autocomplete="off"></div>
         <div class="filters" role="group" aria-label="Filter by publication section"><button class="filter active" type="button" data-filter="All" aria-pressed="true">All</button><button class="filter" type="button" data-filter="The Power Brief" aria-pressed="false">Power Brief</button><button class="filter" type="button" data-filter="Sunday Insights" aria-pressed="false">Sunday Insights</button><button class="filter" type="button" data-filter="Analysis & Reports" aria-pressed="false">Analysis</button><button class="filter" type="button" data-filter="Podcast" aria-pressed="false">Audio</button></div>
       </div>
       <p class="result-label" id="result-label" aria-live="polite">Recent dispatches</p>
       <div class="article-list" id="article-grid"><!--ARTICLES--></div>
-      <div class="empty-state" id="empty-state" hidden><p>NO MATCHES</p><h3>Nothing in this edition.</h3><p>Try a different search or category.</p><button id="clear-filters" type="button">Clear search and filters</button></div>
+      <div class="empty-state" id="empty-state" hidden><h3>No results</h3><p>Try a different search or category.</p><button id="clear-filters" type="button">Clear search and filters</button></div>
       <a class="all-issues" href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Browse every edition on Substack <span aria-hidden="true">↗</span></a>
     </section>
 
     <section class="desk-section wrap" aria-labelledby="desk-title">
-      <div class="section-bar"><h2 id="desk-title">From the publication</h2><span>HOW WE WORK</span></div>
+      <div class="section-bar"><h2 id="desk-title">Publication guide</h2></div>
       <div class="desk-links">
-        <a href="publication-guide.html#standards"><span class="desk-numeral">01</span><strong>Editorial approach</strong><span>Sources, context and accuracy</span><span class="link-arrow" aria-hidden="true">↗</span></a>
-        <a href="publication-guide.html#corrections"><span class="desk-numeral">02</span><strong>Corrections & feedback</strong><span>Help us improve the record</span><span class="link-arrow" aria-hidden="true">↗</span></a>
-        <a href="publication-guide.html#submissions"><span class="desk-numeral">03</span><strong>Write to the desk</strong><span>Letters, pitches and tips</span><span class="link-arrow" aria-hidden="true">↗</span></a>
+        <a href="publication-guide.html#standards"><strong>Editorial approach</strong><span class="link-arrow" aria-hidden="true">↗</span></a>
+        <a href="publication-guide.html#corrections"><strong>Corrections</strong><span class="link-arrow" aria-hidden="true">↗</span></a>
+        <a href="publication-guide.html#submissions"><strong>Contact the desk</strong><span class="link-arrow" aria-hidden="true">↗</span></a>
       </div>
     </section>
 
-    <section class="newsletter wrap" aria-label="Subscribe to the Raisina Post"><div><p class="section-kicker">THE RAISINA POST · IN YOUR INBOX</p><h2>Make sense of what matters.</h2><p>Read the briefs, essays and analysis from our independent desk.</p></div><a href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe to the publication <span aria-hidden="true">↗</span></a></section>
+    <section class="newsletter wrap" aria-label="Subscribe to The Raisina Post"><h2>Read what matters.</h2><a href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe <span aria-hidden="true">↗</span></a></section>
   </main>
 
   <footer class="site-footer wrap">
-    <div class="footer-top"><div><a class="footer-brand footer-brand-lockup" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-elephant.png" alt="" width="320" height="284" loading="lazy"><span>The Raisina Post</span></a><p>Independent editorial intelligence from India.</p></div><div class="footer-columns"><div><strong>THE PUBLICATION</strong><a href="publication-guide.html">Publication guide</a><a href="https://raisinapost.substack.com/about" target="_blank" rel="noopener noreferrer">About us</a><a href="publication-guide.html#corrections">Corrections</a><a href="publication-guide.html#rights">Rights & attribution</a></div><div><strong>FOLLOW THE REPORTING</strong><a href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">All editions</a><a href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Newsletter</a><a href="https://raisinapost.substack.com/feed" target="_blank" rel="noopener noreferrer">RSS</a><a href="publication-guide.html#submissions">Contact the desk</a></div></div></div>
-    <div class="footer-bottom"><span>© THE RAISINA POST · <!--YEAR--></span><span>ORIGINAL REPORTING PUBLISHED ON SUBSTACK</span><span>FEED CHECKED <!--UPDATED--></span><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">WEATHER: OPEN-METEO</a></div>
+    <div class="footer-top">
+      <a class="footer-brand footer-brand-lockup" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-elephant.png" alt="" width="320" height="284" loading="lazy"><span>The Raisina Post</span></a>
+      <nav class="footer-links" aria-label="Footer"><a href="publication-guide.html">Publication guide</a><a href="https://raisinapost.substack.com/about" target="_blank" rel="noopener noreferrer">About</a><a href="https://raisinapost.substack.com/archive" target="_blank" rel="noopener noreferrer">Archive</a><a href="https://raisinapost.substack.com/feed" target="_blank" rel="noopener noreferrer">RSS</a><a href="publication-guide.html#submissions">Contact</a></nav>
+    </div>
+    <div class="footer-bottom"><span>© The Raisina Post <!--YEAR--></span><a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Weather by Open-Meteo</a></div>
   </footer>
 </body>
 </html>

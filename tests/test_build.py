@@ -38,7 +38,7 @@ class TestFeed(unittest.TestCase):
    self.assertTrue((out/'styles.css').exists())
    self.assertTrue((out/'sitemap.xml').exists())
    self.assertTrue((out/'posts.json').exists())
-   self.assertIn('THE VIEW FROM RAISINA', html)
+   self.assertIn('Clarity beyond the headlines.', html)
    self.assertIn('class="lead-story"', html)
    self.assertIn('class="rail-story"', html)
    self.assertIn('class="article-row"', html)
@@ -104,5 +104,27 @@ class TestFeed(unittest.TestCase):
    self.assertIn('src="brand-elephant.png"',home)
    self.assertIn('src="brand-masthead.png"',guide)
    self.assertNotIn('The Raisena Post',home)
+
+ def test_minimal_design_has_no_redundant_labels_and_uses_red_actions(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   guide=(out/'publication-guide.html').read_text(encoding='utf-8')
+   styles=(out/'styles.css').read_text(encoding='utf-8')
+   self.assertNotIn('INDEPENDENT JOURNALISM',home)
+   self.assertNotIn('ISSUE BY ISSUE',home)
+   self.assertNotIn('THE LATEST DISPATCHES',home)
+   self.assertNotIn('THE LEAD DISPATCH',home)
+   self.assertIn('id="article-search"',home)
+   self.assertIn('id="analog-clock"',home)
+   self.assertIn('id="new-delhi-weather"',home)
+   self.assertIn('publication-guide.html#corrections',home)
+   self.assertNotIn('01 / HOW WE WORK',guide)
+   self.assertIn('--radius:8px',styles)
+   self.assertIn('--accent:#a41129',styles)
+   self.assertIn('opacity:.8',styles)
+   self.assertIn('border-radius:var(--radius)',styles)
 
 if __name__=='__main__':unittest.main()
