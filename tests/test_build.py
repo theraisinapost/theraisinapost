@@ -240,4 +240,35 @@ class TestFeed(unittest.TestCase):
    self.assertIn('raisinapost\\.substack\\.com',reader)
    self.assertNotIn('<!--SITE_URL-->',room)
 
+ def test_market_desk_has_real_sources_and_no_fabricated_market_prices(self):
+  posts=build.parse_feed(FEED)
+  with TemporaryDirectory() as d:
+   out=Path(d)/'dist'
+   build.render_site(posts,out)
+   home=(out/'index.html').read_text(encoding='utf-8')
+   market=(out/'markets.html').read_text(encoding='utf-8')
+   js=(out/'market-desk.js').read_text(encoding='utf-8')
+   css=(out/'market.css').read_text(encoding='utf-8')
+   self.assertIn('NSE:NIFTY',home)
+   self.assertIn('BSE:SENSEX',home)
+   self.assertIn('Exchange data may be delayed',home)
+   self.assertIn('href="markets.html"',home)
+   self.assertIn('tv-market-data',market)
+   self.assertIn('tv-ticker-tape',market)
+   self.assertIn('www.tradingview.com/',market)
+   self.assertIn('QUOTES MAY BE DELAYED',market)
+   for key in ('gdp','inflation','exports'):
+    self.assertIn('id="macro-'+key+'-value"',market)
+    self.assertIn('id="macro-'+key+'-date"',market)
+   for indicator in ('NY.GDP.MKTP.KD.ZG','FP.CPI.TOTL.ZG','NE.EXP.GNFS.ZS'):
+    self.assertIn(indicator,js)
+   self.assertIn('data.worldbank.org/indicator/',js)
+   self.assertIn('Reference year ',js)
+   self.assertIn('typeof item.value ===',js)
+   self.assertIn('No unverified number',js)
+   self.assertIn('markets.html',(out/'sitemap.xml').read_text())
+   self.assertIn('border-radius:8px',css)
+   self.assertNotIn('<!--SITE_URL-->',market)
+   self.assertNotIn('const fake',js)
+
 if __name__=='__main__':unittest.main()
