@@ -322,3 +322,18 @@ test('document comparison stays local and escapes pasted HTML',async({page})=>{
   await page.locator('#diff-clear').click();
   await expect(page.locator('#diff-before')).toHaveValue('');
 });
+
+
+test('About page is a navigable editorial profile on desktop and mobile', async ({page}) => {
+  await page.goto('/about.html');
+  await expect(page.getByRole('heading', {level:1})).toContainText('The record matters');
+  await expect(page.locator('.about-coverage article')).toHaveCount(3);
+  await expect(page.locator('.about-principle')).toHaveCount(4);
+  await expect(page.locator('.about-research-links a')).toHaveCount(4);
+  await expect(page.getByRole('link', {name:'Subscribe on Substack'})).toHaveAttribute('href', 'https://raisinapost.substack.com/subscribe');
+  await expect(page.locator('link[href="about.css"]')).toHaveCount(1);
+  await page.setViewportSize({width:390,height:844});
+  await expect(page.locator('.about-hero h1')).toBeVisible();
+  await expect(page.locator('.about-endnote')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(392);
+});
