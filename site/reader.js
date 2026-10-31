@@ -1,7 +1,6 @@
-/* The Raisina Post — browser-only reading desk. No tracking, accounts or external libraries. */
+/* The Raisina Post — searchable public RSS archive. No tracking, accounts or external libraries. */
 (() => {
   'use strict';
-  const STORAGE_KEY = 'raisina-reading-queue-v1';
   const SECTIONS = ['The Power Brief', 'Business', 'Governance'];
   const homeURL = 'index.html';
   const validURL = url => typeof url === 'string' && /^https:\/\/raisinapost\.substack\.com\/p\/[a-z0-9-]+$/i.test(url);
@@ -12,19 +11,6 @@
     if (text !== undefined) node.textContent = text;
     return node;
   };
-  function loadSaved() {
-    try {
-      const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      if (!Array.isArray(data)) return [];
-      return data.filter(item => item && validURL(item.url) && typeof item.title === 'string')
-        .slice(0, 150);
-    } catch (_) { return []; }
-  }
-  function persistSaved(items) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(items)); return true; }
-    catch (_) { return false; }
-  }
-  let saved = loadSaved();
   let postsPromise;
   function getPosts() {
     if (!postsPromise) postsPromise = fetch('posts.json', {cache: 'no-store'})
@@ -36,44 +22,6 @@
       }).catch(() => { postsPromise = null; throw Error('Archive unavailable'); });
     return postsPromise;
   }
-  const isSaved = url => saved.some(p => p.url === url);
-  function refreshSavedButtons() {
-    document.querySelectorAll('[data-save-story]').forEach(button => {
-      const exists = isSaved(button.dataset.saveStory);
-      button.hidden = false;
-      button.textContent = exists ? 'Saved' : 'Save';
-      button.setAttribute('aria-label', exists ? 'Remove from reading list' : 'Save to reading list');
-      button.setAttribute('aria-pressed', String(exists));
-      button.classList.toggle('is-saved', exists);
-    });
-    const count = document.getElementById('obs-saved-count');
-    if (count) count.textContent = String(saved.length);
-  }
-  async function toggleSaved(url) {
-    if (!validURL(url)) return;
-    if (isSaved(url)) {
-      saved = saved.filter(item => item.url !== url);
-    } else {
-      let posts;
-      try { posts = await getPosts(); } catch (_) { return; }
-      const post = posts.find(item => item.url === url);
-      if (!post) return;
-      saved = [{url: post.url, title: post.title, date_iso: post.date_iso, category: post.category}, ...saved].slice(0,150);
-    }
-    if (!persistSaved(saved)) {
-      // Storage can be disabled; keep queue usable for this browser session.
-    }
-    refreshSavedButtons();
-    renderQueue();
-    if (document.getElementById('obs-saved-only')?.getAttribute('aria-pressed') === 'true') renderStories();
-  }
-  document.addEventListener('click', event => {
-    const save = event.target.closest('[data-save-story]');
-    if (save) { event.preventDefault(); toggleSaved(save.dataset.saveStory); }
-    const remove = event.target.closest('[data-queue-remove]');
-    if (remove) { event.preventDefault(); toggleSaved(remove.dataset.queueRemove); }
-  });
-
   // Accessible native command dialog, invoked only by a click or keyboard shortcut.
   const dialog = create('dialog', 'story-palette');
   dialog.id = 'story-palette';
@@ -83,7 +31,7 @@
   const paletteInput = dialog.querySelector('#palette-query');
   const paletteResults = dialog.querySelector('#palette-results');
   const destinations = [
-    {title: 'Observatory', caption: 'Explore publishing activity and your saved stories', url:'observatory.html'},
+    {title: 'Observatory', caption: 'Explore publishing activity and recent stories', url:'observatory.html'},
     {title: 'Ownership atlas', caption: 'Verified corporate holdings', url:'ownership-atlas.html'},
     {title: 'Policy timeline', caption: 'DPDP Act chronology', url:'policy-timeline.html'},
     {title: 'Full archive', caption:'Browse the original Substack archive', url:'https://raisinapost.substack.com/archive'},
@@ -154,16 +102,13 @@
       if (dialog.open) dialog.close(); else openPalette();
     }
   });
-  refreshSavedButtons();
-
-  // Reading desk features only initialize on the dedicated page.
+  // Observatory features only initialize on the dedicated page.
   const list = document.getElementById('obs-story-list');
   if (!list) return;
   let obsPosts = [];
   let activeCategory = 'All';
   const search = document.getElementById('obs-search');
   const filterButtons = [...document.querySelectorAll('[data-obs-filter]')];
-  const savedOnly = document.getElementById('obs-saved-only');
 
   const shortDate = iso => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(iso || '')) return 'Unknown date';
@@ -224,9 +169,7 @@
   }
   function currentRows() {
     const q = normalize(search.value.trim());
-    const only = savedOnly.getAttribute('aria-pressed') === 'true';
     return obsPosts.filter(p => (activeCategory === 'All' || p.category === activeCategory) &&
-      (!only || isSaved(p.url)) &&
       (!q || normalize(p.title+' '+p.description+' '+p.category).includes(q)));
   }
   function makeStory(post) {
@@ -240,9 +183,7 @@
     heading.append(link);
     const desc=create('p','',post.description || '');
     body.append(heading,desc);
-    const save=create('button','story-save',isSaved(post.url)?'Saved':'Save');
-    save.type='button'; save.dataset.saveStory=post.url;
-    row.append(meta,body,save);
+    row.append(meta,body);
     return row;
   }
   function renderStories() {
@@ -251,22 +192,8 @@
     const status=document.getElementById('obs-status');
     status.textContent=result.length+' '+(result.length===1?'story':'stories')+' in this view';
     if (!result.length) {
-      list.append(create('p','obs-empty','No matching stories. Try clearing the search or saved filter.'));
+      list.append(create('p','obs-empty','No matching stories. Try clearing your search or section filter.'));
     } else result.forEach(post=>list.append(makeStory(post)));
-    refreshSavedButtons();
-  }
-  function renderQueue() {
-    const queue = document.getElementById('obs-queue-list');
-    if (!queue) return;
-    queue.replaceChildren();
-    if (!saved.length) {
-      queue.append(create('p','obs-empty','No saved stories yet. Choose Save on a story to add it here.'));
-    } else saved.forEach(item=>{
-      const row=create('div','obs-queue-item');
-      const link=create('a','',item.title);link.href=item.url;link.target='_blank';link.rel='noopener noreferrer';
-      const remove=create('button','obs-remove','Remove');remove.type='button';remove.dataset.queueRemove=item.url;
-      row.append(link,remove);queue.append(row);
-    });
   }
   search.addEventListener('input',renderStories);
   filterButtons.forEach(btn=>btn.addEventListener('click',()=>{
@@ -274,19 +201,6 @@
     filterButtons.forEach(x=>{const active=x===btn;x.classList.toggle('is-active',active);x.setAttribute('aria-pressed',String(active));});
     renderStories();
   }));
-  savedOnly.addEventListener('click',()=>{
-    const value=savedOnly.getAttribute('aria-pressed') !== 'true';
-    savedOnly.setAttribute('aria-pressed',String(value));
-    savedOnly.classList.toggle('is-active',value);
-    renderStories();
-  });
-  document.getElementById('obs-random').addEventListener('click',()=>{
-    const options=currentRows().length?currentRows():obsPosts;
-    if (!options.length) return;
-    const target=options[Math.floor(Math.random()*options.length)];
-    if (validURL(target.url)) window.open(target.url,'_blank','noopener,noreferrer');
-  });
-  renderQueue();
   getPosts().then(posts=>{
     obsPosts=posts;
     renderPulse();
