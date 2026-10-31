@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="market.css"><link rel="stylesheet" href="editorial.css">
 <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-market-data.js"></script>
-<script defer src="market-desk.js"></script><script defer src="commodities.js"></script><title>Markets & economy — The Raisina Post</title><script defer src="mobile-nav.js"></script></head>
+<link rel="stylesheet" href="finance.css"><script type="module" src="finance.js"></script><script defer src="market-desk.js"></script><script defer src="commodities.js"></script><title>Markets & economy — The Raisina Post</title><script defer src="mobile-nav.js"></script></head>
 <body><a class="skip-link" href="#main">Skip to content</a>
 <!--MOBILE_NAV-->
 <header class="guide-header wrap"><a class="guide-home" href="<!--SITE_URL-->">Front page</a><a class="guide-wordmark guide-brand-lockup" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-masthead.png" alt="The Raisina Post" width="1250" height="234"></a><a class="guide-subscribe" href="https://raisinapost.substack.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe</a></header>
@@ -36,6 +36,16 @@
     <p class="market-disclaimer">TradingView indicative symbols: Brent/WTI are CFD-based references rather than oil futures settlement prices. Bond figures are 10-year yields, not bond prices. Quotes may be delayed or unavailable.</p>
     <div class="commodity-source-links"><a href="https://www.tradingview.com/symbols/UKOIL/?exchange=TVC" target="_blank" rel="noopener noreferrer">Brent</a><a href="https://www.tradingview.com/symbols/USOIL/?exchange=TVC" target="_blank" rel="noopener noreferrer">WTI</a><a href="https://www.tradingview.com/symbols/TVC-IN10Y/" target="_blank" rel="noopener noreferrer">India 10Y</a><a href="https://www.tradingview.com/symbols/TVC-US10Y/" target="_blank" rel="noopener noreferrer">US 10Y</a><a href="https://www.tradingview.com/widget-docs/faq/data/" target="_blank" rel="noopener noreferrer">Provider delays</a></div>
   </div>
+</section>
+
+<section class="finance-section" id="oil-history" aria-labelledby="oil-history-title">
+<div class="finance-heading"><h2 id="oil-history-title">Oil in perspective</h2><a href="india-data.html#inflation-explorer">Inflation explorer</a></div>
+<p class="finance-note">Daily Brent and WTI spot observations in US dollars per barrel. These historical EIA series differ from the indicative CFD quotes above.</p>
+<div class="finance-controls"><label for="oil-benchmark">Benchmark<select id="oil-benchmark"><option value="brent">Brent</option><option value="wti">WTI</option></select></label><label for="oil-range">History<select id="oil-range"><option value="1">1 year</option><option value="5" selected>5 years</option><option value="10">10 years</option></select></label><button id="oil-csv" type="button" disabled>Download CSV</button></div>
+<div class="finance-results"><div><span>Latest available spot observation</span><strong id="oil-history-latest">—</strong><small id="oil-history-period">Awaiting source</small></div></div>
+<p id="oil-history-status" class="finance-note" role="status">Loading historical observations…</p>
+<div class="finance-chart"><svg id="oil-history-chart" viewBox="0 0 840 300" role="img" aria-label="Daily oil spot history" preserveAspectRatio="xMidYMid meet"></svg></div>
+<details class="finance-method"><summary>Recent observations and source</summary><div class="finance-table"><table><caption>Latest 20 observations in the selected range · US$ per barrel</caption><thead><tr><th scope="col">Observation date</th><th scope="col">Spot price</th></tr></thead><tbody id="oil-history-rows"></tbody></table></div><p>Original source: <a href="https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm" target="_blank" rel="noopener noreferrer">US Energy Information Administration</a>. Retrieved through the open <a href="https://github.com/datasets/oil-prices" target="_blank" rel="noopener noreferrer">datasets/oil-prices</a> pipeline (PDDL). Latest source retrieval and observation dates are shown above. Weekends and missing observations are not filled; negative prices are retained where published. The chart connects published observations and does not estimate intervening daily prices.</p></details>
 </section>
 
 <section class="reference-fx" aria-labelledby="reference-fx-title">

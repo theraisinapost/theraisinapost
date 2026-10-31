@@ -195,7 +195,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(finalize_page(page), encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','editorial-pages.css','intelligence.css','intelligence.js','minimal.css','motion.css','motion.js','footer-refresh.css','public-records.css','public-records.js'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','editorial-pages.css','intelligence.css','intelligence.js','minimal.css','motion.css','motion.js','footer-refresh.css','public-records.css','public-records.js','finance.css','finance.js'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -223,7 +223,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
         researched=researched.replace('<!--SITE_URL-->',escape(site_url)).replace('<!--YEAR-->',str(datetime.now(timezone.utc).year))
         (destination/(name+'.html')).write_text(finalize_page(researched), encoding='utf-8')
     (destination/'data').mkdir(exist_ok=True)
-    for name in ('ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json'):
+    for name in ('ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json','finance.json'):
         shutil.copy2(BASE/'site'/'data'/name,destination/'data'/name)
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')

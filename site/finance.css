@@ -1,0 +1,35 @@
+/* Finance research stays within the publication's quiet editorial system. */
+.finance-section{padding-top:48px;margin-bottom:28px;min-width:0}
+.finance-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.finance-heading h2{font:550 21px/1.4 var(--sans);letter-spacing:-.03em;margin:0}
+.finance-heading a,.finance-stat a{font-size:11px;color:#434343;text-decoration:underline;text-underline-offset:4px}
+.finance-note{font:400 12px/1.8 var(--sans);color:#595959;max-width:780px;margin:12px 0 20px}
+.finance-pulse-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.finance-stat{padding:22px;background:#f9f9f9;border-radius:8px;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.finance-stat h3{font:500 12px/1.5 var(--sans);margin:0}
+.finance-stat strong{font:500 clamp(22px,2.2vw,30px)/1.3 var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.finance-stat span,.finance-stat small{font-size:11px;color:#595959;line-height:1.7}
+.finance-stat a{margin-top:auto;padding-top:8px}
+.finance-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:24px 0}
+.finance-controls label{display:flex;flex:1 1 150px;flex-direction:column;gap:8px;font:500 12px/1.5 var(--sans);color:#434343;min-width:0}
+.finance-controls input,.finance-controls select{width:100%;min-width:0;min-height:44px;border:1px solid #e5e5e5;border-radius:8px;padding:10px 12px;background:#f9f9f9;color:#171717;font:400 13px/1.5 var(--sans)}
+.finance-controls button{min-height:44px;border:1px solid #171717;border-radius:8px;padding:10px 18px;background:#171717;color:white;font:500 12px/1.5 var(--sans);cursor:pointer}
+.finance-controls button:hover{background:#343434}
+.finance-controls button:disabled{background:#f9f9f9;border-color:#e5e5e5;color:#595959;cursor:not-allowed}
+.finance-results{display:flex;flex-wrap:wrap;gap:32px;padding:24px;background:#f9f9f9;border-radius:8px}
+.finance-results>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.finance-results span,.finance-results small{font-size:12px;color:#595959}
+.finance-results strong{font:500 clamp(24px,3vw,36px)/1.3 var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.finance-method{border-top:1px solid #eee;margin-top:20px}
+.finance-method summary{cursor:pointer;min-height:44px;padding:12px 0;font-size:12px;font-weight:500}
+.finance-method p{font-size:12px;line-height:1.8;color:#595959;max-width:780px}
+.finance-method a{color:#434343;text-decoration:underline;text-underline-offset:3px}
+.finance-chart{margin:20px 0;background:#f9f9f9;border-radius:8px;padding:12px;overflow:hidden}
+.finance-chart svg{display:block;width:100%;height:auto;font-family:var(--sans)}
+.finance-table{overflow:auto;max-height:340px;border:1px solid #eee;border-radius:8px}
+.finance-table table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}
+.finance-table caption{font-size:11px;text-align:left;padding:12px;color:#595959}
+.finance-table th,.finance-table td{padding:12px;border-bottom:1px solid #eee}
+.finance-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+@media(max-width:950px){.finance-pulse-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.finance-section{padding-top:32px}.finance-stat{padding:16px}.finance-controls label{flex-basis:100%}.finance-controls button{width:100%}.finance-results{padding:20px;gap:24px}.finance-results>div{width:100%}.finance-pulse-grid{grid-template-columns:1fr}}
