@@ -20,8 +20,7 @@
 .finance-results>div{display:flex;flex-direction:column;gap:10px;min-width:0}
 .finance-results span,.finance-results small{font-size:12px;color:#595959}
 .finance-results strong{font:500 clamp(24px,3vw,36px)/1.3 var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.finance-method{border-top:1px solid #eee;margin-top:20px}
-.finance-method summary{cursor:pointer;min-height:44px;padding:12px 0;font-size:12px;font-weight:500}
+.finance-method{margin-top:24px}
 .finance-method p{font-size:12px;line-height:1.8;color:#595959;max-width:780px}
 .finance-method a{color:#434343;text-decoration:underline;text-underline-offset:3px}
 .finance-chart{margin:20px 0;background:#f9f9f9;border-radius:8px;padding:12px;overflow:hidden}

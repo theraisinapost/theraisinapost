@@ -62,6 +62,8 @@ for (const route of ['/india-data.html','/markets.html']) {
     await page.route('**/data/finance.json',r=>r.fulfill({json:fixture()}));
     await page.setViewportSize({width:320,height:850});
     await page.goto(route);
+    await expect(page.locator('details')).toHaveCount(0);
+    await expect(page.locator('.finance-method > .bento-card')).toHaveCount(2);
     await expect(page.locator('.finance-results').first()).toBeVisible();
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
     const result=await new AxeBuilder({page}).include('.finance-section').withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();

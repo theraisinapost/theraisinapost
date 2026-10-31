@@ -229,9 +229,9 @@ Tests: `python -m unittest discover -s tests -v`, `npm run check:js`, `npm run t
 
 ## Minimal editorial cleanup (November 2026)
 
-The front page uses a smaller introduction and three concise research entries, with the full directory under the native **All research tools** disclosure. The mobile menu links to that directory rather than repeating every tool. Publication links live in the shared footer, whose copy, headings and watermark are more restrained.
+The front page uses a smaller introduction and an open horizontal shelf of research cards. The mobile menu links to that shelf rather than repeating every tool. Publication links live in the shared footer, whose copy, headings and watermark are more restrained.
 
-The homepage **Market snapshot** is collapsed initially. Its attributed TradingView widget loads only after the reader opens it; the dedicated Market desk retains its existing data and source disclosures. Research disclosures work without JavaScript. Existing search, keyboard shortcuts, clock and source-linked tools remain available. Browser checks cover keyboard expansion, deferred widget loading, directory destinations and overflow from 320px to 1440px.
+The homepage **Market snapshot** sits in an open bento card. Its attributed TradingView widget loads when the card enters view; the dedicated Market desk retains its existing data and source disclosures. Research links remain in an open horizontal row without JavaScript. Existing search, keyboard shortcuts, clock and source-linked tools remain available. Browser checks cover keyboard expansion, deferred widget loading, directory destinations and overflow from 320px to 1440px.
 
 ## Economy pulse, purchasing power and oil history (November 2026)
 
@@ -249,3 +249,12 @@ Verification: `python -m unittest discover -s tests -v`, `npm run test:finance`,
 ## Red action accents (November 2026)
 
 The shared accent is `#b42332`, with `#8f1c28` for a dimmer hover state. Subscribe buttons, selected filters, primary research actions and downloads use these tokens. Reading text, data figures, charts and pale surfaces retain their neutral hierarchy. Disabled actions remain muted.
+
+
+## Open bento shelves (November 2026)
+
+Research destinations, market cards, economy indicators and finance methodology now use native horizontal bento shelves rather than accordions. Every item is present without expansion. Each shelf opens at the existing text gutter and spans the actual viewport; its overflow scrolls within the shelf, not the document. Cards use `#f9f9f9`, 8px corners and restrained red focus states.
+
+`site/bento.css` supplies the shared presentation. `site/bento.js` measures the actual viewport and text-column offset, including browsers with vertical scrollbars, and supports Left/Right/Home/End when the shelf itself has keyboard focus. Touch, trackpad and native scrollbar navigation remain available; no autoplay or carousel library is introduced. Reduced motion disables smooth keyboard scrolling. Without JavaScript the cards remain in an open, scrollable row within the content column.
+
+Homepage TradingView quotes load when their visible card enters the viewport, with attribution and delay wording retained. The market and research shelves contain direct destination links. CPI methodology and recent oil observations are visible cards alongside their source notes.

@@ -1,15 +1,23 @@
 (() => {
   'use strict';
-  // Load third-party quotes only when the reader opens the market snapshot.
-  const preview = document.querySelector('[data-market-preview]');
-  if (preview) preview.addEventListener('toggle', () => {
-    if (!preview.open || preview.dataset.loaded) return;
-    preview.dataset.loaded = 'true';
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js';
-    document.head.appendChild(script);
-  });
+  // Visible quotes load as their card enters view; no disclosure is required.
+  const ticker = document.querySelector('[data-market-ticker]');
+  if (ticker) {
+    const loadQuotes = () => {
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js';
+      document.head.appendChild(script);
+    };
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        observer.disconnect();
+        loadQuotes();
+      });
+      observer.observe(ticker);
+    } else loadQuotes();
+  }
 
   const search = document.getElementById('article-search');
   const buttons = [...document.querySelectorAll('[data-filter]')];

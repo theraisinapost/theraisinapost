@@ -64,16 +64,16 @@
   </header>
 
   <section class="market-strip wrap" aria-label="Financial market quotes">
-    <div class="market-strip-bar">
-      <details class="market-preview" data-market-preview>
-        <summary>Market snapshot</summary>
-        <div class="market-preview-body">
-          <p class="market-disclaimer">Exchange data may be delayed. Quotes by TradingView.</p>
-          <div class="market-ticker"><tv-ticker-tape symbols="NSE:NIFTY,BSE:SENSEX,FX_IDC:USDINR,TVC:GOLD,TVC:USOIL,SP:SPX" color-theme="light" transparent-background="true"></tv-ticker-tape></div>
-          <noscript><p>Open the Market desk for source links.</p></noscript>
-        </div>
-      </details>
-      <a href="markets.html">Market desk</a>
+    <div class="bento-rail market-bento" data-bento tabindex="0" role="region" aria-label="Markets and economy cards">
+      <div class="bento-card market-ticker-card">
+        <h2>Market snapshot</h2>
+        <div class="market-ticker" data-market-ticker><tv-ticker-tape symbols="NSE:NIFTY,BSE:SENSEX,FX_IDC:USDINR,TVC:GOLD,TVC:USOIL,SP:SPX" color-theme="light" transparent-background="true"></tv-ticker-tape></div>
+        <p>Exchange data may be delayed. Quotes by TradingView.</p>
+        <noscript><p>Open the Market desk for source links.</p></noscript>
+      </div>
+      <a class="bento-card" href="markets.html"><h2>Market desk</h2><p>Indices, currencies, metals and sovereign yields.</p></a>
+      <a class="bento-card" href="india-data.html#inflation-explorer"><h2>The rupee over time</h2><p>Compare purchasing power using published CPI observations.</p></a>
+      <a class="bento-card" href="markets.html#oil-history"><h2>Oil in perspective</h2><p>Explore daily Brent and WTI spot history.</p></a>
     </div>
   </section>
   <main id="main">
@@ -104,33 +104,22 @@
 
     <section class="research-teaser wrap" id="research-desk" aria-labelledby="research-title">
       <div class="section-bar"><h2 id="research-title">Research desk</h2></div>
-      <div class="research-teaser-grid">
-        <a href="ownership-atlas.html"><strong>Ownership atlas</strong><p>Disclosed shareholdings and original filings.</p></a>
-        <a href="policy-monitor.html"><strong>Policy monitor</strong><p>Official SEBI and PIB releases.</p></a>
-        <a href="india-data.html"><strong>India in data</strong><p>Economic indicators and the rupee’s purchasing power.</p></a>
+      <div class="research-teaser-grid bento-rail" data-bento tabindex="0" role="region" aria-label="Research tools">
+        <a class="bento-card" href="ownership-atlas.html"><strong>Ownership atlas</strong><p>Disclosed shareholdings and original filings.</p></a>
+        <a class="bento-card" href="policy-monitor.html"><strong>Policy monitor</strong><p>Official SEBI and PIB releases.</p></a>
+        <a class="bento-card" href="india-data.html"><strong>India in data</strong><p>Economic indicators and the rupee’s purchasing power.</p></a>
+        <a class="bento-card" href="parliament-file.html"><strong>Parliament file</strong><p>Search official committee reports.</p></a>
+        <a class="bento-card" href="question-hour.html"><strong>Question Hour</strong><p>Parliamentary questions and government replies.</p></a>
+        <a class="bento-card" href="policy-timeline.html"><strong>Policy timeline</strong><p>Follow statutory milestones and scheduled dates.</p></a>
+        <a class="bento-card" href="evidence-desk.html"><strong>Evidence desk</strong><p>Unreviewed changes to official source pages.</p></a>
+        <a class="bento-card" href="markets.html"><strong>Markets</strong><p>Prices, currencies and economic context.</p></a>
+        <a class="bento-card" href="data-room.html"><strong>Data room</strong><p>Compare published economic series.</p></a>
+        <a class="bento-card" href="trade-ledger.html"><strong>Trade ledger</strong><p>Explore reported merchandise trade.</p></a>
+        <a class="bento-card" href="public-money.html"><strong>Public money</strong><p>Compare Union budget estimates.</p></a>
+        <a class="bento-card" href="release-calendar.html"><strong>Release calendar</strong><p>Scheduled official statistical releases.</p></a>
+        <a class="bento-card" href="document-diff.html"><strong>Document comparison</strong><p>Compare two texts locally.</p></a>
+        <a class="bento-card" href="observatory.html"><strong>The Observatory</strong><p>Explore the publication’s recent reporting.</p></a>
       </div>
-      <details class="research-directory">
-        <summary>All research tools</summary>
-        <div class="research-directory-grid">
-          <div><h3>Public records</h3>
-            <a href="parliament-file.html">Parliament file</a>
-            <a href="question-hour.html">Question Hour</a>
-            <a href="policy-timeline.html">Policy timeline</a>
-            <a href="evidence-desk.html">Evidence desk</a>
-          </div>
-          <div><h3>Economy</h3>
-            <a href="markets.html">Markets</a>
-            <a href="data-room.html">Data room</a>
-            <a href="trade-ledger.html">Trade ledger</a>
-            <a href="public-money.html">Public money</a>
-          </div>
-          <div><h3>Reference</h3>
-            <a href="release-calendar.html">Release calendar</a>
-            <a href="document-diff.html">Document comparison</a>
-            <a href="observatory.html">The Observatory</a>
-          </div>
-        </div>
-      </details>
     </section>
 
   </main>
