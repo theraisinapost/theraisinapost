@@ -28,6 +28,12 @@ class OwnershipDataTests(unittest.TestCase):
    self.assertGreaterEqual(len(c['owners']),1)
    if c['recordType']=='Aggregate categories':
     self.assertTrue(all(o['kind']=='Aggregate category' for o in c['owners']))
+    if 'categoryTotals' in c:
+     t=c['categoryTotals']
+     self.assertAlmostEqual(t['promoter']+t['public']+t['trust'],100,delta=.021)
+     self.assertTrue(c['symbol'])
+     self.assertEqual(set(t),{'promoter','public','trust'})
+     self.assertAlmostEqual(sum(o['percent'] for o in c['owners']),sum(t.values()),places=2)
    self.assertEqual(len({o['id'] for o in c['owners']}),len(c['owners']))
    for o in c['owners']:
     self.assertEqual(o['target'],c['id'])
