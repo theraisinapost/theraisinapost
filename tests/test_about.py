@@ -22,7 +22,7 @@ class AboutPageTests(unittest.TestCase):
             self.assertIn('class="about-independence"',doc)
             self.assertIn('class="about-endnote"',doc)
             self.assertIn('aria-labelledby=',doc)
-            self.assertIn('href="https://theraisinapost.github.io/theraisinapost/about/"',doc)
+            self.assertIn('href="https://theraisinapost.github.io/about/"',doc)
             self.assertIn('href="minimal.css"',doc)
             self.assertIn('href="about.css"',doc)
             self.assertTrue((dest/'about.css').exists())

@@ -28,16 +28,19 @@ to the canonical Substack editions; the site does not claim to host full news
 articles or fabricate author/date metadata. The sitemap omits `lastmod` because
 an hourly rebuild is not an editorial modification.
 
-## GitHub Pages host-root limitation
+## Root GitHub Pages deployment
 
-Current URL: `https://theraisinapost.github.io/theraisinapost/`.
-The build outputs `/theraisinapost/robots.txt`. Crawlers instead consult
-`https://theraisinapost.github.io/robots.txt`. A robots file in a project
-directory cannot override host-root rules. Copy the generated robots file to
-the host-root site's deployment, or deploy this project on its own domain.
-The repository connection did not expose an existing host-root site to edit.
-The existing wildcard allow policy is preserved; search access and AI training
-controls are separate choices. No training preference has been changed.
+Target URL: `https://theraisinapost.github.io/`.
+The repository must be named `theraisinapost/theraisinapost.github.io`.
+The existing workflow derives the correct URL from the repository name: project
+path before the rename, host root after it. A stale old project URL variable is
+ignored after the rename; custom domain overrides remain supported.
+
+The root deployment publishes crawler files, canonical links and the sitemap at
+the host root. Both old pretty paths and `.html` bookmarks under `/theraisinapost/`
+receive static redirects preserving queries and anchors. Compatibility pages
+stay out of the canonical sitemap. The old sitemap URL serves the root sitemap.
+Google's HTML verification tag remains in the homepage.
 
 On a custom domain, set `RAISINA_SITE_URL` to its absolute HTTPS base URL. The
 build regenerates canonicals, schema IDs, sitemap locations and text resources

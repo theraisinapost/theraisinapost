@@ -111,3 +111,22 @@ class DiscoveryTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class RootMigrationTests(unittest.TestCase):
+    def test_root_preserves_legacy_home_html_and_pretty_links(self):
+        with TemporaryDirectory() as tmp:
+            out=Path(tmp)
+            build.render_site(build.parse_feed(FEED),out,'https://theraisinapost.github.io/')
+            for old,target in [('index.html',''),('terminal.html','terminal/'),('terminal/index.html','terminal/'),('ownership-atlas/index.html','ownership-atlas/')]:
+                text=(out/'theraisinapost'/old).read_text()
+                self.assertIn('https://theraisinapost.github.io/'+target,text)
+                self.assertIn('location.search + location.hash',text)
+                self.assertIn('rel="canonical"',text)
+            self.assertNotIn('/theraisinapost/',(out/'sitemap.xml').read_text())
+            self.assertEqual((out/'sitemap.xml').read_bytes(),(out/'theraisinapost/sitemap.xml').read_bytes())
+    def test_project_path_remains_correct_until_repository_rename(self):
+        with TemporaryDirectory() as tmp:
+            out=Path(tmp)
+            build.render_site(build.parse_feed(FEED),out,'https://theraisinapost.github.io/theraisinapost/')
+            self.assertFalse((out/'theraisinapost').exists())
+            self.assertIn('href="https://theraisinapost.github.io/theraisinapost/"',(out/'index.html').read_text())

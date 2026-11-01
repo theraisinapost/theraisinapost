@@ -4,17 +4,17 @@
 
 A purpose-built, minimalist GitHub Pages site for **[@theraisinapost](https://github.com/theraisinapost)**. It reads the public Substack RSS feed and publishes a typographic editorial homepage, front-page lead, secondary dispatches, searchable archive, categories and a newsletter call-to-action. The canonical articles and subscriptions remain on Substack.
 
-**Repository:** `theraisinapost/theraisinapost`  
-**Expected GitHub Pages URL:** `https://theraisinapost.github.io/theraisinapost/`  
+**Repository:** `theraisinapost/theraisinapost.github.io`  
+**Expected GitHub Pages URL:** `https://theraisinapost.github.io/`  
 **Feed:** `https://raisinapost.substack.com/feed`  
 **Publishing cadence:** hourly GitHub Actions, subject to scheduler and feed availability.
 
 ## Deployment
 
-1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
+1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost.github.io` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
 2. In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. The `GITHUB_TOKEN` on its own cannot activate an unconfigured Pages site.
 3. In **Actions**, open **The Raisina Post | RSS to GitHub Pages** and select **Run workflow**, branch `main`.
-4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/theraisinapost/`.
+4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/`.
 
 The website automatically updates on pushes to the source files, on manual dispatch, and via a scheduled check at 23 minutes past every hour. GitHub-hosted scheduled workflows can be delayed; feed failures stop a deployment instead of wiping a working site. If direct Substack RSS is blocked from a GitHub runner, the build tries a public RSS proxy. Only a public URL is sent, never credentials.
 
@@ -78,7 +78,7 @@ The publication's visible site remains a lightweight Python-built GitHub Pages a
 
 ```bash
 python -m unittest discover -s tests -v
-python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/theraisinapost/
+python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/
 npm install --no-package-lock
 npx playwright install chromium
 npm run check:js
@@ -296,3 +296,7 @@ The source-linked Atlas now holds **84 listed companies and 189 dated ownership 
 Each new snapshot is the **30 September 2026 A / B / C2 shareholding-pattern category** (promoter, public, employee trusts if applicable). Nineteen entries cite the **NSE corporate shareholding-pattern disclosure index** with the ticker in the source URL; Power Grid cites its issuer's Q2 FY2026–27 original shareholding disclosure. The source page may display a newer filing than the as-of quarter captured here; do not confuse a dated entry with real-time ownership. Promoter/public categories cannot be used to infer individual beneficial owners, institutional ownership or voting rights. Totals can differ from 100% by up to 0.01 percentage points because of source rounding. These records are separate from the five original companies' selected **named-owner** records.
 
 Directory navigation supports editorial order, alphabetical, filing date, largest reported promoter share and largest reported public share. The latter two only rank companies with **aggregate-category** records; selected named-owner reports are placed after comparable category records to prevent false equivalence. Tests: `tests/test_ownership.py` and Playwright's source-aware directory/search tests.
+
+## Root homepage migration
+
+The target homepage is `https://theraisinapost.github.io/`. GitHub requires the repository name `theraisinapost.github.io` for this organization site. The deployment workflow keeps the project path correct until the repository is renamed, then switches to the root automatically. Existing `/theraisinapost/` bookmarks (both pretty paths and `.html` URLs) redirect to matching root pages, preserving query strings and anchors. Root canonicals, sitemap and crawler files are regenerated on deployment.
