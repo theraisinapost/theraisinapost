@@ -1,10 +1,10 @@
 /* Open shelves: a first-card gutter, then a viewport-wide horizontal track.
    Width and bleed are measured from the existing wrap, avoiding 100vw scrollbars. */
 .bento-rail{
- display:flex;gap:12px;align-items:stretch;
+ display:flex;gap:16px;align-items:stretch;
  width:var(--bento-width,100%);max-width:none;min-width:0;
  margin-left:calc(-1 * var(--bento-offset,0px));
- padding:4px var(--bento-offset,0px) 16px;
+ padding:4px var(--bento-offset,0px) 24px;
  box-sizing:border-box;overflow-x:auto;
  scroll-snap-type:x proximity;scroll-padding-inline:var(--bento-offset,0px);
  overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:transparent transparent;
@@ -12,30 +12,30 @@
 .bento-rail:hover,.bento-rail:focus-within{scrollbar-color:#d4d4d4 transparent}
 .bento-rail:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 .bento-rail>.bento-card{
- flex:0 0 280px;min-width:0;max-width:none;min-height:176px;
+ flex:0 0 304px;min-width:0;max-width:none;min-height:208px;
  background:#f9f9f9;border:0;border-radius:8px;box-shadow:none;
- padding:24px;scroll-snap-align:start;
- display:flex;flex-direction:column;align-items:flex-start;gap:12px;
+ padding:32px;scroll-snap-align:start;
+ display:flex;flex-direction:column;align-items:flex-start;gap:16px;
  color:#171717;text-decoration:none;overflow-wrap:anywhere;
 }
 .bento-card h2,.bento-card h3,.bento-rail.research-teaser-grid strong{
  margin:0;font:500 18px/1.4 var(--sans);letter-spacing:-.025em;
 }
-.bento-card p,.bento-card small{margin:0;font:400 12px/1.8 var(--sans);color:#595959}
+.bento-card p,.bento-card small{margin:0;font:400 13px/1.8 var(--sans);color:#595959}
 .bento-rail>a.bento-card{transition:background-color .2s ease}
 .bento-rail>a.bento-card:hover{background:#f2f2f2;box-shadow:none;transform:none}
-.bento-rail.research-teaser-grid{display:flex;gap:12px}
-.bento-rail.finance-pulse-grid{display:flex;gap:12px}
+.bento-rail.research-teaser-grid{display:flex;gap:16px}
+.bento-rail.finance-pulse-grid{display:flex;gap:16px}
 .finance-method.bento-rail{padding-top:4px;border:0}
 .finance-method .bento-card{flex-basis:360px}
 .finance-method .oil-record-card{flex-basis:440px}
 .finance-method .finance-table{width:100%;max-height:280px}
-.bento-rail .market-ticker-card{flex-basis:560px;gap:10px}
+.bento-rail .market-ticker-card{flex-basis:608px;gap:16px}
 .market-ticker-card .market-ticker{width:100%;min-height:72px}
 .market-ticker-card h2{font-size:13px}
-.market-bento .bento-card{min-height:160px}
+.market-bento .bento-card{min-height:192px}
 @media(max-width:620px){
- .bento-rail>.bento-card,.finance-method .bento-card,.finance-method .oil-record-card{flex-basis:260px;padding:20px}
+ .bento-rail>.bento-card,.finance-method .bento-card,.finance-method .oil-record-card{flex-basis:260px;padding:24px}
  .bento-rail .market-ticker-card{flex-basis:280px}
  .bento-rail.research-teaser-grid strong{font-size:17px}
 }

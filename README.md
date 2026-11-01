@@ -258,3 +258,8 @@ Research destinations, market cards, economy indicators and finance methodology 
 `site/bento.css` supplies the shared presentation. `site/bento.js` measures the actual viewport and text-column offset, including browsers with vertical scrollbars, and supports Left/Right/Home/End when the shelf itself has keyboard focus. Touch, trackpad and native scrollbar navigation remain available; no autoplay or carousel library is introduced. Reduced motion disables smooth keyboard scrolling. Without JavaScript the cards remain in an open, scrollable row within the content column.
 
 Homepage TradingView quotes load when their visible card enters the viewport, with attribution and delay wording retained. The market and research shelves contain direct destination links. CPI methodology and recent oil observations are visible cards alongside their source notes.
+
+
+## Editorial spacing refinement (November 2026)
+
+The shared content column is capped at 1128px, with 48px desktop, 32px tablet and 24px mobile insets. Section spacing follows an 8px rhythm, with 96px desktop separation between archive, research and footer regions. Introductory copy and the main reporting grid share their column ratio and gutter; reading text has a more relaxed line height. Bento cards retain full-width scrolling, use 16px gaps and 32px desktop/24px mobile padding, and keep their initial edge aligned to the text column. Keyboard scroll distances derive from the actual card gap. Red accents, 8px corners, source data and publication content remain unchanged.
