@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "companies": [
     {
       "id": "tcs",
@@ -2493,6 +2493,824 @@
         }
       ],
       "symbol": "EDELWEISS"
+    },
+    {
+      "id": "biocon",
+      "name": "Biocon Limited",
+      "short": "Biocon",
+      "sector": "Pharmaceuticals",
+      "symbol": "BIOCON",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BIOCON&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for BIOCON · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 44.68,
+        "public": 55.14,
+        "trust": 0.19
+      },
+      "owners": [
+        {
+          "id": "biocon-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 44.68,
+          "target": "biocon",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BIOCON&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "biocon-public",
+          "label": "Public shareholders",
+          "percent": 55.14,
+          "target": "biocon",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BIOCON&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "biocon-trust",
+          "label": "Shares held by employee trusts (C2)",
+          "percent": 0.19,
+          "target": "biocon",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BIOCON&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "torrent-power",
+      "name": "Torrent Power Limited",
+      "short": "Torrent Power",
+      "sector": "Energy",
+      "symbol": "TORNTPOWER",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TORNTPOWER&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for TORNTPOWER · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 51.09,
+        "public": 48.91,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "torrent-power-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 51.09,
+          "target": "torrent-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TORNTPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "torrent-power-public",
+          "label": "Public shareholders",
+          "percent": 48.91,
+          "target": "torrent-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TORNTPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "ashok-leyland",
+      "name": "Ashok Leyland Limited",
+      "short": "Ashok Leyland",
+      "sector": "Automotive",
+      "symbol": "ASHOKLEY",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASHOKLEY&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for ASHOKLEY · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 51.51,
+        "public": 48.49,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "ashok-leyland-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 51.51,
+          "target": "ashok-leyland",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASHOKLEY&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ashok-leyland-public",
+          "label": "Public shareholders",
+          "percent": 48.49,
+          "target": "ashok-leyland",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASHOKLEY&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "campus-activewear",
+      "name": "Campus Activewear Limited",
+      "short": "Campus",
+      "sector": "Consumer goods",
+      "symbol": "CAMPUS",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CAMPUS&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for CAMPUS · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 72.07,
+        "public": 27.93,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "campus-activewear-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 72.07,
+          "target": "campus-activewear",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CAMPUS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "campus-activewear-public",
+          "label": "Public shareholders",
+          "percent": 27.93,
+          "target": "campus-activewear",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CAMPUS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "lupin",
+      "name": "Lupin Limited",
+      "short": "Lupin",
+      "sector": "Pharmaceuticals",
+      "symbol": "LUPIN",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LUPIN&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for LUPIN · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 46.84,
+        "public": 53.16,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "lupin-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 46.84,
+          "target": "lupin",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LUPIN&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "lupin-public",
+          "label": "Public shareholders",
+          "percent": 53.16,
+          "target": "lupin",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LUPIN&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "sterling-wilson",
+      "name": "Sterling and Wilson Renewable Energy Limited",
+      "short": "Sterling & Wilson",
+      "sector": "Energy",
+      "symbol": "SWSOLAR",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SWSOLAR&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for SWSOLAR · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 45.72,
+        "public": 54.28,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "sterling-wilson-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 45.72,
+          "target": "sterling-wilson",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SWSOLAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "sterling-wilson-public",
+          "label": "Public shareholders",
+          "percent": 54.28,
+          "target": "sterling-wilson",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SWSOLAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "ion-exchange",
+      "name": "ION Exchange (India) Limited",
+      "short": "ION Exchange",
+      "sector": "Engineering",
+      "symbol": "IONEXCHANG",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IONEXCHANG&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for IONEXCHANG · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 25.08,
+        "public": 58.74,
+        "trust": 16.18
+      },
+      "owners": [
+        {
+          "id": "ion-exchange-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 25.08,
+          "target": "ion-exchange",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IONEXCHANG&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ion-exchange-public",
+          "label": "Public shareholders",
+          "percent": 58.74,
+          "target": "ion-exchange",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IONEXCHANG&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ion-exchange-trust",
+          "label": "Shares held by employee trusts (C2)",
+          "percent": 16.18,
+          "target": "ion-exchange",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IONEXCHANG&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "northern-arc",
+      "name": "Northern Arc Capital Limited",
+      "short": "Northern Arc",
+      "sector": "Finance",
+      "symbol": "NORTHARC",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NORTHARC&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for NORTHARC · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 0,
+        "public": 100,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "northern-arc-public",
+          "label": "Public shareholders",
+          "percent": 100,
+          "target": "northern-arc",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NORTHARC&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "tube-investments",
+      "name": "Tube Investments of India Limited",
+      "short": "Tube Investments",
+      "sector": "Automotive",
+      "symbol": "TIINDIA",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TIINDIA&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for TIINDIA · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 44.1,
+        "public": 55.9,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "tube-investments-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 44.1,
+          "target": "tube-investments",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TIINDIA&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "tube-investments-public",
+          "label": "Public shareholders",
+          "percent": 55.9,
+          "target": "tube-investments",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TIINDIA&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "oriental-hotels",
+      "name": "Oriental Hotels Limited",
+      "short": "Oriental Hotels",
+      "sector": "Hotels",
+      "symbol": "ORIENTHOT",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ORIENTHOT&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for ORIENTHOT · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 68.48,
+        "public": 31.52,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "oriental-hotels-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 68.48,
+          "target": "oriental-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ORIENTHOT&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "oriental-hotels-public",
+          "label": "Public shareholders",
+          "percent": 31.52,
+          "target": "oriental-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ORIENTHOT&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "lt-foods",
+      "name": "LT Foods Limited",
+      "short": "LT Foods",
+      "sector": "Consumer goods",
+      "symbol": "LTFOODS",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LTFOODS&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for LTFOODS · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 51.01,
+        "public": 48.99,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "lt-foods-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 51.01,
+          "target": "lt-foods",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LTFOODS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "lt-foods-public",
+          "label": "Public shareholders",
+          "percent": 48.99,
+          "target": "lt-foods",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LTFOODS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "laxmi-organic",
+      "name": "Laxmi Organic Industries Limited",
+      "short": "Laxmi Organic",
+      "sector": "Materials",
+      "symbol": "LXCHEM",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LXCHEM&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for LXCHEM · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 69.16,
+        "public": 30.84,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "laxmi-organic-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 69.16,
+          "target": "laxmi-organic",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LXCHEM&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "laxmi-organic-public",
+          "label": "Public shareholders",
+          "percent": 30.84,
+          "target": "laxmi-organic",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LXCHEM&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "mahindra-logistics",
+      "name": "Mahindra Logistics Limited",
+      "short": "Mahindra Logistics",
+      "sector": "Logistics",
+      "symbol": "MAHLOG",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MAHLOG&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for MAHLOG · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 59.54,
+        "public": 40.46,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "mahindra-logistics-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 59.54,
+          "target": "mahindra-logistics",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MAHLOG&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "mahindra-logistics-public",
+          "label": "Public shareholders",
+          "percent": 40.46,
+          "target": "mahindra-logistics",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MAHLOG&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "raymond",
+      "name": "Raymond Limited",
+      "short": "Raymond",
+      "sector": "Diversified",
+      "symbol": "RAYMOND",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAYMOND&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for RAYMOND · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 48.87,
+        "public": 51.1,
+        "trust": 0.03
+      },
+      "owners": [
+        {
+          "id": "raymond-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 48.87,
+          "target": "raymond",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAYMOND&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "raymond-public",
+          "label": "Public shareholders",
+          "percent": 51.1,
+          "target": "raymond",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAYMOND&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "raymond-trust",
+          "label": "Shares held by employee trusts (C2)",
+          "percent": 0.03,
+          "target": "raymond",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAYMOND&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "donear",
+      "name": "Donear Industries Limited",
+      "short": "Donear",
+      "sector": "Textiles",
+      "symbol": "DONEAR",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=DONEAR&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for DONEAR · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 67.55,
+        "public": 32.45,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "donear-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 67.55,
+          "target": "donear",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=DONEAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "donear-public",
+          "label": "Public shareholders",
+          "percent": 32.45,
+          "target": "donear",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=DONEAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "ksolves",
+      "name": "Ksolves India Limited",
+      "short": "Ksolves",
+      "sector": "Technology",
+      "symbol": "KSOLVES",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KSOLVES&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for KSOLVES · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 58.92,
+        "public": 41.08,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "ksolves-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 58.92,
+          "target": "ksolves",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KSOLVES&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ksolves-public",
+          "label": "Public shareholders",
+          "percent": 41.08,
+          "target": "ksolves",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KSOLVES&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "63moons",
+      "name": "63 moons technologies limited",
+      "short": "63 moons",
+      "sector": "Technology",
+      "symbol": "63MOONS",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=63MOONS&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for 63MOONS · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 45.59,
+        "public": 54.41,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "63moons-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 45.59,
+          "target": "63moons",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=63MOONS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "63moons-public",
+          "label": "Public shareholders",
+          "percent": 54.41,
+          "target": "63moons",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=63MOONS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "hal",
+      "name": "Hindustan Aeronautics Limited",
+      "short": "HAL",
+      "sector": "Defence",
+      "symbol": "HAL",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HAL&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for HAL · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 71.64,
+        "public": 28.36,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "hal-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 71.64,
+          "target": "hal",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HAL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hal-public",
+          "label": "Public shareholders",
+          "percent": 28.36,
+          "target": "hal",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HAL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "irfc",
+      "name": "Indian Railway Finance Corporation Limited",
+      "short": "IRFC",
+      "sector": "Finance",
+      "symbol": "IRFC",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IRFC&tabIndex=equity",
+        "label": "NSE shareholding-pattern disclosure index for IRFC · 30 September 2026 (A, B, C2)"
+      },
+      "sourceExtract": "NSE 2026-09-30 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 82.9,
+        "public": 17.1,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "irfc-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 82.9,
+          "target": "irfc",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IRFC&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "irfc-public",
+          "label": "Public shareholders",
+          "percent": 17.1,
+          "target": "irfc",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IRFC&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "powergrid",
+      "name": "Power Grid Corporation of India Limited",
+      "short": "Power Grid",
+      "sector": "Energy",
+      "symbol": "POWERGRID",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://powergrid.in/sites/default/files/Investor_Relation/Reports_Filings/Share_Holding_Pattern/2026-27/SHP_2026-27_Q2.html",
+        "label": "Power Grid official Q2 FY2026–27 shareholding-pattern filing (30 September 2026)"
+      },
+      "sourceExtract": "Issuer Q2 2026-27 Table I",
+      "recordType": "Aggregate categories",
+      "scope": "Dated 30 September 2026 shareholding-pattern disclosure. A = promoter group; B = public shareholders; C2 = employee trusts where reported. Percentages use the (A+B+C2) denominator, rounded to two decimal places. Categories are not identified people, and are not evidence of ultimate beneficial control. The exchange search index may display newer filings; the historical date of this observation is preserved.",
+      "categoryTotals": {
+        "promoter": 51.34,
+        "public": 48.66,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "powergrid-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 51.34,
+          "target": "powergrid",
+          "asOf": "2026-09-30",
+          "source": "https://powergrid.in/sites/default/files/Investor_Relation/Reports_Filings/Share_Holding_Pattern/2026-27/SHP_2026-27_Q2.html",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "powergrid-public",
+          "label": "Public shareholders",
+          "percent": 48.66,
+          "target": "powergrid",
+          "asOf": "2026-09-30",
+          "source": "https://powergrid.in/sites/default/files/Investor_Relation/Reports_Filings/Share_Holding_Pattern/2026-27/SHP_2026-27_Q2.html",
+          "kind": "Aggregate category"
+        }
+      ]
     }
   ],
   "methodology": {
@@ -2503,6 +3321,9 @@
     "limitations": "Named shareholders and category aggregates must not be treated as interchangeable. Do not sum parent categories and named members or infer ultimate beneficial control.",
     "reviewed_date": "2026-11-01",
     "latest_batch": "35 company-level category disclosures added 1 November 2026; most as at 30 September 2026, Bajaj Auto 30 June and Kotak 31 March",
-    "category_definition": "A = promoters, B = public, C2 = employee-trust holdings; sum can be 99.99 or 100.01 from published rounding; absent zero categories are stored as 0 in categoryTotals for newly added records."
+    "category_definition": "A = promoters, B = public, C2 = employee-trust holdings; sum can be 99.99 or 100.01 from published rounding; absent zero categories are stored as 0 in categoryTotals for newly added records.",
+    "lastExpanded": "2026-11-01",
+    "expansionNote": "20 independently checked published September 2026 shareholding-pattern snapshots were appended; original 64 companies and their dated figures are retained. Power Grid uses its issuer disclosure, the other 19 use the NSE corporate-filings index.",
+    "dataGranularity": "Issuer-reported aggregate shareholder categories, not an audit of beneficial ownership or ultimate control."
   }
 }
