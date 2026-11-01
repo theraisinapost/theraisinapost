@@ -590,7 +590,8 @@ test('homepage market cards are open and quotes load once when visible', async (
   await page.goto('/');
   await expect(page.locator('details')).toHaveCount(0);
   await expect(page.getByRole('heading',{name:'Market snapshot',exact:true})).toBeVisible();
-  await expect(page.locator('.market-bento > .bento-card')).toHaveCount(4);
+  await expect(page.locator('.market-bento > .bento-card')).toHaveCount(10);
+  await page.locator('[data-market-ticker]').scrollIntoViewIfNeeded();
   await expect.poll(() => requests).toBe(1);
   await page.locator('.market-bento').focus();
   await page.keyboard.press('End');
@@ -708,4 +709,29 @@ test('expanded atlas exposes 84 verified companies and sorts by dated promoter p
   expect(names.some(x=>x.includes('IRFC'))).toBeTruthy();
   await page.setViewportSize({width:320,height:740});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+});
+
+
+test('home price charts load on demand once and retain sources when the provider fails', async ({page}) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.setViewportSize({width:390,height:844});
+  await page.route('https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js', route=>route.abort());
+  await page.goto('/');
+  const charts=page.locator('[data-market-chart]');
+  await expect(charts).toHaveCount(6);
+  const script='script[src*="embed-widget-mini-symbol-overview.js"]';
+  await expect(charts.first().locator(script)).toHaveCount(1);
+  await expect(charts.last().locator(script)).toHaveCount(0);
+  for (const chart of await charts.all()) {
+    await chart.scrollIntoViewIfNeeded();
+    await expect(chart.locator(script)).toHaveCount(1);
+    await expect(chart.locator('.market-chart-fallback')).toBeVisible();
+    const config=JSON.parse(await chart.locator(script).textContent());
+    expect(config.symbol).toBe(await chart.getAttribute('data-market-chart'));
+    expect(config.chartOnly).toBe(false);
+  }
+  await charts.first().scrollIntoViewIfNeeded();
+  await expect(charts.first().locator(script)).toHaveCount(1);
+  await expect(page.getByRole('link',{name:'Gold by TradingView',exact:true})).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
