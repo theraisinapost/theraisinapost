@@ -7,6 +7,7 @@ on:
       - 'scripts/source_watch.py'
       - 'scripts/public_records_refresh.py'
       - 'scripts/finance_refresh.py'
+      - 'scripts/country_refresh.py'
       - '.github/workflows/intelligence-refresh.yml'
   schedule:
     - cron: '17 3 * * *'
@@ -39,6 +40,8 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_finance.py' -v
           python scripts/finance_refresh.py --output site/data/finance.json
+      - name: Refresh cross-country annual panel
+        run: python scripts/country_refresh.py
       - name: Publish summary in workflow log
         run: |
           python - <<'PY'
@@ -64,7 +67,7 @@ jobs:
         run: |
           git config user.name 'Raisina source bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add site/data/parliament.json site/data/source-watch.json site/data/question-hour.json site/data/trade-ledger.json site/data/finance.json
+          git add site/data/countries.json site/data/parliament.json site/data/source-watch.json site/data/question-hour.json site/data/trade-ledger.json site/data/finance.json
           if ! git diff --cached --quiet; then
             git commit -m 'data: refresh parliamentary reports and official page checks'
             git push origin HEAD:main

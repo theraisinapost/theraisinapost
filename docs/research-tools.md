@@ -1,0 +1,9 @@
+# Research tools
+
+Country comparisons: World Bank WDI, six economies and five annual indicators since 2000. `scripts/country_refresh.py` refreshes daily through the existing intelligence workflow. Requests are bounded; invalid/mismatched observations are discarded and conflicting duplicates rejected. Failed requests retain the prior series and its original retrieval date. The UI selects a common year, preserves missing values and exports CSV provenance. Data use remains subject to the original provider terms.
+
+Document library: `scripts/research_assets.py` builds a deduplicated metadata index from the same parliamentary, policy, calendar and ownership records used elsewhere. PDF body text is not indexed. MiniSearch 7.1.2 is vendored with its MIT licence in `site/vendor`; it never sends queries to a third-party endpoint. Basic substring search remains available if the library fails. Only indexed metadata is searched; automatic PDF extraction with Docling is not enabled.
+
+Ownership export: generated FollowTheMoney Company, LegalEntity and Ownership entities. Aggregate categories are excluded. Snapshot dates are recorded in summaries rather than start dates, because reporting dates do not establish the beginning of a holding. Disclosed holder labels are reused exactly, without inferred beneficial-control chains. This implements the public interchange format; it does not require a hosted OpenSanctions service or incorporate its datasets. Format reference: https://github.com/opensanctions/followthemoney (MIT).
+
+These features run on GitHub Pages with prebuilt public snapshots. The original shortlist's SEC filings, procurement collection, policy simulation and quantitative finance engines are not deployed. They need separately defined data coverage and validation before public use.
