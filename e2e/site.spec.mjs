@@ -35,17 +35,14 @@ test('search and section filters work on the generated RSS archive', async ({ pa
   expect(shown).toBeLessThanOrEqual(initial);
 });
 
-test('the IST analog clock and New Delhi weather show verified UI states', async ({ page }) => {
-  await page.route('https://api.open-meteo.com/**', route => route.fulfill({
-    status: 200, contentType: 'application/json',
-    body: JSON.stringify({ current: { temperature_2m: 27.4, weather_code: 0, is_day: 1 } })
-  }));
+test('masthead keeps the date and removes clock and weather', async ({page}) => {
+  let weatherRequests=0;
+  await page.route('https://api.open-meteo.com/**',route=>{weatherRequests++;return route.abort();});
   await page.goto('/');
-  await expect(page.locator('#analog-clock')).toBeVisible();
-  await expect(page.locator('.dial-mark')).toHaveCount(60);
-  await expect(page.locator('#digital-clock')).toContainText('IST');
-  await expect(page.locator('#weather-emoji')).toHaveText('☀️');
-  await expect(page.locator('#new-delhi-weather')).toContainText('27°C');
+  await expect(page.locator('#analog-clock')).toHaveCount(0);
+  await expect(page.locator('#new-delhi-weather')).toHaveCount(0);
+  await expect(page.locator('#desk-date')).toHaveAttribute('datetime',/\d{4}-\d{2}-\d{2}/);
+  expect(weatherRequests).toBe(0);
 });
 
 test('mobile full-screen navigation opens, closes and works across pages', async ({page}) => {
@@ -70,7 +67,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expect(page.locator('#article-search')).toBeVisible();
-  await expect(page.locator('#analog-clock')).toBeVisible();
+  await expect(page.locator('#analog-clock')).toHaveCount(0);
   const width = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(392);
   await page.locator('.editorial-footer').getByRole('link', { name: 'About the publication', exact: true }).click();
@@ -420,27 +417,16 @@ test('Evidence Desk labels unreviewed page-level changes and source failures', a
 });
 
 
-test('newsroom clock sweeps continuously in India time without losing its 60 markers', async ({page}) => {
+test('homepage navigation and masthead are centered', async ({page}) => {
   await page.goto('/');
-  const clock=page.locator('#analog-clock');
-  await expect(clock).toHaveClass(/clock-running/);
-  await expect(clock.locator('.dial-mark')).toHaveCount(60);
-  const second=page.locator('#clock-second');
-  await expect(second).toHaveCSS('animation-name','clock-sweep');
-  await expect(second).toHaveCSS('animation-duration','60s');
-  const first=await second.evaluate(el=>getComputedStyle(el).transform);
-  await page.waitForTimeout(250);
-  const next=await second.evaluate(el=>getComputedStyle(el).transform);
-  expect(first).not.toBe(next);
-  await expect(page.locator('#digital-clock')).toContainText(/\d{2}:\d{2} IST/);
-});
-
-test('newsroom clock respects reduced motion and still shows the correct time', async ({page})=>{
-  await page.emulateMedia({reducedMotion:'reduce'});
-  await page.goto('/');
-  await expect(page.locator('#analog-clock')).toBeVisible();
-  await expect(page.locator('#clock-second')).toHaveCSS('animation-name','none');
-  await expect(page.locator('#digital-clock')).toContainText(/\d{2}:\d{2} IST/);
+  const header=page.locator('.site-header');
+  for (const selector of ['.brand-block','.site-nav']) {
+    const box=await header.locator(selector).boundingBox();
+    const wrap=await header.boundingBox();
+    expect(Math.abs(box.x+box.width/2-wrap.x-wrap.width/2)).toBeLessThan(2);
+  }
+  await expect(page.locator('.site-nav')).toHaveCSS('justify-content','center');
+  await expect(page.locator('.nav-links')).toHaveCSS('justify-content','center');
 });
 
 test('subtle page reveals become visible on scroll without mobile overflow', async ({page})=>{
@@ -590,7 +576,7 @@ test('homepage market cards are open and quotes load once when visible', async (
   await page.goto('/');
   await expect(page.locator('details')).toHaveCount(0);
   await expect(page.getByRole('heading',{name:'Market snapshot',exact:true})).toBeVisible();
-  await expect(page.locator('.market-bento > .bento-card')).toHaveCount(10);
+  await expect(page.locator('.market-bento > .bento-card')).toHaveCount(7);
   await page.locator('[data-market-ticker]').scrollIntoViewIfNeeded();
   await expect.poll(() => requests).toBe(1);
   await page.locator('.market-bento').focus();

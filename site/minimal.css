@@ -258,3 +258,16 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 @media(prefers-reduced-motion:reduce){
  .research-teaser-grid a,.mobile-nav-bar,.subscribe-nav{transition:none}
 }
+
+/* A centered masthead and one balanced navigation row. */
+.site-header .mast-grid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:4px 0 24px;min-height:0}
+.mast-grid .brand-block{width:min(640px,100%);order:0}
+.mast-grid .brand-mark{display:block;width:100%;max-width:100%;margin-inline:auto}
+.mast-grid .brand-mark img{width:100%;height:auto}
+.mast-grid .desk-meta{order:1;align-self:center;align-items:center;text-align:center}
+.mast-grid + .site-nav{justify-content:center;gap:32px}
+.mast-grid + .site-nav .nav-links{justify-content:center}
+@media(max-width:620px){
+ .site-header .mast-grid{gap:12px;padding-bottom:20px}
+ .mast-grid .brand-block{width:min(440px,100%)}
+}

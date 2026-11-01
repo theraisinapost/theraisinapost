@@ -70,12 +70,12 @@ class TestFeed(unittest.TestCase):
    js=(out/'site.js').read_text()
    self.assertIn('id="article-search"',page)
    self.assertEqual(page.count('class="article-row"'),2)
-   self.assertIn('id="analog-clock"',page)
-   self.assertIn('id="new-delhi-weather"',page)
+   self.assertNotIn('id="analog-clock"',page)
+   self.assertNotIn('id="new-delhi-weather"',page)
    self.assertIn('publication-guide/',page)
    self.assertTrue((out/'publication-guide.html').exists())
    self.assertIn('--paper:#ffffff',css)
-   self.assertIn('api.open-meteo.com/v1/forecast',js)
+   self.assertNotIn('api.open-meteo.com/v1/forecast',js)
    self.assertIn('Asia/Kolkata',js)
    self.assertNotIn('DESIGN PREVIEW',page)
 
@@ -118,8 +118,8 @@ class TestFeed(unittest.TestCase):
    self.assertNotIn('THE LATEST DISPATCHES',home)
    self.assertNotIn('THE LEAD DISPATCH',home)
    self.assertIn('id="article-search"',home)
-   self.assertIn('id="analog-clock"',home)
-   self.assertIn('id="new-delhi-weather"',home)
+   self.assertNotIn('id="analog-clock"',home)
+   self.assertNotIn('id="new-delhi-weather"',home)
    self.assertIn('href=\"corrections/"',home)
    self.assertNotIn('01 / HOW WE WORK',guide)
    self.assertIn('--radius:8px',styles)
@@ -138,25 +138,18 @@ class TestFeed(unittest.TestCase):
      self.assertNotIn(arrow,content)
     self.assertIn('href=',content)
 
- def test_new_delhi_weather_emoji_and_refined_ist_dial(self):
-  posts=build.parse_feed(FEED)
+ def test_masthead_has_date_without_weather_or_clock_requests(self):
   with TemporaryDirectory() as d:
-   out=Path(d)/'dist'
-   build.render_site(posts,out)
-   home=(out/'index.html').read_text(encoding='utf-8')
-   js=(out/'site.js').read_text(encoding='utf-8')
-   css=(out/'styles.css').read_text(encoding='utf-8')
-   self.assertIn('id="weather-emoji"',home)
-   self.assertIn('id="analog-clock"',home)
-   self.assertIn('mark < 60',js)
-   self.assertIn('mark % 5 === 0',js)
-   self.assertIn('is_day',js)
-   for emoji in ('🌙','🌤️','☁️','🌫️','🌦️','🌧️','❄️','⛈️'):
-    self.assertIn(emoji,js)
-   self.assertIn('--dial-radius:45px',css)
-   self.assertIn('.dial-mark-major',css)
+   out=Path(d)
+   build.render_site(build.parse_feed(FEED),out)
+   home=(out/'index.html').read_text()
+   js=(out/'site.js').read_text()
+   self.assertIn('id="desk-date"',home)
+   self.assertNotIn('id="analog-clock"',home)
+   self.assertNotIn('id="new-delhi-weather"',home)
+   self.assertNotIn('api.open-meteo.com',js)
+   self.assertNotIn('setInterval',js)
    self.assertIn('Asia/Kolkata',js)
-
 
  def test_current_substack_sections_are_available(self):
   self.assertEqual(build.classify('Daily news', 'The Power Brief | Today', []),'The Power Brief')
@@ -196,7 +189,7 @@ class TestFeed(unittest.TestCase):
    self.assertIn('corrections/',(out/'sitemap.xml').read_text())
    self.assertGreater(len(guide),9500)
    self.assertGreater(len(about),5500)
-   self.assertIn('id="weather-emoji"',home)
+   self.assertNotIn('id="weather-emoji"',home)
    self.assertIn('"Apple Color Emoji"',css)
    for emoji in ('📰','📖','🔎','🗂️','🎙️','📝'):
     self.assertNotIn(emoji,home+guide+about)
@@ -463,8 +456,8 @@ class TestFeed(unittest.TestCase):
    reveal=(out/'motion.js').read_text(encoding='utf-8')
    self.assertIn('clock-sweep 60s linear infinite',style)
    self.assertIn('prefers-reduced-motion:reduce',style)
-   self.assertIn('synchronizeHands',clock)
-   self.assertIn('visibilitychange',clock)
+   self.assertNotIn('synchronizeHands',clock)
+   self.assertIn('dateNode.dateTime',clock)
    self.assertIn('IntersectionObserver',reveal)
 
 if __name__=='__main__':unittest.main()
