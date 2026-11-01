@@ -19,6 +19,7 @@ from urllib.error import HTTPError, URLError
 from http.client import IncompleteRead
 from urllib.parse import urlsplit, quote
 import xml.etree.ElementTree as ET
+from discovery import publish_discovery
 
 BASE = Path(__file__).resolve().parents[1]
 FEED_URL = 'https://raisinapost.substack.com/feed'
@@ -226,8 +227,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     for name in ('ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json','finance.json'):
         shutil.copy2(BASE/'site'/'data'/name,destination/'data'/name)
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
-    (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+site_url+'sitemap.xml\n',encoding='utf-8')
-    (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+escape(site_url)+'</loc></url><url><loc>'+escape(site_url)+'publication-guide.html</loc></url><url><loc>'+escape(site_url)+'about.html</loc></url><url><loc>'+escape(site_url)+'observatory.html</loc></url><url><loc>'+escape(site_url)+'markets.html</loc></url><url><loc>'+escape(site_url)+'ownership-atlas.html</loc></url><url><loc>'+escape(site_url)+'policy-timeline.html</loc></url><url><loc>'+site_url+'policy-monitor.html</loc></url><url><loc>'+site_url+'india-data.html</loc></url><url><loc>'+site_url+'release-calendar.html</loc></url><url><loc>'+site_url+'document-diff.html</loc></url><url><loc>'+site_url+'editorial-policy.html</loc></url><url><loc>'+site_url+'corrections.html</loc></url><url><loc>'+site_url+'parliament-file.html</loc></url><url><loc>'+site_url+'data-room.html</loc></url><url><loc>'+site_url+'evidence-desk.html</loc></url><url><loc>'+site_url+'question-hour.html</loc></url><url><loc>'+site_url+'trade-ledger.html</loc></url><url><loc>'+site_url+'public-money.html</loc></url></urlset>',encoding='utf-8')
+    publish_discovery(destination, site_url, posts)
     (destination/'.nojekyll').write_text('',encoding='utf-8')
 
 def download_feed():
