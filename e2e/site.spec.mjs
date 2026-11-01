@@ -653,7 +653,7 @@ test('ownership shelf fits a mobile viewport', async ({ page }) => {
 
 test('ownership atlas expands verified companies, searches sectors, and preserves sourced selections',async ({page})=>{
   await page.goto('/ownership-atlas.html');
-  await expect(page.locator('#atlas-company-total')).toContainText('64');
+  await expect(page.locator('#atlas-company-total')).toContainText('84');
   await expect(page.locator('#company-browser input')).toBeVisible();
   await page.locator('#company-search').fill('Infosys');
   await expect(page.locator('.company-rail .company-card:visible')).toHaveCount(1);
@@ -674,7 +674,7 @@ test('ownership atlas expands verified companies, searches sectors, and preserve
 
 test('Atlas comparison distinguishes aggregates from selected named holders and exports dated CSV', async ({page})=>{
  await page.goto('/ownership-atlas.html');
- await expect(page.locator('#atlas-company-total')).toHaveText('64');
+ await expect(page.locator('#atlas-company-total')).toHaveText('84');
  await page.locator('#compare-first').selectOption('hindalco');
  await page.locator('#compare-second').selectOption('asian-paints');
  await expect(page.locator('#compare-results .atlas-compare-company')).toHaveCount(2);
