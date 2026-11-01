@@ -653,7 +653,7 @@ test('ownership shelf fits a mobile viewport', async ({ page }) => {
 
 test('ownership atlas expands verified companies, searches sectors, and preserves sourced selections',async ({page})=>{
   await page.goto('/ownership-atlas.html');
-  await expect(page.locator('#atlas-company-total')).toContainText('29');
+  await expect(page.locator('#atlas-company-total')).toContainText('64');
   await expect(page.locator('#company-browser input')).toBeVisible();
   await page.locator('#company-search').fill('Infosys');
   await expect(page.locator('.company-rail .company-card:visible')).toHaveCount(1);
@@ -670,4 +670,24 @@ test('ownership atlas expands verified companies, searches sectors, and preserve
   await expect(page.locator('#company-scope')).toContainText('aggregate');
   await page.setViewportSize({width:320,height:740});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+});
+
+test('Atlas comparison distinguishes aggregates from selected named holders and exports dated CSV', async ({page})=>{
+ await page.goto('/ownership-atlas.html');
+ await expect(page.locator('#atlas-company-total')).toHaveText('64');
+ await page.locator('#compare-first').selectOption('hindalco');
+ await page.locator('#compare-second').selectOption('asian-paints');
+ await expect(page.locator('#compare-results .atlas-compare-company')).toHaveCount(2);
+ await expect(page.locator('#compare-results')).toContainText('34.66%');
+ await expect(page.locator('#compare-results')).toContainText('52.65%');
+ await expect(page.locator('#compare-results')).toContainText('30 Sep 2026');
+ await expect(page.locator('#atlas-export')).toBeEnabled();
+ const downloadPromise=page.waitForEvent('download');
+ await page.locator('#atlas-export').click();
+ const download=await downloadPromise;
+ expect(download.suggestedFilename()).toContain('ownership-atlas');
+ await page.locator('#compare-second').selectOption('tcs');
+ await expect(page.locator('#compare-results')).toContainText('Not directly comparable');
+ await page.setViewportSize({width:320,height:720});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
 });
