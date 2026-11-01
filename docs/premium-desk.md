@@ -17,3 +17,7 @@ The public `desk.html` brings existing source-backed research into one reading f
 Select an authentication, billing and private-content backend; establish prices and cancellation/access terms; connect webhook-verified entitlements; enforce access on the server and keep paid material out of the public Pages bundle. Browser-local preferences are not membership credentials. Migrate or associate preferences only with reader consent.
 
 Substack signup remains a free newsletter subscription, not a premium waiting-list confirmation. Campaign parameters identify the entry route but do not by themselves create subscriber tags or prove attribution. No paid checkout, secure paywall, cross-device account or automated editorial service is claimed by this release.
+
+## Expanded economic record
+
+The desk and India data page now expose 16 annual WDI series from the daily scheduled finance refresh. Eleven added series cover nominal GDP, GDP per capita, exports, imports, FDI inflows, current account balance, unemployment, labour participation, gross capital formation, private credit and remittances. Reference years and units are displayed per selection. Charts use actual year spacing and break at missing years. Downloads include raw values, indicator codes, source URLs, retrieval times and refresh status. Retained observations keep their original retrieval date after source failures.

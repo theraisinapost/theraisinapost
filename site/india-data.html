@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="editorial.css"><link rel="stylesheet" href="research-desk.css">
-<link rel="stylesheet" href="finance.css"><script type="module" src="finance.js"></script><script defer src="mobile-nav.js"></script><script defer src="research-desk.js"></script><title>India economic data and inflation calculator — The Raisina Post</title></head>
+<link rel="stylesheet" href="finance.css"><script type="module" src="finance.js"></script><script type="module" src="economy-explorer.js"></script><script defer src="mobile-nav.js"></script><script defer src="research-desk.js"></script><title>India economic data and inflation calculator — The Raisina Post</title></head>
 <body data-desk="india-data"><a class="skip-link" href="#main">Skip to content</a><!--MOBILE_NAV-->
 <header class="guide-header wrap"><a class="guide-home" href="<!--SITE_URL-->">Front page</a>
 <a class="guide-wordmark guide-brand-lockup" href="<!--SITE_URL-->" aria-label="The Raisina Post home"><img src="brand-masthead.png" alt="The Raisina Post" width="1250" height="234"></a>
@@ -12,7 +12,7 @@
 <main id="main" class="wrap desk-main">
 <nav class="desk-subnav" aria-label="Research desk"><a href="policy-monitor.html">Policy monitor</a><a href="india-data.html">India in data</a><a href="release-calendar.html">Release calendar</a><a href="document-diff.html">Document comparison</a><a href="ownership-atlas.html">Ownership atlas</a></nav>
 <section class="desk-intro"><p class="desk-kicker">THE RAISINA POST / RESEARCH DESK</p><h1>India in data<span class="accent-dot">.</span></h1><p class="desk-deck">Explore India's annual economic indicators with sourced time series and original publication years. Figures are not real-time market prices.</p></section>
-<section class="desk-note"><strong>Annual statistical record</strong><p>Six internationally comparable World Bank indicators. Each observation retains its reference year. Annual percentages are not the same as monthly CPI inflation or quarterly GDP releases.</p></section>
+<section class="desk-note"><strong>Annual statistical record</strong><p>Annual World Bank indicators across output, prices, external flows, labour and capital. Each observation retains its reference year. Annual percentages are not the same as monthly CPI inflation or quarterly GDP releases.</p></section>
 <section class="finance-section" aria-labelledby="pulse-title">
 <div class="finance-heading"><h2 id="pulse-title">India economy pulse</h2><a href="markets.html">Market desk</a></div>
 <p id="pulse-status" class="finance-note" role="status">Loading published annual observations…</p>
@@ -22,7 +22,7 @@
 <article class="finance-stat bento-card" id="pulse-manufacturing"><h3>Manufacturing / GDP</h3><strong>—</strong><span data-period>Observation unavailable</span><small data-source-state>Awaiting source</small><a href="https://data.worldbank.org/indicator/NV.IND.MANF.ZS?locations=IN" target="_blank" rel="noopener noreferrer">World Bank source</a></article>
 <article class="finance-stat bento-card" id="pulse-reserves"><h3>Reserves, including gold</h3><strong>—</strong><span data-period>Observation unavailable</span><small data-source-state>Awaiting source</small><a href="https://data.worldbank.org/indicator/FI.RES.TOTL.CD?locations=IN" target="_blank" rel="noopener noreferrer">World Bank source</a></article>
 </div></section>
-<section class="finance-section" id="inflation-explorer" aria-labelledby="inflation-title">
+<!--ECONOMY_EXPLORER--><section class="finance-section" id="inflation-explorer" aria-labelledby="inflation-title">
 <div class="finance-heading"><h2 id="inflation-title">The rupee over time</h2></div>
 <p class="finance-note">Compare purchasing power using India's annual average consumer price index (2010 = 100). This broad basket is not a household-specific cost estimate or the latest monthly CPI release.</p>
 <form id="inflation-form" class="finance-controls">
