@@ -20,6 +20,7 @@ from http.client import IncompleteRead
 from urllib.parse import urlsplit, quote
 import xml.etree.ElementTree as ET
 from discovery import publish_discovery
+from research_assets import write_assets
 
 BASE = Path(__file__).resolve().parents[1]
 FEED_URL = 'https://raisinapost.substack.com/feed'
@@ -203,7 +204,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(finalize_page(page), encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','editorial-pages.css','intelligence.css','intelligence.js','minimal.css','motion.css','motion.js','footer-refresh.css','public-records.css','public-records.js','finance.css','finance.js','bento.css','bento.js','premium.css','premium.js','economy-explorer.js'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','editorial-pages.css','intelligence.css','intelligence.js','minimal.css','motion.css','motion.js','footer-refresh.css','public-records.css','public-records.js','finance.css','finance.js','bento.css','bento.js','premium.css','premium.js','economy-explorer.js','research-tools.js','research-tools.css'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -226,13 +227,15 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     market = chrome((BASE/'site'/'markets.html').read_text(encoding='utf-8'))
     market = market.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'markets.html').write_text(finalize_page(market), encoding='utf-8')
-    for name in ('desk','membership','ownership-atlas','policy-timeline','policy-monitor','india-data','release-calendar','document-diff','parliament-file','data-room','evidence-desk','question-hour','trade-ledger','public-money'):
+    for name in ('country-desk','document-library','desk','membership','ownership-atlas','policy-timeline','policy-monitor','india-data','release-calendar','document-diff','parliament-file','data-room','evidence-desk','question-hour','trade-ledger','public-money'):
         researched=chrome((BASE/'site'/(name+'.html')).read_text(encoding='utf-8'))
         researched=researched.replace('<!--SITE_URL-->',escape(site_url)).replace('<!--YEAR-->',str(datetime.now(timezone.utc).year))
         (destination/(name+'.html')).write_text(finalize_page(researched), encoding='utf-8')
     (destination/'data').mkdir(exist_ok=True)
-    for name in ('ownership-companies.json','ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json','finance.json'):
+    for name in ('countries.json','ownership-companies.json','ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json','finance.json'):
         shutil.copy2(BASE/'site'/'data'/name,destination/'data'/name)
+    shutil.copytree(BASE/'site'/'vendor',destination/'vendor',dirs_exist_ok=True)
+    write_assets(BASE/'site'/'data', destination/'data')
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     publish_discovery(destination, site_url, posts)
     # GitHub Pages serves a folder permalink from its index.html.
