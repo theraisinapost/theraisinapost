@@ -621,3 +621,32 @@ test('research bento starts at the text gutter and scrolls edge to edge without 
   await rail.getByRole('link',{name:/^Question Hour/}).click();
   await expect(page).toHaveURL(/question-hour[.]html$/);
 });
+
+test('ownership companies have sourced deep links and work without the graph CDN', async ({ page }) => {
+  await page.route('**/cytoscape.min.js', route => route.abort());
+  await page.goto('/ownership-atlas.html?company=hul');
+  await expect(page.locator('#company-heading')).toHaveText('Who owns HUL?');
+  await expect(page.locator('.owner-row')).toHaveCount(7);
+  await expect(page.locator('#owner-value')).toHaveText('47.43%');
+  await page.locator('[data-company="reliance"]').click();
+  await expect(page).toHaveURL(/company=reliance/);
+  await expect(page.locator('#owner-record-type')).toHaveText('Aggregate category');
+  await expect(page.locator('#owner-value')).toHaveText('50.44%');
+  await page.goBack();
+  await expect(page.locator('#company-heading')).toHaveText('Who owns HUL?');
+  await page.locator('[data-company="lic"]').click();
+  await expect(page.locator('#owner-value')).toHaveText('90.00%');
+  await expect(page.locator('#owner-source')).toHaveAttribute('href', /nseindia.com/);
+  await page.goto('/ownership-atlas.html?company=missing');
+  await expect(page.locator('#company-heading')).toHaveText('Who owns TCS?');
+  await expect(page.locator('.owner-row')).toHaveCount(5);
+});
+
+test('ownership shelf fits a mobile viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/ownership-atlas.html?company=hul');
+  await expect(page.locator('#company-heading')).toHaveText('Who owns HUL?');
+  await expect(page.locator('[data-company="coal-india"]')).toBeAttached();
+  await page.locator('[data-company="coal-india"]').click();
+  await expect(page.locator('#owner-value')).toHaveText('61.13%');
+});

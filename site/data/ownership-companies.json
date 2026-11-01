@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "companies": [
+    {
+      "id": "tcs",
+      "name": "Tata Consultancy Services",
+      "short": "TCS",
+      "sector": "Technology",
+      "asOf": "2026-03-31",
+      "source": {
+        "label": "TCS Annual Report 2025\u201326, Corporate Governance Report, p.125",
+        "url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
+      },
+      "scope": "Selected named shareholders in Tata Consultancy Services Ltd, not ownership of Tata Sons or the Tata Group.",
+      "recordType": "Selected named shareholders",
+      "owners": [
+        {
+          "id": "tata",
+          "label": "Tata Sons Private Limited",
+          "percent": 71.74,
+          "target": "tcs",
+          "asOf": "2026-03-31",
+          "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "lic",
+          "label": "Life Insurance Corporation of India",
+          "percent": 5.52,
+          "target": "tcs",
+          "asOf": "2026-03-31",
+          "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "sbi",
+          "label": "SBI Mutual Fund",
+          "percent": 1.25,
+          "target": "tcs",
+          "asOf": "2026-03-31",
+          "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "icici",
+          "label": "ICICI Prudential Mutual Fund",
+          "percent": 1.06,
+          "target": "tcs",
+          "asOf": "2026-03-31",
+          "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "nps",
+          "label": "NPS Trust Account",
+          "percent": 0.79,
+          "target": "tcs",
+          "asOf": "2026-03-31",
+          "source": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf",
+          "kind": "Named shareholder"
+        }
+      ]
+    },
+    {
+      "id": "hul",
+      "name": "Hindustan Unilever",
+      "short": "HUL",
+      "sector": "Consumer goods",
+      "asOf": "2026-03-31",
+      "source": {
+        "url": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+        "label": "March 2026 shareholding pattern, pages 13 and 15"
+      },
+      "scope": "Seven named promoter shareholders; excludes public holdings. Percentages use column VIII, not fully diluted capital. These direct holdings do not establish ultimate beneficial ownership.",
+      "recordType": "Selected named shareholders",
+      "owners": [
+        {
+          "id": "hul-0",
+          "label": "Unilever PLC",
+          "percent": 47.43,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "hul-1",
+          "label": "Unilever Group Limited",
+          "percent": 4.54,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "hul-2",
+          "label": "Unilever Overseas Holdings AG",
+          "percent": 2.93,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "hul-3",
+          "label": "Unilever UK & CN Holdings Limited",
+          "percent": 2.56,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "hul-4",
+          "label": "Unilever South India Estates Limited",
+          "percent": 2.24,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "hul-5",
+          "label": "Unilever Assam Estates Limited",
+          "percent": 1.4,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        },
+        {
+          "id": "hul-6",
+          "label": "Unilever Overseas Holdings B V",
+          "percent": 0.8,
+          "target": "hul",
+          "asOf": "2026-03-31",
+          "source": "https://www.hul.co.in/files/mq-2026-shareholding-pattern-for-the-past-quarter.pdf",
+          "kind": "Named shareholder"
+        }
+      ]
+    },
+    {
+      "id": "reliance",
+      "name": "Reliance Industries",
+      "short": "Reliance",
+      "sector": "Diversified",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://rilstaticasset.akamaized.net/sites/default/files/2026-10/SHP30092026.pdf",
+        "label": "September 2026 shareholding pattern, Table I, page 3"
+      },
+      "scope": "Aggregate categories, not individual owners. Percentages use the filing\u2019s A+B+C2 denominator; shares underlying depository receipts are excluded. Voting-right percentages differ.",
+      "recordType": "Aggregate categories",
+      "owners": [
+        {
+          "id": "reliance-0",
+          "label": "Promoter and promoter group",
+          "percent": 50.44,
+          "target": "reliance",
+          "asOf": "2026-09-30",
+          "source": "https://rilstaticasset.akamaized.net/sites/default/files/2026-10/SHP30092026.pdf",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "reliance-1",
+          "label": "Public shareholders",
+          "percent": 49.56,
+          "target": "reliance",
+          "asOf": "2026-09-30",
+          "source": "https://rilstaticasset.akamaized.net/sites/default/files/2026-10/SHP30092026.pdf",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "lic",
+      "name": "Life Insurance Corporation of India",
+      "short": "LIC",
+      "sector": "Insurance",
+      "asOf": "2026-08-05",
+      "source": {
+        "url": "https://nsearchives.nseindia.com/corporate/ixbrl/IT_20463_20260810_172058524_WEB.html",
+        "label": "Regulation 7(2) disclosure, filed 10 August 2026"
+      },
+      "scope": "Post-disposal holding after transactions ending 5 August 2026. Event snapshot, not a complete quarterly shareholding pattern.",
+      "recordType": "Selected named shareholders",
+      "owners": [
+        {
+          "id": "lic-0",
+          "label": "President of India, represented by Ministry of Finance",
+          "percent": 90,
+          "target": "lic",
+          "asOf": "2026-08-05",
+          "source": "https://nsearchives.nseindia.com/corporate/ixbrl/IT_20463_20260810_172058524_WEB.html",
+          "kind": "Named shareholder"
+        }
+      ]
+    },
+    {
+      "id": "coal-india",
+      "name": "Coal India",
+      "short": "Coal India",
+      "sector": "Energy",
+      "asOf": "2026-05-29",
+      "source": {
+        "url": "https://nsearchives.nseindia.com/corporate/ixbrl/IT_20260602_003646741_WEB.html",
+        "label": "Regulation 7(2) disclosure, filed 1 June 2026"
+      },
+      "scope": "Post-disposal holding after transactions ending 29 May 2026. Event snapshot, not a complete quarterly shareholding pattern.",
+      "recordType": "Selected named shareholders",
+      "owners": [
+        {
+          "id": "coal-india-0",
+          "label": "President of India",
+          "percent": 61.13,
+          "target": "coal-india",
+          "asOf": "2026-05-29",
+          "source": "https://nsearchives.nseindia.com/corporate/ixbrl/IT_20260602_003646741_WEB.html",
+          "kind": "Named shareholder"
+        }
+      ]
+    }
+  ]
+}
