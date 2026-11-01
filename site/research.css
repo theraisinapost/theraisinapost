@@ -146,3 +146,9 @@ body[data-research="atlas"]{overflow-x:clip}
  .atlas-compare-controls,.atlas-compare-results{grid-template-columns:1fr;gap:10px}
  .atlas-compare-company{padding:20px}
 }
+
+
+/* A fourth directory control shares the existing tight Swiss-grid spacing. */
+.company-browser-controls{grid-template-columns:minmax(0,2fr) minmax(145px,1fr) minmax(180px,1.2fr) auto}
+@media(max-width:880px){.company-browser-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.company-browser-controls label:first-child{grid-column:1/-1}#atlas-show-all{grid-column:1/-1;justify-self:start}}
+@media(max-width:350px){.company-browser-controls{grid-template-columns:1fr}.company-browser-controls label:first-child{grid-column:1}.company-browser-controls label{grid-column:1/-1}}

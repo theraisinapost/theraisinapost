@@ -653,7 +653,7 @@ test('ownership shelf fits a mobile viewport', async ({ page }) => {
 
 test('ownership atlas expands verified companies, searches sectors, and preserves sourced selections',async ({page})=>{
   await page.goto('/ownership-atlas.html');
-  await expect(page.locator('#atlas-company-total')).toContainText('64');
+  await expect(page.locator('#atlas-company-total')).toContainText('84');
   await expect(page.locator('#company-browser input')).toBeVisible();
   await page.locator('#company-search').fill('Infosys');
   await expect(page.locator('.company-rail .company-card:visible')).toHaveCount(1);
@@ -674,7 +674,7 @@ test('ownership atlas expands verified companies, searches sectors, and preserve
 
 test('Atlas comparison distinguishes aggregates from selected named holders and exports dated CSV', async ({page})=>{
  await page.goto('/ownership-atlas.html');
- await expect(page.locator('#atlas-company-total')).toHaveText('64');
+ await expect(page.locator('#atlas-company-total')).toHaveText('84');
  await page.locator('#compare-first').selectOption('hindalco');
  await page.locator('#compare-second').selectOption('asian-paints');
  await expect(page.locator('#compare-results .atlas-compare-company')).toHaveCount(2);
@@ -690,4 +690,22 @@ test('Atlas comparison distinguishes aggregates from selected named holders and 
  await expect(page.locator('#compare-note')).toContainText('Not directly comparable');
  await page.setViewportSize({width:320,height:720});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+});
+
+test('expanded atlas exposes 84 verified companies and sorts by dated promoter percentage',async({page})=>{
+  await page.goto('/ownership-atlas.html');
+  await expect(page.locator('#atlas-company-total')).toHaveText('84');
+  await expect(page.locator('#atlas-directory-meta')).toContainText('189');
+  await expect(page.locator('#company-sort')).toBeVisible();
+  await page.locator('#company-sector').selectOption('Defence');
+  await expect(page.locator('[data-company="hal"]')).toBeVisible();
+  await page.locator('[data-company="hal"]').click();
+  await expect(page.locator('#owner-value')).toHaveText('71.64%');
+  await page.locator('#company-sector').selectOption('All');
+  await page.locator('#company-sort').selectOption('promoter-desc');
+  await expect(page.locator('.company-rail .company-card')).toHaveCount(84);
+  const names=await page.locator('.company-rail .company-card').allTextContents();
+  expect(names.some(x=>x.includes('IRFC'))).toBeTruthy();
+  await page.setViewportSize({width:320,height:740});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
 });
