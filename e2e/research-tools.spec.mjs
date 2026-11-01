@@ -16,7 +16,8 @@ test('country comparisons use one year and export its provenance',async({page})=
 });
 test('document search supports deep links, types, typos and empty results',async({page})=>{
  await page.goto('/document-library/?kind=Company+filing');
- await expect(page.locator('.document-card')).toHaveCount(5);
+ await expect(page.locator('.document-card')).toHaveCount(20);
+ await expect(page.locator('#library-more')).toBeVisible();
  await page.locator('#library-kind').selectOption('');
  await page.locator('#library-search').fill('Unilveer');
  await expect(page.locator('.document-card')).toHaveCount(1);
