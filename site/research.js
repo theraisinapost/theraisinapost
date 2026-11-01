@@ -7,6 +7,7 @@
     const graph=document.getElementById('ownership-graph');
     const search=document.getElementById('company-search');
     const sector=document.getElementById('company-sector');
+    const sort=document.getElementById('company-sort');
     const allButton=document.getElementById('atlas-show-all');
     const breakdown=document.getElementById('atlas-breakdown');
     const categoryBar=document.getElementById('atlas-category-bar');
@@ -81,6 +82,23 @@
       const q=trim(search.value),industry=sector.value;
       const filtered=companies.filter(c=>(industry==='All'||c.sector===industry)&&
         (!q||trim(c.name+' '+c.short+' '+c.sector).includes(q)));
+      const ordering=sort.value;
+      if(ordering==='name') filtered.sort((a,b)=>a.name.localeCompare(b.name));
+      if(ordering==='date') filtered.sort((a,b)=>b.asOf.localeCompare(a.asOf)||a.name.localeCompare(b.name));
+      if(ordering==='promoter-desc'||ordering==='public-desc'){
+        const which=ordering==='promoter-desc'?'promoter':'public';
+        const value=company=>{
+          if(company.recordType!=='Aggregate categories')return null;
+          if(company.categoryTotals)return Number(company.categoryTotals[which]);
+          return company.owners.find(o=>o.id.endsWith('-'+which))?.percent??0;
+        };
+        filtered.sort((a,b)=>{
+          const av=value(a),bv=value(b);
+          if(av===null)return bv===null?a.name.localeCompare(b.name):1;
+          if(bv===null)return -1;
+          return bv-av||a.name.localeCompare(b.name);
+        });
+      }
       const activeSearch=Boolean(q)||industry!=='All';
       let visible=activeSearch||showAll?filtered:filtered.slice(0,8);
       if(!activeSearch&&!showAll&&selectedCompany&&!visible.some(c=>c.id===selectedCompany.id))
@@ -237,6 +255,7 @@
     });
     search.addEventListener('input',renderDirectory);
     sector.addEventListener('change',renderDirectory);
+    sort.addEventListener('change',()=>{showAll=true;renderDirectory();});
     allButton.addEventListener('click',()=>{showAll=!showAll;renderDirectory();});
     fetch('data/ownership-companies.json',{cache:'no-store'})
       .then(r=>{if(!r.ok)throw Error('Unavailable');return r.json();})
