@@ -691,3 +691,22 @@ test('Atlas comparison distinguishes aggregates from selected named holders and 
  await page.setViewportSize({width:320,height:720});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
 });
+
+test('expanded atlas exposes 84 verified companies and sorts by dated promoter percentage',async({page})=>{
+  await page.goto('/ownership-atlas.html');
+  await expect(page.locator('#atlas-company-total')).toHaveText('84');
+  await expect(page.locator('#atlas-directory-meta')).toContainText('189');
+  await expect(page.locator('#company-sort')).toBeVisible();
+  await page.locator('#company-sector').selectOption('Defence');
+  await expect(page.locator('[data-company="hal"]')).toBeVisible();
+  await page.locator('[data-company="hal"]').click();
+  await expect(page.locator('#owner-value')).toHaveText('71.64%');
+  await page.locator('#company-sector').selectOption('All');
+  await page.locator('#company-sort').selectOption('promoter-desc');
+  await page.locator('#atlas-show-all').click();
+  await expect(page.locator('.company-rail .company-card')).toHaveCount(84);
+  const names=await page.locator('.company-rail .company-card').allTextContents();
+  expect(names.some(x=>x.includes('IRFC'))).toBeTruthy();
+  await page.setViewportSize({width:320,height:740});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+});
