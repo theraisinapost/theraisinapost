@@ -12,13 +12,19 @@
     const categoryBar=document.getElementById('atlas-category-bar');
     const categoryLegend=document.getElementById('atlas-category-legend');
     const stat=document.getElementById('atlas-directory-meta');
+    const compareFirst=document.getElementById('compare-first');
+    const compareSecond=document.getElementById('compare-second');
+    const compareResults=document.getElementById('compare-results');
+    const compareNote=document.getElementById('compare-note');
+    const exportButton=document.getElementById('atlas-export');
+
     let companies=[],selectedCompany=null,buttons=[],cy,showAll=false;
     const trim=x=>String(x||'').toLocaleLowerCase().trim();
     const dateText=iso=>new Date(iso+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
     const validUrl=url=>{
       try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&
         ['www.tcs.com','www.hul.co.in','rilstaticasset.akamaized.net','nsearchives.nseindia.com',
-         'www.nseindia.com','www.titancompany.in','www.hdfc.bank.in','sbi.bank.in','www.icici.bank.in'].includes(u.hostname);}
+         'www.nseindia.com','www.titancompany.in','www.hdfc.bank.in','sbi.bank.in','www.icici.bank.in','www.kotak.bank.in'].includes(u.hostname);}
       catch(_){return false;}
     };
     const validCompany=c=>c&&typeof c.id==='string'&&/^[a-z0-9-]+$/.test(c.id)&&
@@ -102,6 +108,80 @@
         rail.append(create('p','No companies match this search. Try another name or sector.','company-no-results'));
       }
     };
+    const aggregateValues=company=>{
+      if(company.recordType!=='Aggregate categories')return null;
+      if(company.categoryTotals)return company.categoryTotals;
+      const find=word=>company.owners.find(o=>String(o.label).toLowerCase().includes(word))?.percent??0;
+      return {promoter:find('promoter'),public:find('public'),trust:find('employee trust')};
+    };
+    const renderComparison=()=>{
+      const picks=[compareFirst.value,compareSecond.value].map(id=>companies.find(c=>c.id===id));
+      compareResults.replaceChildren();
+      if(picks.some(c=>!c)){
+        compareNote.textContent='Select two companies to compare their dated filings.';
+        return;
+      }
+      for(const company of picks){
+        const card=create('article',undefined,'atlas-compare-company');
+        const caption=create('p',company.sector+' · '+dateText(company.asOf),'atlas-compare-caption');
+        const name=create('h3',company.name);
+        const record=create('p',company.recordType,'atlas-compare-recordtype');
+        const values=aggregateValues(company);
+        card.append(caption,name,record);
+        if(values){
+          const rows=create('dl',undefined,'atlas-compare-values');
+          [['Promoter & group',values.promoter],['Public shareholders',values.public],['Employee trusts',values.trust]]
+            .forEach(([label,value])=>{
+              const line=create('div');
+              line.append(create('dt',label),create('dd',Number(value).toFixed(2)+'%'));
+              rows.append(line);
+            });
+          card.append(rows);
+        }else{
+          card.append(create('p','Selected named shareholders only; a complete category breakdown is not included.','atlas-compare-warning'));
+        }
+        const source=create('a','View original disclosure');
+        source.href=company.source.url;
+        source.rel='noopener noreferrer';
+        source.target='_blank';
+        card.append(source);
+        compareResults.append(card);
+      }
+      if(picks.some(c=>c.recordType!=='Aggregate categories')){
+        compareNote.textContent='Not directly comparable: one or both records contain selected named holders, not complete aggregate categories.';
+      }else if(picks[0].id===picks[1].id){
+        compareNote.textContent='Both selections are the same company. Choose a different second company for a useful comparison.';
+      }else{
+        compareNote.textContent='Category shares use the A+B+C2 denominator; rounded totals may differ slightly from 100%. Source dates can differ. These categories do not identify ultimate beneficial owners.';
+      }
+    };
+    const safeCsv=value=>{
+      let text=String(value??'');
+      if(/^[=+@\-\t\r]/.test(text))text="'"+text;
+      return '"'+text.replaceAll('"','""')+'"';
+    };
+    const downloadCsv=()=>{
+      if(!companies.length)return;
+      const fields=['Company','Ticker','Sector','Snapshot date','Record type','Shareholder or category','Percentage','Original source'];
+      const lines=[fields.map(safeCsv).join(',')];
+      companies.forEach(c=>{
+        c.owners.forEach(o=>{
+          lines.push([c.name,c.symbol||c.short,c.sector,c.asOf,c.recordType,o.label,o.percent.toFixed(2),o.source].map(safeCsv).join(','));
+        });
+      });
+      const text=lines.join('\r\n')+'\r\n';
+      const url=URL.createObjectURL(new Blob(['\uFEFF',text],{type:'text/csv;charset=utf-8'}));
+      const link=document.createElement('a');
+      link.href=url;
+      link.download='raisina-ownership-atlas-'+companies.length+'-companies.csv';
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+    };
+    compareFirst.addEventListener('change',renderComparison);
+    compareSecond.addEventListener('change',renderComparison);
+    exportButton.addEventListener('click',downloadCsv);
     const render=id=>{
       const company=companies.find(c=>c.id===id)||companies[0];
       if(!company)return;
@@ -166,6 +246,18 @@
         const sectors=[...new Set(companies.map(c=>c.sector))].sort((a,b)=>a.localeCompare(b));
         sectors.forEach(s=>{const option=create('option',s);option.value=s;sector.append(option);});
         document.getElementById('atlas-company-total').textContent=companies.length;
+        [compareFirst,compareSecond].forEach(select=>{
+          companies.forEach(c=>{
+            const option=create('option',c.short+' · '+dateText(c.asOf));
+            option.value=c.id;
+            select.append(option);
+          });
+        });
+        compareFirst.value=companies.find(c=>c.id==='reliance')?'reliance':companies[0].id;
+        compareSecond.value=companies.find(c=>c.id==='hindalco')?'hindalco':companies[1]?.id||companies[0].id;
+        exportButton.disabled=false;
+        renderComparison();
+
         const fromURL=()=>render(new URLSearchParams(location.search).get('company'));
         window.addEventListener('popstate',fromURL);fromURL();
       }).catch(()=>{
