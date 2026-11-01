@@ -475,7 +475,7 @@ test('footer is grouped, readable and usable on desktop and mobile',async({page}
 test('Swiss publication footer is coherent, functional, and fits 320px screens', async ({page})=>{
   await page.goto('/');
   const footer=page.locator('footer.editorial-footer');
-  await expect(footer.getByRole('heading',{name:'The evidence behind the decision.'})).toBeVisible();
+  await expect(footer.getByRole('heading',{name:'Policy and business, in context.'})).toBeVisible();
   const groups=footer.locator('.editorial-footer-nav nav');
   await expect(groups).toHaveCount(3);
   for(const group of ['Read','Research','Publication']){
