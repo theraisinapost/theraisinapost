@@ -11,6 +11,8 @@ test('country comparisons use one year and export its provenance',async({page})=
  await expect(page.locator('#country-caption')).toContainText('GDP per person');
  const download=page.waitForEvent('download');await page.locator('#country-export').click();expect((await download).suggestedFilename()).toBe('raisina-country-comparison.csv');
  expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
+ await page.setViewportSize({width:390,height:844});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
 });
 test('document search supports deep links, types, typos and empty results',async({page})=>{
  await page.goto('/document-library/?kind=Company+filing');
