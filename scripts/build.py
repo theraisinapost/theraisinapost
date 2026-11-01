@@ -224,7 +224,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
         researched=researched.replace('<!--SITE_URL-->',escape(site_url)).replace('<!--YEAR-->',str(datetime.now(timezone.utc).year))
         (destination/(name+'.html')).write_text(finalize_page(researched), encoding='utf-8')
     (destination/'data').mkdir(exist_ok=True)
-    for name in ('ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json','finance.json'):
+    for name in ('ownership-companies.json','ownership-tcs.json','dpdp-timeline.json','release-calendar.json','regulatory.json','parliament.json','source-watch.json','monitor-sources.json','public-money.json','question-hour.json','trade-ledger.json','finance.json'):
         shutil.copy2(BASE/'site'/'data'/name,destination/'data'/name)
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     publish_discovery(destination, site_url, posts)
