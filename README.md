@@ -4,17 +4,17 @@
 
 A purpose-built, minimalist GitHub Pages site for **[@theraisinapost](https://github.com/theraisinapost)**. It reads the public Substack RSS feed and publishes a typographic editorial homepage, front-page lead, secondary dispatches, searchable archive, categories and a newsletter call-to-action. The canonical articles and subscriptions remain on Substack.
 
-**Repository:** `theraisinapost/theraisinapost`  
-**Expected GitHub Pages URL:** `https://theraisinapost.github.io/theraisinapost/`  
-**Feed:** `https://raisinapost.substack.com/feed`  
+**Repository:** `theraisinapost/theraisinapost.github.io`
+**Expected GitHub Pages URL:** `https://theraisinapost.github.io/`
+**Feed:** `https://raisinapost.substack.com/feed`
 **Publishing cadence:** hourly GitHub Actions, subject to scheduler and feed availability.
 
 ## Deployment
 
-1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
+1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost.github.io` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
 2. In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. The `GITHUB_TOKEN` on its own cannot activate an unconfigured Pages site.
 3. In **Actions**, open **The Raisina Post | RSS to GitHub Pages** and select **Run workflow**, branch `main`.
-4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/theraisinapost/`.
+4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/`.
 
 The website automatically updates on pushes to the source files, on manual dispatch, and via a scheduled check at 23 minutes past every hour. GitHub-hosted scheduled workflows can be delayed; feed failures stop a deployment instead of wiping a working site. If direct Substack RSS is blocked from a GitHub runner, the build tries a public RSS proxy. Only a public URL is sent, never credentials.
 
@@ -78,7 +78,7 @@ The publication's visible site remains a lightweight Python-built GitHub Pages a
 
 ```bash
 python -m unittest discover -s tests -v
-python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/theraisinapost/
+python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/
 npm install --no-package-lock
 npx playwright install chromium
 npm run check:js

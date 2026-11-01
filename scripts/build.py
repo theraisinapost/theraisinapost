@@ -23,7 +23,7 @@ from discovery import publish_discovery
 
 BASE = Path(__file__).resolve().parents[1]
 FEED_URL = 'https://raisinapost.substack.com/feed'
-DEFAULT_URL = 'https://theraisinapost.github.io/theraisinapost/'
+DEFAULT_URL = 'https://theraisinapost.github.io/'
 MEDIA_NS = 'http://search.yahoo.com/mrss/'
 
 class PlainText(HTMLParser):

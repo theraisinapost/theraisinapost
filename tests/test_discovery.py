@@ -43,6 +43,26 @@ class Head(HTMLParser):
 
 
 class DiscoveryTests(unittest.TestCase):
+    def test_root_deployment_preserves_old_project_page_links(self):
+        with TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            build.render_site(build.parse_feed(FEED), out)
+            redirects = list((out / 'theraisinapost').glob('*.html'))
+            self.assertEqual(len(redirects), len(list(out.glob('*.html'))))
+            about = (out / 'theraisinapost/about.html').read_text()
+            self.assertIn('https://theraisinapost.github.io/about.html', about)
+            self.assertIn('location.search + location.hash', about)
+            self.assertIn('http-equiv="refresh"', about)
+            self.assertNotIn('/theraisinapost/', (out / 'sitemap.xml').read_text())
+            self.assertEqual((out / 'sitemap.xml').read_bytes(), (out / 'theraisinapost/sitemap.xml').read_bytes())
+
+    def test_project_deployment_remains_usable_before_repository_rename(self):
+        with TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            build.render_site(build.parse_feed(FEED), out, 'https://theraisinapost.github.io/theraisinapost/')
+            self.assertFalse((out / 'theraisinapost').exists())
+            self.assertIn('href="https://theraisinapost.github.io/theraisinapost/"', (out / 'index.html').read_text())
+
     def test_every_published_page_has_matching_metadata_and_schema(self):
         with TemporaryDirectory() as tmp:
             out = Path(tmp)

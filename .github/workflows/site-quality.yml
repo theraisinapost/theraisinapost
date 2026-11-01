@@ -34,7 +34,7 @@ jobs:
       - name: Unit tests and offline RSS build
         run: |
           python -m unittest discover -s tests -v
-          python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/theraisinapost/
+          python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/
       - name: Install pinned QA tools
         run: npm install --no-audit --no-fund --no-package-lock
       - name: Check JavaScript syntax

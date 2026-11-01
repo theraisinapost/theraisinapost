@@ -28,16 +28,24 @@ to the canonical Substack editions; the site does not claim to host full news
 articles or fabricate author/date metadata. The sitemap omits `lastmod` because
 an hourly rebuild is not an editorial modification.
 
-## GitHub Pages host-root limitation
+## Root GitHub Pages deployment
 
-Current URL: `https://theraisinapost.github.io/theraisinapost/`.
-The build outputs `/theraisinapost/robots.txt`. Crawlers instead consult
-`https://theraisinapost.github.io/robots.txt`. A robots file in a project
-directory cannot override host-root rules. Copy the generated robots file to
-the host-root site's deployment, or deploy this project on its own domain.
-The repository connection did not expose an existing host-root site to edit.
-The existing wildcard allow policy is preserved; search access and AI training
-controls are separate choices. No training preference has been changed.
+Production URL: `https://theraisinapost.github.io/`.
+The repository must be named `theraisinapost/theraisinapost.github.io` and use
+GitHub Actions as its Pages publishing source. The existing deployment workflow
+automatically uses the host root for this repository name.
+
+The robots file is served at `https://theraisinapost.github.io/robots.txt`,
+where crawlers expect it. The build preserves the wildcard allow policy;
+search access and AI training controls are separate choices. No training
+preference has been changed.
+
+At the root deployment, the build creates static redirects for the previous
+`/theraisinapost/` homepage and HTML pages, preserving query strings and anchors.
+Those compatibility pages are excluded from the canonical sitemap. The old
+sitemap path also serves the root URL sitemap for previously submitted feeds.
+Add the new root URL-prefix property to Search Console and verify using its
+HTML-tag method; the supplied verification tag remains in the homepage.
 
 On a custom domain, set `RAISINA_SITE_URL` to its absolute HTTPS base URL. The
 build regenerates canonicals, schema IDs, sitemap locations and text resources

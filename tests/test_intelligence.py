@@ -22,7 +22,7 @@ class IntelligencePages(unittest.TestCase):
                 page=(out/(name+'.html')).read_text(encoding='utf-8')
                 self.assertIn('href="minimal.css"',page)
                 self.assertIn('href="intelligence.css"',page)
-                self.assertIn('href="https://theraisinapost.github.io/theraisinapost/'+name+'.html"',page)
+                self.assertIn('href="https://theraisinapost.github.io/'+name+'.html"',page)
                 self.assertIn('href="'+name+'.html"',home)
                 self.assertIn(name+'.html',site_map)
                 self.assertNotIn('<!--SITE_URL-->',page)

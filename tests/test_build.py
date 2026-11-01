@@ -14,7 +14,7 @@ FEED='''<?xml version="1.0"?><rss version="2.0" xmlns:content="http://purl.org/r
 
 class TestFeed(unittest.TestCase):
  def test_default_site_url_is_organization_project(self):
-  self.assertEqual(build.DEFAULT_URL,'https://theraisinapost.github.io/theraisinapost/')
+  self.assertEqual(build.DEFAULT_URL,'https://theraisinapost.github.io/')
 
  def test_parse_feed_decodes_titles_sorts_and_rejects_bad_links(self):
   posts=build.parse_feed(FEED)
@@ -28,13 +28,13 @@ class TestFeed(unittest.TestCase):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
    out=Path(d)/'dist'
-   build.render_site(posts, out, 'https://theraisinapost.github.io/theraisinapost/')
+   build.render_site(posts, out, 'https://theraisinapost.github.io/')
    html=(out/'index.html').read_text()
    self.assertIn('India &amp; policy &lt;strong&gt;',html)
    self.assertNotIn('India & policy <strong>',html)
    self.assertNotIn('<script>alert(1)',html)
    self.assertIn('https://raisinapost.substack.com/p/first',html)
-   self.assertIn('href="https://theraisinapost.github.io/theraisinapost/"', html)
+   self.assertIn('href="https://theraisinapost.github.io/"', html)
    self.assertTrue((out/'styles.css').exists())
    self.assertTrue((out/'sitemap.xml').exists())
    self.assertTrue((out/'posts.json').exists())
@@ -64,7 +64,7 @@ class TestFeed(unittest.TestCase):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
    out=Path(d)/'dist'
-   build.render_site(posts,out,'https://theraisinapost.github.io/theraisinapost/')
+   build.render_site(posts,out,'https://theraisinapost.github.io/')
    page=(out/'index.html').read_text()
    css=(out/'styles.css').read_text()
    js=(out/'site.js').read_text()
@@ -83,7 +83,7 @@ class TestFeed(unittest.TestCase):
   posts=build.parse_feed(FEED)
   with TemporaryDirectory() as d:
    out=Path(d)/'dist'
-   build.render_site(posts,out,'https://theraisinapost.github.io/theraisinapost/')
+   build.render_site(posts,out,'https://theraisinapost.github.io/')
    guide=(out/'publication-guide.html').read_text()
    self.assertIn('Corrections',guide)
    self.assertIn('Submissions',guide)
