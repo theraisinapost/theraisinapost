@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "companies": [
     {
       "id": "tcs",
@@ -1056,6 +1056,1408 @@
           "kind": "Aggregate category"
         }
       ]
+    },
+    {
+      "id": "hindalco",
+      "name": "Hindalco Industries",
+      "short": "Hindalco",
+      "sector": "Materials",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDALCO&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 34.66,
+        "public": 64.85,
+        "trust": 0.48
+      },
+      "owners": [
+        {
+          "id": "hindalco-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 34.66,
+          "target": "hindalco",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDALCO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hindalco-public",
+          "label": "Public shareholders",
+          "percent": 64.85,
+          "target": "hindalco",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDALCO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hindalco-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.48,
+          "target": "hindalco",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDALCO&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "hero-motocorp",
+      "name": "Hero MotoCorp",
+      "short": "Hero MotoCorp",
+      "sector": "Automotive",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HEROMOTOCO&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 34.72,
+        "public": 65.28,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "hero-motocorp-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 34.72,
+          "target": "hero-motocorp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HEROMOTOCO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hero-motocorp-public",
+          "label": "Public shareholders",
+          "percent": 65.28,
+          "target": "hero-motocorp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HEROMOTOCO&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "indian-hotels",
+      "name": "The Indian Hotels Company",
+      "short": "Indian Hotels",
+      "sector": "Hospitality",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INDHOTEL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 38.12,
+        "public": 61.88,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "indian-hotels-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 38.12,
+          "target": "indian-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INDHOTEL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "indian-hotels-public",
+          "label": "Public shareholders",
+          "percent": 61.88,
+          "target": "indian-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INDHOTEL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "crompton",
+      "name": "Crompton Greaves Consumer Electricals",
+      "short": "Crompton",
+      "sector": "Consumer goods",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CROMPTON&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 0,
+        "public": 100,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "crompton-public",
+          "label": "Public shareholders",
+          "percent": 100,
+          "target": "crompton",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CROMPTON&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "cg-power",
+      "name": "CG Power and Industrial Solutions",
+      "short": "CG Power",
+      "sector": "Engineering",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CGPOWER&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 56.34,
+        "public": 43.66,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "cg-power-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 56.34,
+          "target": "cg-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CGPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "cg-power-public",
+          "label": "Public shareholders",
+          "percent": 43.66,
+          "target": "cg-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=CGPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "afcons",
+      "name": "Afcons Infrastructure",
+      "short": "Afcons",
+      "sector": "Infrastructure",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=AFCONS&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 50.17,
+        "public": 49.83,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "afcons-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 50.17,
+          "target": "afcons",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=AFCONS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "afcons-public",
+          "label": "Public shareholders",
+          "percent": 49.83,
+          "target": "afcons",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=AFCONS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "railtel",
+      "name": "RailTel Corporation of India",
+      "short": "RailTel",
+      "sector": "Telecom",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAILTEL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 72.84,
+        "public": 27.16,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "railtel-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 72.84,
+          "target": "railtel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAILTEL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "railtel-public",
+          "label": "Public shareholders",
+          "percent": 27.16,
+          "target": "railtel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RAILTEL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "piramal-pharma",
+      "name": "Piramal Pharma",
+      "short": "Piramal Pharma",
+      "sector": "Pharmaceuticals",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PPLPHARMA&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 34.8,
+        "public": 64.8,
+        "trust": 0.4
+      },
+      "owners": [
+        {
+          "id": "piramal-pharma-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 34.8,
+          "target": "piramal-pharma",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PPLPHARMA&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "piramal-pharma-public",
+          "label": "Public shareholders",
+          "percent": 64.8,
+          "target": "piramal-pharma",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PPLPHARMA&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "piramal-pharma-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.4,
+          "target": "piramal-pharma",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PPLPHARMA&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "astrazeneca-india",
+      "name": "AstraZeneca Pharma India",
+      "short": "AstraZeneca India",
+      "sector": "Pharmaceuticals",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASTRAZEN&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 75,
+        "public": 25,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "astrazeneca-india-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 75,
+          "target": "astrazeneca-india",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASTRAZEN&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "astrazeneca-india-public",
+          "label": "Public shareholders",
+          "percent": 25,
+          "target": "astrazeneca-india",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASTRAZEN&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "kfintech",
+      "name": "KFin Technologies",
+      "short": "KFin Tech",
+      "sector": "Finance",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KFINTECH&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 14.06,
+        "public": 85.94,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "kfintech-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 14.06,
+          "target": "kfintech",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KFINTECH&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "kfintech-public",
+          "label": "Public shareholders",
+          "percent": 85.94,
+          "target": "kfintech",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KFINTECH&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "netweb",
+      "name": "Netweb Technologies India",
+      "short": "Netweb",
+      "sector": "Technology",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NETWEB&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 64.16,
+        "public": 35.84,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "netweb-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 64.16,
+          "target": "netweb",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NETWEB&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "netweb-public",
+          "label": "Public shareholders",
+          "percent": 35.84,
+          "target": "netweb",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NETWEB&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "upl",
+      "name": "UPL",
+      "short": "UPL",
+      "sector": "Chemicals",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=UPL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 33.51,
+        "public": 66.49,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "upl-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 33.51,
+          "target": "upl",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=UPL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "upl-public",
+          "label": "Public shareholders",
+          "percent": 66.49,
+          "target": "upl",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=UPL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "mahindra-holidays",
+      "name": "Mahindra Holidays & Resorts India",
+      "short": "Mahindra Holidays",
+      "sector": "Hospitality",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MHRIL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 66.73,
+        "public": 33.09,
+        "trust": 0.18
+      },
+      "owners": [
+        {
+          "id": "mahindra-holidays-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 66.73,
+          "target": "mahindra-holidays",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MHRIL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "mahindra-holidays-public",
+          "label": "Public shareholders",
+          "percent": 33.09,
+          "target": "mahindra-holidays",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MHRIL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "mahindra-holidays-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.18,
+          "target": "mahindra-holidays",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MHRIL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "reliance-power",
+      "name": "Reliance Power",
+      "short": "Reliance Power",
+      "sector": "Energy",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RPOWER&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 24.98,
+        "public": 75.02,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "reliance-power-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 24.98,
+          "target": "reliance-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "reliance-power-public",
+          "label": "Public shareholders",
+          "percent": 75.02,
+          "target": "reliance-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=RPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "shipping-corp",
+      "name": "Shipping Corporation of India",
+      "short": "Shipping Corp",
+      "sector": "Infrastructure",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SCI&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 63.75,
+        "public": 36.25,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "shipping-corp-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 63.75,
+          "target": "shipping-corp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SCI&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "shipping-corp-public",
+          "label": "Public shareholders",
+          "percent": 36.25,
+          "target": "shipping-corp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SCI&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "park-hotels",
+      "name": "Apeejay Surrendra Park Hotels",
+      "short": "The Park Hotels",
+      "sector": "Hospitality",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PARKHOTELS&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 68.22,
+        "public": 31.78,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "park-hotels-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 68.22,
+          "target": "park-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PARKHOTELS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "park-hotels-public",
+          "label": "Public shareholders",
+          "percent": 31.78,
+          "target": "park-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PARKHOTELS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "ab-real-estate",
+      "name": "Aditya Birla Real Estate",
+      "short": "AB Real Estate",
+      "sector": "Real estate",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABREL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 50.21,
+        "public": 49.11,
+        "trust": 0.68
+      },
+      "owners": [
+        {
+          "id": "ab-real-estate-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 50.21,
+          "target": "ab-real-estate",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABREL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ab-real-estate-public",
+          "label": "Public shareholders",
+          "percent": 49.11,
+          "target": "ab-real-estate",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABREL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ab-real-estate-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.68,
+          "target": "ab-real-estate",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABREL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "genus-power",
+      "name": "Genus Power Infrastructures",
+      "short": "Genus Power",
+      "sector": "Engineering",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GENUSPOWER&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 39.34,
+        "public": 60.63,
+        "trust": 0.03
+      },
+      "owners": [
+        {
+          "id": "genus-power-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 39.34,
+          "target": "genus-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GENUSPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "genus-power-public",
+          "label": "Public shareholders",
+          "percent": 60.63,
+          "target": "genus-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GENUSPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "genus-power-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.03,
+          "target": "genus-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GENUSPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "wework-india",
+      "name": "WeWork India Management",
+      "short": "WeWork India",
+      "sector": "Real estate",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WEWORK&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 48.2,
+        "public": 51.8,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "wework-india-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 48.2,
+          "target": "wework-india",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WEWORK&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "wework-india-public",
+          "label": "Public shareholders",
+          "percent": 51.8,
+          "target": "wework-india",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WEWORK&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "india-shelter",
+      "name": "India Shelter Finance Corporation",
+      "short": "India Shelter",
+      "sector": "Finance",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INDIASHLTR&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 45.91,
+        "public": 54.09,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "india-shelter-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 45.91,
+          "target": "india-shelter",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INDIASHLTR&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "india-shelter-public",
+          "label": "Public shareholders",
+          "percent": 54.09,
+          "target": "india-shelter",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INDIASHLTR&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "bajaj-auto",
+      "name": "Bajaj Auto",
+      "short": "Bajaj Auto",
+      "sector": "Automotive",
+      "asOf": "2026-06-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJAJ-AUTO&tabIndex=equity",
+        "label": "NSE, Bajaj Auto shareholding pattern, 30 June 2026"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-06-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 55.01,
+        "public": 44.99,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "bajaj-auto-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 55.01,
+          "target": "bajaj-auto",
+          "asOf": "2026-06-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJAJ-AUTO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "bajaj-auto-public",
+          "label": "Public shareholders",
+          "percent": 44.99,
+          "target": "bajaj-auto",
+          "asOf": "2026-06-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJAJ-AUTO&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "asian-paints",
+      "name": "Asian Paints",
+      "short": "Asian Paints",
+      "sector": "Consumer goods",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASIANPAINT&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 52.65,
+        "public": 47.28,
+        "trust": 0.08
+      },
+      "owners": [
+        {
+          "id": "asian-paints-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 52.65,
+          "target": "asian-paints",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASIANPAINT&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "asian-paints-public",
+          "label": "Public shareholders",
+          "percent": 47.28,
+          "target": "asian-paints",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASIANPAINT&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "asian-paints-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.08,
+          "target": "asian-paints",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ASIANPAINT&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "kotak-bank",
+      "name": "Kotak Mahindra Bank",
+      "short": "Kotak Bank",
+      "sector": "Banking",
+      "asOf": "2026-03-31",
+      "source": {
+        "url": "https://www.kotak.bank.in/content/dam/Kotak/investor-relation/Financial-Result/shareholding-patterns/FY-2026/q4/shareholding-patterns/Shareholding_Pattern.pdf",
+        "label": "Kotak Mahindra Bank official shareholding pattern, 31 March 2026"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-03-31; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 25.87,
+        "public": 74.13,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "kotak-bank-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 25.87,
+          "target": "kotak-bank",
+          "asOf": "2026-03-31",
+          "source": "https://www.kotak.bank.in/content/dam/Kotak/investor-relation/Financial-Result/shareholding-patterns/FY-2026/q4/shareholding-patterns/Shareholding_Pattern.pdf",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "kotak-bank-public",
+          "label": "Public shareholders",
+          "percent": 74.13,
+          "target": "kotak-bank",
+          "asOf": "2026-03-31",
+          "source": "https://www.kotak.bank.in/content/dam/Kotak/investor-relation/Financial-Result/shareholding-patterns/FY-2026/q4/shareholding-patterns/Shareholding_Pattern.pdf",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "hpcl",
+      "name": "Hindustan Petroleum Corporation",
+      "short": "HPCL",
+      "sector": "Energy",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDPETRO&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 54.9,
+        "public": 45.1,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "hpcl-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 54.9,
+          "target": "hpcl",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDPETRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hpcl-public",
+          "label": "Public shareholders",
+          "percent": 45.1,
+          "target": "hpcl",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HINDPETRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "godrej-agrovet",
+      "name": "Godrej Agrovet",
+      "short": "Godrej Agrovet",
+      "sector": "Agriculture",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GODREJAGRO&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 67.72,
+        "public": 32.28,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "godrej-agrovet-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 67.72,
+          "target": "godrej-agrovet",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GODREJAGRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "godrej-agrovet-public",
+          "label": "Public shareholders",
+          "percent": 32.28,
+          "target": "godrej-agrovet",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=GODREJAGRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "jindal-saw",
+      "name": "Jindal Saw",
+      "short": "Jindal Saw",
+      "sector": "Materials",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=JINDALSAW&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 63.24,
+        "public": 36.5,
+        "trust": 0.26
+      },
+      "owners": [
+        {
+          "id": "jindal-saw-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 63.24,
+          "target": "jindal-saw",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=JINDALSAW&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "jindal-saw-public",
+          "label": "Public shareholders",
+          "percent": 36.5,
+          "target": "jindal-saw",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=JINDALSAW&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "jindal-saw-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.26,
+          "target": "jindal-saw",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=JINDALSAW&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "whirlpool-india",
+      "name": "Whirlpool of India",
+      "short": "Whirlpool India",
+      "sector": "Consumer goods",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WHIRLPOOL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 39.76,
+        "public": 60.24,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "whirlpool-india-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 39.76,
+          "target": "whirlpool-india",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WHIRLPOOL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "whirlpool-india-public",
+          "label": "Public shareholders",
+          "percent": 60.24,
+          "target": "whirlpool-india",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WHIRLPOOL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "kajaria",
+      "name": "Kajaria Ceramics",
+      "short": "Kajaria",
+      "sector": "Materials",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KAJARIACER&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 46.74,
+        "public": 53.26,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "kajaria-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 46.74,
+          "target": "kajaria",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KAJARIACER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "kajaria-public",
+          "label": "Public shareholders",
+          "percent": 53.26,
+          "target": "kajaria",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=KAJARIACER&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "moil",
+      "name": "MOIL",
+      "short": "MOIL",
+      "sector": "Materials",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MOIL&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 64.68,
+        "public": 35.32,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "moil-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 64.68,
+          "target": "moil",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MOIL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "moil-public",
+          "label": "Public shareholders",
+          "percent": 35.32,
+          "target": "moil",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MOIL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "hdfc-life",
+      "name": "HDFC Life Insurance Company",
+      "short": "HDFC Life",
+      "sector": "Insurance",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HDFCLIFE&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 50.53,
+        "public": 49.44,
+        "trust": 0.02
+      },
+      "owners": [
+        {
+          "id": "hdfc-life-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 50.53,
+          "target": "hdfc-life",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HDFCLIFE&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hdfc-life-public",
+          "label": "Public shareholders",
+          "percent": 49.44,
+          "target": "hdfc-life",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HDFCLIFE&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hdfc-life-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.02,
+          "target": "hdfc-life",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HDFCLIFE&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "apollo-tyres",
+      "name": "Apollo Tyres",
+      "short": "Apollo Tyres",
+      "sector": "Automotive",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=APOLLOTYRE&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 36.93,
+        "public": 62.67,
+        "trust": 0.4
+      },
+      "owners": [
+        {
+          "id": "apollo-tyres-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 36.93,
+          "target": "apollo-tyres",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=APOLLOTYRE&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "apollo-tyres-public",
+          "label": "Public shareholders",
+          "percent": 62.67,
+          "target": "apollo-tyres",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=APOLLOTYRE&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "apollo-tyres-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.4,
+          "target": "apollo-tyres",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=APOLLOTYRE&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "itc-hotels",
+      "name": "ITC Hotels",
+      "short": "ITC Hotels",
+      "sector": "Hospitality",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ITCHOTELS&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 39.85,
+        "public": 60.15,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "itc-hotels-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 39.85,
+          "target": "itc-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ITCHOTELS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "itc-hotels-public",
+          "label": "Public shareholders",
+          "percent": 60.15,
+          "target": "itc-hotels",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ITCHOTELS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "physicswallah",
+      "name": "Physicswallah",
+      "short": "Physicswallah",
+      "sector": "Education",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PW&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 71.17,
+        "public": 28.83,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "physicswallah-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 71.17,
+          "target": "physicswallah",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PW&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "physicswallah-public",
+          "label": "Public shareholders",
+          "percent": 28.83,
+          "target": "physicswallah",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=PW&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "bajaj-electricals",
+      "name": "Bajaj Electricals",
+      "short": "Bajaj Electricals",
+      "sector": "Consumer goods",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJAJELEC&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 62.68,
+        "public": 37.32,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "bajaj-electricals-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 62.68,
+          "target": "bajaj-electricals",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJAJELEC&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "bajaj-electricals-public",
+          "label": "Public shareholders",
+          "percent": 37.32,
+          "target": "bajaj-electricals",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJAJELEC&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "edelweiss",
+      "name": "Edelweiss Financial Services",
+      "short": "Edelweiss",
+      "sector": "Finance",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=EDELWEISS&tabIndex=equity",
+        "label": "NSE shareholding-pattern register; 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Exchange-filed shareholding-category totals dated 2026-09-30; A=promoter and promoter group, B=public and C2=employee trusts (where nonzero). The denominator is A+B+C2 and rounding may produce a total marginally different from 100. These are categories, not named beneficial owners or voting-control findings.",
+      "categoryTotals": {
+        "promoter": 31.54,
+        "public": 68.46,
+        "trust": 0
+      },
+      "owners": [
+        {
+          "id": "edelweiss-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 31.54,
+          "target": "edelweiss",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=EDELWEISS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "edelweiss-public",
+          "label": "Public shareholders",
+          "percent": 68.46,
+          "target": "edelweiss",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=EDELWEISS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
     }
   ],
   "methodology": {
@@ -1064,6 +2466,8 @@
     "group_basis": "A + B + C2, percentages rounded to two decimal places. Exclude C1 depository receipts from this denominator where the source does.",
     "source_policy": "Original issuer or NSE filing source. Link to the issuer filing or the exchange's filing index; if an index updates, historical figures remain explicitly dated.",
     "limitations": "Named shareholders and category aggregates must not be treated as interchangeable. Do not sum parent categories and named members or infer ultimate beneficial control.",
-    "reviewed_date": "2026-11-01"
+    "reviewed_date": "2026-11-01",
+    "latest_batch": "35 company-level category disclosures added 1 November 2026; most as at 30 September 2026, Bajaj Auto 30 June and Kotak 31 March",
+    "category_definition": "A = promoters, B = public, C2 = employee-trust holdings; sum can be 99.99 or 100.01 from published rounding; absent zero categories are stored as 0 in categoryTotals for newly added records."
   }
 }
