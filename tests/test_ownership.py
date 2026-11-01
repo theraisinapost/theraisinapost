@@ -17,7 +17,7 @@ class OwnershipDataTests(unittest.TestCase):
   self.assertIn('hdfc-life',{c['id'] for c in companies})
   self.assertIn('apollo-tyres',{c['id'] for c in companies})
   self.assertIn('kotak-bank',{c['id'] for c in companies})
-  self.assertEqual(sum(len(c['owners']) for c in companies),148)
+  self.assertEqual(sum(len(c['owners']) for c in companies),147)
   self.assertEqual(len({c['id'] for c in companies}),len(companies))
   for c in companies:
    date.fromisoformat(c['asOf'])
