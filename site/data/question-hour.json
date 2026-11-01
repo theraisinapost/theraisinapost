@@ -1,6 +1,6 @@
 {
   "status": "stale",
-  "checked_at": "2026-11-01T07:46:14Z",
+  "checked_at": "2026-11-01T10:33:39Z",
   "dataset": "https://huggingface.co/datasets/opensansad/lok-sabha-qa",
   "notice": "Both the public dataset service and Digital Sansad API were unavailable. Retained older source-verified metadata if present. No missing questions invented.",
   "items": [
