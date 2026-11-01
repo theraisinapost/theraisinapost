@@ -715,23 +715,22 @@ test('expanded atlas exposes 84 verified companies and sorts by dated promoter p
 test('home price charts load on demand once and retain sources when the provider fails', async ({page}) => {
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.setViewportSize({width:390,height:844});
-  await page.route('https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js', route=>route.abort());
+  await page.route('https://widgets.tradingview-widget.com/w/en/tv-mini-chart.js', route=>route.abort());
   await page.goto('/');
   const charts=page.locator('[data-market-chart]');
   await expect(charts).toHaveCount(6);
-  const script='script[src*="embed-widget-mini-symbol-overview.js"]';
-  await expect(charts.first().locator(script)).toHaveCount(1);
-  await expect(charts.last().locator(script)).toHaveCount(0);
+  const script='script[src*="tv-mini-chart.js"]';
+  await expect(charts.first().locator('tv-mini-chart')).toHaveCount(1);
+  await expect(charts.last().locator('tv-mini-chart')).toHaveCount(0);
   for (const chart of await charts.all()) {
     await chart.scrollIntoViewIfNeeded();
-    await expect(chart.locator(script)).toHaveCount(1);
+    await expect(chart.locator('tv-mini-chart')).toHaveCount(1);
     await expect(chart.locator('.market-chart-fallback')).toBeVisible();
-    const config=JSON.parse(await chart.locator(script).textContent());
-    expect(config.symbol).toBe(await chart.getAttribute('data-market-chart'));
-    expect(config.chartOnly).toBe(false);
+    await expect(chart.locator('tv-mini-chart')).toHaveAttribute('symbol',await chart.getAttribute('data-market-chart'));
+    await expect(chart.locator('tv-mini-chart')).toHaveAttribute('time-frame','1M');
   }
   await charts.first().scrollIntoViewIfNeeded();
-  await expect(charts.first().locator(script)).toHaveCount(1);
+  await expect(page.locator(script)).toHaveCount(1);
   await expect(page.getByRole('link',{name:'Gold by TradingView',exact:true})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });
