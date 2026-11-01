@@ -641,3 +641,12 @@ test('ownership companies have sourced deep links and work without the graph CDN
   await expect(page.locator('#company-heading')).toHaveText('Who owns TCS?');
   await expect(page.locator('.owner-row')).toHaveCount(5);
 });
+
+test('ownership shelf fits a mobile viewport', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/ownership-atlas.html?company=hul');
+  await expect(page.locator('#company-heading')).toHaveText('Who owns HUL?');
+  await expect(page.locator('[data-company="coal-india"]')).toBeAttached();
+  await page.locator('[data-company="coal-india"]').click();
+  await expect(page.locator('#owner-value')).toHaveText('61.13%');
+});
