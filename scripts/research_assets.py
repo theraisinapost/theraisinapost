@@ -7,14 +7,14 @@ def library(data):
  records={}
  def add(title,url,date,kind,publisher,context=''):
   u=urlsplit(url or '')
-  if u.scheme!='https' or u.hostname not in {'www.tcs.com','www.hul.co.in','rilstaticasset.akamaized.net','nsearchives.nseindia.com','sansad.in','eparlib.sansad.in','www.meity.gov.in','www.mospi.gov.in'}:return
+  if u.scheme!='https' or u.hostname not in {'www.nseindia.com','www.hdfc.bank.in','www.icici.bank.in','sbi.bank.in','www.titancompany.in','www.kotak.bank.in','powergrid.in','www.powergrid.in','www.tcs.com','www.hul.co.in','rilstaticasset.akamaized.net','nsearchives.nseindia.com','sansad.in','eparlib.sansad.in','www.meity.gov.in','www.mospi.gov.in'}:return
   if not title:return
   key=hashlib.sha256(url.encode()).hexdigest()[:16]
   if key in records:return
   records[key]=dict(id=key,title=title,url=url,date=date,kind=kind,publisher=publisher,context=context)
  for c in data['ownership-companies']['companies']:add(c['name']+' — '+c['source']['label'],c['source']['url'],c['asOf'],'Company filing',c['name'],c['scope'])
  for r in data['parliament'].get('items',[]):add(r['title'],r['url'],r.get('date',''),'Committee report',r.get('house','Parliament'),r.get('committee_name',''))
- for r in data['dpdp-timeline']['events']:add(r['title'],r['url'],r['date'],'Policy document','Ministry of Electronics and Information Technology',r.get('detail',''))
+ for r in data['dpdp-timeline']['events']:add(r['title'],r['url'],r['date'],'Policy document','Ministry of Electronics and Information Technology',data['dpdp-timeline']['title']+' · '+r.get('detail',''))
  r=data['release-calendar'];add(r['source_doc'],r['source_url'],'','Statistical calendar',r['publication'],r['editorial_note'])
  return sorted(records.values(),key=lambda r:(r['date'],r['title']),reverse=True)
 
