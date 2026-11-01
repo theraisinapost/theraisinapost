@@ -16,6 +16,17 @@ SERIES = {
     'manufacturing': ('NV.IND.MANF.ZS', 'Manufacturing share of GDP', '%'),
     'reserves': ('FI.RES.TOTL.CD', 'Total reserves, including gold', 'US$'),
     'cpi': ('FP.CPI.TOTL', 'Consumer price index', '2010 = 100'),
+    'gdp': ('NY.GDP.MKTP.CD', 'GDP at current prices', 'US$'),
+    'income': ('NY.GDP.PCAP.CD', 'GDP per capita at current prices', 'US$ per person'),
+    'exports': ('NE.EXP.GNFS.ZS', 'Exports of goods and services', '% of GDP'),
+    'imports': ('NE.IMP.GNFS.ZS', 'Imports of goods and services', '% of GDP'),
+    'fdi': ('BX.KLT.DINV.WD.GD.ZS', 'Foreign direct investment, net inflows', '% of GDP'),
+    'current_account': ('BN.CAB.XOKA.GD.ZS', 'Current account balance', '% of GDP'),
+    'unemployment': ('SL.UEM.TOTL.ZS', 'Unemployment, modelled ILO estimate', '% of labour force'),
+    'participation': ('SL.TLF.CACT.ZS', 'Labour force participation, modelled ILO estimate', '% of population aged 15+'),
+    'investment': ('NE.GDI.TOTL.ZS', 'Gross capital formation', '% of GDP'),
+    'credit': ('FS.AST.PRVT.GD.ZS', 'Domestic credit to private sector', '% of GDP'),
+    'remittances': ('BX.TRF.PWKR.DT.GD.ZS', 'Personal remittances received', '% of GDP'),
 }
 OIL = {
     'brent': 'https://raw.githubusercontent.com/datasets/oil-prices/main/data/brent-daily.csv',
