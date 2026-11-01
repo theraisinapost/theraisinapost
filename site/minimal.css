@@ -4,23 +4,25 @@
   --paper:#fff;--surface:#f9f9f9;--surface-hover:#f3f3f3;
   --ink:#171717;--accent:#b42332;--accent-hover:#8f1c28;--text-secondary:#434343;--text-muted:#595959;
   --border:#eeeeee;--radius:8px;
+  --content-width:1128px;--page-inset:48px;--layout-gap:48px;
+  --space-1:8px;--space-2:16px;--space-3:24px;--space-4:32px;--space-5:48px;--space-6:64px;--space-7:96px;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   --serif:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   color-scheme:light;
 }
 html{font-synthesis:none}
-body{background:#fff;color:#171717;font:400 13px/1.76 var(--sans);letter-spacing:-.01em}
+body{background:#fff;color:#171717;font:400 14px/1.8 var(--sans);letter-spacing:-.01em}
 button,input,textarea,select,h1,h2,h3,h4,p,small,time{font-family:var(--sans)}
 h1,h2,h3,h4,strong{color:#171717}
 h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 ::selection{background:#e9e9e9;color:#171717}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{width:min(calc(100% - 88px),1140px)}
+.wrap{width:min(calc(100% - 2 * var(--page-inset)),var(--content-width))}
 /* Restrained red actions with darker hover states and neutral reading surfaces. */
 .subscribe-nav,.newsletter>a,.guide-subscribe,
 .mobile-panel-subscribe,.calendar-actions button{
  background:var(--accent);border:1px solid var(--accent);color:#fff;border-radius:8px;box-shadow:none;
- font:550 12px var(--sans);
+ font:500 12px var(--sans);
 }
 .subscribe-nav:hover,.newsletter>a:hover,.guide-subscribe:hover,
 .mobile-panel-subscribe:hover,.calendar-actions button:hover{
@@ -45,44 +47,44 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 .about-copy p,.about-closing p,.about-contact p{color:#595959}
 .nav-links a{font-size:12px;font-weight:500;color:#464646}
 .nav-links a.nav-active,.nav-links a:hover{font-weight:600;color:var(--accent)}
-.site-header{padding-top:23px}
-.mast-grid{padding-bottom:22px}
-.site-nav{border-top:1px solid #eeeeee;border-bottom:0;min-height:54px}
+.site-header{padding-top:32px}
+.mast-grid{padding-bottom:32px;gap:24px}
+.site-nav{border-top:1px solid #eeeeee;border-bottom:0;min-height:64px}
 /* Home — editorial first, cards only for deliberately grouped tools. */
-.intro{padding:40px 0 44px;gap:32px;grid-template-columns:1.4fr 1fr;align-items:center}
-.intro h1{font:500 clamp(28px,3.1vw,40px)/1.22 var(--sans);letter-spacing:-.055em;max-width:735px}
-.intro>p{font-size:13px;line-height:1.83;color:#505050;max-width:330px}
-.frontpage-grid{gap:43px;margin-top:8px}
-.lead-story{gap:27px}
-.lead-story h2{font:550 clamp(24px,2.75vw,36px)/1.33 var(--sans);letter-spacing:-.04em}
+.intro{padding:64px 0;gap:var(--layout-gap);grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:start}
+.intro h1{font:500 clamp(30px,3.2vw,42px)/1.2 var(--sans);letter-spacing:-.04em;max-width:735px}
+.intro>p{font-size:14px;line-height:1.85;color:#505050;max-width:32ch;justify-self:start;margin:0}
+.frontpage-grid{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:var(--layout-gap);margin-top:0}
+.lead-story{gap:32px}
+.lead-story h2{font:500 clamp(26px,2.75vw,36px)/1.3 var(--sans);letter-spacing:-.04em}
 .lead-category,.lead-stamp,.article-category,.article-overline,.rail-meta,.rail-date{
  color:#5b5b5b;text-transform:none;letter-spacing:0;
 }
 .lead-visual,.lead-visual img,.article-media,.article-media img{border-radius:8px;overflow:hidden}
 .lead-visual{background:var(--surface)}
-.section-bar,.obs-section-title{border:0;padding-bottom:20px}
-.section-bar h2{font:600 15px/1.5 var(--sans);letter-spacing:-.02em}
-.rail-story{border-color:#f0f0f0}
-.rail-story h3{font:550 clamp(16px,1.55vw,20px)/1.45 var(--sans);letter-spacing:-.025em}
-.archive{padding-top:64px}
-.archive-controls{padding-bottom:25px}
-.article-list{gap:16px 34px}
-.article-row{border-bottom:1px solid #eeeeee;padding:24px 0;min-height:0}
+.section-bar,.obs-section-title{border:0;padding-bottom:24px;align-items:baseline}
+.section-bar h2{font:600 14px/1.5 var(--sans);letter-spacing:-.02em}
+.rail-story{border-color:#f0f0f0;padding:24px 0}
+.rail-story h3{font:500 clamp(17px,1.55vw,20px)/1.45 var(--sans);letter-spacing:-.025em}
+.archive{padding-top:96px}
+.archive-controls{padding:8px 0 32px;gap:16px}
+.article-list{gap:0 var(--layout-gap)}
+.article-row{border-bottom:1px solid #eeeeee;padding:32px 0;gap:24px;min-height:0}
 .article-row:last-child{border-bottom:0}
-.article-row h3{font:550 clamp(17px,1.9vw,23px)/1.43 var(--sans);letter-spacing:-.027em}
-.article-main>p{font-size:12px;line-height:1.83}
+.article-row h3{font:500 clamp(18px,1.9vw,23px)/1.45 var(--sans);letter-spacing:-.027em}
+.article-main>p{font-size:13px;line-height:1.8;max-width:58ch}
 .desk-section{padding-top:103px}
 .desk-links{gap:27px}
-.desk-links strong{font:550 14px var(--sans)}
+.desk-links strong{font:500 14px var(--sans)}
 .newsletter{background:var(--surface);border:0;border-radius:8px;margin-top:98px;padding:39px 42px}
-.newsletter h2{font:550 clamp(25px,3vw,36px)/1.26 var(--sans);letter-spacing:-.04em}
+.newsletter h2{font:500 clamp(25px,3vw,36px)/1.26 var(--sans);letter-spacing:-.04em}
 /* Profile and guide — clear, smaller, consistent heading scale. */
 .guide-main{padding-top:70px}
 .guide-main>h1,.about-page>h1,.research-intro h1{
- font:550 clamp(36px,5vw,57px)/1.16 var(--sans);letter-spacing:-.047em;
+ font:500 clamp(36px,5vw,57px)/1.16 var(--sans);letter-spacing:-.047em;
 }
 .guide-articles h2,.about-copy h2,.about-closing h2,.about-contact h2{
- font:550 clamp(22px,2.6vw,30px)/1.32 var(--sans);letter-spacing:-.033em;
+ font:500 clamp(22px,2.6vw,30px)/1.32 var(--sans);letter-spacing:-.033em;
 }
 .guide-deck{font-size:14px;line-height:1.84}
 .guide-articles section{padding-bottom:54px}
@@ -95,21 +97,21 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 /* Observatory — bento figures, unboxed reportage. */
 .obs-main{padding-top:73px}
 .obs-intro{padding-bottom:47px}
-.obs-intro h1{font:550 clamp(39px,5vw,60px)/1.15 var(--sans);letter-spacing:-.05em}
-.obs-section-title h2{font:550 clamp(23px,2.65vw,30px)/1.3 var(--sans);letter-spacing:-.035em}
+.obs-intro h1{font:500 clamp(39px,5vw,60px)/1.15 var(--sans);letter-spacing:-.05em}
+.obs-section-title h2{font:500 clamp(23px,2.65vw,30px)/1.3 var(--sans);letter-spacing:-.035em}
 .obs-metrics{gap:12px;border:0}
 .obs-metrics>div,.obs-metrics>div+div{
  background:var(--surface);border:0;border-radius:8px;padding:22px 20px;min-width:0;
 }
-.obs-metrics strong{font:550 clamp(23px,3vw,35px)/1.2 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.obs-metrics strong{font:500 clamp(23px,3vw,35px)/1.2 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 .obs-signal,.obs-discover{padding-top:94px}
 .obs-panels{gap:34px}
 .obs-story{border-color:#f0f0f0;padding:24px 0}
-.obs-story h3{font:550 clamp(18px,2vw,23px)/1.42 var(--sans);letter-spacing:-.025em}
+.obs-story h3{font:500 clamp(18px,2vw,23px)/1.42 var(--sans);letter-spacing:-.025em}
 .obs-story-meta span{color:#545454}
 /* Markets — true bento groups with airy space instead of grid lines. */
 .market-desk{padding-top:71px}
-.market-intro h1{font:550 clamp(39px,5vw,61px)/1.15 var(--sans);letter-spacing:-.05em;margin-bottom:16px}
+.market-intro h1{font:500 clamp(39px,5vw,61px)/1.15 var(--sans);letter-spacing:-.05em;margin-bottom:16px}
 .market-intro>p:not(.obs-eyebrow){font-size:14px;max-width:690px;line-height:1.84;color:#505050}
 .market-intro-meta{border:0;padding-top:8px;color:#595959;font-size:11px}
 .market-tape-section{padding-top:19px;padding-bottom:13px}
@@ -121,28 +123,28 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
  background:var(--surface);border:0;border-radius:8px;box-shadow:none;
 }
 .commodity-stat{padding:24px 22px;gap:11px}
-.commodity-stat-top span,.fx-reference-card span,.macro-card>span{font-size:12px;font-weight:550;color:#383838}
+.commodity-stat-top span,.fx-reference-card span,.macro-card>span{font-size:12px;font-weight:500;color:#383838}
 .commodity-stat-top small,.commodity-stat p,.fx-reference-card small,.macro-card>small{
  font-size:11px;color:#595959;line-height:1.65;
 }
-.commodity-stat>strong{font:550 clamp(27px,3vw,38px)/1.25 var(--sans);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.commodity-stat>strong{font:500 clamp(27px,3vw,38px)/1.25 var(--sans);letter-spacing:-.05em;font-variant-numeric:tabular-nums}
 .commodity-market-panel{padding:23px;margin-top:23px}
 .commodity-market-panel tv-market-data{min-height:330px}
 .fx-reference-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;margin-top:24px}
 .fx-reference-card,.fx-reference-card+.fx-reference-card{border:0;border-radius:8px;padding:23px 20px;min-width:0}
-.fx-reference-card strong{font:550 clamp(25px,2.8vw,35px)/1.3 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.fx-reference-card strong{font:500 clamp(25px,2.8vw,35px)/1.3 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 .market-panel-grid{gap:15px;padding-top:22px}
 .market-panel{padding:23px;overflow:hidden}
-.market-panel h3{font:550 17px/1.4 var(--sans);letter-spacing:-.025em;margin-bottom:17px}
+.market-panel h3{font:500 17px/1.4 var(--sans);letter-spacing:-.025em;margin-bottom:17px}
 .macro-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border:0;margin:29px 0 0}
 .macro-card,.macro-card+.macro-card{border:0;padding:23px 20px;min-width:0;display:flex;flex-direction:column;gap:8px}
-.macro-card>strong{font:550 clamp(25px,2.9vw,38px)/1.3 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.macro-card>strong{font:500 clamp(25px,2.9vw,38px)/1.3 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
 .macro-chart-heading{margin-top:48px}
-.macro-chart-heading h3{font:550 17px var(--sans)}
+.macro-chart-heading h3{font:500 17px var(--sans)}
 #macro-chart{background:var(--surface);border:0;border-radius:8px;padding:20px 15px;min-height:300px}
 .market-context-grid{gap:13px;margin-top:25px}
 .market-context-grid article{padding:25px 22px}
-.market-context-grid h3{font:550 16px var(--sans);margin:0 0 12px}
+.market-context-grid h3{font:500 16px var(--sans);margin:0 0 12px}
 .market-context-grid p{font-size:12px;line-height:1.8}
 .calendar-widget{background:var(--surface);border-radius:8px}
 .calendar-actions button{min-height:42px;padding:9px 17px}
@@ -154,16 +156,16 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 .research-intro{margin-bottom:45px}
 .research-stat-row{gap:12px;margin-top:30px}
 .research-stat-row>div{background:var(--surface);padding:22px 27px;border-radius:8px}
-.research-stat-row strong{font:550 26px var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.research-stat-row strong{font:500 26px var(--sans);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .research-grid{gap:13px}
 .research-panel,.research-detail{padding:24px}
 .research-panel-head h2{font:600 14px var(--sans)}
-.research-detail h2{font:550 21px/1.4 var(--sans)}
-.research-detail>strong{font:550 35px var(--sans);font-variant-numeric:tabular-nums}
+.research-detail h2{font:500 21px/1.4 var(--sans)}
+.research-detail>strong{font:500 35px var(--sans);font-variant-numeric:tabular-nums}
 .ownership-graph,.policy-visual{background:#fff;border-radius:8px}
 .research-records{margin-top:65px}
-.research-records h2{font:550 25px var(--sans)}
-.research-teaser{padding-top:64px}
+.research-records h2{font:500 25px var(--sans)}
+.research-teaser{padding-top:96px}
 .research-teaser-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .research-teaser-grid a{padding:20px 0;gap:8px;background:transparent;border-radius:0;border-top:1px solid var(--border)}
 .research-teaser-grid a:hover{background:transparent;box-shadow:none;transform:none}
@@ -177,16 +179,16 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
 /* Mobile: subtle floating header and a compact, calm navigation. */
 .editorial-footer{padding-top:87px}
 .editorial-footer-top{padding-bottom:45px}
-.editorial-footer-identity p{font:450 14px/1.65 var(--sans);color:#4d4d4d}
+.editorial-footer-identity p{font:400 14px/1.65 var(--sans);color:#4d4d4d}
 .editorial-footer-nav a{font-size:12px;color:#404040;font-weight:500}
 .editorial-footer-bottom{border-color:#f0f0f0}
 .mobile-nav-bar{border-radius:8px;border-color:#ebebeb;box-shadow:none}
 .mobile-menu-trigger,.mobile-menu-close{background:var(--surface);border-color:#eaeaea;border-radius:8px}
-.mobile-panel-navigation>a{font:550 clamp(26px,5vw,36px)/1.35 var(--sans);letter-spacing:-.04em;color:#171717}
+.mobile-panel-navigation>a{font:500 clamp(26px,5vw,36px)/1.35 var(--sans);letter-spacing:-.04em;color:#171717}
 .mobile-panel-subnav a{font-size:12px;color:#505050}
-.mobile-panel-subscribe{font-weight:550}
+.mobile-panel-subscribe{font-weight:500}
 /* The market and research shelves use the shared bento rail. */
-.market-strip{border:0;padding-top:12px;padding-bottom:0}
+.market-strip{border:0;padding-top:24px;padding-bottom:0}
 @media(max-width:780px){
  .mobile-panel-navigation{padding-top:24px}
  .mobile-panel-navigation>a{min-height:44px;font-size:26px;padding:4px 0}
@@ -195,14 +197,14 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
  .mobile-panel-bottom{padding-top:24px}
 }
 @media(max-width:950px){
- .wrap{width:min(calc(100% - 48px),1140px)}
- .frontpage-grid{gap:28px}
+ :root{--page-inset:32px;--layout-gap:32px}
+ .frontpage-grid{gap:32px}
  .market-panel-grid{gap:14px}
 }
 @media(max-width:780px){
- .intro{padding:32px 0 36px}
+ .intro{padding:48px 0}
  .intro h1{font-size:clamp(28px,5.2vw,36px)}
- .archive,.desk-section{padding-top:73px}
+ .archive,.desk-section,.research-teaser{padding-top:72px}
  .newsletter{margin-top:66px;padding:28px}
  .obs-main{padding-top:47px}
  .obs-signal,.obs-discover{padding-top:66px}
@@ -212,14 +214,17 @@ h1,h2,h3,h4{font-style:normal;letter-spacing:-.034em}
  .research-page{padding-top:38px}
  .mobile-panel-navigation>a{font-size:clamp(27px,6vw,34px)}
  .editorial-footer{padding-top:65px}
- .market-panel{padding:19px}
+ .market-panel{padding:24px}
+ .frontpage-grid{grid-template-columns:1fr}
+ .lead-story{gap:24px}
+ .intro>p{margin-top:16px;max-width:44ch}
 }
 @media(max-width:620px){
- .wrap{width:min(calc(100% - 34px),1140px)}
- .intro{padding:28px 0 32px}
+ :root{--page-inset:24px;--layout-gap:24px}
+ .intro{padding:40px 0 48px}
  .intro h1{font-size:clamp(26px,7vw,32px)}
  .lead-story h2{font-size:clamp(23px,6vw,29px)}
- .article-row h3{font-size:18px}
+ .article-row{padding:24px 0;gap:16px}.article-row h3{font-size:18px}
  .newsletter h2{font-size:24px}
  .guide-main>h1,.about-page>h1,.research-intro h1{font-size:36px}
  .obs-intro h1,.market-intro h1{font-size:38px}

@@ -26,7 +26,8 @@
     rail.addEventListener('keydown', event => {
       if (event.target !== rail || !['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
       event.preventDefault();
-      const step = (rail.firstElementChild?.getBoundingClientRect().width || 280) + 12;
+      const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+      const step = (rail.firstElementChild?.getBoundingClientRect().width || 304) + gap;
       const left = event.key === 'Home' ? 0 : event.key === 'End' ? rail.scrollWidth - rail.clientWidth
         : rail.scrollLeft + (event.key === 'ArrowRight' ? step : -step);
       rail.scrollTo({left, behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
