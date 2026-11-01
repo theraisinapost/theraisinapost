@@ -687,7 +687,7 @@ test('Atlas comparison distinguishes aggregates from selected named holders and 
  const download=await downloadPromise;
  expect(download.suggestedFilename()).toContain('ownership-atlas');
  await page.locator('#compare-second').selectOption('tcs');
- await expect(page.locator('#compare-results')).toContainText('Not directly comparable');
+ await expect(page.locator('#compare-note')).toContainText('Not directly comparable');
  await page.setViewportSize({width:320,height:720});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
 });
