@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "companies": [
     {
       "id": "tcs",
@@ -8,7 +8,7 @@
       "sector": "Technology",
       "asOf": "2026-03-31",
       "source": {
-        "label": "TCS Annual Report 2025\u201326, Corporate Governance Report, p.125",
+        "label": "TCS Annual Report 2025–26, Corporate Governance Report, p.125",
         "url": "https://www.tcs.com/content/dam/tcs/investor-relations/financial-statements/2025-26/ar/annual-report-2025-2026.pdf"
       },
       "scope": "Selected named shareholders in Tata Consultancy Services Ltd, not ownership of Tata Sons or the Tata Group.",
@@ -149,7 +149,7 @@
         "url": "https://rilstaticasset.akamaized.net/sites/default/files/2026-10/SHP30092026.pdf",
         "label": "September 2026 shareholding pattern, Table I, page 3"
       },
-      "scope": "Aggregate categories, not individual owners. Percentages use the filing\u2019s A+B+C2 denominator; shares underlying depository receipts are excluded. Voting-right percentages differ.",
+      "scope": "Aggregate categories, not individual owners. Percentages use the filing’s A+B+C2 denominator; shares underlying depository receipts are excluded. Voting-right percentages differ.",
       "recordType": "Aggregate categories",
       "owners": [
         {
@@ -219,6 +219,851 @@
           "kind": "Named shareholder"
         }
       ]
+    },
+    {
+      "id": "infosys",
+      "name": "Infosys",
+      "short": "Infosys",
+      "sector": "Technology",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INFY&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "infosys-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 13.9,
+          "target": "infosys",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INFY&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "infosys-public",
+          "label": "Public shareholders",
+          "percent": 85.88,
+          "target": "infosys",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INFY&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "infosys-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.21,
+          "target": "infosys",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=INFY&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "wipro",
+      "name": "Wipro",
+      "short": "Wipro",
+      "sector": "Technology",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WIPRO&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "wipro-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 72.58,
+          "target": "wipro",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WIPRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "wipro-public",
+          "label": "Public shareholders",
+          "percent": 27.3,
+          "target": "wipro",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WIPRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "wipro-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.12,
+          "target": "wipro",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=WIPRO&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "hcltech",
+      "name": "HCL Technologies",
+      "short": "HCL Tech",
+      "sector": "Technology",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HCLTECH&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "hcltech-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 60.88,
+          "target": "hcltech",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HCLTECH&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hcltech-public",
+          "label": "Public shareholders",
+          "percent": 38.86,
+          "target": "hcltech",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HCLTECH&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "hcltech-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.26,
+          "target": "hcltech",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=HCLTECH&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "bharti-airtel",
+      "name": "Bharti Airtel",
+      "short": "Bharti Airtel",
+      "sector": "Telecom",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BHARTIARTL&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "bharti-airtel-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 50.07,
+          "target": "bharti-airtel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BHARTIARTL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "bharti-airtel-public",
+          "label": "Public shareholders",
+          "percent": 49.9,
+          "target": "bharti-airtel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BHARTIARTL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "bharti-airtel-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.03,
+          "target": "bharti-airtel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BHARTIARTL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "vodafone-idea",
+      "name": "Vodafone Idea",
+      "short": "Vodafone Idea",
+      "sector": "Telecom",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IDEA&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "vodafone-idea-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 25.64,
+          "target": "vodafone-idea",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IDEA&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "vodafone-idea-public",
+          "label": "Public shareholders",
+          "percent": 74.36,
+          "target": "vodafone-idea",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=IDEA&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "hdfc-bank",
+      "name": "HDFC Bank",
+      "short": "HDFC Bank",
+      "sector": "Banking",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.hdfc.bank.in/about-us/stakeholders-information/shareholding-ownership",
+        "label": "HDFC Bank investor ownership filings — September 2026 shareholding pattern"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "hdfc-bank-public",
+          "label": "Public shareholders",
+          "percent": 100,
+          "target": "hdfc-bank",
+          "asOf": "2026-09-30",
+          "source": "https://www.hdfc.bank.in/about-us/stakeholders-information/shareholding-ownership",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "icici-bank",
+      "name": "ICICI Bank",
+      "short": "ICICI Bank",
+      "sector": "Banking",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.icici.bank.in/about-us/shareprice/2026",
+        "label": "ICICI Bank official shareholding pattern — 30 September 2026"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "icici-bank-public",
+          "label": "Public shareholders",
+          "percent": 100,
+          "target": "icici-bank",
+          "asOf": "2026-09-30",
+          "source": "https://www.icici.bank.in/about-us/shareprice/2026",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "sbi",
+      "name": "State Bank of India",
+      "short": "SBI",
+      "sector": "Banking",
+      "asOf": "2026-06-30",
+      "source": {
+        "url": "https://sbi.bank.in/web/investor-relations/disclosure-under-regulation-46/disclosure-under-regulation-46-m-of-sebi-lodr-share-holding-pattern",
+        "label": "SBI shareholding pattern as at 30 June 2026 (official investor relations)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-06-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "sbi-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 55.47,
+          "target": "sbi",
+          "asOf": "2026-06-30",
+          "source": "https://sbi.bank.in/web/investor-relations/disclosure-under-regulation-46/disclosure-under-regulation-46-m-of-sebi-lodr-share-holding-pattern",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "sbi-public",
+          "label": "Public shareholders",
+          "percent": 44.53,
+          "target": "sbi",
+          "asOf": "2026-06-30",
+          "source": "https://sbi.bank.in/web/investor-relations/disclosure-under-regulation-46/disclosure-under-regulation-46-m-of-sebi-lodr-share-holding-pattern",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "bajaj-finance",
+      "name": "Bajaj Finance",
+      "short": "Bajaj Finance",
+      "sector": "Finance",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJFINANCE&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "bajaj-finance-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 54.67,
+          "target": "bajaj-finance",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJFINANCE&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "bajaj-finance-public",
+          "label": "Public shareholders",
+          "percent": 45.3,
+          "target": "bajaj-finance",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJFINANCE&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "bajaj-finance-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.03,
+          "target": "bajaj-finance",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=BAJFINANCE&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "lt",
+      "name": "Larsen & Toubro",
+      "short": "L&T",
+      "sector": "Engineering",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LT&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "lt-public",
+          "label": "Public shareholders",
+          "percent": 100,
+          "target": "lt",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LT&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "titan",
+      "name": "Titan Company",
+      "short": "Titan",
+      "sector": "Consumer goods",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.titancompany.in/investors/shareholding-pattern",
+        "label": "Titan Company investor disclosure — Q2 FY2026–27 shareholding pattern, published 27 Oct 2026"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "titan-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 52.9,
+          "target": "titan",
+          "asOf": "2026-09-30",
+          "source": "https://www.titancompany.in/investors/shareholding-pattern",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "titan-public",
+          "label": "Public shareholders",
+          "percent": 47,
+          "target": "titan",
+          "asOf": "2026-09-30",
+          "source": "https://www.titancompany.in/investors/shareholding-pattern",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "titan-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.1,
+          "target": "titan",
+          "asOf": "2026-09-30",
+          "source": "https://www.titancompany.in/investors/shareholding-pattern",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "maruti",
+      "name": "Maruti Suzuki India",
+      "short": "Maruti Suzuki",
+      "sector": "Automotive",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MARUTI&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "maruti-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 58.72,
+          "target": "maruti",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MARUTI&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "maruti-public",
+          "label": "Public shareholders",
+          "percent": 41.28,
+          "target": "maruti",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MARUTI&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "tata-steel",
+      "name": "Tata Steel",
+      "short": "Tata Steel",
+      "sector": "Materials",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATASTEEL&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "tata-steel-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 32.94,
+          "target": "tata-steel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATASTEEL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "tata-steel-public",
+          "label": "Public shareholders",
+          "percent": 67.06,
+          "target": "tata-steel",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATASTEEL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "tata-power",
+      "name": "Tata Power",
+      "short": "Tata Power",
+      "sector": "Energy",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATAPOWER&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "tata-power-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 46.86,
+          "target": "tata-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATAPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "tata-power-public",
+          "label": "Public shareholders",
+          "percent": 53.14,
+          "target": "tata-power",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATAPOWER&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "tata-motors",
+      "name": "Tata Motors",
+      "short": "Tata Motors",
+      "sector": "Automotive",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATAMOTORS&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "tata-motors-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 42.51,
+          "target": "tata-motors",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATAMOTORS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "tata-motors-public",
+          "label": "Public shareholders",
+          "percent": 57.49,
+          "target": "tata-motors",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=TATAMOTORS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "sun-pharma",
+      "name": "Sun Pharmaceutical Industries",
+      "short": "Sun Pharma",
+      "sector": "Pharmaceuticals",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SUNPHARMA&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "sun-pharma-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 52.68,
+          "target": "sun-pharma",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SUNPHARMA&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "sun-pharma-public",
+          "label": "Public shareholders",
+          "percent": 47.32,
+          "target": "sun-pharma",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=SUNPHARMA&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "itc",
+      "name": "ITC",
+      "short": "ITC",
+      "sector": "Consumer goods",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ITC&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "itc-public",
+          "label": "Public shareholders",
+          "percent": 100,
+          "target": "itc",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ITC&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "adani-enterprises",
+      "name": "Adani Enterprises",
+      "short": "Adani Enterprises",
+      "sector": "Diversified",
+      "asOf": "2026-07-07",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ADANIENT&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-07-07 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-07-07. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "adani-enterprises-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 71.97,
+          "target": "adani-enterprises",
+          "asOf": "2026-07-07",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ADANIENT&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "adani-enterprises-public",
+          "label": "Public shareholders",
+          "percent": 28.03,
+          "target": "adani-enterprises",
+          "asOf": "2026-07-07",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ADANIENT&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "nbcc",
+      "name": "NBCC (India)",
+      "short": "NBCC",
+      "sector": "Engineering",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NBCC&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "nbcc-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 61.75,
+          "target": "nbcc",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NBCC&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "nbcc-public",
+          "label": "Public shareholders",
+          "percent": 38.25,
+          "target": "nbcc",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=NBCC&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "ola-electric",
+      "name": "Ola Electric Mobility",
+      "short": "Ola Electric",
+      "sector": "Automotive",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=OLAELEC&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "ola-electric-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 32.97,
+          "target": "ola-electric",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=OLAELEC&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ola-electric-public",
+          "label": "Public shareholders",
+          "percent": 62.52,
+          "target": "ola-electric",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=OLAELEC&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ola-electric-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 4.51,
+          "target": "ola-electric",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=OLAELEC&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "minda-corp",
+      "name": "Minda Corporation",
+      "short": "Minda Corp",
+      "sector": "Automotive",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MINDACORP&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "minda-corp-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 64.84,
+          "target": "minda-corp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MINDACORP&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "minda-corp-public",
+          "label": "Public shareholders",
+          "percent": 33.6,
+          "target": "minda-corp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MINDACORP&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "minda-corp-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 1.56,
+          "target": "minda-corp",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=MINDACORP&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "aditya-birla-capital",
+      "name": "Aditya Birla Capital",
+      "short": "AB Capital",
+      "sector": "Finance",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABCAPITAL&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "aditya-birla-capital-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 68.82,
+          "target": "aditya-birla-capital",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABCAPITAL&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "aditya-birla-capital-public",
+          "label": "Public shareholders",
+          "percent": 31.18,
+          "target": "aditya-birla-capital",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ABCAPITAL&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "ltts",
+      "name": "L&T Technology Services",
+      "short": "L&T Tech Services",
+      "sector": "Technology",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LTTS&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "ltts-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 73.51,
+          "target": "ltts",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LTTS&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "ltts-public",
+          "label": "Public shareholders",
+          "percent": 26.49,
+          "target": "ltts",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=LTTS&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
+    },
+    {
+      "id": "acme-solar",
+      "name": "ACME Solar Holdings",
+      "short": "ACME Solar",
+      "sector": "Energy",
+      "asOf": "2026-09-30",
+      "source": {
+        "url": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ACMESOLAR&tabIndex=equity",
+        "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
+      },
+      "recordType": "Aggregate categories",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "owners": [
+        {
+          "id": "acme-solar-promoter",
+          "label": "Promoter and promoter group",
+          "percent": 71.4,
+          "target": "acme-solar",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ACMESOLAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "acme-solar-public",
+          "label": "Public shareholders",
+          "percent": 28.47,
+          "target": "acme-solar",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ACMESOLAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        },
+        {
+          "id": "acme-solar-trust",
+          "label": "Shares held by employee trust(s) (C2)",
+          "percent": 0.13,
+          "target": "acme-solar",
+          "asOf": "2026-09-30",
+          "source": "https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern?symbol=ACMESOLAR&tabIndex=equity",
+          "kind": "Aggregate category"
+        }
+      ]
     }
-  ]
+  ],
+  "methodology": {
+    "description": "Manually curated, dated equity shareholding disclosures; not a real-time price or beneficial ownership dataset.",
+    "newest_added": "2026-09-30",
+    "group_basis": "A + B + C2, percentages rounded to two decimal places. Exclude C1 depository receipts from this denominator where the source does.",
+    "source_policy": "Original issuer or NSE filing source. Link to the issuer filing or the exchange's filing index; if an index updates, historical figures remain explicitly dated.",
+    "limitations": "Named shareholders and category aggregates must not be treated as interchangeable. Do not sum parent categories and named members or infer ultimate beneficial control.",
+    "reviewed_date": "2026-11-01"
+  }
 }

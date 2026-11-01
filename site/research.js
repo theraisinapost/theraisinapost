@@ -3,33 +3,133 @@
   'use strict';
   const kind=document.body.dataset.research;
   if(kind==='atlas'){
-    let buttons=[], cy;
+    const rail=document.getElementById('company-rail');
     const graph=document.getElementById('ownership-graph');
+    const search=document.getElementById('company-search');
+    const sector=document.getElementById('company-sector');
+    const allButton=document.getElementById('atlas-show-all');
+    const breakdown=document.getElementById('atlas-breakdown');
+    const categoryBar=document.getElementById('atlas-category-bar');
+    const categoryLegend=document.getElementById('atlas-category-legend');
+    const stat=document.getElementById('atlas-directory-meta');
+    let companies=[],selectedCompany=null,buttons=[],cy,showAll=false;
+    const trim=x=>String(x||'').toLocaleLowerCase().trim();
+    const dateText=iso=>new Date(iso+'T12:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+    const validUrl=url=>{
+      try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&
+        ['www.tcs.com','www.hul.co.in','rilstaticasset.akamaized.net','nsearchives.nseindia.com',
+         'www.nseindia.com','www.titancompany.in','www.hdfc.bank.in','sbi.bank.in','www.icici.bank.in'].includes(u.hostname);}
+      catch(_){return false;}
+    };
+    const validCompany=c=>c&&typeof c.id==='string'&&/^[a-z0-9-]+$/.test(c.id)&&
+      typeof c.name==='string'&&c.name.length<110&&typeof c.short==='string'&&
+      typeof c.sector==='string'&&c.sector.length<50&&/^20\d{2}-\d{2}-\d{2}$/.test(c.asOf||'')&&
+      ['Selected named shareholders','Aggregate categories'].includes(c.recordType)&&
+      c.source&&typeof c.source.label==='string'&&validUrl(c.source.url)&&
+      Array.isArray(c.owners)&&c.owners.length>0&&c.owners.length<30&&
+      c.owners.every(o=>o&&typeof o.id==='string'&&typeof o.label==='string'&&o.label.length<180&&
+        Number.isFinite(o.percent)&&o.percent>0&&o.percent<=100&&o.target===c.id&&
+        o.asOf===c.asOf&&o.source===c.source.url&&
+        o.kind===(c.recordType==='Aggregate categories'?'Aggregate category':'Named shareholder'))&&
+      c.owners.reduce((v,o)=>v+o.percent,0)<=100.03;
+    const create=(tag,txt,cls)=>{
+      const item=document.createElement(tag);
+      if(txt!==undefined)item.textContent=String(txt);
+      if(cls)item.className=cls;
+      return item;
+    };
     const select=owner=>{
-      if(!owner)return;
+      if(!owner||!selectedCompany)return;
       document.getElementById('owner-name').textContent=owner.label;
       document.getElementById('owner-value').textContent=owner.percent.toFixed(2)+'%';
       document.getElementById('owner-source').href=owner.source;
       document.getElementById('owner-record-type').textContent=owner.kind;
-      buttons.forEach(b=>{const active=b.dataset.owner===owner.id;b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active));});
+      document.getElementById('owner-context').textContent=selectedCompany.name+
+        ' · '+dateText(owner.asOf)+' · '+owner.kind;
+      buttons.forEach(b=>{
+        const active=b.dataset.owner===owner.id;
+        b.classList.toggle('selected',active);b.setAttribute('aria-pressed',String(active));
+      });
     };
-    fetch('data/ownership-companies.json').then(r=>{if(!r.ok)throw Error('Unavailable');return r.json();}).then(data=>{
-      const render=id=>{
-      const company=data.companies.find(c=>c.id===id)||data.companies[0];
+    const renderBreakdown=company=>{
+      categoryBar.replaceChildren();
+      categoryLegend.replaceChildren();
+      const aggregate=company.recordType==='Aggregate categories';
+      breakdown.hidden=!aggregate;
+      if(!aggregate)return;
+      const values=company.owners;
+      categoryBar.setAttribute('aria-label',values.map(v=>v.label+': '+v.percent.toFixed(2)+'%').join('; '));
+      values.forEach((o,i)=>{
+        const segment=create('span',undefined,'atlas-category-segment category-'+i);
+        segment.style.width=o.percent+'%';
+        segment.title=o.label+' · '+o.percent.toFixed(2)+'%';
+        categoryBar.append(segment);
+        const item=create('span',undefined,'atlas-category-key');
+        const color=create('i',undefined,'atlas-key-color category-'+i);
+        color.setAttribute('aria-hidden','true');
+        item.append(color,create('span',o.label+' · '+o.percent.toFixed(2)+'%'));
+        categoryLegend.append(item);
+      });
+    };
+    const renderDirectory=()=>{
+      const q=trim(search.value),industry=sector.value;
+      const filtered=companies.filter(c=>(industry==='All'||c.sector===industry)&&
+        (!q||trim(c.name+' '+c.short+' '+c.sector).includes(q)));
+      const activeSearch=Boolean(q)||industry!=='All';
+      let visible=activeSearch||showAll?filtered:filtered.slice(0,8);
+      if(!activeSearch&&!showAll&&selectedCompany&&!visible.some(c=>c.id===selectedCompany.id))
+        visible=[...visible.slice(0,7),selectedCompany];
+      rail.replaceChildren();
+      visible.forEach(c=>{
+        const a=create('a',undefined,'company-card');
+        a.href='?company='+encodeURIComponent(c.id);a.dataset.company=c.id;
+        if(c.id===selectedCompany?.id)a.setAttribute('aria-current','true');
+        a.append(create('small',c.sector),create('strong',c.short));
+        const summary=c.recordType==='Aggregate categories'?
+          (c.owners.find(o=>o.id.endsWith('-promoter'))||c.owners[0]):null;
+        a.append(create('span',dateText(c.asOf)));
+        if(summary)a.append(create('em',summary.label==='Public shareholders'?
+          'Public shareholders · '+summary.percent.toFixed(2)+'%':
+          'Promoter group · '+summary.percent.toFixed(2)+'%'));
+        rail.append(a);
+      });
+      stat.textContent=filtered.length+' of '+companies.length+' companies · '+
+        companies.reduce((sum,c)=>sum+c.owners.length,0)+' disclosed entries';
+      allButton.hidden=activeSearch||companies.length<=8;
+      allButton.textContent=showAll?'Show fewer companies':'View all '+companies.length+' companies';
+      allButton.setAttribute('aria-expanded',String(showAll));
+      if(!visible.length){
+        rail.append(create('p','No companies match this search. Try another name or sector.','company-no-results'));
+      }
+    };
+    const render=id=>{
+      const company=companies.find(c=>c.id===id)||companies[0];
+      if(!company)return;
+      selectedCompany=company;
       const owners=company.owners;
-      cy?.destroy(); cy=null;
-      graph.textContent='The sourced figures are available below.';
+      cy?.destroy();cy=null;
+      graph.textContent='The disclosed shareholdings are listed below.';
       graph.setAttribute('aria-label','Shareholding diagram for '+company.name);
-      document.getElementById('company-heading').textContent='Who owns '+company.short+'?';
-      document.getElementById('company-date').textContent=new Date(company.asOf+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
-      document.getElementById('company-coverage').textContent=owners.length+' records';
+      document.getElementById('company-heading').textContent=
+        (company.recordType==='Aggregate categories'?'Shareholding at ':'Who owns ')+company.short+
+        (company.recordType==='Aggregate categories'?'':'?');
+      document.getElementById('company-date').textContent=dateText(company.asOf);
+      document.getElementById('company-coverage').textContent=owners.length+' entries';
       document.getElementById('company-scope').textContent=company.scope;
-      document.getElementById('owner-context').textContent=company.name+' · '+company.asOf+' · '+company.recordType;
       document.getElementById('owner-source').textContent=company.source.label;
-      document.querySelectorAll('[data-company]').forEach(a=>{a.setAttribute('aria-current',a.dataset.company===company.id?'true':'false');});
-      const list=document.getElementById('owner-list'); list.replaceChildren();
-      owners.forEach(o=>{const b=document.createElement('button');b.type='button';b.className='owner-row';b.dataset.owner=o.id;const label=document.createElement('span');label.textContent=o.label;const value=document.createElement('strong');value.textContent=o.percent.toFixed(2)+'%';b.append(label,value);b.addEventListener('click',()=>select(o));list.append(b);});
-      buttons=[...list.children]; select(owners[0]);
+      document.getElementById('atlas-status').textContent=company.recordType==='Aggregate categories'?
+        'Displaying filed category totals, not named individual owners.':'Displaying selected named shareholders; other holders may not be included.';
+      renderBreakdown(company);
+      const list=document.getElementById('owner-list');list.replaceChildren();
+      owners.forEach(o=>{
+        const button=create('button',undefined,'owner-row');
+        button.type='button';button.dataset.owner=o.id;
+        button.append(create('span',o.label),create('strong',o.percent.toFixed(2)+'%'));
+        button.addEventListener('click',()=>select(o));
+        list.append(button);
+      });
+      buttons=[...list.children];select(owners[0]);
+      renderDirectory();
       if(typeof window.cytoscape!=='function')return;
       const elements=[{data:{id:'company',label:company.short},classes:'focus'}]
         .concat(owners.map(o=>({data:{id:o.id,label:o.label}})))
@@ -46,12 +146,32 @@
         ],minZoom:.5,maxZoom:1.4
       });
       cy.on('tap','node',e=>select(owners.find(o=>o.id===e.target.id())));
-      buttons.forEach(b=>b.addEventListener('click',()=>{cy.nodes().unselect();cy.getElementById(b.dataset.owner).select();}));
-      };
-      const fromURL=()=>render(new URLSearchParams(location.search).get('company'));
-      document.querySelectorAll('[data-company]').forEach(a=>a.addEventListener('click',event=>{if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();history.pushState({},'',a.href);render(a.dataset.company);}));
-      window.addEventListener('popstate',fromURL);fromURL();
-    }).catch(()=>{document.getElementById('atlas-status').textContent='Company database unavailable. Showing the TCS snapshot below.';});
+      buttons.forEach(b=>b.addEventListener('click',()=>{
+        cy.nodes().unselect();cy.getElementById(b.dataset.owner).select();
+      }));
+    };
+    rail.addEventListener('click',event=>{
+      const a=event.target.closest('a[data-company]');
+      if(!a||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+      event.preventDefault();history.pushState({},'',a.href);render(a.dataset.company);
+    });
+    search.addEventListener('input',renderDirectory);
+    sector.addEventListener('change',renderDirectory);
+    allButton.addEventListener('click',()=>{showAll=!showAll;renderDirectory();});
+    fetch('data/ownership-companies.json',{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw Error('Unavailable');return r.json();})
+      .then(data=>{
+        companies=Array.isArray(data.companies)?data.companies.filter(validCompany):[];
+        if(!companies.length)throw Error('No valid ownership records');
+        const sectors=[...new Set(companies.map(c=>c.sector))].sort((a,b)=>a.localeCompare(b));
+        sectors.forEach(s=>{const option=create('option',s);option.value=s;sector.append(option);});
+        document.getElementById('atlas-company-total').textContent=companies.length;
+        const fromURL=()=>render(new URLSearchParams(location.search).get('company'));
+        window.addEventListener('popstate',fromURL);fromURL();
+      }).catch(()=>{
+        document.getElementById('atlas-status').textContent=
+          'Company index unavailable. The original TCS snapshot remains below; open its filing to verify figures.';
+      });
   }
   if(kind==='timeline'){
     const chips=[...document.querySelectorAll('[data-stage-filter]')];

@@ -650,3 +650,24 @@ test('ownership shelf fits a mobile viewport', async ({ page }) => {
   await page.locator('[data-company="coal-india"]').click();
   await expect(page.locator('#owner-value')).toHaveText('61.13%');
 });
+
+test('ownership atlas expands verified companies, searches sectors, and preserves sourced selections',async ({page})=>{
+  await page.goto('/ownership-atlas.html');
+  await expect(page.locator('#atlas-company-total')).toContainText('29');
+  await expect(page.locator('#company-browser input')).toBeVisible();
+  await page.locator('#company-search').fill('Infosys');
+  await expect(page.locator('.company-rail .company-card:visible')).toHaveCount(1);
+  await page.locator('[data-company="infosys"]').click();
+  await expect(page.locator('#company-heading')).toHaveText('Shareholding at Infosys');
+  await expect(page.locator('#owner-list .owner-row')).toHaveCount(3);
+  await expect(page.locator('#owner-value')).toHaveText('13.90%');
+  await expect(page.locator('#owner-source')).toHaveAttribute('href',/nseindia.com/);
+  await page.locator('#company-search').fill('');
+  await page.locator('#company-sector').selectOption('Banking');
+  await expect(page.locator('[data-company="hdfc-bank"]')).toBeVisible();
+  await page.locator('[data-company="sbi"]').click();
+  await expect(page.locator('#company-date')).toContainText('Jun 2026');
+  await expect(page.locator('#company-scope')).toContainText('aggregate');
+  await page.setViewportSize({width:320,height:740});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
+});
