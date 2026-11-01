@@ -47,8 +47,8 @@ class FooterEditorialTests(unittest.TestCase):
             for route in ('index.html','about.html','markets.html','data-room.html'):
                 html=(out/route).read_text(encoding='utf-8')
                 self.assertEqual(html.count('id="footer-invitation"'),1)
-                self.assertIn('The evidence behind the decision.', html)
-                self.assertIn('Independent reporting on policy, business and public institutions.',html)
+                self.assertIn('Policy and business, in context.', html)
+                self.assertIn('Briefings and analysis on Indian policy, business and the economy.',html)
             self.assertIn('grid-template-columns:repeat(12,minmax(0,1fr))',css)
             self.assertIn('font-variant-numeric:tabular-nums',css)
             self.assertIn('@media(max-width:660px)',css)

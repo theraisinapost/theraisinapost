@@ -1,4 +1,4 @@
-"""Offline verification for the independent publication's institutional pages."""
+"""Offline verification for the publication's institutional pages."""
 import sys
 import unittest
 from pathlib import Path
@@ -18,6 +18,8 @@ class InstitutionalPages(unittest.TestCase):
             for name in ('about','editorial-policy','corrections'):
                 page=(out/(name+'.html')).read_text(encoding='utf-8')
                 self.assertIn('href="minimal.css"',page)
+                for phrase in ('independent journalism', 'independent reporting', 'independent publication'):
+                    self.assertNotIn(phrase, page.lower())
                 self.assertIn('href="editorial-pages.css"',page)
                 self.assertIn('href="https://theraisinapost.github.io/theraisinapost/'+name+'.html"',page)
                 self.assertNotIn('<!--SITE_URL-->',page)
@@ -46,7 +48,7 @@ class InstitutionalPages(unittest.TestCase):
 
     def test_about_has_publication_formats_and_links_to_standards(self):
         about=(ROOT/'site/about.html').read_text(encoding='utf-8')
-        self.assertIn('The record matters',about)
+        self.assertIn('Policy and business in context.',about)
         for marker in ('The Power Brief','Sunday Insights','Weekly podcast','Visual explainers','about-coverage','about-principle','about-research-links'):
             self.assertIn(marker,about)
         self.assertIn('href="editorial-policy.html"',about)

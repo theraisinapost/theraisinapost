@@ -35,7 +35,7 @@ class AboutPageTests(unittest.TestCase):
             dest=Path(directory)
             build.render_site(build.parse_feed(FEED),dest)
             doc=(dest/'about.html').read_text(encoding='utf-8')
-            for category in ('Governance &amp; policy','Business &amp; money','India &amp; the world'):
+            for category in ('Governance &amp; policy','Business &amp; economy','India &amp; the world'):
                 self.assertIn('<h3>'+category+'</h3>',doc)
             for form in ('The Power Brief','Sunday Insights','Weekly podcast','Visual explainers'):
                 self.assertIn('<h3>'+form+'</h3>',doc)
