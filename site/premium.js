@@ -4,6 +4,7 @@ const key = 'raisina-desk-v1';
 let state = {topics: ['policy', 'economy', 'business'], density: 'comfortable', seen: []};
 try { const saved = JSON.parse(localStorage.getItem(key)); if (saved && Array.isArray(saved.topics) && Array.isArray(saved.seen)) state = {...state, ...saved, topics: saved.topics.filter(t => ['policy','economy','business'].includes(t))}; } catch { /* Private browsing keeps a usable session desk. */ }
 const previous = new Set(state.seen);
+let returningVisit = Boolean(state.lastVisit);
 let posts = [];
 const node = (tag, text, cls) => { const el = document.createElement(tag); if (text) el.textContent = text; if (cls) el.className = cls; return el; };
 const link = (text, url) => { const el = node('a', text); try { const u = new URL(url, location.href); if (['https:', 'http:'].includes(u.protocol)) el.href = u.href; } catch { /* Invalid source stays plain text. */ } return el; };
@@ -23,7 +24,7 @@ function renderPosts() {
  if (!selected.length) { list.append(node('p', state.topics.length ? 'No editions match this focus in the current feed. Explore the full archive or choose another topic.' : 'Choose a topic above to compose your reading list.')); return; }
  selected.forEach((p, i) => {
   const article = node('article', null, 'briefing-item'); article.append(node('span', String(i+1).padStart(2,'0'), 'briefing-number'));
-  const content = node('div'); content.append(node('span', `${p.category} · ${p.date}${state.lastVisit && !previous.has(p.url) ? ' · New to your desk' : ''}`, 'briefing-meta'));
+  const content = node('div'); content.append(node('span', `${p.category} · ${p.date}${returningVisit && !previous.has(p.url) ? ' · New to your desk' : ''}`, 'briefing-meta'));
   const h = node('h3'); h.append(link(p.title, p.url)); content.append(h, node('p', p.description)); article.append(content); list.append(article);
  });
  const words = selected.reduce((sum,p) => sum + (p.title+' '+p.description).split(/\s+/).length, 0);
@@ -32,7 +33,7 @@ function renderPosts() {
 apply();
 document.querySelectorAll('#preferences input').forEach(input => input.addEventListener('change', () => { state.topics = [...document.querySelectorAll('#preferences input:checked')].map(i => i.value); apply(); renderPosts(); persist(); }));
 $('#desk-density').addEventListener('change', event => { state.density = event.target.value; apply(); persist(); });
-$('#desk-reset').addEventListener('click', () => { state = {topics:['policy','economy','business'],density:'comfortable',seen:[]}; previous.clear(); apply(); renderPosts(); try { localStorage.removeItem(key); } catch {} $('#preference-status').textContent = 'Desk preferences and visit history cleared.'; $('#visit-status').textContent = 'Your desk has been reset.'; });
+$('#desk-reset').addEventListener('click', () => { state = {topics:['policy','economy','business'],density:'comfortable',seen:[]}; previous.clear(); returningVisit = false; apply(); renderPosts(); try { localStorage.removeItem(key); } catch {} $('#preference-status').textContent = 'Desk preferences and visit history cleared.'; $('#visit-status').textContent = 'Your desk has been reset.'; });
 $('#desk-print').addEventListener('click', () => window.print());
 get('posts.json').then(data => {
  posts = data.articles;
@@ -60,7 +61,7 @@ get('data/release-calendar.json').then(data => {
  $('#calendar-download').addEventListener('click', () => {
   const stamp = new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
   const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//The Raisina Post//Research Calendar//EN','CALSCALE:GREGORIAN'];
-  upcoming.forEach((e,i) => { const end=new Date(e.date+'T00:00:00Z'); end.setUTCDate(end.getUTCDate()+1); lines.push('BEGIN:VEVENT',`UID:raisina-${e.date}-${i}@theraisinapost.github.io`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${e.date.replaceAll('-','')}`,`DTEND;VALUE=DATE:${end.toISOString().slice(0,10).replaceAll('-','')}`,`SUMMARY:${escapeICS(e.title+' (scheduled)')}`,`DESCRIPTION:${escapeICS('Planned release; dates may change. Source: '+e.source)}`,'END:VEVENT'); });
+  upcoming.forEach(e => { const end=new Date(e.date+'T00:00:00Z'); end.setUTCDate(end.getUTCDate()+1); lines.push('BEGIN:VEVENT',`UID:raisina-${e.date}-${encodeURIComponent(e.title)}@theraisinapost.github.io`,`DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${e.date.replaceAll('-','')}`,`DTEND;VALUE=DATE:${end.toISOString().slice(0,10).replaceAll('-','')}`,`SUMMARY:${escapeICS(e.title+' (scheduled)')}`,`DESCRIPTION:${escapeICS('Planned release; dates may change. Source: '+e.source)}`,'END:VEVENT'); });
   lines.push('END:VCALENDAR');
   const folded=lines.map(line=>{let parts=[],part='',bytes=0;for(const ch of line){const size=new TextEncoder().encode(ch).length;if(bytes+size>74){parts.push(part);part=' ';bytes=1;}part+=ch;bytes+=size;}parts.push(part);return parts.join('\r\n');}).join('\r\n')+'\r\n';
   download(folded,'raisina-release-calendar.ics','text/calendar;charset=utf-8');
