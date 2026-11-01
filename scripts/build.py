@@ -196,7 +196,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     site_url=site_url.rstrip('/')+'/'
     page = page.replace('<!--SITE_URL-->', escape(site_url))
     (destination/'index.html').write_text(finalize_page(page), encoding='utf-8')
-    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','editorial-pages.css','intelligence.css','intelligence.js','minimal.css','motion.css','motion.js','footer-refresh.css','public-records.css','public-records.js','finance.css','finance.js','bento.css','bento.js'):
+    for fname in ('styles.css','market.css','editorial.css','site.js','mobile-nav.js','reader.js','market-desk.js','commodities.js','favicon.svg','brand-masthead.png','brand-elephant.png','footer-watermark.svg','research.css','research.js','research-desk.css','research-desk.js','about.css','editorial-pages.css','intelligence.css','intelligence.js','minimal.css','motion.css','motion.js','footer-refresh.css','public-records.css','public-records.js','finance.css','finance.js','bento.css','bento.js','premium.css','premium.js'):
         shutil.copy2(BASE/'site'/fname,destination/fname)
     # The chart primitive is copied but not loaded by the homepage.
     chart_dir = BASE/'site'/'components'
@@ -219,7 +219,7 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
     market = chrome((BASE/'site'/'markets.html').read_text(encoding='utf-8'))
     market = market.replace('<!--SITE_URL-->', escape(site_url)).replace('<!--YEAR-->', str(datetime.now(timezone.utc).year))
     (destination/'markets.html').write_text(finalize_page(market), encoding='utf-8')
-    for name in ('ownership-atlas','policy-timeline','policy-monitor','india-data','release-calendar','document-diff','parliament-file','data-room','evidence-desk','question-hour','trade-ledger','public-money'):
+    for name in ('desk','membership','ownership-atlas','policy-timeline','policy-monitor','india-data','release-calendar','document-diff','parliament-file','data-room','evidence-desk','question-hour','trade-ledger','public-money'):
         researched=chrome((BASE/'site'/(name+'.html')).read_text(encoding='utf-8'))
         researched=researched.replace('<!--SITE_URL-->',escape(site_url)).replace('<!--YEAR-->',str(datetime.now(timezone.utc).year))
         (destination/(name+'.html')).write_text(finalize_page(researched), encoding='utf-8')
