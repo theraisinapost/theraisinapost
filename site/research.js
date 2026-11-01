@@ -169,8 +169,8 @@
           lines.push([c.name,c.symbol||c.short,c.sector,c.asOf,c.recordType,o.label,o.percent.toFixed(2),o.source].map(safeCsv).join(','));
         });
       });
-      const text=lines.join('\\r\\n')+'\\r\\n';
-      const url=URL.createObjectURL(new Blob(['\\uFEFF',text],{type:'text/csv;charset=utf-8'}));
+      const text=lines.join('\r\n')+'\r\n';
+      const url=URL.createObjectURL(new Blob(['\uFEFF',text],{type:'text/csv;charset=utf-8'}));
       const link=document.createElement('a');
       link.href=url;
       link.download='raisina-ownership-atlas-'+companies.length+'-companies.csv';
