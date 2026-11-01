@@ -4,7 +4,7 @@
   const kind = document.body.dataset.desk;
   if (!kind) return;
   document.querySelectorAll('.desk-subnav a').forEach(link => {
-    if (link.getAttribute('href') === kind + '.html') link.setAttribute('aria-current', 'page');
+    if (link.getAttribute('href') === kind + '/') link.setAttribute('aria-current', 'page');
   });
   const byId = id => document.getElementById(id);
   const node = (tag, text, className) => {

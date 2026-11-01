@@ -36,7 +36,7 @@
       'Checked '+d.toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',timeZone:'Asia/Kolkata'})+' IST';
   };
   document.querySelectorAll('.desk-subnav a').forEach(a=>{
-    if (a.getAttribute('href')===kind+'.html') a.setAttribute('aria-current','page');
+    if (a.getAttribute('href')===kind+'/') a.setAttribute('aria-current','page');
   });
 
   if (kind==='parliament-file') {

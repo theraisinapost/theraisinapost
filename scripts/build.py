@@ -176,8 +176,15 @@ def goatcounter_tag():
         return ''
     return '<script async data-goatcounter="https://'+code+'.goatcounter.com/count" src="https://gc.zgo.at/count.js"></script>'
 
+def clean_page_links(source):
+    """Use directory permalinks for internal links while preserving CSS and assets."""
+    return re.sub(r'(?<=href=")(?:\./)?([a-z0-9-]+)\.html(?=[?#"])',
+                  lambda match: './' if match.group(1) == 'index' else match.group(1) + '/',
+                  source)
+
+
 def finalize_page(page):
-    return page.replace('</head>','<link rel="stylesheet" href="minimal.css"><link rel="stylesheet" href="motion.css"><script defer src="motion.js"></script><link rel="stylesheet" href="footer-refresh.css"><link rel="stylesheet" href="bento.css"><script defer src="bento.js"></script>'+goatcounter_tag()+'</head>',1)
+    return clean_page_links(page.replace('</head>','<link rel="stylesheet" href="minimal.css"><link rel="stylesheet" href="motion.css"><script defer src="motion.js"></script><link rel="stylesheet" href="footer-refresh.css"><link rel="stylesheet" href="bento.css"><script defer src="bento.js"></script>'+goatcounter_tag()+'</head>',1))
 
 def render_site(posts, destination, site_url=DEFAULT_URL):
     destination = Path(destination)
@@ -228,6 +235,22 @@ def render_site(posts, destination, site_url=DEFAULT_URL):
         shutil.copy2(BASE/'site'/'data'/name,destination/'data'/name)
     (destination/'posts.json').write_text(json.dumps({'source':FEED_URL,'articles':posts},ensure_ascii=False,indent=2),encoding='utf-8')
     publish_discovery(destination, site_url, posts)
+    # GitHub Pages serves a folder permalink from its index.html.
+    for old in sorted(destination.glob('*.html')):
+        if old.name == 'index.html':
+            continue
+        slug = old.stem
+        original = old.read_text(encoding='utf-8')
+        # Resolve CSS, scripts and data at the site root, also for preview servers.
+        nested = re.sub(r'(<head(?:\s[^>]*)?>)', r'\1<base href="../">', original, count=1)
+        # Preserve page-local fragment navigation despite the relative base element.
+        nested = re.sub(r'href="#([^"]*)"', lambda m: 'href="' + slug + '/#' + m.group(1) + '"', nested)
+        folder = destination / slug
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / 'index.html').write_text(nested, encoding='utf-8')
+        # GitHub Pages has no custom server 301: redirect legacy bookmarks in-browser.
+        redirect = '<script>window.location.replace(' + json.dumps(slug + '/') + ' + window.location.search + window.location.hash);</script>'
+        old.write_text(original.replace('</head>', redirect + '</head>', 1), encoding='utf-8')
     (destination/'.nojekyll').write_text('',encoding='utf-8')
 
 def download_feed():

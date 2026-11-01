@@ -42,7 +42,7 @@ get('posts.json').then(data => {
  $('#visit-status').textContent = last ? `${fresh} edition${fresh === 1 ? '' : 's'} added to the current feed since your last visit on ${new Date(last).toLocaleDateString('en-GB')}. Latest available: ${posts[0]?.date || 'not dated'}.` : `Welcome to your desk. Latest available edition: ${posts[0]?.date || 'not dated'}.`;
  renderPosts(); state.seen = posts.map(p => p.url); state.lastVisit = new Date().toISOString();
  try { localStorage.setItem(key, JSON.stringify(state)); } catch {}
-}).catch(() => { $('#visit-status').textContent = 'The briefing could not load. Your research tools remain available.'; $('#briefing-list').append(link('Open the latest editions', 'index.html#latest')); });
+}).catch(() => { $('#visit-status').textContent = 'The briefing could not load. Your research tools remain available.'; $('#briefing-list').append(link('Open the latest editions', new URL('./#latest', document.baseURI).href)); });
 get('data/dpdp-timeline.json').then(data => {
  const record = $('#policy-record'); record.replaceChildren(node('p', `Record reviewed ${data.asOf}.`,'desk-caption'));
  const event = data.events.find(e => e.id === 'rules');

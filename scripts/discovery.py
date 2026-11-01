@@ -77,17 +77,17 @@ def metadata(source, filename, site_url, posts):
     page.feed(source)
     if not page.title.strip() or not page.description.strip():
         raise ValueError(f'Missing title or description: {filename}')
-    url = site_url + ('' if filename == 'index.html' else filename)
+    url = site_url + ('' if filename == 'index.html' else filename.removesuffix('.html') + '/')
     org_id, web_id, page_id = site_url + '#publisher', site_url + '#website', url + '#webpage'
     publisher = {
         '@type': 'NewsMediaOrganization', '@id': org_id, 'name': NAME,
         'url': site_url, 'description': DESCRIPTION,
         'logo': {'@type': 'ImageObject', 'url': site_url + 'brand-masthead.png', 'width': 1250, 'height': 234},
         'sameAs': [PUBLICATION], 'email': 'raisinapost@substack.com',
-        'ethicsPolicy': site_url + 'editorial-policy.html',
-        'correctionsPolicy': site_url + 'corrections.html',
-        'publishingPrinciples': site_url + 'editorial-policy.html',
-        'ownershipFundingInfo': site_url + 'about.html#independence-title',
+        'ethicsPolicy': site_url + 'editorial-policy/',
+        'correctionsPolicy': site_url + 'corrections/',
+        'publishingPrinciples': site_url + 'editorial-policy/',
+        'ownershipFundingInfo': site_url + 'about/#independence-title',
     }
     kind = {'index.html': 'CollectionPage', 'about.html': 'AboutPage', 'corrections.html': 'ContactPage'}.get(filename, 'WebPage')
     node = {'@type': kind, '@id': page_id, 'url': url, 'name': page.title.strip(),

@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const SECTIONS = ['The Power Brief', 'Business', 'Governance'];
-  const homeURL = 'index.html';
+  const homeURL = './';
   const validURL = url => typeof url === 'string' && /^https:\/\/raisinapost\.substack\.com\/p\/[a-z0-9-]+$/i.test(url);
   const normalize = str => String(str || '').toLocaleLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
   const create = (tag, cls, text) => {
@@ -31,26 +31,26 @@
   const paletteInput = dialog.querySelector('#palette-query');
   const paletteResults = dialog.querySelector('#palette-results');
   const destinations = [
-    {title: 'Observatory', caption: 'Explore publishing activity and recent stories', url:'observatory.html'},
-    {title: 'Ownership atlas', caption: 'Publicly disclosed shareholdings and source filings', url:'ownership-atlas.html'},
-    {title: 'Policy timeline', caption: 'DPDP Act chronology', url:'policy-timeline.html'},
-    {title: 'Policy monitor', caption: 'Linked SEBI and PIB notices', url:'policy-monitor.html'},
-    {title: 'Parliament file', caption: 'Official committee reports and documents', url:'parliament-file.html'},
-    {title: 'Question Hour', caption: 'Search Lok Sabha questions and government replies', url:'question-hour.html'},
-    {title: 'Trade ledger', caption: 'India merchandise trade by partner and product', url:'trade-ledger.html'},
-    {title: 'Public money', caption: 'Compare Union budget expenditure and revised estimates', url:'public-money.html'},
-    {title: 'Data room', caption: 'Compare and export economic datasets', url:'data-room.html'},
-    {title: 'Evidence desk', caption: 'Unreviewed signals from official public pages', url:'evidence-desk.html'},
-    {title: 'India in data', caption: 'Economy pulse and annual observations', url:'india-data.html'},
-    {title: 'Inflation explorer', caption: 'Compare the rupee’s purchasing power', url:'india-data.html#inflation-explorer'},
-    {title: 'Oil price history', caption: 'Historical Brent and WTI daily spot data', url:'markets.html#oil-history'},
-    {title: 'Release calendar', caption: 'Planned statistical publication dates', url:'release-calendar.html'},
-    {title: 'Document comparison', caption: 'Inspect document text differences in your browser', url:'document-diff.html'},
+    {title: 'Observatory', caption: 'Explore publishing activity and recent stories', url:'observatory/'},
+    {title: 'Ownership atlas', caption: 'Publicly disclosed shareholdings and source filings', url:'ownership-atlas/'},
+    {title: 'Policy timeline', caption: 'DPDP Act chronology', url:'policy-timeline/'},
+    {title: 'Policy monitor', caption: 'Linked SEBI and PIB notices', url:'policy-monitor/'},
+    {title: 'Parliament file', caption: 'Official committee reports and documents', url:'parliament-file/'},
+    {title: 'Question Hour', caption: 'Search Lok Sabha questions and government replies', url:'question-hour/'},
+    {title: 'Trade ledger', caption: 'India merchandise trade by partner and product', url:'trade-ledger/'},
+    {title: 'Public money', caption: 'Compare Union budget expenditure and revised estimates', url:'public-money/'},
+    {title: 'Data room', caption: 'Compare and export economic datasets', url:'data-room/'},
+    {title: 'Evidence desk', caption: 'Unreviewed signals from official public pages', url:'evidence-desk/'},
+    {title: 'India in data', caption: 'Economy pulse and annual observations', url:'india-data/'},
+    {title: 'Inflation explorer', caption: 'Compare the rupee’s purchasing power', url:'india-data/#inflation-explorer'},
+    {title: 'Oil price history', caption: 'Historical Brent and WTI daily spot data', url:'markets/#oil-history'},
+    {title: 'Release calendar', caption: 'Planned statistical publication dates', url:'release-calendar/'},
+    {title: 'Document comparison', caption: 'Inspect document text differences in your browser', url:'document-diff/'},
     {title: 'Full archive', caption:'Browse the original Substack archive', url:'https://raisinapost.substack.com/archive'},
-    {title: 'About The Raisina Post', caption: 'The publication and its coverage', url:'about.html'},
-    {title: 'Publication guide', caption:'Formats, rights and the GitHub archive', url:'publication-guide.html'},
-    {title: 'Editorial policy', caption:'Sources, AI, conflicts and corrections', url:'editorial-policy.html'},
-    {title: 'Corrections & contact', caption:'Send evidence or request corrections', url:'corrections.html'}
+    {title: 'About The Raisina Post', caption: 'The publication and its coverage', url:'about/'},
+    {title: 'Publication guide', caption:'Formats, rights and the GitHub archive', url:'publication-guide/'},
+    {title: 'Editorial policy', caption:'Sources, AI, conflicts and corrections', url:'editorial-policy/'},
+    {title: 'Corrections & contact', caption:'Send evidence or request corrections', url:'corrections/'}
   ];
   let paletteItems = [];
   function appendPaletteItem(item) {
