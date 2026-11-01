@@ -19,6 +19,38 @@
     } else loadQuotes();
   }
 
+  // Keep off-screen charts dormant; each provider embed is mounted only once.
+  const charts = [...document.querySelectorAll('[data-market-chart]')];
+  let chartsLoaded = false;
+  function mountChart(host) {
+    if (host.dataset.mounted) return;
+    host.dataset.mounted = 'true';
+    const widget = document.createElement('tv-mini-chart');
+    widget.setAttribute('symbol', host.dataset.marketChart);
+    widget.setAttribute('theme', 'light');
+    widget.setAttribute('time-frame', '1M');
+    widget.setAttribute('show-time-scale', 'true');
+    widget.setAttribute('transparent', 'true');
+    widget.appendChild(host.querySelector('.market-chart-fallback'));
+    host.appendChild(widget);
+    if (!chartsLoaded) {
+      chartsLoaded = true;
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = 'https://widgets.tradingview-widget.com/w/en/tv-mini-chart.js';
+      document.head.appendChild(script);
+    }
+  }
+  if ('IntersectionObserver' in window) {
+    const chartObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        chartObserver.unobserve(entry.target);
+        mountChart(entry.target);
+      }
+    }, {threshold:0.05});
+    charts.forEach(host => chartObserver.observe(host));
+  } else charts.forEach(mountChart);
+
   const search = document.getElementById('article-search');
   const buttons = [...document.querySelectorAll('[data-filter]')];
   const rows = [...document.querySelectorAll('.article-row')];
