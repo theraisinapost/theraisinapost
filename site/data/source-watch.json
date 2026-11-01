@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-01T10:33:36+00:00",
+  "checked_at": "2026-11-01T13:47:09+00:00",
   "sources": [
     {
       "id": "sebi",
@@ -7,7 +7,7 @@
       "category": "Securities regulation",
       "url": "https://www.sebi.gov.in/legal/circulars.html",
       "status": "unavailable",
-      "last_checked_at": "2026-11-01T10:33:36+00:00",
+      "last_checked_at": "2026-11-01T13:47:09+00:00",
       "hash": "",
       "change_unreviewed": false,
       "change_detected_at": ""
@@ -18,7 +18,7 @@
       "category": "Official statistics",
       "url": "https://www.mospi.gov.in/release-calendar",
       "status": "unavailable",
-      "last_checked_at": "2026-11-01T10:33:36+00:00",
+      "last_checked_at": "2026-11-01T13:47:09+00:00",
       "hash": "",
       "change_unreviewed": false,
       "change_detected_at": ""
@@ -28,11 +28,11 @@
       "name": "Press Information Bureau",
       "category": "Government announcements",
       "url": "https://www.pib.gov.in/",
-      "hash": "d69ddaf67b3c60b890a5f06ca8cd6c866cecb31e985e36b399fa6b6b92fa9cf5",
-      "last_checked_at": "2026-11-01T10:33:36+00:00",
+      "hash": "a6edca7e38b821cd7eeca46cc196ce4f33b45506cab13d83456a6b38400338c8",
+      "last_checked_at": "2026-11-01T13:47:09+00:00",
       "status": "available",
       "change_unreviewed": true,
-      "change_detected_at": "2026-11-01T10:33:36+00:00"
+      "change_detected_at": "2026-11-01T13:47:09+00:00"
     }
   ],
   "notice": "Page-level changes, if detected, are UNREVIEWED. An HTML change does not establish a policy or legal change."
