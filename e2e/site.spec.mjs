@@ -62,7 +62,7 @@ test('mobile full-screen navigation opens, closes and works across pages', async
   await expect(openButton).toHaveAttribute('aria-expanded','false');
   await openButton.click();
   await menu.getByRole('link',{name:'Markets',exact:true}).click();
-  await expect(page).toHaveURL(/markets[.]html$/);
+  await expect(page).toHaveURL(/markets\/$/);
   await expect(page.locator('[data-mobile-menu-open]')).toBeVisible();
 });
 
@@ -74,11 +74,11 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   const width = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(392);
   await page.locator('.editorial-footer').getByRole('link', { name: 'About the publication', exact: true }).click();
-  await expect(page).toHaveURL(/about\.html$/);
+  await expect(page).toHaveURL(/about\/$/);
   await expect(page.getByRole('heading', { level: 1, name: /policy and business in context/i })).toBeVisible();
 });
 
-for (const path of ['/', '/about.html', '/publication-guide.html', '/editorial-policy.html', '/corrections.html', '/parliament-file.html', '/data-room.html', '/evidence-desk.html']) {
+for (const path of ['/', '/about/', '/publication-guide/', '/editorial-policy/', '/corrections/', '/parliament-file/', '/data-room/', '/evidence-desk/']) {
   test('WCAG A/AA serious and critical accessibility violations: ' + path, async ({ page }) => {
     await page.goto(path);
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
@@ -102,7 +102,7 @@ test('command palette searches the real RSS index and supports keyboard invocati
 });
 
 test('the Observatory visualizes RSS metadata with clean article links', async ({ page }) => {
-  await page.goto('/observatory.html');
+  await page.goto('/observatory/');
   await expect(page.getByRole('heading', { name: 'The Observatory.' })).toBeVisible();
   await expect(page.locator('#obs-pulse rect').first()).toBeVisible();
   const first=page.locator('.obs-story').first();
@@ -118,7 +118,7 @@ test('the Observatory visualizes RSS metadata with clean article links', async (
 
 test('the Observatory remains accessible and has no mobile horizontal overflow', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/observatory.html');
+  await page.goto('/observatory/');
   await expect(page.locator('#obs-story-list .obs-story').first()).toBeVisible();
   const width = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(392);
@@ -136,7 +136,7 @@ test('markets page has attributed quotes and correctly-year-labelled World Bank 
     const data=[{date:'2024',value,countryiso3code:'IND'},{date:'2023',value:value+1,countryiso3code:'IND'}];
     r.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{},data])});
   });
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.getByRole('heading',{name:/Markets & economy/})).toBeVisible();
   await expect(page.locator('#macro-gdp-value')).toContainText('6.50%');
   await expect(page.locator('#macro-inflation-value')).toContainText('4.20%');
@@ -150,14 +150,14 @@ test('markets page reports unavailable annual data without imaginary numbers',as
   await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
   await page.route('https://s3.tradingview.com/**',r=>r.abort());
   await page.route('https://api.worldbank.org/**',r=>r.abort());
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.locator('#macro-gdp-date')).toHaveText('Data unavailable');
   await expect(page.locator('#macro-gdp-value')).toHaveText('—');
   await expect(page.locator('#macro-status')).toContainText('unavailable');
 });
 
 test('all seven pages have accessible Inter typography and a quiet grayscale design',async({page})=>{
-  for(const route of ['/','/markets.html','/observatory.html','/about.html','/publication-guide.html','/ownership-atlas.html','/policy-timeline.html']){
+  for(const route of ['/','/markets/','/observatory/','/about/','/publication-guide/','/ownership-atlas/','/policy-timeline/']){
     await page.goto(route,{waitUntil:'domcontentloaded'});
     await expect(page.locator('link[href="minimal.css"]')).toHaveCount(1);
     const style=await page.evaluate(()=>{
@@ -170,7 +170,7 @@ test('all seven pages have accessible Inter typography and a quiet grayscale des
     expect(style.ink).toBe('rgb(23, 23, 23)');
     expect(style.background).toBe('rgb(255, 255, 255)');
   }
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   const stats=await page.locator('.commodity-stat').first().evaluate(el=>({
     background:getComputedStyle(el).backgroundColor,
     radius:getComputedStyle(el).borderRadius
@@ -187,13 +187,13 @@ test('all seven pages have accessible Inter typography and a quiet grayscale des
 });
 
 test('research desk publishes source-backed ownership and DPDP timeline', async ({page}) => {
-  await page.goto('/ownership-atlas.html');
+  await page.goto('/ownership-atlas/');
   await expect(page.getByRole('heading',{name:'Who owns TCS?'})).toBeVisible();
   await expect(page.locator('#owner-list .owner-row')).toHaveCount(5);
   await page.locator('[data-owner="lic"]').click();
   await expect(page.locator('#owner-value')).toHaveText('5.52%');
   await expect(page.locator('#owner-source')).toHaveAttribute('href',/tcs[.]com/);
-  await page.goto('/policy-timeline.html');
+  await page.goto('/policy-timeline/');
   await expect(page.getByRole('heading',{name:/DPDP timeline/})).toBeVisible();
   await expect(page.locator('#policy-milestones li')).toHaveCount(6);
   await page.getByRole('button',{name:'Scheduled',exact:true}).click();
@@ -224,7 +224,7 @@ test('commodities price cards show provider figures, dates and sourced units',as
   await page.route('https://api.worldbank.org/**',r=>r.abort());
   await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
   await page.route('https://s3.tradingview.com/**',r=>r.abort());
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.locator('#spot-gold-value')).toHaveText('₹85,000');
   await expect(page.locator('#spot-silver-value')).toHaveText('₹81,984');
   await expect(page.locator('#spot-ratio-value')).toHaveText('100.00');
@@ -246,7 +246,7 @@ test('commodities never fabricate prices if sources fail or metal data is stale'
   await page.route('https://api.worldbank.org/**',r=>r.abort());
   await page.route('https://widgets.tradingview-widget.com/**',r=>r.abort());
   await page.route('https://s3.tradingview.com/**',r=>r.abort());
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.locator('#spot-status')).toContainText('Stale');
   await expect(page.locator('#spot-silver-value')).toHaveText('—');
   await expect(page.locator('#fx-usd-value')).toHaveText('—');
@@ -261,7 +261,7 @@ test('economic calendar loads only when a reader requests events',async({page})=
   await page.route('https://s3.tradingview.com/**',r=>r.abort());
   await page.route('https://xaus.com/**',r=>r.abort());
   await page.route('https://api.frankfurter.dev/**',r=>r.abort());
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.locator('#calendar-widget script')).toHaveCount(0);
   await page.locator('#calendar-load').click();
   await expect(page.locator('#calendar-widget script')).toHaveCount(1);
@@ -280,7 +280,7 @@ test('policy monitor displays validated official entries and filters locally',as
       ]
     })
   }));
-  await page.goto('/policy-monitor.html');
+  await page.goto('/policy-monitor/');
   await expect(page.locator('.desk-record')).toHaveCount(2);
   await page.locator('#regulatory-source').selectOption('SEBI');
   await expect(page.locator('.desk-record')).toHaveCount(1);
@@ -295,7 +295,7 @@ test('India data shows sourced annual values and a labelled chart',async({page})
       {date:'2025',value:6.75},{date:'2024',value:6.1},{date:'2023',value:null}
     ]])
   }));
-  await page.goto('/india-data.html');
+  await page.goto('/india-data/');
   await expect(page.locator('#india-latest-value')).toHaveText('6.75%');
   await expect(page.locator('#india-latest-year')).toContainText('2025');
   await expect(page.locator('#india-history-chart polyline')).toHaveCount(1);
@@ -303,7 +303,7 @@ test('India data shows sourced annual values and a labelled chart',async({page})
 });
 
 test('release calendar clearly labels scheduled dates rather than confirmed releases',async({page})=>{
-  await page.goto('/release-calendar.html');
+  await page.goto('/release-calendar/');
   await page.locator('#release-range').selectOption('all');
   await expect(page.locator('.desk-record')).not.toHaveCount(0);
   await expect(page.locator('.desk-record').first()).toContainText(/Scheduled date|Planned date passed/);
@@ -311,7 +311,7 @@ test('release calendar clearly labels scheduled dates rather than confirmed rele
 });
 
 test('document comparison stays local and escapes pasted HTML',async({page})=>{
-  await page.goto('/document-diff.html');
+  await page.goto('/document-diff/');
   await page.locator('#diff-before').fill('Common line\\nOld requirement');
   await page.locator('#diff-after').fill('Common line\\n<img src=x onerror=alert(1)>');
   await page.locator('#diff-run').click();
@@ -325,7 +325,7 @@ test('document comparison stays local and escapes pasted HTML',async({page})=>{
 
 
 test('About page is a navigable editorial profile on desktop and mobile', async ({page}) => {
-  await page.goto('/about.html');
+  await page.goto('/about/');
   await expect(page.getByRole('heading', {level:1})).toContainText('Policy and business in context.');
   await expect(page.locator('.about-coverage article')).toHaveCount(3);
   await expect(page.locator('.about-principle')).toHaveCount(4);
@@ -340,7 +340,7 @@ test('About page is a navigable editorial profile on desktop and mobile', async 
 
 
 test('editorial policy mirrors published standards with direct source and mobile navigation', async ({page}) => {
-  await page.goto('/editorial-policy.html');
+  await page.goto('/editorial-policy/');
   await expect(page.getByRole('heading', {level:1})).toContainText('Editorial policy.');
   await expect(page.locator('.ed-chapter')).toHaveCount(8);
   await expect(page.locator('.ed-index a')).toHaveCount(8);
@@ -354,7 +354,7 @@ test('editorial policy mirrors published standards with direct source and mobile
 });
 
 test('corrections desk provides real editorial address without fake forms', async ({page}) => {
-  await page.goto('/corrections.html');
+  await page.goto('/corrections/');
   await expect(page.getByRole('heading', {level:1})).toContainText('Corrections and contact.');
   await expect(page.getByRole('link',{name:'raisinapost@substack.com'})).toHaveAttribute('href','mailto:raisinapost@substack.com');
   await expect(page.locator('form')).toHaveCount(0);
@@ -372,7 +372,7 @@ test('Parliament File filters official records without HTML injection or invente
       {committee:'finance',committee_name:'Finance',report_number:'18',title:'Untrusted',date:'',url:'https://fake-sansad.in/fraud.pdf'}
     ]
   })}));
-  await page.goto('/parliament-file.html');
+  await page.goto('/parliament-file/');
   await expect(page.locator('.desk-record')).toHaveCount(2);
   await expect(page.locator('.desk-record img')).toHaveCount(0);
   await expect(page.locator('.desk-record').nth(1)).toContainText('Date not supplied');
@@ -390,7 +390,7 @@ test('Data Room compares published annual data and exports the displayed CSV', a
       [{date:'2025',value:4.2},{date:'2024',value:null}];
     return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify([{page:1},values])});
   });
-  await page.goto('/data-room.html');
+  await page.goto('/data-room/');
   await expect(page.locator('#data-rows tr')).toHaveCount(3);
   await expect(page.locator('#data-chart polyline')).toHaveCount(2);
   await expect(page.locator('#data-csv')).toBeEnabled();
@@ -410,7 +410,7 @@ test('Evidence Desk labels unreviewed page-level changes and source failures', a
       {name:'Other source',category:'Statistics',url:'https://www.mospi.gov.in/release-calendar',status:'unavailable',change_unreviewed:false}
     ]
   })}));
-  await page.goto('/evidence-desk.html');
+  await page.goto('/evidence-desk/');
   await expect(page.locator('.desk-record')).toHaveCount(2);
   await expect(page.locator('#watch-status')).toContainText('1 require editorial review');
   await expect(page.locator('.desk-record').first()).toContainText('NOT reviewed');
@@ -461,7 +461,7 @@ test('footer is grouped, readable and usable on desktop and mobile',async({page}
   await expect(footer.getByRole('navigation',{name:'Read'})).toBeVisible();
   await expect(footer.getByRole('navigation',{name:'Research'})).toBeVisible();
   await expect(footer.getByRole('navigation',{name:'Publication'})).toBeVisible();
-  await expect(footer.getByRole('link',{name:'About the publication'})).toHaveAttribute('href','about.html');
+  await expect(footer.getByRole('link',{name:'About the publication'})).toHaveAttribute('href','about/');
   await expect(footer.getByRole('link',{name:'All research tools'})).toHaveAttribute('href',/index|theraisinapost.github.io|#research-desk/);
   await expect(footer.getByRole('link',{name:'Subscribe to the Post'})).toHaveAttribute('href','https://raisinapost.substack.com/subscribe');
   await page.setViewportSize({width:390,height:844});
@@ -504,7 +504,7 @@ test('Question Hour performs source-linked parliamentary search with explicit sc
     }}]};
     route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
   });
-  await page.goto('/question-hour.html');
+  await page.goto('/question-hour/');
   await expect(page.locator('#qh-results .desk-record')).toHaveCount(1);
   await expect(page.locator('#qh-results a').first()).toHaveAttribute('href',/^https:\/\/sansad[.]in\//);
   await page.locator('#qh-search').fill('hospital');
@@ -522,7 +522,7 @@ test('Trade ledger validates returned India totals and reports unavailable API h
       primaryValue:2250000000,partnerDesc:'China',cmdDesc:'TOTAL'
     }]})});
   });
-  await page.goto('/trade-ledger.html');
+  await page.goto('/trade-ledger/');
   await expect(page.locator('#trade-value')).toContainText('2,250,000,000.00');
   await expect(page.locator('#trade-rows tr')).toHaveCount(1);
   await page.locator('#trade-flow').selectOption('M');
@@ -532,7 +532,7 @@ test('Trade ledger validates returned India totals and reports unavailable API h
 });
 
 test('Public Money shows accurate official budget comparisons and exports displayed values',async({page})=>{
-  await page.goto('/public-money.html');
+  await page.goto('/public-money/');
   await expect(page.locator('#money-rows tr')).toHaveCount(9);
   await expect(page.locator('#money-to')).toHaveText('53,47,314.81');
   await expect(page.locator('#money-from')).toHaveText('49,64,841.74');
@@ -543,7 +543,7 @@ test('Public Money shows accurate official budget comparisons and exports displa
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(322);
 });
 
-for (const route of ['/question-hour.html','/trade-ledger.html','/public-money.html']){
+for (const route of ['/question-hour/','/trade-ledger/','/public-money/']){
   test('public record tool accessible at '+route,async({page})=>{
     await page.route('https://datasets-server.huggingface.co/**',r=>r.abort());
     await page.route('https://comtradeapi.un.org/**',r=>r.abort());
@@ -559,7 +559,7 @@ test('Trade ledger uses matching saved official data when the public preview can
     status:'partial',checked_at:'2026-10-31T17:00:00Z',items:[{year:2024,partner:'156',
     partner_label:'China',flow:'X',commodity:'TOTAL',commodity_label:'All merchandise',value_usd:85000000}]
   })}));
-  await page.goto('/trade-ledger.html');
+  await page.goto('/trade-ledger/');
   await expect(page.locator('#trade-value')).toContainText('85,000,000.00');
   await expect(page.locator('#trade-status')).toContainText('saved official-source snapshot');
 });
@@ -572,7 +572,7 @@ test('Question Hour cached fallback filters the saved index by entered topic',as
       {subject:'Railway infrastructure',ministry:'RAILWAYS',date:'2026-03-14',lok_no:18,type:'UNSTARRED',url:'https://sansad.in/getFile/two.pdf'}
     ]
   })}));
-  await page.goto('/question-hour.html');
+  await page.goto('/question-hour/');
   await expect(page.locator('#qh-results .desk-record')).toHaveCount(2);
   await page.locator('#qh-search').fill('railway');
   await page.locator('#qh-form button[type="submit"]').click();
@@ -619,12 +619,12 @@ test('research bento starts at the text gutter and scrolls edge to edge without 
   const last=await rail.getByRole('link').last().boundingBox();
   expect(last.x+last.width).toBeLessThanOrEqual(1441);
   await rail.getByRole('link',{name:/^Question Hour/}).click();
-  await expect(page).toHaveURL(/question-hour[.]html$/);
+  await expect(page).toHaveURL(/question-hour\/$/);
 });
 
 test('ownership companies have sourced deep links and work without the graph CDN', async ({ page }) => {
   await page.route('**/cytoscape.min.js', route => route.abort());
-  await page.goto('/ownership-atlas.html?company=hul');
+  await page.goto('/ownership-atlas/?company=hul');
   await expect(page.locator('#company-heading')).toHaveText('Who owns HUL?');
   await expect(page.locator('.owner-row')).toHaveCount(7);
   await expect(page.locator('#owner-value')).toHaveText('47.43%');
@@ -637,14 +637,14 @@ test('ownership companies have sourced deep links and work without the graph CDN
   await page.locator('[data-company="lic"]').click();
   await expect(page.locator('#owner-value')).toHaveText('90.00%');
   await expect(page.locator('#owner-source')).toHaveAttribute('href', /nseindia.com/);
-  await page.goto('/ownership-atlas.html?company=missing');
+  await page.goto('/ownership-atlas/?company=missing');
   await expect(page.locator('#company-heading')).toHaveText('Who owns TCS?');
   await expect(page.locator('.owner-row')).toHaveCount(5);
 });
 
 test('ownership shelf fits a mobile viewport', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/ownership-atlas.html?company=hul');
+  await page.goto('/ownership-atlas/?company=hul');
   await expect(page.locator('#company-heading')).toHaveText('Who owns HUL?');
   await expect(page.locator('[data-company="coal-india"]')).toBeAttached();
   await page.locator('[data-company="coal-india"]').click();
@@ -652,7 +652,7 @@ test('ownership shelf fits a mobile viewport', async ({ page }) => {
 });
 
 test('ownership atlas expands verified companies, searches sectors, and preserves sourced selections',async ({page})=>{
-  await page.goto('/ownership-atlas.html');
+  await page.goto('/ownership-atlas/');
   await expect(page.locator('#atlas-company-total')).toContainText('84');
   await expect(page.locator('#company-browser input')).toBeVisible();
   await page.locator('#company-search').fill('Infosys');
@@ -673,7 +673,7 @@ test('ownership atlas expands verified companies, searches sectors, and preserve
 });
 
 test('Atlas comparison distinguishes aggregates from selected named holders and exports dated CSV', async ({page})=>{
- await page.goto('/ownership-atlas.html');
+ await page.goto('/ownership-atlas/');
  await expect(page.locator('#atlas-company-total')).toHaveText('84');
  await page.locator('#compare-first').selectOption('hindalco');
  await page.locator('#compare-second').selectOption('asian-paints');
@@ -693,7 +693,7 @@ test('Atlas comparison distinguishes aggregates from selected named holders and 
 });
 
 test('expanded atlas exposes 84 verified companies and sorts by dated promoter percentage',async({page})=>{
-  await page.goto('/ownership-atlas.html');
+  await page.goto('/ownership-atlas/');
   await expect(page.locator('#atlas-company-total')).toHaveText('84');
   await expect(page.locator('#atlas-directory-meta')).toContainText('189');
   await expect(page.locator('#company-sort')).toBeVisible();

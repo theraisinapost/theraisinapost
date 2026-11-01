@@ -24,7 +24,7 @@ class IntelligencePages(unittest.TestCase):
                 self.assertIn('href="intelligence.css"',page)
                 self.assertIn('href="https://theraisinapost.github.io/theraisinapost/'+name+'.html"',page)
                 self.assertIn('href="'+name+'.html"',home)
-                self.assertIn(name+'.html',site_map)
+                self.assertIn(name+'/',site_map)
                 self.assertNotIn('<!--SITE_URL-->',page)
             self.assertTrue((out/'intelligence.js').exists())
             self.assertTrue((out/'data/parliament.json').exists())

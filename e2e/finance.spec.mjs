@@ -11,7 +11,7 @@ function fixture() {
 
 test('annual economy cards keep their reference year and the inflation calculator uses actual index ratios', async ({page}) => {
   await page.route('**/data/finance.json',r=>r.fulfill({json:fixture()}));
-  await page.goto('/india-data.html');
+  await page.goto('/india-data/');
   await expect(page.locator('#pulse-growth')).toContainText('Annual observation · 2010');
   await expect(page.locator('#pulse-status')).toContainText('not a live or monthly');
   await page.locator('#inflation-amount').fill('1000');
@@ -29,7 +29,7 @@ test('annual economy cards keep their reference year and the inflation calculato
 
 test('oil history switches benchmarks, retains negative prices and exports the selected range', async ({page}) => {
   await page.route('**/data/finance.json',r=>r.fulfill({json:fixture()}));
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.locator('#oil-history-period')).toContainText('Brent · observed 2025-02-01');
   await expect(page.locator('#oil-history-status')).toContainText('more than 10 days old');
   await page.locator('#oil-benchmark').selectOption('wti');
@@ -47,17 +47,17 @@ test('oil history switches benchmarks, retains negative prices and exports the s
 
 test('missing source data leaves purchasing-power and historical oil tools unavailable', async ({page}) => {
   await page.route('**/data/finance.json',r=>r.fulfill({json:{schema:1,annual:{},oil:{}}}));
-  await page.goto('/india-data.html');
+  await page.goto('/india-data/');
   await expect(page.locator('#inflation-calculate')).toBeDisabled();
   await expect(page.locator('#inflation-equivalent')).toHaveText('—');
   await expect(page.locator('#inflation-result')).toContainText('unavailable');
-  await page.goto('/markets.html');
+  await page.goto('/markets/');
   await expect(page.locator('#oil-csv')).toBeDisabled();
   await expect(page.locator('#oil-history-status')).toContainText('unavailable');
   await expect(page.locator('#oil-history-chart polyline')).toHaveCount(0);
 });
 
-for (const route of ['/india-data.html','/markets.html']) {
+for (const route of ['/india-data/','/markets/']) {
   test('finance tools stay accessible and fit a 320px screen at '+route, async ({page}) => {
     await page.route('**/data/finance.json',r=>r.fulfill({json:fixture()}));
     await page.setViewportSize({width:320,height:850});

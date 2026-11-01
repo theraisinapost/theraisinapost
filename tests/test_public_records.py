@@ -22,9 +22,9 @@ class PublicRecordsTests(unittest.TestCase):
                 self.assertIn('href="public-records.css"',text)
                 self.assertIn('src="public-records.js"',text)
                 self.assertIn('href="'+page+'.html"',home)
-                self.assertIn(page+'.html',sitemap)
+                self.assertIn(page+'/',sitemap)
                 self.assertNotIn('<!--SITE_URL-->',text)
-                self.assertIn('<!--SITE_URL-->',(ROOT/'site'/(page+'.html')).read_text())
+                self.assertIn('<!--SITE_URL-->',(ROOT/'site'/(page+'/')).read_text())
             for file in ('public-records.js','public-records.css','data/public-money.json','data/question-hour.json','data/trade-ledger.json'):
                 self.assertTrue((d/file).exists(),file)
 

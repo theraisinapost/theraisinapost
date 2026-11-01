@@ -25,7 +25,7 @@ class ResearchDeskTests(unittest.TestCase):
                 self.assertIn('href="research-desk.css"', page)
                 self.assertIn('href="https://theraisinapost.github.io/theraisinapost/' + stem + '.html"', page)
                 self.assertIn('href="' + stem + '.html"', home)
-                self.assertIn(stem + '.html', (output / 'sitemap.xml').read_text(encoding='utf-8'))
+                self.assertIn(stem + '/', (output / 'sitemap.xml').read_text(encoding='utf-8'))
             self.assertTrue((output / 'research-desk.js').exists())
             self.assertTrue((output / 'data' / 'regulatory.json').exists())
 

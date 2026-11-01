@@ -22,7 +22,7 @@ class AboutPageTests(unittest.TestCase):
             self.assertIn('class="about-independence"',doc)
             self.assertIn('class="about-endnote"',doc)
             self.assertIn('aria-labelledby=',doc)
-            self.assertIn('href="https://theraisinapost.github.io/theraisinapost/about.html"',doc)
+            self.assertIn('href="https://theraisinapost.github.io/theraisinapost/about/"',doc)
             self.assertIn('href="minimal.css"',doc)
             self.assertIn('href="about.css"',doc)
             self.assertTrue((dest/'about.css').exists())
@@ -39,7 +39,7 @@ class AboutPageTests(unittest.TestCase):
                 self.assertIn('<h3>'+category+'</h3>',doc)
             for form in ('The Power Brief','Sunday Insights','Weekly podcast','Visual explainers'):
                 self.assertIn('<h3>'+form+'</h3>',doc)
-            for path in ('policy-monitor.html','india-data.html','release-calendar.html','ownership-atlas.html','publication-guide.html'):
+            for path in ('policy-monitor/','india-data/','release-calendar/','ownership-atlas/','publication-guide/'):
                 self.assertIn('href="'+path+'"',doc)
             for unsupported in ('1M readers','award-winning newsroom','500 journalists','world-leading'):
                 self.assertNotIn(unsupported,doc)

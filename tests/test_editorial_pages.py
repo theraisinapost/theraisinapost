@@ -25,7 +25,7 @@ class InstitutionalPages(unittest.TestCase):
                 self.assertNotIn('<!--SITE_URL-->',page)
                 self.assertNotIn('<!--EDITORIAL_FOOTER-->',page)
                 self.assertIn('href="'+name+'.html"',(out/'index.html').read_text(encoding='utf-8'))
-                self.assertIn(name+'.html',(out/'sitemap.xml').read_text(encoding='utf-8'))
+                self.assertIn(name+'/',(out/'sitemap.xml').read_text(encoding='utf-8'))
             self.assertTrue((out/'editorial-pages.css').exists())
 
     def test_policy_is_transparent_and_points_to_published_original(self):

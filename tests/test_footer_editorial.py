@@ -20,7 +20,7 @@ class FooterEditorialTests(unittest.TestCase):
                 self.assertIn('class="editorial-footer-pitch"',page)
                 for group in ('Read','Research','Publication'):
                     self.assertIn('class="editorial-footer-group-label">'+group+'</h3>',page)
-                for path in ('about.html','editorial-policy.html','corrections.html','parliament-file.html','policy-monitor.html'):
+                for path in ('about/','editorial-policy/','corrections/','parliament-file/','policy-monitor/'):
                     self.assertIn('href="'+path+'"',page)
                 self.assertIn('href="https://raisinapost.substack.com/subscribe"',page)
                 self.assertIn('href="#main"',page)

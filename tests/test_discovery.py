@@ -63,7 +63,7 @@ class DiscoveryTests(unittest.TestCase):
                 graph = head.schemas[0]['@graph']
                 publisher = next(n for n in graph if n['@type'] == 'NewsMediaOrganization')
                 self.assertEqual(publisher['sameAs'], ['https://raisinapost.substack.com/'])
-                self.assertIn('corrections.html', publisher['correctionsPolicy'])
+                self.assertIn('corrections/', publisher['correctionsPolicy'])
                 # An excerpt collection must never impersonate a full news article.
                 self.assertFalse(any(n['@type'] == 'NewsArticle' for n in graph))
                 if path.name == 'index.html':
