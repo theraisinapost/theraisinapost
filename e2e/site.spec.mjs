@@ -75,7 +75,7 @@ test('mobile layout keeps article navigation and input usable', async ({ page })
   expect(width).toBeLessThanOrEqual(392);
   await page.locator('.editorial-footer').getByRole('link', { name: 'About the publication', exact: true }).click();
   await expect(page).toHaveURL(/about\.html$/);
-  await expect(page.getByRole('heading', { level: 1, name: /record matters/i })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: /policy and business in context/i })).toBeVisible();
 });
 
 for (const path of ['/', '/about.html', '/publication-guide.html', '/editorial-policy.html', '/corrections.html', '/parliament-file.html', '/data-room.html', '/evidence-desk.html']) {
@@ -326,7 +326,7 @@ test('document comparison stays local and escapes pasted HTML',async({page})=>{
 
 test('About page is a navigable editorial profile on desktop and mobile', async ({page}) => {
   await page.goto('/about.html');
-  await expect(page.getByRole('heading', {level:1})).toContainText('The record matters');
+  await expect(page.getByRole('heading', {level:1})).toContainText('Policy and business in context.');
   await expect(page.locator('.about-coverage article')).toHaveCount(3);
   await expect(page.locator('.about-principle')).toHaveCount(4);
   await expect(page.locator('.about-research-links a')).toHaveCount(4);
@@ -341,7 +341,7 @@ test('About page is a navigable editorial profile on desktop and mobile', async 
 
 test('editorial policy mirrors published standards with direct source and mobile navigation', async ({page}) => {
   await page.goto('/editorial-policy.html');
-  await expect(page.getByRole('heading', {level:1})).toContainText('Standards,');
+  await expect(page.getByRole('heading', {level:1})).toContainText('Editorial policy.');
   await expect(page.locator('.ed-chapter')).toHaveCount(8);
   await expect(page.locator('.ed-index a')).toHaveCount(8);
   await expect(page.getByRole('link', {name:'Read the canonical policy'}))
@@ -355,7 +355,7 @@ test('editorial policy mirrors published standards with direct source and mobile
 
 test('corrections desk provides real editorial address without fake forms', async ({page}) => {
   await page.goto('/corrections.html');
-  await expect(page.getByRole('heading', {level:1})).toContainText('Keep the record');
+  await expect(page.getByRole('heading', {level:1})).toContainText('Corrections and contact.');
   await expect(page.getByRole('link',{name:'raisinapost@substack.com'})).toHaveAttribute('href','mailto:raisinapost@substack.com');
   await expect(page.locator('form')).toHaveCount(0);
   await expect(page.locator('.ed-contact-list li')).toHaveCount(4);
@@ -475,7 +475,7 @@ test('footer is grouped, readable and usable on desktop and mobile',async({page}
 test('Swiss publication footer is coherent, functional, and fits 320px screens', async ({page})=>{
   await page.goto('/');
   const footer=page.locator('footer.editorial-footer');
-  await expect(footer.getByRole('heading',{name:'The evidence behind the decision.'})).toBeVisible();
+  await expect(footer.getByRole('heading',{name:'Policy and business, in context.'})).toBeVisible();
   const groups=footer.locator('.editorial-footer-nav nav');
   await expect(groups).toHaveCount(3);
   for(const group of ['Read','Research','Publication']){
