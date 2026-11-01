@@ -703,7 +703,6 @@ test('expanded atlas exposes 84 verified companies and sorts by dated promoter p
   await expect(page.locator('#owner-value')).toHaveText('71.64%');
   await page.locator('#company-sector').selectOption('All');
   await page.locator('#company-sort').selectOption('promoter-desc');
-  await page.locator('#atlas-show-all').click();
   await expect(page.locator('.company-rail .company-card')).toHaveCount(84);
   const names=await page.locator('.company-rail .company-card').allTextContents();
   expect(names.some(x=>x.includes('IRFC'))).toBeTruthy();
