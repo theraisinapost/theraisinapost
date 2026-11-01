@@ -7,12 +7,17 @@ class OwnershipDataTests(unittest.TestCase):
  def test_records_have_consistent_provenance_and_nonoverlapping_categories(self):
   data=json.loads((Path(__file__).parents[1]/'site/data/ownership-companies.json').read_text())
   companies=data['companies']
-  self.assertGreaterEqual(len(companies),28)
+  self.assertEqual(len(companies),64)
   self.assertIn('tcs',{c['id'] for c in companies})
   self.assertIn('infosys',{c['id'] for c in companies})
   self.assertIn('sbi',{c['id'] for c in companies})
   self.assertIn('tata-steel',{c['id'] for c in companies})
   self.assertIn('hdfc-bank',{c['id'] for c in companies})
+  self.assertIn('asian-paints',{c['id'] for c in companies})
+  self.assertIn('hdfc-life',{c['id'] for c in companies})
+  self.assertIn('apollo-tyres',{c['id'] for c in companies})
+  self.assertIn('kotak-bank',{c['id'] for c in companies})
+  self.assertEqual(sum(len(c['owners']) for c in companies),148)
   self.assertEqual(len({c['id'] for c in companies}),len(companies))
   for c in companies:
    date.fromisoformat(c['asOf'])
@@ -32,4 +37,8 @@ class OwnershipDataTests(unittest.TestCase):
     self.assertLessEqual(o['percent'],100)
    self.assertLessEqual(sum(o['percent'] for o in c['owners']),100.02)
    self.assertEqual(len({o['kind'] for o in c['owners']}),1)
+   if c['id'] in ('asian-paints','hdfc-life','hindalco','apollo-tyres'):
+    self.assertEqual(c['asOf'],'2026-09-30')
+   if c['id']=='kotak-bank':
+    self.assertEqual(c['asOf'],'2026-03-31')
 
