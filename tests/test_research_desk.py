@@ -23,7 +23,7 @@ class ResearchDeskTests(unittest.TestCase):
                 page = path.read_text(encoding='utf-8')
                 self.assertIn('href="minimal.css"', page)
                 self.assertIn('href="research-desk.css"', page)
-                self.assertIn('href="https://theraisinapost.github.io/theraisinapost/' + stem + '/"', page)
+                self.assertIn('href="https://theraisinapost.github.io/' + stem + '/"', page)
                 self.assertIn('href="' + stem + '/"', home)
                 self.assertIn(stem + '/', (output / 'sitemap.xml').read_text(encoding='utf-8'))
             self.assertTrue((output / 'research-desk.js').exists())

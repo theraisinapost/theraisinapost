@@ -4,17 +4,17 @@
 
 A purpose-built, minimalist GitHub Pages site for **[@theraisinapost](https://github.com/theraisinapost)**. It reads the public Substack RSS feed and publishes a typographic editorial homepage, front-page lead, secondary dispatches, searchable archive, categories and a newsletter call-to-action. The canonical articles and subscriptions remain on Substack.
 
-**Repository:** `theraisinapost/theraisinapost`  
-**Expected GitHub Pages URL:** `https://theraisinapost.github.io/theraisinapost/`  
+**Repository:** `theraisinapost/theraisinapost.github.io`  
+**Expected GitHub Pages URL:** `https://theraisinapost.github.io/`  
 **Feed:** `https://raisinapost.substack.com/feed`  
 **Publishing cadence:** hourly GitHub Actions, subject to scheduler and feed availability.
 
 ## Deployment
 
-1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
+1. Upload the **contents** of this folder to the *root* of the `theraisinapost/theraisinapost.github.io` repository, including the `.github/` workflow directory. Do not upload only the ZIP file.
 2. In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. The `GITHUB_TOKEN` on its own cannot activate an unconfigured Pages site.
 3. In **Actions**, open **The Raisina Post | RSS to GitHub Pages** and select **Run workflow**, branch `main`.
-4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/theraisinapost/`.
+4. Wait for the build and deployment jobs to succeed, then visit `https://theraisinapost.github.io/`.
 
 The website automatically updates on pushes to the source files, on manual dispatch, and via a scheduled check at 23 minutes past every hour. GitHub-hosted scheduled workflows can be delayed; feed failures stop a deployment instead of wiping a working site. If direct Substack RSS is blocked from a GitHub runner, the build tries a public RSS proxy. Only a public URL is sent, never credentials.
 
@@ -78,7 +78,7 @@ The publication's visible site remains a lightweight Python-built GitHub Pages a
 
 ```bash
 python -m unittest discover -s tests -v
-python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/theraisinapost/
+python scripts/build.py --feed-file site/feed-backup.xml --output dist --site-url https://theraisinapost.github.io/
 npm install --no-package-lock
 npx playwright install chromium
 npm run check:js
@@ -264,35 +264,6 @@ Homepage TradingView quotes load when their visible card enters the viewport, wi
 
 The shared content column is capped at 1128px, with 48px desktop, 32px tablet and 24px mobile insets. Section spacing follows an 8px rhythm, with 96px desktop separation between archive, research and footer regions. Introductory copy and the main reporting grid share their column ratio and gutter; reading text has a more relaxed line height. Bento cards retain full-width scrolling, use 16px gaps and 32px desktop/24px mobile padding, and keep their initial edge aligned to the text column. Keyboard scroll distances derive from the actual card gap. Red accents, 8px corners, source data and publication content remain unchanged.
 
+## Root homepage migration
 
-## Ownership Atlas — expanded public-disclosure index (1 November 2026)
-
-The Atlas now includes **29 companies and 69 named-holder or aggregate-category entries**, up from 5 companies. Source data: `site/data/ownership-companies.json` (version 2). The original five companies retain their own dated filings and **named shareholders** where available. Added companies use the exchange's shareholding pattern **Table I** category totals: promoter/promoter group (A), public (B), and employee trusts (C2) where nonzero, with the reporting date on each entry.
-
-The added set includes Infosys, Wipro, HCL Technologies, Bharti Airtel, Vodafone Idea, HDFC Bank, ICICI Bank, SBI, Bajaj Finance, L&T, Titan, Maruti Suzuki, Tata Steel, Tata Power, Tata Motors, Sun Pharma, ITC, Adani Enterprises, NBCC, Ola Electric, Minda, Aditya Birla Capital, L&T Technology Services, and ACME Solar. Most are September 2026 snapshots; SBI is June 2026, Adani Enterprises July 2026. These dates are explicit, not interpolated or called "live."
-
-Source links point to the original NSE corporate-filings shareholding-pattern index filtered by symbol or original issuer disclosures. As NSE's index can update to later filings, the Atlas also stores each company's dated snapshot. The curated A+B+C2 categories use a common regulatory percentage denominator (subject to the filing and rounding); C1 depository receipts are not an additional category in these graphs. **Public shareholders is an aggregate category, not an entity, so this never proves that one person controls a company.** Named holders from different reports are not summed with an aggregate category.
-
-The directory adds searchable company/industry/symbol lookup, sector filtering, deep links `?company=<id>`, an eight-company collapsed index, and an expandable full index; selecting a company updates the original Cytoscape graph, cited shareholder list, date and an aggregate ownership bar only where appropriate. Content falls back to the HTML TCS snapshot if loading fails, and remains readable if Cytoscape's CDN is unavailable. All generated DOM content uses text nodes, never external HTML. Tests validate dated, linked records and filtering on desktop and 320px mobile.
-
-
-## Ownership Atlas extension — 64 companies, 147 dated entries (November 2026)
-
-An additional 35 listed-company records increase the directory from 29 to 64 companies, and from 69 to **147 source-linked ownership entries**. The entries are manually curated from the NSE Corporate Filings / Shareholding Pattern register and, where specified, original issuer filings. They retain each filing's **as-of date**, and original holdings are stored at the two-decimal precision of the disclosure, including A+B+C2 (promoter/promoter group, public shareholders, employee trust) distinctions. Most new records are quarter-end **30 September 2026**; Bajaj Auto is **30 June 2026**, and Kotak Mahindra Bank is **31 March 2026**. The page **does not** portray these snapshots as live shareholding updates.
-
-The added companies are Hindalco, Hero MotoCorp, Indian Hotels, Crompton Greaves Consumer Electricals, CG Power, Afcons, RailTel, Piramal Pharma, AstraZeneca Pharma India, KFin Technologies, Netweb Technologies, UPL, Mahindra Holidays, Reliance Power, Shipping Corporation of India, Apeejay Surrendra Park Hotels, Aditya Birla Real Estate, Genus Power, WeWork India, India Shelter Finance, Bajaj Auto, Asian Paints, Kotak Mahindra Bank, Hindustan Petroleum, Godrej Agrovet, Jindal Saw, Whirlpool India, Kajaria Ceramics, MOIL, HDFC Life, Apollo Tyres, ITC Hotels, Physicswallah, Bajaj Electricals, and Edelweiss Financial Services.
-
-**Compare companies.** The Ownership Atlas now renders two independently dated company profiles with linked original-source documents. Two exchange-reported **aggregate category** snapshots may be compared at their filing dates. Where either selection is a list of **selected named shareholders** instead, the UI explicitly says *not directly comparable*, rather than incorrectly inferring residual ownership or ultimate control. Category fields on newly added records explicitly include reported zeros, even when their 0%-value owner node is omitted from the graph.
-
-**Export data.** The CSV export includes each of the 147 dated holdings as its own row with company, ticker (where recorded), sector, type, ownership label, percentage and original document URL; any spreadsheet formula-like field is escaped. It is built locally in the browser and requires no backend or account. The JSON source remains directly downloadable. Shareholder category totals are not named individuals, and no ownership percentages are invented to compensate for missing disclosures.
-
-Primary NSE filings index: https://www.nseindia.com/companies-listing/corporate-filings-shareholding-pattern ; issuer-specific source links are in `site/data/ownership-companies.json`. `tests/test_ownership.py` checks exact record counts, A+B+C2 category denominators, provenance links and unique IDs. `e2e/site.spec.mjs` exercises comparisons, CSV export and 320px layouts. No third-party database is hosted and no new paid API is required.
-
-
-## Ownership Atlas extension — September 2026 filing batch
-
-The source-linked Atlas now holds **84 listed companies and 189 dated ownership records** (up from 64 and 147). The 20 newly added companies are Biocon, Torrent Power, Ashok Leyland, Campus Activewear, Lupin, Sterling and Wilson Renewable Energy, Ion Exchange (India), Northern Arc Capital, Tube Investments of India, Oriental Hotels, LT Foods, Laxmi Organic, Mahindra Logistics, Raymond, Donear Industries, Ksolves India, 63 moons technologies, Hindustan Aeronautics (HAL), Indian Railway Finance Corporation (IRFC), and Power Grid Corporation.
-
-Each new snapshot is the **30 September 2026 A / B / C2 shareholding-pattern category** (promoter, public, employee trusts if applicable). Nineteen entries cite the **NSE corporate shareholding-pattern disclosure index** with the ticker in the source URL; Power Grid cites its issuer's Q2 FY2026–27 original shareholding disclosure. The source page may display a newer filing than the as-of quarter captured here; do not confuse a dated entry with real-time ownership. Promoter/public categories cannot be used to infer individual beneficial owners, institutional ownership or voting rights. Totals can differ from 100% by up to 0.01 percentage points because of source rounding. These records are separate from the five original companies' selected **named-owner** records.
-
-Directory navigation supports editorial order, alphabetical, filing date, largest reported promoter share and largest reported public share. The latter two only rank companies with **aggregate-category** records; selected named-owner reports are placed after comparable category records to prevent false equivalence. Tests: `tests/test_ownership.py` and Playwright's source-aware directory/search tests.
+The target homepage is `https://theraisinapost.github.io/`. GitHub requires the repository name `theraisinapost.github.io` for this organization site. The deployment workflow keeps the project path correct until the repository is renamed, then switches to the root automatically. Existing `/theraisinapost/` bookmarks (both pretty paths and `.html` URLs) redirect to the matching root pages, preserving query strings and anchors. Root canonicals, sitemap and crawler files are regenerated on deployment.

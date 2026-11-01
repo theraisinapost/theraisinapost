@@ -21,7 +21,7 @@ class InstitutionalPages(unittest.TestCase):
                 for phrase in ('independent journalism', 'independent reporting', 'independent publication'):
                     self.assertNotIn(phrase, page.lower())
                 self.assertIn('href="editorial-pages.css"',page)
-                self.assertIn('href="https://theraisinapost.github.io/theraisinapost/'+name+'/"',page)
+                self.assertIn('href="https://theraisinapost.github.io/'+name+'/"',page)
                 self.assertNotIn('<!--SITE_URL-->',page)
                 self.assertNotIn('<!--EDITORIAL_FOOTER-->',page)
                 self.assertIn('href="'+name+'/"',(out/'index.html').read_text(encoding='utf-8'))

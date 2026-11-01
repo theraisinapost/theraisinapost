@@ -44,6 +44,9 @@ jobs:
             DEFAULT_SITE_URL="https://${OWNER}.github.io/${REPO}/"
           fi
           SITE_URL="${RAISINA_SITE_URL:-$DEFAULT_SITE_URL}"
+          if [ "${REPO,,}" = "${OWNER,,}.github.io" ] && [ "$SITE_URL" = "https://${OWNER}.github.io/theraisinapost/" ]; then
+            SITE_URL="$DEFAULT_SITE_URL"
+          fi
           python scripts/build.py --output dist --site-url "$SITE_URL"
           python scripts/regulatory.py --output dist/data/regulatory.json
       - uses: actions/configure-pages@v5

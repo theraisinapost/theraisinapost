@@ -13,8 +13,8 @@ FEED='''<?xml version="1.0"?><rss version="2.0" xmlns:content="http://purl.org/r
 <item><title>XSS</title><link>javascript:alert(1)</link><description><![CDATA[<script>alert(1)</script>]]></description></item></channel></rss>'''
 
 class TestFeed(unittest.TestCase):
- def test_default_site_url_is_organization_project(self):
-  self.assertEqual(build.DEFAULT_URL,'https://theraisinapost.github.io/theraisinapost/')
+ def test_default_site_url_is_organization_root(self):
+  self.assertEqual(build.DEFAULT_URL,'https://theraisinapost.github.io/')
 
  def test_parse_feed_decodes_titles_sorts_and_rejects_bad_links(self):
   posts=build.parse_feed(FEED)

@@ -72,6 +72,30 @@ def script_json(value):
     return json.dumps(value, ensure_ascii=False, separators=(',', ':')).replace('&', '\\u0026').replace('<', '\\u003c').replace('>', '\\u003e')
 
 
+def legacy_project_redirects(destination, site_url, pages):
+    """Preserve both old pretty URLs and HTML bookmarks after the Pages rename."""
+    if site_url != 'https://theraisinapost.github.io/':
+        return
+    legacy = destination / 'theraisinapost'
+    legacy.mkdir(exist_ok=True)
+    for record in pages:
+        relative = record['url'].removeprefix(site_url)
+        target = record['url']
+        safe = html.escape(target, quote=True)
+        document = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
+                    '<meta name="viewport" content="width=device-width,initial-scale=1">'
+                    '<title>The Raisina Post — Page moved</title>'
+                    f'<link rel="canonical" href="{safe}">'
+                    f'<meta http-equiv="refresh" content="0;url={safe}">'
+                    '<script>location.replace(' + script_json(target) + ' + location.search + location.hash);</script>'
+                    f'</head><body><p>This page has moved to <a href="{safe}">The Raisina Post</a>.</p></body></html>')
+        destinations = [legacy / 'index.html'] if not relative else [legacy / relative / 'index.html', legacy / (relative.rstrip('/') + '.html')]
+        for path in destinations:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(document, encoding='utf-8')
+    (legacy / 'sitemap.xml').write_bytes((destination / 'sitemap.xml').read_bytes())
+
+
 def metadata(source, filename, site_url, posts):
     page = Page()
     page.feed(source)
@@ -176,3 +200,5 @@ def publish_discovery(destination, site_url, posts):
         'name': NAME, 'url': site_url, 'description': DESCRIPTION, 'publication': PUBLICATION,
         'feed': FEED, 'pages': pages, 'articles': posts,
     }, ensure_ascii=False, indent=2), encoding='utf-8')
+
+    legacy_project_redirects(destination, site_url, pages)
