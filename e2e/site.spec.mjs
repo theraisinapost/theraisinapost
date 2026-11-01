@@ -680,7 +680,7 @@ test('Atlas comparison distinguishes aggregates from selected named holders and 
  await expect(page.locator('#compare-results .atlas-compare-company')).toHaveCount(2);
  await expect(page.locator('#compare-results')).toContainText('34.66%');
  await expect(page.locator('#compare-results')).toContainText('52.65%');
- await expect(page.locator('#compare-results')).toContainText('30 Sep 2026');
+ await expect(page.locator('#compare-results')).toContainText(/30 Sep(?:t)? 2026/);
  await expect(page.locator('#atlas-export')).toBeEnabled();
  const downloadPromise=page.waitForEvent('download');
  await page.locator('#atlas-export').click();
