@@ -231,7 +231,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "infosys-promoter",
@@ -273,7 +273,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "wipro-promoter",
@@ -315,7 +315,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "hcltech-promoter",
@@ -357,7 +357,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "bharti-airtel-promoter",
@@ -399,7 +399,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "vodafone-idea-promoter",
@@ -432,7 +432,7 @@
         "label": "HDFC Bank investor ownership filings — September 2026 shareholding pattern"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "hdfc-bank-public",
@@ -456,7 +456,7 @@
         "label": "ICICI Bank official shareholding pattern — 30 September 2026"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "icici-bank-public",
@@ -480,7 +480,7 @@
         "label": "SBI shareholding pattern as at 30 June 2026 (official investor relations)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-06-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-06-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "sbi-promoter",
@@ -513,7 +513,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "bajaj-finance-promoter",
@@ -555,7 +555,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "lt-public",
@@ -579,7 +579,7 @@
         "label": "Titan Company investor disclosure — Q2 FY2026–27 shareholding pattern, published 27 Oct 2026"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "titan-promoter",
@@ -621,7 +621,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "maruti-promoter",
@@ -654,7 +654,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "tata-steel-promoter",
@@ -687,7 +687,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "tata-power-promoter",
@@ -720,7 +720,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "tata-motors-promoter",
@@ -753,7 +753,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "sun-pharma-promoter",
@@ -786,7 +786,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "itc-public",
@@ -810,7 +810,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-07-07 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-07-07. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-07-07. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "adani-enterprises-promoter",
@@ -843,7 +843,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "nbcc-promoter",
@@ -876,7 +876,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "ola-electric-promoter",
@@ -918,7 +918,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "minda-corp-promoter",
@@ -960,7 +960,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "aditya-birla-capital-promoter",
@@ -993,7 +993,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "ltts-promoter",
@@ -1026,7 +1026,7 @@
         "label": "NSE exchange filing summary — shareholding pattern as at 2026-09-30 (A, B, C2)"
       },
       "recordType": "Aggregate categories",
-      "scope": "Stock-exchange category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
+      "scope": "Stock-exchange aggregate category summary as at 2026-09-30. Figures use the filed A+B+C2 shareholding denominator (SCRR 1957), rounded to two decimals. Promoter/public/employee trust categories are not individual persons, economic beneficial owners, or a complete voting-control map. The linked filing page may show newer submissions.",
       "owners": [
         {
           "id": "acme-solar-promoter",
