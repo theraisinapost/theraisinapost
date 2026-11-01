@@ -21,7 +21,7 @@ class PublicRecordsTests(unittest.TestCase):
                 self.assertIn('href="minimal.css"',text)
                 self.assertIn('href="public-records.css"',text)
                 self.assertIn('src="public-records.js"',text)
-                self.assertIn('href="'+page+'.html"',home)
+                self.assertIn('href="'+page+'/"',home)
                 self.assertIn(page+'/',sitemap)
                 self.assertNotIn('<!--SITE_URL-->',text)
                 self.assertIn('<!--SITE_URL-->',(ROOT/'site'/(page+'/')).read_text())
