@@ -346,7 +346,7 @@ test('editorial policy mirrors published standards with direct source and mobile
   await expect(page.locator('.ed-index a')).toHaveCount(8);
   await expect(page.getByRole('link', {name:'Read the canonical policy'}))
     .toHaveAttribute('href','https://raisinapost.substack.com/p/editorial-policy');
-  await page.locator('.ed-index a[href="#conflicts"]').click();
+  await page.locator('.ed-index a[href$="#conflicts"]').click();
   await expect(page.locator('#conflicts')).toBeVisible();
   await page.setViewportSize({width:390,height:844});
   await expect(page.locator('.ed-hero h1')).toBeVisible();
@@ -602,7 +602,7 @@ test('research bento starts at the text gutter and scrolls edge to edge without 
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/');
   const rail=page.getByRole('region',{name:'Research tools',exact:true});
-  await expect(rail.getByRole('link')).toHaveCount(14);
+  await expect(rail.getByRole('link')).toHaveCount(16);
   for (const width of [320,768,1024,1440]) {
     await page.setViewportSize({width,height:900});
     await expect.poll(async () => Math.round((await rail.boundingBox()).width)).toBe(width);
