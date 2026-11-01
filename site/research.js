@@ -25,7 +25,7 @@
     const validUrl=url=>{
       try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&
         ['www.tcs.com','www.hul.co.in','rilstaticasset.akamaized.net','nsearchives.nseindia.com',
-         'www.nseindia.com','www.titancompany.in','www.hdfc.bank.in','sbi.bank.in','www.icici.bank.in','www.kotak.bank.in'].includes(u.hostname);}
+         'www.nseindia.com','powergrid.in','www.powergrid.in','www.titancompany.in','www.hdfc.bank.in','sbi.bank.in','www.icici.bank.in','www.kotak.bank.in'].includes(u.hostname);}
       catch(_){return false;}
     };
     const validCompany=c=>c&&typeof c.id==='string'&&/^[a-z0-9-]+$/.test(c.id)&&
